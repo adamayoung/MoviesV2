@@ -15,10 +15,6 @@
 
 default_platform(:ios)
 
-before_all do
-  xcversion(version: "12.0")
-end
-
 platform :ios do
 
   ios_scheme = "Movies (iOS)"
@@ -37,16 +33,16 @@ platform :ios do
 
   desc "CI Build"
   lane :ci do
-    match(app_identifier: "#{app_identifier}", type: "appstore") # aaa
     swiftlint
+    match(type: "appstore", readonly: is_ci, app_identifier: "#{app_identifier}") # aaa
+    #gym(scheme: "#{ios_scheme}", skip_archive: true, skip_codesigning: true)
     gym(scheme: "#{ios_scheme}")
-    # gym(scheme: "#{ios_scheme}", skip_archive: true, skip_codesigning: true)
     scan(scheme: "#{ios_scheme}")
   end
 
   desc "Upload to TestFlight"
   lane :beta do
-    # ensure_git_branch(branch: "main")
+    ensure_git_branch(branch: "main")
     match(type: "appstore", readonly: is_ci, app_identifier: "#{app_identifier}")
     set_build_number_repository
     gym(scheme: "#{ios_scheme}")
