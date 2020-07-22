@@ -37,8 +37,10 @@ platform :ios do
 
   desc "CI Build"
   lane :ci do
+    match(app_identifier: "#{app_identifier}", type: "appstore") # aaa
     swiftlint
-    gym(scheme: "#{ios_scheme}", skip_archive: true, skip_codesigning: true)
+    gym(scheme: "#{ios_scheme}")
+    # gym(scheme: "#{ios_scheme}", skip_archive: true, skip_codesigning: true)
     scan(scheme: "#{ios_scheme}")
   end
 
