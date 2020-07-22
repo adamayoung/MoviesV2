@@ -68,13 +68,13 @@
 		6FA5A9B424BF225D00E828AA /* MovieStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA5A9B224BF225D00E828AA /* MovieStore.swift */; };
 		6FA5A9B624BF29D100E828AA /* TVShowStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA5A9B524BF29D100E828AA /* TVShowStore.swift */; };
 		6FA5A9B724BF29D100E828AA /* TVShowStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA5A9B524BF29D100E828AA /* TVShowStore.swift */; };
-		6FA5A9C424BF2E7200E828AA /* Movies (watchOS Extension).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6FA5A9C324BF2E7200E828AA /* Movies (watchOS Extension).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6FA5A9C424BF2E7200E828AA /* MoviesWatchKitExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6FA5A9C324BF2E7200E828AA /* MoviesWatchKitExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6FA5A9CD24BF2E7200E828AA /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA5A9CC24BF2E7200E828AA /* NotificationController.swift */; };
 		6FA5A9CF24BF2E7200E828AA /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA5A9CE24BF2E7200E828AA /* NotificationView.swift */; };
 		6FA5A9D124BF2E7200E828AA /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA5A9D024BF2E7200E828AA /* ComplicationController.swift */; };
 		6FA5A9D324BF2E7300E828AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FA5A9D224BF2E7300E828AA /* Assets.xcassets */; };
 		6FA5A9D624BF2E7300E828AA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FA5A9D524BF2E7300E828AA /* Preview Assets.xcassets */; };
-		6FA5A9DB24BF2E7300E828AA /* Movies (watchOS).app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6FA5A9BA24BF2E7100E828AA /* Movies (watchOS).app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6FA5A9DB24BF2E7300E828AA /* MoviesWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6FA5A9BA24BF2E7100E828AA /* MoviesWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6FA5A9E424BF2F5F00E828AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FA5A94624BF144600E828AA /* Assets.xcassets */; };
 		6FA5A9E524BF2FDA00E828AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FA5A94624BF144600E828AA /* Assets.xcassets */; };
 		6FA5A9E624BF2FDB00E828AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FA5A94624BF144600E828AA /* Assets.xcassets */; };
@@ -94,14 +94,14 @@
 		6FA5A9FB24BF329000E828AA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA5A99324BF16CE00E828AA /* HomeView.swift */; };
 		6FA5AA0224BF3A2900E828AA /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA5AA0124BF3A2900E828AA /* WidgetKit.framework */; };
 		6FA5AA0424BF3A2900E828AA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA5AA0324BF3A2900E828AA /* SwiftUI.framework */; };
-		6FA5AA1024BF3A2A00E828AA /* Movies (iOS Widgets).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6FA5AA0024BF3A2900E828AA /* Movies (iOS Widgets).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6FA5AA1024BF3A2A00E828AA /* MoviesWidgets.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6FA5AA0024BF3A2900E828AA /* MoviesWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6FA5AA1824BF3EBD00E828AA /* MoviesWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA5AA1724BF3EBD00E828AA /* MoviesWidgets.swift */; };
 		6FA5AA1A24BF3EF900E828AA /* TrendingMovieWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA5AA1924BF3EF900E828AA /* TrendingMovieWidget.swift */; };
 		6FA5AA1E24BF413700E828AA /* TMDb in Frameworks */ = {isa = PBXBuildFile; productRef = 6FA5AA1D24BF413700E828AA /* TMDb */; };
 		6FA5AA1F24BF445000E828AA /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA5A9AF24BF202E00E828AA /* AppConstants.swift */; };
 		6FA5AA2524BF47D300E828AA /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA5AA0124BF3A2900E828AA /* WidgetKit.framework */; };
 		6FA5AA2624BF47D300E828AA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA5AA0324BF3A2900E828AA /* SwiftUI.framework */; };
-		6FA5AA3024BF47D400E828AA /* Movies (macOS Widgets).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6FA5AA2424BF47D300E828AA /* Movies (macOS Widgets).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6FA5AA3024BF47D400E828AA /* MoviesWidgets.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6FA5AA2424BF47D300E828AA /* MoviesWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6FA5AA3624BF481100E828AA /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6FA5AA3524BF481100E828AA /* SDWebImageSwiftUI */; };
 		6FA5AA3824BF481100E828AA /* TMDb in Frameworks */ = {isa = PBXBuildFile; productRef = 6FA5AA3724BF481100E828AA /* TMDb */; };
 		6FA5AA3924BF48CC00E828AA /* MoviesWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA5AA1724BF3EBD00E828AA /* MoviesWidgets.swift */; };
@@ -177,6 +177,11 @@
 		6FA9DEA324C655C60071121B /* MultiTypeListItem+TMDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9DEA024C655C60071121B /* MultiTypeListItem+TMDb.swift */; };
 		6FA9DEA824C65E400071121B /* SearchResultsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9DEA724C65E400071121B /* SearchResultsList.swift */; };
 		6FA9DEA924C65E400071121B /* SearchResultsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9DEA724C65E400071121B /* SearchResultsList.swift */; };
+		6FAB659024C8924A006ABC39 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB658F24C8924A006ABC39 /* Launch Screen.storyboard */; };
+		6FAB659524C89769006ABC39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB659424C89769006ABC39 /* Assets.xcassets */; };
+		6FAB659724C897BA006ABC39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB659624C897BA006ABC39 /* Assets.xcassets */; };
+		6FAB659924C897DA006ABC39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB659824C897D9006ABC39 /* Assets.xcassets */; };
+		6FAB659B24C897FC006ABC39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB659A24C897FC006ABC39 /* Assets.xcassets */; };
 		6FABA3BC24C6D42400DDD18A /* PersonListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FABA3BB24C6D42400DDD18A /* PersonListItem.swift */; };
 		6FABA3BD24C6D42400DDD18A /* PersonListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FABA3BB24C6D42400DDD18A /* PersonListItem.swift */; };
 		6FABA3BE24C6D42400DDD18A /* PersonListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FABA3BB24C6D42400DDD18A /* PersonListItem.swift */; };
@@ -353,7 +358,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				6FA5A9C424BF2E7200E828AA /* Movies (watchOS Extension).appex in Embed App Extensions */,
+				6FA5A9C424BF2E7200E828AA /* MoviesWatchKitExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,7 +369,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				6FA5A9DB24BF2E7300E828AA /* Movies (watchOS).app in Embed Watch Content */,
+				6FA5A9DB24BF2E7300E828AA /* MoviesWatch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,7 +380,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				6FA5AA1024BF3A2A00E828AA /* Movies (iOS Widgets).appex in Embed App Extensions */,
+				6FA5AA1024BF3A2A00E828AA /* MoviesWidgets.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,7 +391,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				6FA5AA3024BF47D400E828AA /* Movies (macOS Widgets).appex in Embed App Extensions */,
+				6FA5AA3024BF47D400E828AA /* MoviesWidgets.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,9 +432,9 @@
 		6FA5A9AF24BF202E00E828AA /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		6FA5A9B224BF225D00E828AA /* MovieStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStore.swift; sourceTree = "<group>"; };
 		6FA5A9B524BF29D100E828AA /* TVShowStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowStore.swift; sourceTree = "<group>"; };
-		6FA5A9BA24BF2E7100E828AA /* Movies (watchOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movies (watchOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FA5A9BA24BF2E7100E828AA /* MoviesWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA5A9BE24BF2E7200E828AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6FA5A9C324BF2E7200E828AA /* Movies (watchOS Extension).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Movies (watchOS Extension).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FA5A9C324BF2E7200E828AA /* MoviesWatchKitExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MoviesWatchKitExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA5A9CC24BF2E7200E828AA /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		6FA5A9CE24BF2E7200E828AA /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		6FA5A9D024BF2E7200E828AA /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -438,13 +443,13 @@
 		6FA5A9D724BF2E7300E828AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FA5A9D824BF2E7300E828AA /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		6FA5A9E924BF308600E828AA /* AppWatchNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWatchNavigation.swift; sourceTree = "<group>"; };
-		6FA5AA0024BF3A2900E828AA /* Movies (iOS Widgets).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Movies (iOS Widgets).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FA5AA0024BF3A2900E828AA /* MoviesWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MoviesWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA5AA0124BF3A2900E828AA /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		6FA5AA0324BF3A2900E828AA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		6FA5AA0B24BF3A2A00E828AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FA5AA1724BF3EBD00E828AA /* MoviesWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesWidgets.swift; sourceTree = "<group>"; };
 		6FA5AA1924BF3EF900E828AA /* TrendingMovieWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMovieWidget.swift; sourceTree = "<group>"; };
-		6FA5AA2424BF47D300E828AA /* Movies (macOS Widgets).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Movies (macOS Widgets).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FA5AA2424BF47D300E828AA /* MoviesWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MoviesWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA5AA2C24BF47D400E828AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FA5AA2D24BF47D400E828AA /* macOSWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOSWidgets.entitlements; sourceTree = "<group>"; };
 		6FA5AA3F24BF4E7400E828AA /* TrendingTVShowWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingTVShowWidget.swift; sourceTree = "<group>"; };
@@ -469,6 +474,14 @@
 		6FA9DE9C24C6557E0071121B /* MultiTypeListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiTypeListItem.swift; sourceTree = "<group>"; };
 		6FA9DEA024C655C60071121B /* MultiTypeListItem+TMDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultiTypeListItem+TMDb.swift"; sourceTree = "<group>"; };
 		6FA9DEA724C65E400071121B /* SearchResultsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsList.swift; sourceTree = "<group>"; };
+		6FAB658F24C8924A006ABC39 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		6FAB659124C89656006ABC39 /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
+		6FAB659224C8967B006ABC39 /* watchOSExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchOSExtension.entitlements; sourceTree = "<group>"; };
+		6FAB659324C89684006ABC39 /* iOSWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSWidgets.entitlements; sourceTree = "<group>"; };
+		6FAB659424C89769006ABC39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6FAB659624C897BA006ABC39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6FAB659824C897D9006ABC39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6FAB659A24C897FC006ABC39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6FABA3BB24C6D42400DDD18A /* PersonListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListItem.swift; sourceTree = "<group>"; };
 		6FABA3BF24C6D45500DDD18A /* PersonListItem+TMDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonListItem+TMDb.swift"; sourceTree = "<group>"; };
 		6FABA3C324C6D53F00DDD18A /* PersonRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRow.swift; sourceTree = "<group>"; };
@@ -599,11 +612,11 @@
 			children = (
 				6FA5A94324BF144500E828AA /* Shared */,
 				6FA5A94D24BF144600E828AA /* iOS */,
-				6FA5AA0524BF3A2900E828AA /* iOS Widgets */,
 				6FA5A95424BF144600E828AA /* macOS */,
-				6FA5AA2724BF47D300E828AA /* macOS Widgets */,
 				6FA5A9BB24BF2E7100E828AA /* watchOS */,
 				6FA5A9C724BF2E7200E828AA /* watchOS Extension */,
+				6FA5AA0524BF3A2900E828AA /* iOS Widgets */,
+				6FA5AA2724BF47D300E828AA /* macOS Widgets */,
 				6FA5A95E24BF144600E828AA /* Tests iOS */,
 				6FA5A96924BF144600E828AA /* Tests macOS */,
 				6FA5A94C24BF144600E828AA /* Products */,
@@ -616,7 +629,6 @@
 			children = (
 				6FA5A94424BF144500E828AA /* MoviesApp.swift */,
 				6FA5A9AF24BF202E00E828AA /* AppConstants.swift */,
-				6FA5A94624BF144600E828AA /* Assets.xcassets */,
 				6FA5A98C24BF162C00E828AA /* Navigation */,
 				6FA5A99024BF168900E828AA /* Home */,
 				6FA5A99124BF169A00E828AA /* Movies */,
@@ -631,6 +643,7 @@
 				6FA5AA1624BF3E9600E828AA /* Widgets */,
 				6FA5AA4824BF7FAD00E828AA /* Global */,
 				6FA5A9AB24BF1C6000E828AA /* Extensions */,
+				6FA5A94624BF144600E828AA /* Assets.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -642,10 +655,10 @@
 				6FA5A95324BF144600E828AA /* Movies.app */,
 				6FA5A95B24BF144600E828AA /* Tests iOS.xctest */,
 				6FA5A96624BF144600E828AA /* Tests macOS.xctest */,
-				6FA5A9BA24BF2E7100E828AA /* Movies (watchOS).app */,
-				6FA5A9C324BF2E7200E828AA /* Movies (watchOS Extension).appex */,
-				6FA5AA0024BF3A2900E828AA /* Movies (iOS Widgets).appex */,
-				6FA5AA2424BF47D300E828AA /* Movies (macOS Widgets).appex */,
+				6FA5A9BA24BF2E7100E828AA /* MoviesWatch.app */,
+				6FA5A9C324BF2E7200E828AA /* MoviesWatchKitExtension.appex */,
+				6FA5AA0024BF3A2900E828AA /* MoviesWidgets.appex */,
+				6FA5AA2424BF47D300E828AA /* MoviesWidgets.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -653,8 +666,11 @@
 		6FA5A94D24BF144600E828AA /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				6FAB658F24C8924A006ABC39 /* Launch Screen.storyboard */,
 				6FA5A9A224BF18BE00E828AA /* AppTabNavigation.swift */,
+				6FAB659424C89769006ABC39 /* Assets.xcassets */,
 				6FA5A94E24BF144600E828AA /* Info.plist */,
+				6FAB659124C89656006ABC39 /* iOS.entitlements */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -662,6 +678,7 @@
 		6FA5A95424BF144600E828AA /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				6FAB659624C897BA006ABC39 /* Assets.xcassets */,
 				6FA5A95524BF144600E828AA /* Info.plist */,
 				6FA5A95624BF144600E828AA /* macOS.entitlements */,
 			);
@@ -787,6 +804,7 @@
 				6FA5A9D224BF2E7300E828AA /* Assets.xcassets */,
 				6FA5A9D724BF2E7300E828AA /* Info.plist */,
 				6FA5A9D824BF2E7300E828AA /* PushNotificationPayload.apns */,
+				6FAB659224C8967B006ABC39 /* watchOSExtension.entitlements */,
 				6FA5A9D424BF2E7300E828AA /* Preview Content */,
 			);
 			path = "watchOS Extension";
@@ -820,7 +838,9 @@
 		6FA5AA0524BF3A2900E828AA /* iOS Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				6FAB659824C897D9006ABC39 /* Assets.xcassets */,
 				6FA5AA0B24BF3A2A00E828AA /* Info.plist */,
+				6FAB659324C89684006ABC39 /* iOSWidgets.entitlements */,
 			);
 			path = "iOS Widgets";
 			sourceTree = "<group>";
@@ -854,6 +874,7 @@
 		6FA5AA2724BF47D300E828AA /* macOS Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				6FAB659A24C897FC006ABC39 /* Assets.xcassets */,
 				6FA5AA2C24BF47D400E828AA /* Info.plist */,
 				6FA5AA2D24BF47D400E828AA /* macOSWidgets.entitlements */,
 			);
@@ -1024,7 +1045,7 @@
 			);
 			name = "Movies (watchOS)";
 			productName = MoviesWatch;
-			productReference = 6FA5A9BA24BF2E7100E828AA /* Movies (watchOS).app */;
+			productReference = 6FA5A9BA24BF2E7100E828AA /* MoviesWatch.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		6FA5A9C224BF2E7200E828AA /* Movies (watchOS Extension) */ = {
@@ -1045,7 +1066,7 @@
 				6FA5A9F924BF318300E828AA /* TMDb */,
 			);
 			productName = "MoviesWatch Extension";
-			productReference = 6FA5A9C324BF2E7200E828AA /* Movies (watchOS Extension).appex */;
+			productReference = 6FA5A9C324BF2E7200E828AA /* MoviesWatchKitExtension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		6FA5A9FF24BF3A2900E828AA /* Movies (iOS Widgets) */ = {
@@ -1066,7 +1087,7 @@
 				6F05455F24C04A84003A82E7 /* SDWebImageSwiftUI */,
 			);
 			productName = iOSWidgetsExtension;
-			productReference = 6FA5AA0024BF3A2900E828AA /* Movies (iOS Widgets).appex */;
+			productReference = 6FA5AA0024BF3A2900E828AA /* MoviesWidgets.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		6FA5AA2324BF47D300E828AA /* Movies (macOS Widgets) */ = {
@@ -1087,7 +1108,7 @@
 				6FA5AA3724BF481100E828AA /* TMDb */,
 			);
 			productName = "Movies (macOS Widgets)Extension";
-			productReference = 6FA5AA2424BF47D300E828AA /* Movies (macOS Widgets).appex */;
+			productReference = 6FA5AA2424BF47D300E828AA /* MoviesWidgets.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -1107,10 +1128,12 @@
 					};
 					6FA5A95A24BF144600E828AA = {
 						CreatedOnToolsVersion = 12.0;
+						ProvisioningStyle = Manual;
 						TestTargetID = 6FA5A94A24BF144600E828AA;
 					};
 					6FA5A96524BF144600E828AA = {
 						CreatedOnToolsVersion = 12.0;
+						ProvisioningStyle = Manual;
 						TestTargetID = 6FA5A95224BF144600E828AA;
 					};
 					6FA5A9B924BF2E7100E828AA = {
@@ -1161,6 +1184,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FAB659024C8924A006ABC39 /* Launch Screen.storyboard in Resources */,
+				6FAB659524C89769006ABC39 /* Assets.xcassets in Resources */,
 				6FA5A9E524BF2FDA00E828AA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1169,6 +1194,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FAB659724C897BA006ABC39 /* Assets.xcassets in Resources */,
 				6FA5A9E624BF2FDB00E828AA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1209,6 +1235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FAB659924C897DA006ABC39 /* Assets.xcassets in Resources */,
 				6FA5AA3B24BF48D600E828AA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1217,6 +1244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FAB659B24C897FC006ABC39 /* Assets.xcassets in Resources */,
 				6FA5AA3C24BF48D700E828AA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1692,7 +1720,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iOS/iOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -1704,6 +1735,7 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies";
 				PRODUCT_NAME = Movies;
+				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies_development)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1716,7 +1748,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iOS/iOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -1728,6 +1763,7 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies";
 				PRODUCT_NAME = Movies;
+				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies_appstore)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1742,8 +1778,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1756,6 +1794,7 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies";
 				PRODUCT_NAME = Movies;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1768,8 +1807,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1782,6 +1823,7 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies";
 				PRODUCT_NAME = Movies;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1791,7 +1833,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1813,7 +1855,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1836,7 +1878,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				INFOPLIST_FILE = "Tests macOS/Info.plist";
@@ -1858,7 +1900,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				INFOPLIST_FILE = "Tests macOS/Info.plist";
@@ -1880,7 +1922,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "watchOS Extension/watchOSExtension.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"watchOS Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_PREVIEWS = YES;
@@ -1892,7 +1937,8 @@
 				);
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.watchkitapp.watchkitextension";
-				PRODUCT_NAME = "${TARGET_NAME}";
+				PRODUCT_NAME = MoviesWatchKitExtension;
+				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies.watchkitapp.watchkitextension_development)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1905,7 +1951,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "watchOS Extension/watchOSExtension.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"watchOS Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_PREVIEWS = YES;
@@ -1917,7 +1966,8 @@
 				);
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.watchkitapp.watchkitextension";
-				PRODUCT_NAME = "${TARGET_NAME}";
+				PRODUCT_NAME = MoviesWatchKitExtension;
+				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies.watchkitapp.watchkitextension_appstore)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1933,13 +1983,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				IBSC_MODULE = watchOS_Extension;
 				INFOPLIST_FILE = watchOS/Info.plist;
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MoviesWatch;
+				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies.watchkitapp_development)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1954,13 +2007,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				IBSC_MODULE = watchOS_Extension;
 				INFOPLIST_FILE = watchOS/Info.plist;
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MoviesWatch;
+				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies.watchkitapp_appstore)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1975,7 +2031,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "iOS Widgets/iOSWidgets.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				INFOPLIST_FILE = "iOS Widgets/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1986,7 +2045,8 @@
 				);
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.ioswidgets";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MoviesWidgets;
+				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies.ioswidgets_development)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1999,7 +2059,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "iOS Widgets/iOSWidgets.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				INFOPLIST_FILE = "iOS Widgets/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -2010,7 +2073,8 @@
 				);
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.ioswidgets";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MoviesWidgets;
+				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies.ioswidgets_appstore)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2025,7 +2089,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = "macOS Widgets/macOSWidgets.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "macOS Widgets/Info.plist";
@@ -2037,7 +2103,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.macoswidgets";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MoviesWidgets;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2050,7 +2117,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = "macOS Widgets/macOSWidgets.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "macOS Widgets/Info.plist";
@@ -2062,7 +2131,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.macoswidgets";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MoviesWidgets;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;

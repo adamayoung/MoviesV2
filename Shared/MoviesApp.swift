@@ -30,4 +30,5 @@ struct MoviesApp: App {
         WKNotificationScene(controller: NotificationController.self, category: "myCategory")
         #endif
     }
+
 }

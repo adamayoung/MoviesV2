@@ -17,6 +17,14 @@ default_platform(:ios)
 
 before_all do
   xcversion(version: "12.0")
+
+  create_keychain(
+    name: "movies_keychain",
+    password: "movies",
+    unlock: true,
+    timeout: 3600,
+    lock_when_sleeps: false
+  )
 end
 
 platform :ios do
@@ -25,33 +33,55 @@ platform :ios do
     swiftlint
   end
 
-  desc "Get certificate and provisioning profiles"
+  desc "Certificates"
   private_lane :certificates do
-    cert
-    sigh(app_identifier: "uk.co.adam-young.Movies")
-    sigh(app_identifier: "uk.co.adam-young.Movies.watchkitapp")
-    sigh(app_identifier: "uk.co.adam-young.Movies.watchkitapp.watchkitextension")
-    sigh(app_identifier: "uk.co.adam-young.Movies.ioswidgets")
+    create_keychain(
+      name: "movies_keychain",
+      password: "movies",
+      unlock: true,
+      timeout: false
+    )
+
+    match(
+      type: "appstore",
+      keychain_name: "movies_keychain",
+      keychain_password: "movies",
+      readonly: is_ci,
+      app_identifier: "uk.co.adam-young.Movies,uk.co.adam-young.Movies.watchkitapp,uk.co.adam-young.Movies.watchkitapp.watchkitextension,uk.co.adam-young.Movies.ioswidgets"
+    )
+  end
+
+  desc "Build"
+  lane :build do
+    certificates
+    # gym(scheme: "Movies (iOS)", derived_data_path: "DerivedData")
+    gym(scheme: "Movies (iOS)")
   end
 
   desc "Run Tests"
   lane :test do
-    scan(scheme: "Movies (iOS)", derived_data_path: '.build')
+    # scan(scheme: "Movies (iOS)", derived_data_path: "DerivedData")
+    scan(scheme: "Movies (iOS)")
   end
 
   desc "CI Build"
   lane :ci do
     lint
-    # gym(scheme: "Movies (iOS)", skip_archive: true, skip_codesigning: true, derived_data_path: '.build')
+    build
     test
   end
 
-  desc "Beta"
+  desc "Upload to TestFlight"
   lane :beta do
-    lint
-    test
-    certificates
-    gym(scheme: "Movies (iOS)", derived_data_path: '.build')
+    # ensure_git_branch(branch: "main")
+    set_build_number_repository
+    build
+    testflight
   end
 end
 
+after_all do
+  delete_keychain(
+    name: "movies_keychain"
+  )
+end
