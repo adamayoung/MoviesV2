@@ -15,3 +15,5 @@
 # Enable skip_build to skip debug builds for faster test performance
 skip_build(true)
 derived_data_path("./DerivedData")
+code_coverage(true)
+device("iPhone 11 Pro Max")
