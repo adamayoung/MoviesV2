@@ -28,6 +28,7 @@ jobs:
           brew upgrade swiftlint || brew install swiftlint || true
           bundle init
           echo 'gem "fastlane"' >> Gemfile
+          echo 'gem "xcode-install"' >> Gemfile
           bundle install
 
     - name: Run tests
