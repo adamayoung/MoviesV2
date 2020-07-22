@@ -1,0 +1,30 @@
+excluded:
+  - .build
+  - vendor
+
+disabled_rules:
+  - line_length
+
+opt_in_rules:
+  - attributes
+  - closure_spacing
+  - conditional_returns_on_newline
+  - empty_count
+  - first_where
+  - operator_usage_whitespace
+  - private_outlet
+  - sorted_imports
+
+type_name:
+  max_length: 60
+
+identifier_name:
+  min_length:
+    error: 4
+  max_length: 60
+  excluded:
+    - app
+    - id
+    - job
+    - tab
+    - url
