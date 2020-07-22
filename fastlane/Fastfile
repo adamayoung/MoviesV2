@@ -15,6 +15,10 @@
 
 default_platform(:ios)
 
+keychain_name = "movies_keychain"
+keychain_password = "password"
+
+
 before_all do
   xcversion(version: "12.0")
 
@@ -28,6 +32,10 @@ before_all do
 end
 
 platform :ios do
+
+  ios_scheme = "Movies (iOS)"
+
+
   desc "Lint"
   private_lane :lint do
     swiftlint
@@ -35,17 +43,10 @@ platform :ios do
 
   desc "Certificates"
   private_lane :certificates do
-    create_keychain(
-      name: "movies_keychain",
-      password: "movies",
-      unlock: true,
-      timeout: false
-    )
-
     match(
       type: "appstore",
-      keychain_name: "movies_keychain",
-      keychain_password: "movies",
+      keychain_name: "#{keychain_name}",
+      keychain_password: "#{keychain_password}",
       readonly: is_ci,
       app_identifier: "uk.co.adam-young.Movies,uk.co.adam-young.Movies.watchkitapp,uk.co.adam-young.Movies.watchkitapp.watchkitextension,uk.co.adam-young.Movies.ioswidgets"
     )
@@ -54,14 +55,12 @@ platform :ios do
   desc "Build"
   lane :build do
     certificates
-    # gym(scheme: "Movies (iOS)", derived_data_path: "DerivedData")
-    gym(scheme: "Movies (iOS)")
+    gym(scheme: "#{ios_scheme}")
   end
 
   desc "Run Tests"
   lane :test do
-    # scan(scheme: "Movies (iOS)", derived_data_path: "DerivedData")
-    scan(scheme: "Movies (iOS)")
+    scan(scheme: "#{ios_scheme}")
   end
 
   desc "CI Build"
@@ -82,6 +81,6 @@ end
 
 after_all do
   delete_keychain(
-    name: "movies_keychain"
+    name: "#{keychain_name}"
   )
 end
