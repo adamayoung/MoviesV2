@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-          platform: [ios, mac]
+          platform: [ios]
 
     steps:
     - name: Checkout
