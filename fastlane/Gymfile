@@ -11,3 +11,13 @@
 # sdk("iphoneos9.0")
 
 derived_data_path("./DerivedData")
+
+for_platform :ios do
+  scheme("Movies (iOS)")
+  output_directory("./build/ios")
+end
+
+for_platform :mac do
+  scheme("Movies (macOS)")
+  output_directory("./build/macos")
+end

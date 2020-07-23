@@ -16,11 +16,11 @@ struct CreditsView: View {
     }
 
     var body: some View {
-        #if os(watchOS)
-        content
-        #else
-        content
+        #if os(iOS)
+        return content
             .navigationBarTitleDisplayMode(.large)
+        #else
+        return content
         #endif
     }
 

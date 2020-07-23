@@ -26,6 +26,11 @@ Fetches the provisioning profiles so you can build locally and deploy to your de
 fastlane ios test
 ```
 Runs all tests
+### ios build
+```
+fastlane ios build
+```
+Build
 ### ios ci
 ```
 fastlane ios ci
@@ -36,6 +41,30 @@ CI Build
 fastlane ios beta
 ```
 Upload to TestFlight
+
+----
+
+## Mac
+### mac certs
+```
+fastlane mac certs
+```
+Fetches the provisioning profiles so you can build locally and deploy to your device
+### mac test
+```
+fastlane mac test
+```
+Runs all tests
+### mac build
+```
+fastlane mac build
+```
+Build
+### mac ci
+```
+fastlane mac ci
+```
+CI Build
 
 ----
 

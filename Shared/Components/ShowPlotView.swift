@@ -16,10 +16,17 @@ struct ShowPlotView: View {
 
     var body: some View {
         #if os(watchOS)
-        content
-        #else
-        content
+        return content
+        #elseif os(iOS)
+        return content
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Close", action: dismiss)
+                }
+            }
+        #else
+        return content
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Close", action: dismiss)

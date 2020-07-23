@@ -96,34 +96,34 @@ struct AppSidebarNavigation: View {
                 .onOpenURL(perform: openURL)
             #endif
 
-            switch selection {
-            case .home:
-                HomeView()
-
-            case .search:
-                SearchView()
-
-            case .favourites:
-                FavouritesView()
-
-            case .watchList:
-                WatchListView()
-
-            case .trendingMovies:
-                TrendingMoviesView()
-
-            case .discoverMovies:
-                DiscoverMoviesView()
-
-            case .trendingTVShows:
-                TrendingTVShowsView()
-
-            case .discoverTVShows:
-                DiscoverTVShowsView()
-
-            case .none:
-                Text("")
-            }
+//            switch selection {
+//            case .home:
+//                HomeView()
+//
+//            case .search:
+//                SearchView()
+//
+//            case .favourites:
+//                FavouritesView()
+//
+//            case .watchList:
+//                WatchListView()
+//
+//            case .trendingMovies:
+//                TrendingMoviesView()
+//
+//            case .discoverMovies:
+//                DiscoverMoviesView()
+//
+//            case .trendingTVShows:
+//                TrendingTVShowsView()
+//
+//            case .discoverTVShows:
+//                DiscoverTVShowsView()
+//
+//            case .none:
+//                Text("")
+//            }
 
         }
     }

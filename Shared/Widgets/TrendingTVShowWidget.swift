@@ -15,7 +15,7 @@ struct TrendingTVShowWidget: Widget {
     private let kind = "TrendingTVShow"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider(), placeholder: TrendingTVShowPlaceholderView()) { entry in
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
             TrendingTVShowEntryView(entry: entry)
         }
         .configurationDisplayName("Trending TV Show")

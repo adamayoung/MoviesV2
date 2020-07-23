@@ -29,7 +29,7 @@ struct MovieWidgetView: View {
                 HStack {
                     VStack(alignment: .leading, spacing: 0) {
                         Text(type.headerText)
-                            .foregroundColor(Color(UIColor.lightGray))
+                            .foregroundColor(Color.secondary)
                             .font(.caption)
                             .fontWeight(.heavy)
                             .shadow(color: .black, radius: 10)
@@ -53,10 +53,22 @@ struct MovieWidgetView: View {
                         .scaledToFill()
                 }
 
-                if let backdropData = backdropData, let uiImage = UIImage(data: backdropData) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .scaledToFill()
+                if let backdropData = backdropData {
+                    #if os(iOS)
+                    if let uiImage = UIImage(data: backdropData) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFill()
+                    }
+                    #endif
+
+                    #if os(macOS)
+                    if let nsImage = NSImage(data: backdropData) {
+                        Image(nsImage: nsImage)
+                            .resizable()
+                            .scaledToFill()
+                    }
+                    #endif
                 }
             })
         }

@@ -1794,7 +1794,7 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies";
 				PRODUCT_NAME = Movies;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies_development_macos)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1823,7 +1823,7 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies";
 				PRODUCT_NAME = Movies;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies_appstore_macos)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -2044,9 +2044,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.ioswidgets";
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.widgets";
 				PRODUCT_NAME = MoviesWidgets;
-				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies.ioswidgets_development)";
+				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies.widgets_development)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2072,9 +2072,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.ioswidgets";
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.widgets";
 				PRODUCT_NAME = MoviesWidgets;
-				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies.ioswidgets_appstore)";
+				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies.widgets_appstore)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2102,9 +2102,9 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				MARKETING_VERSION = 2.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.macoswidgets";
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.widgets";
 				PRODUCT_NAME = MoviesWidgets;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies.widgets_development_macos)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2130,9 +2130,9 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				MARKETING_VERSION = 2.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.macoswidgets";
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.widgets";
 				PRODUCT_NAME = MoviesWidgets;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_net.uk.co.adam-young.Movies.widgets_appstore_macos)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;

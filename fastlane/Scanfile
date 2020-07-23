@@ -16,4 +16,12 @@
 skip_build(true)
 derived_data_path("./DerivedData")
 code_coverage(true)
-device("iPhone 11 Pro Max")
+
+for_platform :ios do
+  device("iPhone 11 Pro Max")
+  scheme("Movies (iOS)")
+end
+
+for_platform :mac do
+  scheme("Movies (macOS)")
+end

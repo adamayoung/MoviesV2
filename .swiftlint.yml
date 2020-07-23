@@ -1,5 +1,7 @@
 excluded:
+  - build
   - DerivedData
+  - vendor
 
 disabled_rules:
   - line_length
