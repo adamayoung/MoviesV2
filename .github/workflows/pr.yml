@@ -26,7 +26,7 @@ jobs:
         key: ${{ runner.os }}-DerivedData
         restore-keys: ${{ runner.os }}-DerivedData
 
-    - name: Cache DerivedData
+    - name: Cache vendor/bundle
       uses: actions/cache@v2
       with:
         path: vendor/bundle

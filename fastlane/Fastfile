@@ -15,6 +15,10 @@
 
 default_platform(:ios)
 
+before_all do
+  setup_ci
+end
+
 platform :ios do
   desc "Fetches the provisioning profiles so you can build locally and deploy to your device"
   lane :certs do
@@ -29,13 +33,13 @@ platform :ios do
 
   desc "Build"
   lane :build do
-    match(type: "appstore", readonly: is_ci)
+    match(type: "appstore")
     gym
   end
 
   desc "CI Build"
   lane :ci do
-    match(type: "development", readonly: is_ci)
+    match(type: "development")
     swiftlint
     scan
     gym(skip_archive: true, skip_codesigning: true)
@@ -44,7 +48,7 @@ platform :ios do
   desc "Upload to TestFlight"
   lane :beta do
     ensure_git_branch(branch: "main")
-    match(type: "appstore", readonly: is_ci)
+    match(type: "appstore")
     set_build_number_repository
     gym
     testflight
@@ -65,13 +69,13 @@ platform :mac do
 
   desc "Build"
   lane :build do
-    match(type: "appstore", additional_cert_types: "mac_installer_distribution", readonly: is_ci)
+    match(type: "appstore", additional_cert_types: "mac_installer_distribution")
     gym
   end
 
   desc "CI Build"
   lane :ci do
-    match(type: "development", additional_cert_types: "mac_installer_distribution", readonly: is_ci)
+    match(type: "development", additional_cert_types: "mac_installer_distribution")
     swiftlint
     scan
     gym(skip_archive: true, skip_codesigning: true)
