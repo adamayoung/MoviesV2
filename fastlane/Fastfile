@@ -58,8 +58,8 @@ end
 platform :mac do
   desc "Fetches the provisioning profiles so you can build locally and deploy to your device"
   lane :certs do
-    match(type: "appstore", additional_cert_types: "mac_installer_distribution")
-    match(type: "development", additional_cert_types: "mac_installer_distribution")
+    match(type: "appstore")
+    match(type: "development")
   end
 
   desc "Runs all tests"
@@ -69,13 +69,13 @@ platform :mac do
 
   desc "Build"
   lane :build do
-    match(type: "appstore", additional_cert_types: "mac_installer_distribution")
+    match(type: "appstore")
     gym
   end
 
   desc "CI Build"
   lane :ci do
-    match(type: "development", additional_cert_types: "mac_installer_distribution")
+    match(type: "development")
     swiftlint
     scan
     gym(skip_archive: true, skip_codesigning: true)

@@ -1735,7 +1735,6 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies";
 				PRODUCT_NAME = Movies;
-				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_uk.co.adam-young.Movies_development)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1763,7 +1762,6 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies";
 				PRODUCT_NAME = Movies;
-				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_uk.co.adam-young.Movies_appstore)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1794,7 +1792,6 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies";
 				PRODUCT_NAME = Movies;
-				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_uk.co.adam-young.Movies_development_macos)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1823,7 +1820,6 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies";
 				PRODUCT_NAME = Movies;
-				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_uk.co.adam-young.Movies_appstore_macos)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1938,7 +1934,6 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.watchkitapp.watchkitextension";
 				PRODUCT_NAME = MoviesWatchKitExtension;
-				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_uk.co.adam-young.Movies.watchkitapp.watchkitextension_development)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1967,7 +1962,6 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.watchkitapp.watchkitextension";
 				PRODUCT_NAME = MoviesWatchKitExtension;
-				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_uk.co.adam-young.Movies.watchkitapp.watchkitextension_appstore)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1992,7 +1986,6 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.watchkitapp";
 				PRODUCT_NAME = MoviesWatch;
-				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_uk.co.adam-young.Movies.watchkitapp_development)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2016,7 +2009,6 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.watchkitapp";
 				PRODUCT_NAME = MoviesWatch;
-				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_uk.co.adam-young.Movies.watchkitapp_appstore)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2046,7 +2038,6 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.widgets";
 				PRODUCT_NAME = MoviesWidgets;
-				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_uk.co.adam-young.Movies.widgets_development)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2074,7 +2065,6 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.widgets";
 				PRODUCT_NAME = MoviesWidgets;
-				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_uk.co.adam-young.Movies.widgets_appstore)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2104,7 +2094,6 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.widgets";
 				PRODUCT_NAME = MoviesWidgets;
-				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_uk.co.adam-young.Movies.widgets_development_macos)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2132,7 +2121,6 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Movies.widgets";
 				PRODUCT_NAME = MoviesWidgets;
-				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_uk.co.adam-young.Movies.widgets_appstore_macos)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
