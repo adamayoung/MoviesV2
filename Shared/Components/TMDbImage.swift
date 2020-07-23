@@ -22,7 +22,7 @@ struct TMDbImage: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color(UIColor.lightGray), Color(UIColor.darkGray)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+            LinearGradient(gradient: Gradient(colors: [Color.gray, Color.secondary]), startPoint: .topLeading, endPoint: .bottomTrailing)
 
             Group {
                 if path?.scheme != nil {

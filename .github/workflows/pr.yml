@@ -1,0 +1,52 @@
+name: PR
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-and-test:
+    runs-on: macos-latest
+
+    env:
+        DEVELOPER_DIR: /Applications/Xcode_12.app/Contents/Developer
+
+    strategy:
+      matrix:
+          platform: [ios]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Cache DerivedData
+      uses: actions/cache@v1
+      with:
+        path: DerivedData
+        key: ${{ runner.os }}-DerivedData
+        restore-keys: ${{ runner.os }}-DerivedData
+
+    - name: Cache vendor/bundle
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+
+    - name: Install dependencies
+      run: |
+          brew upgrade swiftlint || brew install swiftlint || true
+          bundle config deployment true
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+    - name: Run tests
+      run: bundle exec fastlane ${{ matrix.platform }} ci
+      env:
+        FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+        FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+        FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+        FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
+        MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+        MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}

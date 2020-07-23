@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6FA5A9B924BF2E7100E828AA"
-               BuildableName = "Movies (watchOS).app"
+               BuildableName = "MoviesWatch.app"
                BlueprintName = "Movies (watchOS)"
                ReferencedContainer = "container:Movies.xcodeproj">
             </BuildableReference>
@@ -56,16 +56,18 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "watchOS Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/Movies">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6FA5A9B924BF2E7100E828AA"
-            BuildableName = "Movies (watchOS).app"
+            BuildableName = "MoviesWatch.app"
             BlueprintName = "Movies (watchOS)"
             ReferencedContainer = "container:Movies.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -75,16 +77,27 @@
       debugDocumentVersioning = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "watchOS Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/Movies">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6FA5A9B924BF2E7100E828AA"
-            BuildableName = "Movies (watchOS).app"
+            BuildableName = "MoviesWatch.app"
             BlueprintName = "Movies (watchOS)"
             ReferencedContainer = "container:Movies.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6FA5A9B924BF2E7100E828AA"
+            BuildableName = "MoviesWatch.app"
+            BlueprintName = "Movies (watchOS)"
+            ReferencedContainer = "container:Movies.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

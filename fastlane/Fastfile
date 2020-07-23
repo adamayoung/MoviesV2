@@ -16,42 +16,68 @@
 default_platform(:ios)
 
 before_all do
-  xcversion(version: "12.0")
+  setup_ci
 end
 
 platform :ios do
-  desc "Lint"
-  private_lane :lint do
-    swiftlint
+  desc "Fetches the provisioning profiles so you can build locally and deploy to your device"
+  lane :certs do
+    match(type: "appstore")
+    match(type: "development")
   end
 
-  desc "Get certificate and provisioning profiles"
-  private_lane :certificates do
-    cert
-    sigh(app_identifier: "uk.co.adam-young.Movies")
-    sigh(app_identifier: "uk.co.adam-young.Movies.watchkitapp")
-    sigh(app_identifier: "uk.co.adam-young.Movies.watchkitapp.watchkitextension")
-    sigh(app_identifier: "uk.co.adam-young.Movies.ioswidgets")
-  end
-
-  desc "Run Tests"
+  desc "Runs all tests"
   lane :test do
-    scan(scheme: "Movies (iOS)", derived_data_path: '.build')
+    scan
+  end
+
+  desc "Build"
+  lane :build do
+    match(type: "appstore")
+    gym
   end
 
   desc "CI Build"
   lane :ci do
-    lint
-    # gym(scheme: "Movies (iOS)", skip_archive: true, skip_codesigning: true, derived_data_path: '.build')
-    test
+    match(type: "development")
+    swiftlint
+    scan
+    gym(skip_archive: true, skip_codesigning: true)
   end
 
-  desc "Beta"
+  desc "Upload to TestFlight"
   lane :beta do
-    lint
-    test
-    certificates
-    gym(scheme: "Movies (iOS)", derived_data_path: '.build')
+    ensure_git_branch(branch: "main")
+    match(type: "appstore")
+    set_build_number_repository
+    gym
+    testflight
   end
 end
 
+platform :mac do
+  desc "Fetches the provisioning profiles so you can build locally and deploy to your device"
+  lane :certs do
+    match(type: "appstore")
+    match(type: "development")
+  end
+
+  desc "Runs all tests"
+  lane :test do
+    scan
+  end
+
+  desc "Build"
+  lane :build do
+    match(type: "appstore")
+    gym
+  end
+
+  desc "CI Build"
+  lane :ci do
+    match(type: "development")
+    swiftlint
+    scan
+    gym(skip_archive: true, skip_codesigning: true)
+  end
+end

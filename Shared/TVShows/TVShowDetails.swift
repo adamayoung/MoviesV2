@@ -9,10 +9,10 @@ import SwiftUI
 
 struct TVShowDetails: View {
 
-    #if os(watchOS)
-    private let listStyle = DefaultListStyle()
-    #else
+    #if os(iOS)
     private let listStyle = InsetGroupedListStyle()
+    #else
+    private let listStyle = DefaultListStyle()
     #endif
 
     private var topCast: [CastMember] {

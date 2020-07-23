@@ -16,11 +16,21 @@ or alternatively using `brew install fastlane`
 
 # Available Actions
 ## iOS
+### ios certs
+```
+fastlane ios certs
+```
+Fetches the provisioning profiles so you can build locally and deploy to your device
 ### ios test
 ```
 fastlane ios test
 ```
-Run Tests
+Runs all tests
+### ios build
+```
+fastlane ios build
+```
+Build
 ### ios ci
 ```
 fastlane ios ci
@@ -30,7 +40,31 @@ CI Build
 ```
 fastlane ios beta
 ```
-Beta
+Upload to TestFlight
+
+----
+
+## Mac
+### mac certs
+```
+fastlane mac certs
+```
+Fetches the provisioning profiles so you can build locally and deploy to your device
+### mac test
+```
+fastlane mac test
+```
+Runs all tests
+### mac build
+```
+fastlane mac build
+```
+Build
+### mac ci
+```
+fastlane mac ci
+```
+CI Build
 
 ----
 

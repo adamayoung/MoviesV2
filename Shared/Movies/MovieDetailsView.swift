@@ -20,11 +20,11 @@ struct MovieDetailsView: View {
     }
 
     var body: some View {
-        #if !os(watchOS)
-        content
+        #if os(iOS)
+        return content
             .navigationBarTitleDisplayMode(.inline)
         #else
-        content
+        return content
         #endif
     }
 

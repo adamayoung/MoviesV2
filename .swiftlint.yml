@@ -1,5 +1,6 @@
 excluded:
-  - .build
+  - build
+  - DerivedData
   - vendor
 
 disabled_rules:

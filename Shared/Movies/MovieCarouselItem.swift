@@ -50,7 +50,7 @@ struct MovieCarouselItem_Previews: PreviewProvider {
         let movie = MovieListItem(id: 1, title: "The Old Guard",
                                   backdropPath: URL(string: "https://image.tmdb.org/t/p/w500/m0ObOaJBerZ3Unc74l471ar8Iiy.jpg"))
 
-        MovieCarouselItem(movie: movie)
+        return MovieCarouselItem(movie: movie)
     }
 
 }

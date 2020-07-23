@@ -60,6 +60,7 @@ xcuserdata/
 *.ipa
 *.dSYM.zip
 *.dSYM
+*.pkg
 
 ## Playgrounds
 timeline.xctimeline
@@ -134,6 +135,33 @@ iOSInjectionProject/
 
 ### Config
 config/Base.xcconfig
+
+### Ruby ###
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+
+# Used by dotenv library to load environment variables.
+# .env
+
+# Ignore Byebug command history file.
+.byebug_history
+
+## Specific to RubyMotion:
+.dat*
+.repl_history
+build/
+*.bridgesupport
+build-iPhoneOS/
+build-iPhoneSimulator/
 
 ### Ruby ###
 *.gem
