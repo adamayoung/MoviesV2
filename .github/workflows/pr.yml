@@ -26,7 +26,8 @@ jobs:
         key: ${{ runner.os }}-DerivedData
         restore-keys: ${{ runner.os }}-DerivedData
 
-    - uses: actions/cache@v2
+    - name: Cache DerivedData
+      uses: actions/cache@v2
       with:
         path: vendor/bundle
         key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
@@ -36,6 +37,7 @@ jobs:
     - name: Install dependencies
       run: |
           brew upgrade swiftlint || brew install swiftlint || true
+          bundle config deployment true
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
