@@ -9,14 +9,15 @@ import SwiftUI
 
 struct TrendingMoviesView: View {
 
-    @ObservedObject private(set) var viewModel = TrendingMoviesViewModel()
+    @EnvironmentObject private var store: AppStore
 
-    init(viewModel: TrendingMoviesViewModel = TrendingMoviesViewModel()) {
-        self.viewModel = viewModel
+    private var movies: [MovieListItem] {
+        store.state.movies.trending
     }
 
     var body: some View {
-        MoviesList(movies: viewModel.movies, movieDidAppear: movieDidAppear)
+        MoviesList(movies: movies, movieDidAppear: movieDidAppear)
+            .onAppear(perform: fetch)
             .navigationTitle("Trending Movies")
     }
 
@@ -24,16 +25,24 @@ struct TrendingMoviesView: View {
 
 extension TrendingMoviesView {
 
-    private func movieDidAppear(currentMovie id: Int) {
-        viewModel.fetchNextPageIfNeeded(currentMovie: id)
+    private func fetch() {
+        guard movies.isEmpty else {
+            return
+        }
+
+        store.send(.movies(.fetchTrending))
+    }
+
+    private func movieDidAppear(currentMovie movie: MovieListItem) {
+        //store.fetchNextTrendingPageIfNeeded(currentMovie: movie)
     }
 
 }
 
-struct TrendingMoviesView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        TrendingMoviesView()
-    }
-
-}
+//struct TrendingMoviesView_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        TrendingMoviesView()
+//    }
+//
+//}

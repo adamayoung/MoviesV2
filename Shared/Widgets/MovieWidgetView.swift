@@ -26,21 +26,13 @@ struct MovieWidgetView: View {
 
                 Spacer()
 
-                HStack {
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text(type.headerText)
-                            .foregroundColor(Color.secondary)
-                            .font(.caption)
-                            .fontWeight(.heavy)
-                            .shadow(color: .black, radius: 10)
-
-                        Text("\(title ?? " ")")
-                            .foregroundColor(.white)
-                            .font(.title)
-                            .fontWeight(.heavy)
-                            .shadow(color: .black, radius: 10)
+                Group {
+                    if title != nil {
+                        content
+                    } else {
+                        content
+                            .redacted(reason: .placeholder)
                     }
-                    Spacer()
                 }
                 .padding()
                 .frame(width: geometry.size.width)
@@ -71,6 +63,25 @@ struct MovieWidgetView: View {
                     #endif
                 }
             })
+        }
+    }
+
+    private var content: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(type.headerText)
+                    .foregroundColor(.white)
+                    .font(.caption)
+                    .fontWeight(.heavy)
+                    .shadow(color: .black, radius: 10)
+
+                Text("\(title ?? "               ")")
+                    .foregroundColor(.white)
+                    .font(.title)
+                    .fontWeight(.heavy)
+                    .shadow(color: .black, radius: 10)
+            }
+            Spacer()
         }
     }
 

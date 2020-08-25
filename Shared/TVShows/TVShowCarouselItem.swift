@@ -22,14 +22,14 @@ struct TVShowCarouselItem: View {
                 }
             }
 
-            BackdropImage(path: tvShow?.backdropPath, displaySize: displaySize)
+            BackdropImage(url: tvShow?.backdropURL, displaySize: displaySize)
                 .shadow(radius: 8)
                 .accessibility(label: Text("Backdrop Image - \(tvShow?.name ?? "")"))
                 .onTapGesture {
                     self.isDetailActive = true
                 }
 
-            Text(tvShow?.name ?? " ")
+            Text(tvShow?.name ?? "              ")
                 .font(displaySize == .large ? .headline : .subheadline)
                 .fontWeight(displaySize == .large ? .heavy : .bold)
                 .lineLimit(1)
@@ -47,7 +47,7 @@ struct TVShowCarouselItem_Previews: PreviewProvider {
 
     static var previews: some View {
         let tvShow = TVShowListItem(id: 1, name: "The Old Guard",
-                                    backdropPath: URL(string: "https://image.tmdb.org/t/p/w500/m0ObOaJBerZ3Unc74l471ar8Iiy.jpg"))
+                                    backdropURL: URL(string: "https://image.tmdb.org/t/p/w500/m0ObOaJBerZ3Unc74l471ar8Iiy.jpg"))
 
         return TVShowCarouselItem(tvShow: tvShow)
     }

@@ -9,27 +9,14 @@ import SwiftUI
 
 struct PersonImage: View {
 
-    var path: URL?
-    var displaySize: DisplaySize
-
-    init(path: URL? = nil, displaySize: DisplaySize = .medium) {
-        self.path = path
-        self.displaySize = displaySize
-    }
+    var url: URL?
+    var displaySize: DisplaySize = .medium
 
     var body: some View {
-        TMDbImage(path: path)
-            .frame(width: displaySize.size.width, height: displaySize.size.height)
+        TMDbImage(url: url)
+            .frame(width: displaySize.size.width, height: displaySize.size.height, alignment: .center)
             .clipShape(Circle())
     }
-
-//    private var placeholder: some View {
-//        Image(systemName: "person.fill")
-//            .resizable()
-//            .padding(.horizontal, displaySize.size.width / 4)
-//            .padding(.vertical, displaySize.size.height / 4)
-//            .foregroundColor(.secondary)
-//    }
 
 }
 
@@ -61,10 +48,10 @@ struct PersonImage_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack {
-            PersonImage(path: url, displaySize: .small)
-            PersonImage(path: url, displaySize: .medium)
-            PersonImage(path: url, displaySize: .large)
-            PersonImage(path: nil, displaySize: .large)
+            PersonImage(url: url, displaySize: .small)
+            PersonImage(url: url, displaySize: .medium)
+            PersonImage(url: url, displaySize: .large)
+            PersonImage(url: nil, displaySize: .large)
         }
     }
 

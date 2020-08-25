@@ -15,7 +15,7 @@ struct TrendingMovieWidget: Widget {
     private let kind = "TrendingMovie"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider(), placeholder: TrendingMoviePlaceholderView()) { entry in
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
             TrendingMovieEntryView(entry: entry)
         }
         .configurationDisplayName("Trending Movie")
@@ -30,28 +30,25 @@ extension TrendingMovieWidget {
     final class ProviderService {
 
         private var cancellables = Set<AnyCancellable>()
-        private let movieService: MovieService
+        private let moviesManager: MoviesManaging
         private let urlSession: URLSession
 
-        init(movieService: MovieService = TMDbMovieService(), urlSession: URLSession = .shared) {
+        init(moviesManager: MoviesManaging = MoviesManager(), urlSession: URLSession = .shared) {
             TMDbAPIClient.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
-            self.movieService = movieService
+            self.moviesManager = moviesManager
             self.urlSession = urlSession
         }
 
         func fetch(completion: @escaping (Entry) -> Void) {
-            movieService.fetchTrending(timeWindow: .day)
+            moviesManager.fetchTrending()
                 .retry(5)
-                .map(\.results)
                 .map(\.first)
                 .replaceError(with: nil)
                 .flatMap { movie -> AnyPublisher<Entry, Never> in
                     let currentDate = Date()
                     guard
                         let thisMovie = movie,
-                        let backdropPath = thisMovie.backdropPath,
-                        let backdropURL = URL(string: "https://image.tmdb.org/t/p/w780")?
-                            .appendingPathComponent(backdropPath.absoluteString)
+                        let backdropURL = thisMovie.backdropURL
                     else {
                         return Just(Entry(date: currentDate, title: movie?.title))
                             .eraseToAnyPublisher()
@@ -77,12 +74,17 @@ extension TrendingMovieWidget {
             self.service = service
         }
 
-        func snapshot(with context: Context, completion: @escaping (Entry) -> Void) {
-            let entry = Entry(date: Date(), title: "The Old Guard", backdropImageName: "TrendingMoviePlaceholderBackdrop")
-            completion(entry)
+        func placeholder(in context: Context) -> TrendingMovieWidget.Entry {
+            Entry(date: Date(), title: "The Old Guard", backdropImageName: "TrendingMoviePlaceholderBackdrop")
         }
 
-        func timeline(with context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
+        func getSnapshot(in context: Context, completion: @escaping (TrendingMovieWidget.Entry) -> Void) {
+            service.fetch { entry in
+                completion(entry)
+            }
+        }
+
+        func getTimeline(in context: Context, completion: @escaping (Timeline<TrendingMovieWidget.Entry>) -> Void) {
             let currentDate = Date()
             let refreshDate = Calendar.current.date(byAdding: .hour, value: 1, to: currentDate)!
             service.fetch { entry in
@@ -104,14 +106,6 @@ extension TrendingMovieWidget {
         var backdropData: Data?
         var backdropImageName: String?
 
-    }
-
-}
-
-struct TrendingMoviePlaceholderView: View {
-
-    var body: some View {
-        MovieWidgetView(type: .trendingMovie)
     }
 
 }
@@ -138,9 +132,6 @@ struct TrendingMovieWidget_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
-            TrendingMoviePlaceholderView()
-                .previewContext(WidgetPreviewContext(family: .systemMedium))
-
             TrendingMovieEntryView(entry: entry)
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
 

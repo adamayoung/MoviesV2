@@ -15,7 +15,7 @@ struct TrendingTVShowWidget: Widget {
     private let kind = "TrendingTVShow"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider(), placeholder: TrendingTVShowPlaceholderView()) { entry in
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
             TrendingTVShowEntryView(entry: entry)
         }
         .configurationDisplayName("Trending TV Show")
@@ -30,28 +30,25 @@ extension TrendingTVShowWidget {
     final class ProviderService {
 
         private var cancellables = Set<AnyCancellable>()
-        private let tvShowService: TVShowService
+        private let tvShowsManager: TVShowsManaging
         private let urlSession: URLSession
 
-        init(tvShowService: TVShowService = TMDbTVShowService(), urlSession: URLSession = .shared) {
+        init(tvShowsManager: TVShowsManaging = TVShowsManager(), urlSession: URLSession = .shared) {
             TMDbAPIClient.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
-            self.tvShowService = tvShowService
+            self.tvShowsManager = tvShowsManager
             self.urlSession = urlSession
         }
 
         func fetch(completion: @escaping (Entry) -> Void) {
-            tvShowService.fetchTrending(timeWindow: .day)
+            tvShowsManager.fetchTrending()
                 .retry(5)
-                .map(\.results)
                 .map(\.first)
                 .replaceError(with: nil)
                 .flatMap { tvShow -> AnyPublisher<Entry, Never> in
                     let currentDate = Date()
                     guard
                         let thisTVShow = tvShow,
-                        let backdropPath = thisTVShow.backdropPath,
-                        let backdropURL = URL(string: "https://image.tmdb.org/t/p/w780")?
-                            .appendingPathComponent(backdropPath.absoluteString)
+                        let backdropURL = thisTVShow.backdropURL
                     else {
                         return Just(Entry(date: currentDate, name: tvShow?.name))
                             .eraseToAnyPublisher()
@@ -77,12 +74,17 @@ extension TrendingTVShowWidget {
             self.service = service
         }
 
-        func snapshot(with context: Context, completion: @escaping (Entry) -> Void) {
-            let entry = Entry(date: Date(), name: "Game of Thrones", backdropImageName: "TrendingTVShowPlaceholderBackdrop")
-            completion(entry)
+        func placeholder(in context: Context) -> TrendingTVShowWidget.Entry {
+            Entry(date: Date(), name: "Game of Thrones", backdropImageName: "TrendingTVShowPlaceholderBackdrop")
         }
 
-        func timeline(with context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
+        func getSnapshot(in context: Context, completion: @escaping (TrendingTVShowWidget.Entry) -> Void) {
+            service.fetch { entry in
+                completion(entry)
+            }
+        }
+
+        func getTimeline(in context: Context, completion: @escaping (Timeline<TrendingTVShowWidget.Entry>) -> Void) {
             let currentDate = Date()
             let refreshDate = Calendar.current.date(byAdding: .hour, value: 1, to: currentDate)!
             service.fetch { entry in
@@ -108,14 +110,6 @@ extension TrendingTVShowWidget {
 
 }
 
-struct TrendingTVShowPlaceholderView: View {
-
-    public var body: some View {
-        MovieWidgetView(type: .trendingTVShow)
-    }
-
-}
-
 struct TrendingTVShowEntryView: View {
 
     var entry: TrendingTVShowWidget.Entry
@@ -137,9 +131,6 @@ struct TrendingTVShowWidget_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
-            TrendingTVShowPlaceholderView()
-                .previewContext(WidgetPreviewContext(family: .systemMedium))
-
             TrendingTVShowEntryView(entry: entry)
                 .previewContext(WidgetPreviewContext(family: .systemLarge))
         }

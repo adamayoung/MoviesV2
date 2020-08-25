@@ -9,17 +9,13 @@ import SwiftUI
 
 struct PosterImage: View {
 
-    var path: URL?
-    var displaySize: DisplaySize
-
-    init(path: URL? = nil, displaySize: DisplaySize = .medium) {
-        self.path = path
-        self.displaySize = displaySize
-    }
+    var url: URL?
+    var displaySize: DisplaySize = .medium
 
     var body: some View {
-        TMDbImage(path: path)
-            .frame(width: displaySize.size.width, height: displaySize.size.height)
+        TMDbImage(url: url)
+            .aspectRatio(displaySize.size, contentMode: .fit)
+            .frame(width: displaySize.size.width, alignment: .center)
             .clipShape(RoundedRectangle(cornerRadius: displaySize.size.height / 50))
     }
 
@@ -37,7 +33,7 @@ extension PosterImage {
         #else
         case small = 60
         case medium = 90
-        case large = 200
+        case large = 170
         case extraLarge = 250
         #endif
         // swiftlint:enable duplicate_enum_cases
@@ -57,10 +53,10 @@ struct PosterImage_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack {
-            PosterImage(path: url, displaySize: .small)
-            PosterImage(path: url, displaySize: .medium)
-            PosterImage(path: url, displaySize: .large)
-            PosterImage(path: nil, displaySize: .large)
+            PosterImage(url: url, displaySize: .small)
+            PosterImage(url: url, displaySize: .medium)
+            PosterImage(url: url, displaySize: .large)
+            PosterImage(url: nil, displaySize: .large)
         }
     }
 

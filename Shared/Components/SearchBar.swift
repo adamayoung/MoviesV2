@@ -22,15 +22,16 @@ struct SearchBar: View {
                 .overlay(
                     HStack {
                         Image(systemName: "magnifyingglass")
-                            .foregroundColor(.secondary)
+                            .foregroundColor(Color.secondary)
                         Spacer()
                     }
                 )
         }
         .padding(.horizontal)
         .padding(.vertical, 8)
-        .background(Color(.systemGray))
+        .background(Color.secondary.opacity(0.2))
         .clipShape(RoundedRectangle(cornerRadius: 10))
+        .accessibilityElement(children: .combine)
     }
     #endif
 

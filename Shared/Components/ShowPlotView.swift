@@ -21,14 +21,14 @@ struct ShowPlotView: View {
         return content
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
+                ToolbarItem(placement: .automatic) {
                     Button("Close", action: dismiss)
                 }
             }
         #else
         return content
             .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
+                ToolbarItem(placement: .automatic) {
                     Button("Close", action: dismiss)
                 }
             }

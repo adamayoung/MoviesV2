@@ -9,26 +9,43 @@ import SwiftUI
 
 struct MoviesList: View {
 
-    var movies: [MovieListItem]
-    var movieDidAppear: ((MovieListItem.ID) -> Void)?
+    var movies: [MovieListItem] = []
+    var movieDidAppear: ((MovieListItem) -> Void)?
 
     var body: some View {
-        List {
-            MovieRows(movies: movies, movieDidAppear: movieDidAppear)
+        #if os(macOS)
+        content
+            .frame(minWidth: 270, idealWidth: 300, maxWidth: 400, maxHeight: .infinity)
+        #elseif os(iOS)
+        content
+            .listStyle(GroupedListStyle())
+        #else
+        content
+        #endif
+    }
+
+    var content: some View {
+        List(movies) { movie in
+            NavigationLink(destination: MovieDetailsView(id: movie.id)) {
+                MovieRow(movie: movie)
+                    .onAppear {
+                        self.movieDidAppear?(movie)
+                    }
+            }
         }
         .overlay(Group {
             if movies.isEmpty {
-                ProgressView("Hang in there...")
+                ProgressView()
             }
         })
     }
-
+    
 }
 
 struct MoviesList_Previews: PreviewProvider {
-
+    
     static var previews: some View {
-        MoviesList(movies: [], movieDidAppear: { _ in })
+        MoviesList()
     }
-
+    
 }

@@ -8,43 +8,35 @@
 import SDWebImageSwiftUI
 import SwiftUI
 import TMDb
+import FetchImage
 
 struct TMDbImage: View {
 
-    @ObservedObject private var configurationStore: ConfigurationStore
+    @ObservedObject var image: FetchImage
 
-    var path: URL?
-
-    init(path: URL? = nil, configurationStore: ConfigurationStore = .shared) {
-        self.path = path
-        self.configurationStore = configurationStore
+    init(url: URL? = nil) {
+        if let url = url {
+            image = FetchImage(url: url)
+        } else {
+            image = FetchImage(url: URL(string: "https://www.domain.com")!)
+        }
     }
 
     var body: some View {
-        ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.gray, Color.secondary]), startPoint: .topLeading, endPoint: .bottomTrailing)
-
-            Group {
-                if path?.scheme != nil {
-                    WebImage(url: path)
-                        .resizable()
-                } else if let url = configurationStore.imagesConfiguration?.imageURL(fromPath: path) {
-                    WebImage(url: url)
-                        .resizable()
-                }
+        Group {
+            if let imageView = image.view {
+                imageView
+                    .resizable()
+            } else {
+                placeholder
             }
-            .scaledToFill()
-            .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
         }
-        .onAppear(perform: fetchConfiguration)
+        .scaledToFill()
+        .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
     }
 
-    private func fetchConfiguration() {
-        guard path != nil else {
-            return
-        }
-
-        configurationStore.fetchIfNeeded()
+    private var placeholder: some View {
+        LinearGradient(gradient: Gradient(colors: [Color.gray, Color(.lightGray)]), startPoint: .topLeading, endPoint: .bottomTrailing)
     }
 
 }

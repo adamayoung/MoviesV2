@@ -9,14 +9,15 @@ import SwiftUI
 
 struct TrendingTVShowsView: View {
 
-    @ObservedObject private(set) var viewModel: TrendingTVShowsViewModel
+    @EnvironmentObject private var store: AppStore
 
-    init(viewModel: TrendingTVShowsViewModel = TrendingTVShowsViewModel()) {
-        self.viewModel = viewModel
+    private var tvShows: [TVShowListItem] {
+        store.state.tvShows.discover
     }
 
     var body: some View {
-        TVShowsList(tvShows: viewModel.tvShows, tvShowDidAppear: tvShowDidAppear)
+        TVShowsList(tvShows: tvShows, tvShowDidAppear: tvShowDidAppear)
+            .onAppear(perform: fetch)
             .navigationTitle("Trending TV Shows")
     }
 
@@ -24,8 +25,16 @@ struct TrendingTVShowsView: View {
 
 extension TrendingTVShowsView {
 
-    private func tvShowDidAppear(currentTVShow id: TVShowListItem.ID) {
-        viewModel.fetchNextPageIfNeeded(currentTVShow: id)
+    private func fetch() {
+        guard tvShows.isEmpty else {
+            return
+        }
+
+        store.send(.tvShows(.fetchTrending))
+    }
+
+    private func tvShowDidAppear(_ tvShow: TVShowListItem) {
+//        store.fetchNextTrendingPageIfNeeded(currentTVShow: tvShow)
     }
 
 }

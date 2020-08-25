@@ -25,7 +25,8 @@ struct CastCarousel: View {
                     }
                 }
             }
-            .padding(20)
+            .padding(.horizontal, 20)
+            .padding(.top)
         }
         .disabled(cast.isEmpty)
     }

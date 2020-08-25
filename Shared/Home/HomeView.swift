@@ -10,24 +10,36 @@ import TMDb
 
 struct HomeView: View {
 
-    @ObservedObject private(set) var viewModel: HomeViewModel
-
-    init(viewModel: HomeViewModel = HomeViewModel()) {
-        self.viewModel = viewModel
-    }
+    @EnvironmentObject private var store: AppStore
 
     var body: some View {
-        HomeList(trendingMovies: viewModel.trendingMovies, discoverMovies: viewModel.discoverMovies,
-                 trendingTVShows: viewModel.trendingTVShows, discoverTVShows: viewModel.discoverTVShows)
+        HomeList(
+            trendingMovies: store.state.movies.topTrending,
+            discoverMovies: store.state.movies.topDiscover,
+            trendingTVShows: store.state.tvShows.topTrending,
+            discoverTVShows: store.state.tvShows.topDiscover
+        )
+        .onAppear(perform: fetch)
         .navigationTitle("Home")
     }
 
 }
 
-struct OverviewView_Previews: PreviewProvider {
+extension HomeView {
 
-    static var previews: some View {
-        HomeView()
+    private func fetch() {
+        store.send(.movies(.fetchTrending))
+        store.send(.movies(.fetchDiscover))
+        store.send(.tvShows(.fetchTrending))
+        store.send(.tvShows(.fetchDiscover))
     }
 
 }
+
+//struct OverviewView_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        HomeView()
+//    }
+//
+//}

@@ -24,7 +24,7 @@ struct ShowPlotRow: View {
         VStack(alignment: .leading, spacing: 10) {
             Text(text)
                 .fixedSize(horizontal: false, vertical: true)
-                .lineLimit(4)
+                .lineLimit(5)
 
             HStack {
                 Spacer()

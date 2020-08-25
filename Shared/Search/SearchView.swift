@@ -9,15 +9,24 @@ import SwiftUI
 
 struct SearchView: View {
 
-    @ObservedObject private(set) var viewModel: SearchViewModel
+    @EnvironmentObject private var store: AppStore
 
-    init(viewModel: SearchViewModel = SearchViewModel()) {
-        self.viewModel = viewModel
+    @State private var searchText: String = ""
+
+    private var isSearching: Bool {
+        store.state.search.isSearching
+    }
+
+    private var results: [MultiTypeListItem] {
+        store.state.search.results
     }
 
     var body: some View {
-        SearchResultsList(searchText: $viewModel.searchText, isSearching: viewModel.isSearching, results: viewModel.results)
+        MultiTypeList(searchText: $searchText, isSearching: isSearching, results: results)
             .navigationTitle("Search")
+            .onChange(of: searchText) { query in
+                store.send(.search(.search(query: query)))
+            }
     }
 
 }

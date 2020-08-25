@@ -9,18 +9,19 @@ import SwiftUI
 
 struct TVShowRow: View {
 
-    private static let yearDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = .current
-        dateFormatter.dateFormat = "YYYY"
-        return dateFormatter
-    }()
-
     var tvShow: TVShowListItem
+
+    var verticalRowPadding: CGFloat {
+        #if os(macOS)
+        return 10
+        #else
+        return 0
+        #endif
+    }
 
     var body: some View {
         HStack(alignment: .center) {
-            PosterImage(path: tvShow.posterPath, displaySize: .medium)
+            PosterImage(url: tvShow.posterURL, displaySize: .medium)
 
             VStack(alignment: .leading) {
                 Text(tvShow.name)
@@ -30,15 +31,17 @@ struct TVShowRow: View {
                     Text("TV Show")
 
                     if let firstAirDate = tvShow.firstAirDate {
-                        Text("\(firstAirDate, formatter: Self.yearDateFormatter)")
+                        Text("\(firstAirDate, formatter: DateFormatter.year)")
                     } else {
                         Text("No first air date")
                     }
                 }
-                .foregroundColor(.gray)
-                .font(.subheadline)
+                .foregroundColor(.secondary)
             }
         }
+        .font(.subheadline)
+        .padding(.vertical, verticalRowPadding)
+        .accessibilityElement(children: .combine)
     }
 
 }

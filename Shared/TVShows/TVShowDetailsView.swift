@@ -9,35 +9,54 @@ import SwiftUI
 
 struct TVShowDetailsView: View {
 
-    @ObservedObject private(set) var viewModel: TVShowDetailsViewModel
+    var id: TVShow.ID
 
-    init(viewModel: TVShowDetailsViewModel) {
-        self.viewModel = viewModel
+    @EnvironmentObject private var store: AppStore
+
+    private var tvShow: TVShow? {
+        store.state.tvShows.tvShows[id]
     }
 
-    init(id: TVShow.ID) {
-        self.init(viewModel: TVShowDetailsViewModel(id: id))
+    private var credits: Credits? {
+        store.state.tvShows.credits[id]
+    }
+
+    private var recommendations: [TVShowListItem]? {
+        store.state.tvShows.recommendations[id]
+    }
+
+    private var title: String {
+        tvShow?.name ?? ""
     }
 
     var body: some View {
+        container
+            .onAppear(perform: fetch)
+            .navigationTitle(title)
+    }
+
+    @ViewBuilder private var container: some View {
         #if os(iOS)
-        return content
+        content
             .navigationBarTitleDisplayMode(.inline)
+        #elseif os(macOS)
+        content
+            .frame(minWidth: 500, idealWidth: 700, maxWidth: .infinity, minHeight: 300, maxHeight: .infinity)
         #else
-        return content
+        content
         #endif
     }
 
-    private var content: some View {
-        Group {
-            if let tvShow = viewModel.tvShow, let credits = viewModel.credits {
-                TVShowDetails(tvShow: tvShow, credits: credits)
-            } else {
-                ProgressView("Hang in there...")
-            }
+    @ViewBuilder private var content: some View {
+        if let tvShow = self.tvShow,
+           let credits = self.credits,
+           let recommendations = self.recommendations
+        {
+            TVShowDetails(tvShow: tvShow, credits: credits, recommendations: recommendations)
+                .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
+        } else {
+            ProgressView()
         }
-        .onAppear(perform: fetch)
-        .navigationTitle(viewModel.tvShow?.name ?? "")
     }
 
 }
@@ -45,7 +64,21 @@ struct TVShowDetailsView: View {
 extension TVShowDetailsView {
 
     private func fetch() {
-        viewModel.fetch()
+        guard tvShow == nil else {
+            return
+        }
+
+        store.send(.tvShows(.fetch(id: id)))
+        store.send(.tvShows(.fetchCredits(tvShowID: id)))
+        store.send(.tvShows(.fetchRecommendations(tvShowID: id)))
+    }
+
+}
+
+struct TVShowDetailsView_Previews: PreviewProvider {
+
+    static var previews: some View {
+        TVShowDetailsView(id: 1)
     }
 
 }

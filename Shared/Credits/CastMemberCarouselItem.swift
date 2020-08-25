@@ -23,7 +23,7 @@ struct CastMemberCarouselItem: View {
                 .frame(width: 0, height: 0)
             }
 
-            PersonImage(path: castMember?.profilePath, displaySize: displaySize)
+            PersonImage(url: castMember?.profileURL, displaySize: displaySize)
                 .shadow(radius: 8)
                 .accessibility(label: Text(castMember?.name ?? ""))
                 .onTapGesture {
@@ -44,7 +44,7 @@ struct CastMemberCarouselItem: View {
             .font(displaySize == .large ? .headline : .subheadline)
             .lineLimit(2)
             .multilineTextAlignment(.center)
-            .frame(width: displaySize.size.width * 1.5, alignment: .center)
+            .frame(width: displaySize.size.width * 1.25, alignment: .center)
 
             Spacer()
         }
