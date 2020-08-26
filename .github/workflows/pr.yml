@@ -38,7 +38,7 @@ jobs:
           bundle install --jobs 4 --retry 3
           brew bundle
 
-      - name: Test
+      - name: Build and Test
         run: bundle exec fastlane ios pr
         env:
           FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
