@@ -37,12 +37,12 @@ platform :ios do
     gym
   end
 
-  desc "CI Build"
-  lane :ci do
+  desc "PR Build"
+  lane :pr do
     match(type: "development")
     swiftlint
-    scan
     gym(skip_archive: true, skip_codesigning: true)
+    scan
   end
 
   desc "Upload to TestFlight"

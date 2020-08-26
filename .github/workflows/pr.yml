@@ -5,7 +5,8 @@ on:
     branches: [ main ]
 
 jobs:
-  validate-and-test:
+  build-and-test:
+    name: Build and Test
     runs-on: macos-latest
 
     env:
@@ -41,7 +42,7 @@ jobs:
           bundle install --jobs 4 --retry 3
           brew bundle
 
-    - name: Run tests
+    - name: Test
       run: bundle exec fastlane ${{ matrix.platform }} ci
       env:
         FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
