@@ -72,7 +72,7 @@ struct ShowDetailsHeader: View {
     private var backdrop: some View {
         Color.gray
             .overlay(
-                TMDbImage(url: backdropURL)
+                WebImage(url: backdropURL)
             )
             .frame(height: PosterImage.DisplaySize.extraLarge.size.height * 1.4)
             .mask(LinearGradient(gradient: Gradient(colors: [Color.black, Color.black, Color.clear]), startPoint: .top, endPoint: .bottom))

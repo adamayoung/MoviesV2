@@ -10,9 +10,9 @@ import Foundation
 enum TVShowsAction {
 
     case fetchTrending
-    case setTrending(tvShows: [TVShowListItem])
+    case appendTrending(tvShows: [TVShowListItem])
     case fetchDiscover
-    case setDiscover(tvShows: [TVShowListItem])
+    case appendDiscover(tvShows: [TVShowListItem])
     case fetch(id: TVShow.ID)
     case appendTVShow(tvShow: TVShow)
     case fetchRecommendations(tvShowID: Movie.ID)

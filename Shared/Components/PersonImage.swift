@@ -13,9 +13,21 @@ struct PersonImage: View {
     var displaySize: DisplaySize = .medium
 
     var body: some View {
-        TMDbImage(url: url)
+        ZStack(alignment: .center) {
+            placeholder
+            WebImage(url: url)
+        }
+        .frame(width: displaySize.size.width, height: displaySize.size.height, alignment: .center)
+        .clipShape(Circle())
+    }
+
+    @ViewBuilder private var placeholder: some View {
+        LinearGradient(gradient: Gradient(colors: [Color.gray, Color(.lightGray)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        Image(systemName: "person.fill")
+            .resizable()
+            .scaleEffect(0.6)
+            .foregroundColor(Color.primary.opacity(0.25))
             .frame(width: displaySize.size.width, height: displaySize.size.height, alignment: .center)
-            .clipShape(Circle())
     }
 
 }

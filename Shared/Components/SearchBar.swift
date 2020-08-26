@@ -55,6 +55,11 @@ struct SearchBar: View {
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(text: .constant("some reall fndj fdsjk fghdsjka gfjdksag fjkdsg fjkds fds gfdslkg"))
+        VStack {
+            SearchBar(text: .constant(""))
+
+            SearchBar(text: .constant("some reall fndj fdsjk fghdsjka gfjdksag fjkdsg fjkds fds gfdslkg"))
+        }
+        .padding()
     }
 }

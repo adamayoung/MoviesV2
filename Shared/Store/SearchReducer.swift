@@ -31,7 +31,6 @@ func searchReducer(state: inout SearchState, action: SearchAction, environment: 
 
         state.results = results
         state.isSearching = false
-        break
     }
 
     return Empty().eraseToAnyPublisher()

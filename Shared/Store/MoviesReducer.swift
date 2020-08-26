@@ -11,102 +11,132 @@ import Foundation
 func moviesReducer(state: inout MoviesState, action: MoviesAction, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
     switch action {
     case .fetchTrending:
-        guard !state.isFetchingTrending else {
-            break
-        }
-
-        guard state.isMoreTrendingAvailable else {
-            break
-        }
-
-        state.isFetchingTrending = true
-        state.currentTrendingPage += 1
-
-        return environment.moviesManager
-            .fetchTrending(page: state.currentTrendingPage)
-            .map { .appendTrending(movies: $0) }
-            .eraseToAnyPublisher()
+        return fetchTrending(state: &state, environment: environment)
 
     case .appendTrending(let movies):
-        state.isFetchingTrending = false
-        guard !movies.isEmpty else {
-            state.isMoreTrendingAvailable = false
-            break
-        }
-
-        mergeTrending(movies, into: &state)
+        return appendTrending(movies: movies, state: &state)
 
     case .fetchDiscover:
-        guard !state.isFetchingDiscover else {
-            break
-        }
-
-        guard state.isMoreDiscoverAvailable else {
-            break
-        }
-
-        state.isFetchingDiscover = true
-        state.currentDiscoverPage += 1
-
-        return environment.moviesManager
-            .fetchDiscover(page: state.currentDiscoverPage)
-            .map { .appendDiscover(movies: $0) }
-            .eraseToAnyPublisher()
+        return fetchDiscover(state: &state, environment: environment)
 
     case .appendDiscover(let movies):
-        state.isFetchingDiscover = false
-        guard !movies.isEmpty else {
-            state.isMoreDiscoverAvailable = false
-            break
-        }
-
-        mergeDiscover(movies, into: &state)
+        return appendDiscover(movies: movies, state: &state)
 
     case .fetch(let id):
-        return environment.moviesManager
-            .fetchMovie(withID: id)
-            .filter { $0 != nil }
-            .map { $0! }
-            .map { .appendMovie(movie: $0) }
-            .eraseToAnyPublisher()
+        return fetch(id: id, environment: environment)
 
     case .appendMovie(let movie):
-        state.movies[movie.id] = movie
+        return appendMovie(movie: movie, state: &state)
 
     case .fetchRecommendations(let movieID):
-        return environment.moviesManager
-            .fetchRecommendations(forMovie: movieID)
-            .map { .setRecommendations(recommendations: $0, movieID: movieID) }
-            .eraseToAnyPublisher()
+        return fetchRecommendations(movieID: movieID, state: &state, environment: environment)
 
     case .setRecommendations(let recommendations, let movieID):
-        state.recommendations[movieID] = recommendations
+        return setRecommendations(recommendations: recommendations, movieID: movieID, state: &state)
 
     case .fetchCredits(let movieID):
-        return environment.moviesManager
-            .fetchCredits(forMovie: movieID)
-            .map { .setCredits(credits: $0, movieID: movieID) }
-            .eraseToAnyPublisher()
+        return fetchCredits(movieID: movieID, environment: environment)
 
     case .setCredits(let credits, let movieID):
-        state.credits[movieID] = credits
+        return setCredits(credits: credits, movieID: movieID, state: &state)
     }
-
-    return Empty().eraseToAnyPublisher()
 }
 
-fileprivate func mergeTrending(_ movies: [MovieListItem], into state: inout MoviesState) {
-    movies.forEach {
-        state.movieList[$0.id] = $0
+private func fetchTrending(state: inout MoviesState, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
+    guard !state.isFetchingTrending, state.isMoreTrendingAvailable else {
+        return Empty()
+            .eraseToAnyPublisher()
     }
 
+    state.isFetchingTrending = true
+    state.currentTrendingPage += 1
+
+    return environment.moviesManager
+        .fetchTrending(page: state.currentTrendingPage)
+        .map { .appendTrending(movies: $0) }
+        .eraseToAnyPublisher()
+}
+
+private func appendTrending(movies: [MovieListItem], state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+    state.isFetchingTrending = false
+    guard !movies.isEmpty else {
+        state.isMoreTrendingAvailable = false
+        return Empty()
+            .eraseToAnyPublisher()
+    }
+
+    movies.forEach { state.movieList[$0.id] = $0 }
     state.trendingIDs.append(contentsOf: movies.map(\.id))
+    return Empty()
+        .eraseToAnyPublisher()
 }
 
-fileprivate func mergeDiscover(_ movies: [MovieListItem], into state: inout MoviesState) {
-    movies.forEach {
-        state.movieList[$0.id] = $0
+private func fetchDiscover(state: inout MoviesState, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
+    guard !state.isFetchingDiscover, state.isMoreDiscoverAvailable else {
+        return Empty()
+            .eraseToAnyPublisher()
     }
 
+    state.isFetchingDiscover = true
+    state.currentDiscoverPage += 1
+
+    return environment.moviesManager
+        .fetchDiscover(page: state.currentDiscoverPage)
+        .map { .appendDiscover(movies: $0) }
+        .eraseToAnyPublisher()
+}
+
+private func appendDiscover(movies: [MovieListItem], state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+    state.isFetchingDiscover = false
+    guard !movies.isEmpty else {
+        state.isMoreDiscoverAvailable = false
+        return Empty()
+            .eraseToAnyPublisher()
+    }
+
+    movies.forEach { state.movieList[$0.id] = $0 }
     state.discoverIDs.append(contentsOf: movies.map(\.id))
+    return Empty()
+        .eraseToAnyPublisher()
+}
+
+private func fetch(id: Movie.ID, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
+    return environment.moviesManager
+        .fetchMovie(withID: id)
+        .filter { $0 != nil }
+        .map { $0! }
+        .map { .appendMovie(movie: $0) }
+        .eraseToAnyPublisher()
+}
+
+private func appendMovie(movie: Movie, state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+    state.movies[movie.id] = movie
+    return Empty()
+        .eraseToAnyPublisher()
+}
+
+private func fetchRecommendations(movieID: Movie.ID, state: inout MoviesState, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
+    return environment.moviesManager
+        .fetchRecommendations(forMovie: movieID)
+        .map { .setRecommendations(recommendations: $0, movieID: movieID) }
+        .eraseToAnyPublisher()
+}
+
+private func setRecommendations(recommendations: [MovieListItem], movieID: Movie.ID, state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+    state.recommendations[movieID] = recommendations
+    return Empty()
+        .eraseToAnyPublisher()
+}
+
+private func fetchCredits(movieID: Movie.ID, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
+    return environment.moviesManager
+        .fetchCredits(forMovie: movieID)
+        .map { .setCredits(credits: $0, movieID: movieID) }
+        .eraseToAnyPublisher()
+}
+
+private func setCredits(credits: Credits, movieID: Movie.ID, state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+    state.credits[movieID] = credits
+    return Empty()
+        .eraseToAnyPublisher()
 }

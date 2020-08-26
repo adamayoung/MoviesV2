@@ -25,13 +25,13 @@ struct RootView: View {
             .frame(minWidth: 900, maxWidth: .infinity, minHeight: 500, maxHeight: .infinity)
         #endif
     }
-    
+
 }
 
 struct RootView_Previews: PreviewProvider {
-    
+
     static var previews: some View {
         RootView()
     }
-    
+
 }

@@ -13,9 +13,16 @@ struct BackdropImage: View {
     var displaySize: DisplaySize = .medium
 
     var body: some View {
-        TMDbImage(url: url)
-            .frame(width: displaySize.size.width, height: displaySize.size.height)
-            .cornerRadius(displaySize.size.height / 10)
+        ZStack(alignment: .center) {
+            placeholder
+            WebImage(url: url)
+        }
+        .frame(width: displaySize.size.width, height: displaySize.size.height)
+        .cornerRadius(displaySize.size.height / 10)
+    }
+
+    private var placeholder: some View {
+        LinearGradient(gradient: Gradient(colors: [Color.gray, Color(.lightGray)]), startPoint: .topLeading, endPoint: .bottomTrailing)
     }
 
 }

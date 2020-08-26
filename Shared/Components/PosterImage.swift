@@ -13,10 +13,17 @@ struct PosterImage: View {
     var displaySize: DisplaySize = .medium
 
     var body: some View {
-        TMDbImage(url: url)
-            .aspectRatio(displaySize.size, contentMode: .fit)
-            .frame(width: displaySize.size.width, alignment: .center)
-            .clipShape(RoundedRectangle(cornerRadius: displaySize.size.height / 50))
+        ZStack(alignment: .center) {
+            placeholder
+            WebImage(url: url)
+        }
+        .aspectRatio(displaySize.size, contentMode: .fit)
+        .frame(width: displaySize.size.width, alignment: .center)
+        .clipShape(RoundedRectangle(cornerRadius: displaySize.size.height / 50))
+    }
+
+    private var placeholder: some View {
+        LinearGradient(gradient: Gradient(colors: [Color.gray, Color(.lightGray)]), startPoint: .topLeading, endPoint: .bottomTrailing)
     }
 
 }

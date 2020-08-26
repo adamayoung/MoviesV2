@@ -50,8 +50,7 @@ struct TVShowDetailsView: View {
     @ViewBuilder private var content: some View {
         if let tvShow = self.tvShow,
            let credits = self.credits,
-           let recommendations = self.recommendations
-        {
+           let recommendations = self.recommendations {
             TVShowDetails(tvShow: tvShow, credits: credits, recommendations: recommendations)
                 .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
         } else {

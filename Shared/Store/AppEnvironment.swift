@@ -12,5 +12,5 @@ struct AppEnvironment {
     let moviesManager: MoviesManaging = MoviesManager()
     let tvShowsManager: TVShowsManaging = TVShowsManager()
     let searchManager: SearchManaging = SearchManager()
-    
+
 }
