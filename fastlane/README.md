@@ -31,11 +31,11 @@ Runs all tests
 fastlane ios build
 ```
 Build
-### ios ci
+### ios pr
 ```
-fastlane ios ci
+fastlane ios pr
 ```
-CI Build
+PR Build
 ### ios beta
 ```
 fastlane ios beta

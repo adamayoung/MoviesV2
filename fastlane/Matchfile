@@ -6,11 +6,13 @@ type("development") # The default type, can be: appstore, adhoc, enterprise or d
 
 for_platform :ios do
   platform("ios")
-  end
+  app_identifier "uk.co.adam-young.Movies,uk.co.adam-young.Movies.watchkitapp,uk.co.adam-young.Movies.watchkitapp.watchkitextension,uk.co.adam-young.Movies.widgets"
+end
   
 for_platform :mac do
   platform("macos")
   additional_cert_types(["mac_installer_distribution"])
+  app_identifier "uk.co.adam-young.Movies,uk.co.adam-young.Movies.widgets"
 end
 
 # app_identifier(["tools.fastlane.app", "tools.fastlane.app2"])

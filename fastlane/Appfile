@@ -1,11 +1,11 @@
 apple_id("me@adam-young.co.uk") # Your Apple email address
 
 for_platform :ios do
-    app_identifier "uk.co.adam-young.Movies,uk.co.adam-young.Movies.watchkitapp,uk.co.adam-young.Movies.watchkitapp.watchkitextension,uk.co.adam-young.Movies.widgets"
+    app_identifier "uk.co.adam-young.Movies"
 end
 
 for_platform :mac do
-    app_identifier "uk.co.adam-young.Movies,uk.co.adam-young.Movies.widgets"
+    app_identifier "uk.co.adam-young.Movies"
 end
 
 # For more information about the Appfile, see:
