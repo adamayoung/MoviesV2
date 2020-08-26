@@ -8,13 +8,8 @@ jobs:
   build-and-test:
     name: Build and Test
     runs-on: macos-latest
-
     env:
         DEVELOPER_DIR: /Applications/Xcode_12.app/Contents/Developer
-
-    strategy:
-      matrix:
-          platform: [ios]
 
     steps:
     - name: Checkout
@@ -43,7 +38,7 @@ jobs:
           brew bundle
 
     - name: Test
-      run: bundle exec fastlane ${{ matrix.platform }} ci
+      run: bundle exec fastlane ios ci
       env:
         FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
         FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
