@@ -39,7 +39,7 @@ platform :ios do
 
   desc "PR Build"
   lane :pr do
-    certs
+    match(type: "appstore")
     swiftlint
     gym
     scan
