@@ -1,13 +1,13 @@
-name: PR
+name: TestFlight
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - master
 
 jobs:
-  build-and-test:
-    name: Build and Test
+  testflight:
+    name: TestFlight
     runs-on: macos-latest
     env:
       DEVELOPER_DIR: /Applications/Xcode_12.app/Contents/Developer
@@ -38,10 +38,11 @@ jobs:
           bundle install --jobs 4 --retry 3
           brew bundle
 
-      - name: Test
-        run: bundle exec fastlane ios pr
+      - name: Build and Upload to TestFlight
+        run: bundle exec fastlane ios beta
         env:
           FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
