@@ -9,14 +9,15 @@ import SwiftUI
 
 struct DiscoverMoviesView: View {
 
-    @ObservedObject private(set) var viewModel: DiscoverMoviesViewModel
+    @EnvironmentObject private var store: AppStore
 
-    init(viewModel: DiscoverMoviesViewModel = DiscoverMoviesViewModel()) {
-        self.viewModel = viewModel
+    private var movies: [MovieListItem] {
+        store.state.movies.discover
     }
 
     var body: some View {
-        MoviesList(movies: viewModel.movies, movieDidAppear: movieDidAppear)
+        MoviesList(movies: movies, movieDidAppear: movieDidAppear)
+            .onAppear(perform: fetch)
             .navigationTitle("Discover Movies")
     }
 
@@ -24,16 +25,24 @@ struct DiscoverMoviesView: View {
 
 extension DiscoverMoviesView {
 
-    private func movieDidAppear(currentMovie id: Int) {
-        viewModel.fetchNextPageIfNeeded(currentMovie: id)
+    private func fetch() {
+        guard movies.isEmpty else {
+            return
+        }
+
+        store.send(.movies(.fetchDiscover))
+    }
+
+    private func movieDidAppear(currentMovie movie: MovieListItem) {
+        //store.fetchNextDiscoverPageIfNeeded(currentMovie: movie)
     }
 
 }
 
-struct DiscoverMoviesView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        DiscoverMoviesView()
-    }
-
-}
+//struct DiscoverMoviesView_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        DiscoverMoviesView()
+//    }
+//
+//}

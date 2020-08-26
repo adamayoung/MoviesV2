@@ -14,6 +14,14 @@ import WidgetKit
 @main
 struct MoviesApp: App {
 
+    @Environment(\.scenePhase) var scenePhase
+
+    @StateObject var store = AppStore(
+        initialState: AppState(),
+        reducer: appReducer,
+        environment: AppEnvironment()
+    )
+
     init() {
         TMDbAPIClient.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
         #if os(iOS)
@@ -23,7 +31,8 @@ struct MoviesApp: App {
 
     @SceneBuilder var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
+                .environmentObject(store)
         }
 
         #if os(watchOS)

@@ -9,18 +9,11 @@ import SwiftUI
 
 struct PersonRow: View {
 
-    private static let yearDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = .current
-        dateFormatter.dateFormat = "YYYY"
-        return dateFormatter
-    }()
-
     var person: PersonListItem
 
     var body: some View {
         HStack(alignment: .center) {
-            PersonImage(path: person.profilePath, displaySize: .small)
+            PersonImage(url: person.profileURL, displaySize: .small)
 
             VStack(alignment: .leading) {
                 Text(person.name ?? " ")
@@ -45,7 +38,7 @@ struct PersonRow: View {
 
         var summary = knownForItem.title
         if let date = knownForItem.date {
-            summary += " (\(Self.yearDateFormatter.string(from: date)))"
+            summary += " (\(DateFormatter.year.string(from: date)))"
         }
 
         return summary

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct MovieWidgetView: View {
 
@@ -22,6 +23,7 @@ struct MovieWidgetView: View {
                     Image("Popcorn")
                         .resizable()
                         .frame(width: 50, height: 50)
+                        .shadow(color: .black, radius: 2)
                 }
 
                 Spacer()
@@ -29,16 +31,17 @@ struct MovieWidgetView: View {
                 HStack {
                     VStack(alignment: .leading, spacing: 0) {
                         Text(type.headerText)
-                            .foregroundColor(Color.secondary)
+                            .foregroundColor(.white)
                             .font(.caption)
                             .fontWeight(.heavy)
                             .shadow(color: .black, radius: 10)
 
-                        Text("\(title ?? " ")")
-                            .foregroundColor(.white)
-                            .font(.title)
-                            .fontWeight(.heavy)
-                            .shadow(color: .black, radius: 10)
+                        if title != nil {
+                            titleContent
+                        } else {
+                            titleContent
+                                .redacted(reason: .placeholder)
+                        }
                     }
                     Spacer()
                 }
@@ -47,6 +50,8 @@ struct MovieWidgetView: View {
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
             .background(ZStack {
+                backgroundPlaceholder
+
                 if let backdropImageName = backdropImageName {
                     Image(backdropImageName)
                         .resizable()
@@ -74,6 +79,18 @@ struct MovieWidgetView: View {
         }
     }
 
+    private var titleContent: some View {
+        Text("\(title ?? "               ")")
+            .foregroundColor(.white)
+            .font(.title)
+            .fontWeight(.heavy)
+            .shadow(color: .black, radius: 10)
+    }
+
+    private var backgroundPlaceholder: some View {
+        LinearGradient(gradient: Gradient(colors: [Color(.darkGray), Color(UIColor(white: 0.4, alpha: 1.0))]), startPoint: .topLeading, endPoint: .bottomTrailing)
+    }
+
 }
 
 extension MovieWidgetView {
@@ -93,4 +110,28 @@ extension MovieWidgetView {
         }
     }
 
+}
+
+struct MovieWidgetView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            MovieWidgetView(type: .trendingMovie, title: "The Old Guard", backdropImageName: "TrendingMoviePlaceholderBackdrop")
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+
+            MovieWidgetView(type: .trendingTVShow, title: "Game of Thrones", backdropImageName: "TrendingTVShowPlaceholderBackdrop")
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+
+            MovieWidgetView(type: .trendingMovie, title: nil)
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+
+            MovieWidgetView(type: .trendingMovie, title: "The Old Guard", backdropImageName: "TrendingMoviePlaceholderBackdrop")
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+
+            MovieWidgetView(type: .trendingTVShow, title: "Game of Thrones", backdropImageName: "TrendingTVShowPlaceholderBackdrop")
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+
+            MovieWidgetView(type: .trendingTVShow, title: nil)
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+        }
+    }
 }

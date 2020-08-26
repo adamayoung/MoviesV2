@@ -7,16 +7,51 @@
 
 import SwiftUI
 
-struct SearchResultsList: View {
+struct MultiTypeList: View {
+
+    @State private var selection: MultiTypeListItem?
 
     @Binding var searchText: String
     var isSearching: Bool
     var results: [MultiTypeListItem]
 
-    var body: some View {
-        List {
+    var content: some View {
+        List(selection: $selection) {
             SearchBar(text: $searchText)
-            SearchResultRows(results: results)
+
+            ForEach(results) { result in
+                switch result {
+                case .movie(let movie):
+                    NavigationLink(
+                        destination: MovieDetailsView(id: movie.id),
+                        tag: result,
+                        selection: $selection
+                    ) {
+                        MovieRow(movie: movie)
+                    }
+                    .tag(result)
+
+                case .tvShow(let tvShow):
+                    NavigationLink(
+                        destination: TVShowDetailsView(id: tvShow.id),
+                        tag: result,
+                        selection: $selection
+                    ) {
+                        TVShowRow(tvShow: tvShow)
+                    }
+                    .tag(result)
+
+                case .person(let person):
+                    NavigationLink(
+                        destination: PersonDetailsView(id: person.id),
+                        tag: result,
+                        selection: $selection
+                    ) {
+                        PersonRow(person: person)
+                    }
+                    .tag(result)
+                }
+            }
         }
         .overlay(Group {
             if isSearching && results.isEmpty {
@@ -26,12 +61,22 @@ struct SearchResultsList: View {
         .dismissKeyboardOnDrag()
     }
 
+    var body: some View {
+        #if os(iOS)
+        content
+        #else
+        content
+            .frame(minWidth: 270, idealWidth: 300, maxWidth: 400, maxHeight: .infinity)
+            .toolbar { Spacer() }
+        #endif
+    }
+
 }
 
 struct SearchResultsList_Previews: PreviewProvider {
 
     static var previews: some View {
-        SearchResultsList(searchText: .constant(""), isSearching: false, results: [])
+        MultiTypeList(searchText: .constant(""), isSearching: false, results: [])
     }
 
 }

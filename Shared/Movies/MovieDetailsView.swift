@@ -9,36 +9,53 @@ import SwiftUI
 
 struct MovieDetailsView: View {
 
-    @ObservedObject private(set) var viewModel: MovieDetailsViewModel
+    var id: Movie.ID
 
-    init(viewModel: MovieDetailsViewModel) {
-        self.viewModel = viewModel
+    @EnvironmentObject private var store: AppStore
+
+    private var movie: Movie? {
+        store.state.movies.movies[id]
     }
 
-    init(id: Movie.ID) {
-        self.init(viewModel: MovieDetailsViewModel(id: id))
+    private var credits: Credits? {
+        store.state.movies.credits[id]
+    }
+
+    private var recommendations: [MovieListItem]? {
+        store.state.movies.recommendations[id]
+    }
+
+    private var title: String {
+        movie?.title ?? ""
     }
 
     var body: some View {
+        container
+            .onAppear(perform: fetch)
+            .navigationTitle(title)
+    }
+
+    @ViewBuilder private var container: some View {
         #if os(iOS)
-        return content
+        content
             .navigationBarTitleDisplayMode(.inline)
+        #elseif os(macOS)
+        content
+            .frame(minWidth: 500, idealWidth: 700, maxWidth: .infinity, minHeight: 300, maxHeight: .infinity)
         #else
-        return content
+        content
         #endif
     }
 
-    private var content: some View {
-        Group {
-            if let movie = viewModel.movie, let credits = viewModel.credits,
-               let recommendations = viewModel.recommendations {
-                MovieDetails(movie: movie, credits: credits, recommendations: recommendations)
-            } else {
-                ProgressView("Hang in there...")
-            }
+    @ViewBuilder private var content: some View {
+        if let movie = self.movie,
+           let credits = self.credits,
+           let recommendations = self.recommendations {
+            MovieDetails(movie: movie, credits: credits, recommendations: recommendations)
+                .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
+        } else {
+            ProgressView()
         }
-        .onAppear(perform: fetch)
-        .navigationTitle(viewModel.movie?.title ?? "")
     }
 
 }
@@ -46,15 +63,21 @@ struct MovieDetailsView: View {
 extension MovieDetailsView {
 
     private func fetch() {
-        viewModel.fetch()
+        guard movie == nil else {
+            return
+        }
+
+        store.send(.movies(.fetch(id: id)))
+        store.send(.movies(.fetchCredits(movieID: id)))
+        store.send(.movies(.fetchRecommendations(movieID: id)))
     }
 
 }
 
-//struct MovieDetailsView_Previews: PreviewProvider {
-//
-//    static var previews: some View {
-//        MovieDetailsView(id: 1)
-//    }
-//
-//}
+struct MovieDetailsView_Previews: PreviewProvider {
+
+    static var previews: some View {
+        MovieDetailsView(id: 1)
+    }
+
+}

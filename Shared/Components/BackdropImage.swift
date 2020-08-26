@@ -9,18 +9,20 @@ import SwiftUI
 
 struct BackdropImage: View {
 
-    var path: URL?
-    var displaySize: DisplaySize
-
-    init(path: URL? = nil, displaySize: DisplaySize = .medium) {
-        self.path = path
-        self.displaySize = displaySize
-    }
+    var url: URL?
+    var displaySize: DisplaySize = .medium
 
     var body: some View {
-        TMDbImage(path: path)
-            .frame(width: displaySize.size.width, height: displaySize.size.height)
-            .cornerRadius(displaySize.size.height / 10)
+        ZStack(alignment: .center) {
+            placeholder
+            WebImage(url: url)
+        }
+        .frame(width: displaySize.size.width, height: displaySize.size.height)
+        .cornerRadius(displaySize.size.height / 10)
+    }
+
+    private var placeholder: some View {
+        LinearGradient(gradient: Gradient(colors: [Color.gray, Color(.lightGray)]), startPoint: .topLeading, endPoint: .bottomTrailing)
     }
 
 }
@@ -47,10 +49,10 @@ struct BackdropImage_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack {
-            BackdropImage(path: url, displaySize: .small)
-            BackdropImage(path: url, displaySize: .medium)
-            BackdropImage(path: url, displaySize: .large)
-            BackdropImage(path: nil, displaySize: .large)
+            BackdropImage(url: url, displaySize: .small)
+            BackdropImage(url: url, displaySize: .medium)
+            BackdropImage(url: url, displaySize: .large)
+            BackdropImage(url: nil, displaySize: .large)
         }
     }
 

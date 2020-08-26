@@ -27,5 +27,7 @@ identifier_name:
     - app
     - id
     - job
+    - lhs
+    - rhs
     - tab
     - url

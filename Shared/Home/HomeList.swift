@@ -2,84 +2,119 @@
 //  HomeList.swift
 //  Movies
 //
-//  Created by Adam Young on 20/07/2020.
+//  Created by Adam Young on 18/08/2020.
 //
 
 import SwiftUI
 
 struct HomeList: View {
 
-    #if os(iOS)
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    #endif
-
     var trendingMovies: [MovieListItem] = []
     var discoverMovies: [MovieListItem] = []
     var trendingTVShows: [TVShowListItem] = []
     var discoverTVShows: [TVShowListItem] = []
 
+    @State private var selection: MovieListItem?
+
     var body: some View {
+        #if os(iOS)
+        content
+            .listStyle(GroupedListStyle())
+        #else
+        content
+        #endif
+    }
+
+    private var content: some View {
         List {
-            MoviesCarousel(header: "Trending Movies", movies: trendingMovies, displaySize: .large)
-                .listRowInsets(EdgeInsets())
-                .background(sectionBackground)
-
-            #if os(iOS)
-            if horizontalSizeClass == .compact {
-                NavigationLink(destination: TrendingMoviesView()) {
-                    Text("See all")
-                        .foregroundColor(.accentColor)
-                }
+            Section(header: trendingMoviesSectionHeader) {
+                MoviesCarousel(movies: trendingMovies, displaySize: .large)
+                    .listRowInsets(EdgeInsets())
             }
-            #endif
 
-            MoviesCarousel(header: "Discover Movies", movies: discoverMovies)
-                .listRowInsets(EdgeInsets())
-                .background(sectionBackground)
-
-            #if os(iOS)
-            if horizontalSizeClass == .compact {
-                NavigationLink(destination: DiscoverMoviesView()) {
-                    Text("See all")
-                        .foregroundColor(.accentColor)
-                }
+            Section(header: discoverMoviesSectionHeader) {
+                MoviesCarousel(movies: discoverMovies)
+                    .listRowInsets(EdgeInsets())
             }
-            #endif
 
-            TVShowsCarousel(header: "Trending TV Shows", tvShows: trendingTVShows, displaySize: .large)
-                .listRowInsets(EdgeInsets())
-                .background(sectionBackground)
-
-            #if os(iOS)
-            if horizontalSizeClass == .compact {
-                NavigationLink(destination: TrendingTVShowsView()) {
-                    Text("See all")
-                        .foregroundColor(.accentColor)
-                }
+            Section(header: trendingTVShowsSectionHeader) {
+                TVShowsCarousel(tvShows: trendingTVShows, displaySize: .large)
+                    .listRowInsets(EdgeInsets())
             }
-            #endif
 
-            TVShowsCarousel(header: "Discover TV Shows", tvShows: discoverTVShows)
-                .listRowInsets(EdgeInsets())
-                .background(sectionBackground)
-
-            #if os(iOS)
-            if horizontalSizeClass == .compact {
-                NavigationLink(destination: DiscoverTVShowsView()) {
-                    Text("See all")
-                        .foregroundColor(.accentColor)
-                }
+            Section(header: discoverTVShowsSectionHeader) {
+                TVShowsCarousel(tvShows: discoverTVShows)
+                    .listRowInsets(EdgeInsets())
             }
-            #endif
         }
     }
 
-}
+    private var trendingMoviesSectionHeader: some View {
+        HStack(alignment: .center) {
+            Text("Trending Movies")
+                .font(.title2)
+                .fontWeight(.heavy)
 
-extension HomeList {
+            Spacer()
+            NavigationLink(destination: TrendingMoviesView()) {
+                Text("See more")
+                    .font(.body)
+                    .foregroundColor(.accentColor)
+            }
+        }
+        .textCase(.none)
+        .foregroundColor(.primary)
+    }
 
-    private var sectionBackground: some View {
-        LinearGradient(gradient: Gradient(colors: [Color.clear, Color.clear, Color.secondary.opacity(0.1)]), startPoint: .top, endPoint: .bottom)
+    private var discoverMoviesSectionHeader: some View {
+        HStack(alignment: .center) {
+            Text("Discover Movies")
+                .font(.title3)
+                .fontWeight(.heavy)
+
+            Spacer()
+            NavigationLink(destination: DiscoverMoviesView()) {
+                Text("See more")
+                    .font(.body)
+                    .foregroundColor(.accentColor)
+            }
+        }
+        .textCase(.none)
+        .foregroundColor(.primary)
+    }
+
+    private var trendingTVShowsSectionHeader: some View {
+        HStack(alignment: .center) {
+            Text("Trending TV Shows")
+                .font(.title2)
+                .fontWeight(.heavy)
+
+            Spacer()
+            NavigationLink(destination: TrendingTVShowsView()) {
+                Text("See more")
+                    .font(.body)
+                    .foregroundColor(.accentColor)
+            }
+        }
+        .textCase(.none)
+        .foregroundColor(.primary)
+    }
+
+    private var discoverTVShowsSectionHeader: some View {
+        HStack(alignment: .center) {
+            Text("Discover TV Shows")
+                .font(.title3)
+                .fontWeight(.heavy)
+
+            Spacer()
+            NavigationLink(destination: TrendingTVShowsView()) {
+                Text("See more")
+                    .font(.body)
+                    .foregroundColor(.accentColor)
+            }
+        }
+        .textCase(.none)
+        .foregroundColor(.primary)
     }
 
 }

@@ -11,17 +11,11 @@ struct CreditRow: View {
 
     var name: String
     var detail: String
-    var profileImagePath: URL?
-
-    init(name: String, detail: String, profileImagePath: URL? = nil) {
-        self.name = name
-        self.detail = detail
-        self.profileImagePath = profileImagePath
-    }
+    var profileURL: URL?
 
     var body: some View {
         HStack(alignment: .center) {
-            PersonImage(path: profileImagePath, displaySize: .small)
+            PersonImage(url: profileURL, displaySize: .small)
 
             VStack(alignment: .leading) {
                 Text(name)
@@ -38,11 +32,11 @@ struct CreditRow: View {
 extension CreditRow {
 
     init(castMember: CastMember) {
-        self.init(name: castMember.name, detail: castMember.character, profileImagePath: castMember.profilePath)
+        self.init(name: castMember.name, detail: castMember.character, profileURL: castMember.profileURL)
     }
 
     init(crewMember: CrewMember) {
-        self.init(name: crewMember.name, detail: crewMember.department, profileImagePath: crewMember.profilePath)
+        self.init(name: crewMember.name, detail: crewMember.department, profileURL: crewMember.profileURL)
     }
 
 }
@@ -50,7 +44,7 @@ extension CreditRow {
 struct CreditRow_Previews: PreviewProvider {
 
     static var previews: some View {
-        CreditRow(name: "Adam Young", detail: "Director", profileImagePath: nil)
+        CreditRow(name: "Adam Young", detail: "Director")
     }
 
 }
