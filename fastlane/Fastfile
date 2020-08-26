@@ -39,7 +39,7 @@ platform :ios do
 
   desc "PR Build"
   lane :pr do
-    match(type: "development")
+    certs
     swiftlint
     gym
     scan
