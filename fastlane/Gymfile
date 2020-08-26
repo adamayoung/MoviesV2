@@ -11,6 +11,7 @@
 # sdk("iphoneos9.0")
 
 derived_data_path("./DerivedData")
+configuration("Release")
 
 for_platform :ios do
   scheme("Movies (iOS)")
