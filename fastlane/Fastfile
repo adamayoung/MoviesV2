@@ -39,9 +39,9 @@ platform :ios do
 
   desc "PR Build"
   lane :pr do
-    match(type: "development")
+    match(type: "appstore")
     swiftlint
-    gym(skip_archive: true, skip_codesigning: true)
+    gym
     scan
   end
 
@@ -52,13 +52,7 @@ platform :ios do
     increment_build_number(
       build_number: latest_testflight_build_number + 1,
     )
-    update_code_signing_settings(
-      use_automatic_signing: false
-    )
     gym
-    update_code_signing_settings(
-      use_automatic_signing: true
-    )
     testflight
   end
 end
