@@ -17,13 +17,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Cache DerivedData
-        uses: actions/cache@v1
-        with:
-          path: DerivedData
-          key: ${{ runner.os }}-DerivedData
-          restore-keys: ${{ runner.os }}-DerivedData
-
       - name: Cache vendor/bundle
         uses: actions/cache@v2
         with:
