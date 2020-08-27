@@ -110,6 +110,9 @@
 		6F611FE424CB9951003286E7 /* RecommendedMoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F611FE324CB9951003286E7 /* RecommendedMoviesView.swift */; };
 		6F611FE524CB9951003286E7 /* RecommendedMoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F611FE324CB9951003286E7 /* RecommendedMoviesView.swift */; };
 		6F611FE624CB9951003286E7 /* RecommendedMoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F611FE324CB9951003286E7 /* RecommendedMoviesView.swift */; };
+		6F66452324F79A590034FA08 /* MainAppScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66452224F79A590034FA08 /* MainAppScene.swift */; };
+		6F66452524F79B5C0034FA08 /* WatchAppScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66452424F79B5C0034FA08 /* WatchAppScene.swift */; };
+		6F66452724F79BB40034FA08 /* MacAppScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66452624F79BB40034FA08 /* MacAppScene.swift */; };
 		6F6F0CF324BF8CD2001AD4BA /* PosterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0CF224BF8CD2001AD4BA /* PosterImage.swift */; };
 		6F6F0CF424BF8CD2001AD4BA /* PosterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0CF224BF8CD2001AD4BA /* PosterImage.swift */; };
 		6F6F0CF524BF8CD2001AD4BA /* PosterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0CF224BF8CD2001AD4BA /* PosterImage.swift */; };
@@ -123,9 +126,6 @@
 		6F6F0D0124BF9267001AD4BA /* BackdropImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0CFE24BF9267001AD4BA /* BackdropImage.swift */; };
 		6F6F0D0324BF9267001AD4BA /* BackdropImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0CFE24BF9267001AD4BA /* BackdropImage.swift */; };
 		6F9B860F24CB0F9400E0B527 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9B860E24CB0F9400E0B527 /* Sidebar.swift */; };
-		6F9B861124CB19A100E0B527 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9B861024CB19A100E0B527 /* RootView.swift */; };
-		6F9B861224CB19A100E0B527 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9B861024CB19A100E0B527 /* RootView.swift */; };
-		6F9B861324CB19A100E0B527 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9B861024CB19A100E0B527 /* RootView.swift */; };
 		6F9E675E24F59679003B66E8 /* TVShowCreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E675D24F59679003B66E8 /* TVShowCreditsView.swift */; };
 		6F9E675F24F59679003B66E8 /* TVShowCreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E675D24F59679003B66E8 /* TVShowCreditsView.swift */; };
 		6F9E676024F59679003B66E8 /* TVShowCreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E675D24F59679003B66E8 /* TVShowCreditsView.swift */; };
@@ -489,11 +489,13 @@
 		6F39700A24C741AE008A8E2A /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		6F39700F24C741DB008A8E2A /* WatchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListView.swift; sourceTree = "<group>"; };
 		6F611FE324CB9951003286E7 /* RecommendedMoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedMoviesView.swift; sourceTree = "<group>"; };
+		6F66452224F79A590034FA08 /* MainAppScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppScene.swift; sourceTree = "<group>"; };
+		6F66452424F79B5C0034FA08 /* WatchAppScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAppScene.swift; sourceTree = "<group>"; };
+		6F66452624F79BB40034FA08 /* MacAppScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacAppScene.swift; sourceTree = "<group>"; };
 		6F6F0CF224BF8CD2001AD4BA /* PosterImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterImage.swift; sourceTree = "<group>"; };
 		6F6F0CF824BF9136001AD4BA /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
 		6F6F0CFE24BF9267001AD4BA /* BackdropImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackdropImage.swift; sourceTree = "<group>"; };
 		6F9B860E24CB0F9400E0B527 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
-		6F9B861024CB19A100E0B527 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		6F9E675D24F59679003B66E8 /* TVShowCreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowCreditsView.swift; sourceTree = "<group>"; };
 		6F9E676224F5A157003B66E8 /* TVShowsAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsAction.swift; sourceTree = "<group>"; };
 		6F9E676624F5A16D003B66E8 /* TVShowsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsState.swift; sourceTree = "<group>"; };
@@ -756,7 +758,6 @@
 				6FD64B8024F501AF00213104 /* Managers */,
 				6F9B861424CB1A2F00E0B527 /* Models */,
 				6F53DECB24D035A100897283 /* Stores */,
-				6F9B861024CB19A100E0B527 /* RootView.swift */,
 				6FA5A99024BF168900E828AA /* Home */,
 				6FA5A99124BF169A00E828AA /* Movies */,
 				6FA5A99224BF16A900E828AA /* TVShows */,
@@ -793,6 +794,7 @@
 			isa = PBXGroup;
 			children = (
 				6FAB658F24C8924A006ABC39 /* Launch Screen.storyboard */,
+				6F66452224F79A590034FA08 /* MainAppScene.swift */,
 				6FA5A9A224BF18BE00E828AA /* AppTabNavigation.swift */,
 				6FAB659424C89769006ABC39 /* Assets.xcassets */,
 				6FA5A94E24BF144600E828AA /* Info.plist */,
@@ -804,6 +806,7 @@
 		6FA5A95424BF144600E828AA /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				6F66452624F79BB40034FA08 /* MacAppScene.swift */,
 				6FA5A98D24BF164100E828AA /* AppSidebarNavigation.swift */,
 				6F9B860E24CB0F9400E0B527 /* Sidebar.swift */,
 				6FAB659624C897BA006ABC39 /* Assets.xcassets */,
@@ -901,6 +904,7 @@
 		6FA5A9C724BF2E7200E828AA /* watchOS Extension */ = {
 			isa = PBXGroup;
 			children = (
+				6F66452424F79B5C0034FA08 /* WatchAppScene.swift */,
 				6FA5A9E924BF308600E828AA /* AppWatchNavigation.swift */,
 				6FA5A9E724BF303C00E828AA /* Notifications */,
 				6FA5A9E824BF304900E828AA /* Complications */,
@@ -1388,6 +1392,7 @@
 				6FCCCAEA24F5A32000853D7F /* SearchReducer.swift in Sources */,
 				6F03ECB124F5B5670069A2F2 /* ProfileURLProviding.swift in Sources */,
 				6FCCCAE624F5A2D400853D7F /* SearchAction.swift in Sources */,
+				6F66452324F79A590034FA08 /* MainAppScene.swift in Sources */,
 				6FA7D3C624C5B7F200581529 /* CreditRow.swift in Sources */,
 				6F03EC7B24F5ADA50069A2F2 /* AppState.swift in Sources */,
 				6F39700B24C741AE008A8E2A /* FavouritesView.swift in Sources */,
@@ -1434,7 +1439,6 @@
 				6F03EC7724F5AD930069A2F2 /* AppAction.swift in Sources */,
 				6F9E676724F5A16D003B66E8 /* TVShowsState.swift in Sources */,
 				6F9E676B24F5A199003B66E8 /* TVShowsReducer.swift in Sources */,
-				6F9B861124CB19A100E0B527 /* RootView.swift in Sources */,
 				6FD7776524BFB8E600E31D4D /* MoviesCarousel.swift in Sources */,
 				6FD64B8224F501D200213104 /* MoviesManager.swift in Sources */,
 				6FA5A9B024BF202E00E828AA /* AppConstants.swift in Sources */,
@@ -1532,11 +1536,11 @@
 				6F9E677024F5A1C3003B66E8 /* MoviesAction.swift in Sources */,
 				6FD7776024BFA26400E31D4D /* MovieCarouselItem.swift in Sources */,
 				6FC44AA524C6243F00C0DCF3 /* SearchView.swift in Sources */,
-				6F9B861224CB19A100E0B527 /* RootView.swift in Sources */,
 				6F6F0CFA24BF9136001AD4BA /* WebImage.swift in Sources */,
 				6FD3E1B424C10EF400E62E67 /* Movie+TMDb.swift in Sources */,
 				6F611FE524CB9951003286E7 /* RecommendedMoviesView.swift in Sources */,
 				6FABA3C924C6D72600DDD18A /* MovieRow.swift in Sources */,
+				6F66452724F79BB40034FA08 /* MacAppScene.swift in Sources */,
 				6FD3E1B024C10D5200E62E67 /* MovieListItem+TMDb.swift in Sources */,
 				6FABA3EA24C71F9200DDD18A /* SearchBar.swift in Sources */,
 				6FA9DEA224C655C60071121B /* MultiTypeListItem+TMDb.swift in Sources */,
@@ -1577,7 +1581,6 @@
 				6FD3E1AD24C10CCE00E62E67 /* Movie.swift in Sources */,
 				6FC657AE24C09C88002B998A /* ShowDetailsHeader.swift in Sources */,
 				6F6F0CF524BF8CD2001AD4BA /* PosterImage.swift in Sources */,
-				6F9B861324CB19A100E0B527 /* RootView.swift in Sources */,
 				6F9E676524F5A157003B66E8 /* TVShowsAction.swift in Sources */,
 				6FA7D3B824C5B4CF00581529 /* MovieCreditsView.swift in Sources */,
 				6F6F0D0124BF9267001AD4BA /* BackdropImage.swift in Sources */,
@@ -1585,6 +1588,7 @@
 				6F03ECB924F5B6580069A2F2 /* BaseImageURLProviding.swift in Sources */,
 				6FD64B8C24F5132100213104 /* TVShowsManager.swift in Sources */,
 				6F03EC8124F5ADD80069A2F2 /* AppStore.swift in Sources */,
+				6F66452524F79B5C0034FA08 /* WatchAppScene.swift in Sources */,
 				6FA7D3C424C5B5F400581529 /* CreditsList.swift in Sources */,
 				6F6F0CFB24BF9136001AD4BA /* WebImage.swift in Sources */,
 				6FEBAAF424C1DA58009871B3 /* TVShow.swift in Sources */,
@@ -1907,7 +1911,7 @@
 				CODE_SIGN_ENTITLEMENTS = iOS/iOS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -1934,7 +1938,7 @@
 				CODE_SIGN_ENTITLEMENTS = iOS/iOS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -1963,7 +1967,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1991,7 +1995,7 @@
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -2117,7 +2121,7 @@
 				CODE_SIGN_ENTITLEMENTS = "watchOS Extension/watchOSExtension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"watchOS Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_PREVIEWS = NO;
@@ -2145,7 +2149,7 @@
 				CODE_SIGN_ENTITLEMENTS = "watchOS Extension/watchOSExtension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"watchOS Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_PREVIEWS = NO;
@@ -2175,7 +2179,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				IBSC_MODULE = watchOS_Extension;
 				INFOPLIST_FILE = watchOS/Info.plist;
@@ -2198,7 +2202,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				IBSC_MODULE = watchOS_Extension;
 				INFOPLIST_FILE = watchOS/Info.plist;
@@ -2222,7 +2226,7 @@
 				CODE_SIGN_ENTITLEMENTS = "iOS Widgets/iOSWidgets.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				INFOPLIST_FILE = "iOS Widgets/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -2250,7 +2254,7 @@
 				CODE_SIGN_ENTITLEMENTS = "iOS Widgets/iOSWidgets.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				INFOPLIST_FILE = "iOS Widgets/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -2279,7 +2283,7 @@
 				CODE_SIGN_ENTITLEMENTS = "macOS Widgets/macOSWidgets.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "macOS Widgets/Info.plist";
@@ -2306,7 +2310,7 @@
 				CODE_SIGN_ENTITLEMENTS = "macOS Widgets/macOSWidgets.entitlements";
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "macOS Widgets/Info.plist";
