@@ -12,12 +12,33 @@ struct HomeView: View {
 
     @EnvironmentObject private var store: AppStore
 
+    private var trendingMovies: [MovieListItem] {
+        store.state.movies.topTrending
+    }
+
+    private var discoverMovies: [MovieListItem] {
+        store.state.movies.topDiscover
+    }
+
+    private var trendingTVShows: [TVShowListItem] {
+        store.state.tvShows.topTrending
+    }
+
+    private var discoverTVShows: [TVShowListItem] {
+        store.state.tvShows.topDiscover
+    }
+
+    private var trendingPeople: [PersonListItem] {
+        store.state.people.topTrending
+    }
+
     var body: some View {
         HomeList(
-            trendingMovies: store.state.movies.topTrending,
-            discoverMovies: store.state.movies.topDiscover,
-            trendingTVShows: store.state.tvShows.topTrending,
-            discoverTVShows: store.state.tvShows.topDiscover
+            trendingMovies: trendingMovies,
+            discoverMovies: discoverMovies,
+            trendingTVShows: trendingTVShows,
+            discoverTVShows: discoverTVShows,
+            trendingPeople: trendingPeople
         )
         .onAppear(perform: fetch)
         .navigationTitle("Home")
@@ -28,10 +49,25 @@ struct HomeView: View {
 extension HomeView {
 
     private func fetch() {
-        store.send(.movies(.fetchTrending))
-        store.send(.movies(.fetchDiscover))
-        store.send(.tvShows(.fetchTrending))
-        store.send(.tvShows(.fetchDiscover))
+        if trendingMovies.isEmpty {
+            store.send(.movies(.fetchTrending))
+        }
+
+        if discoverMovies.isEmpty {
+            store.send(.movies(.fetchDiscover))
+        }
+
+        if trendingTVShows.isEmpty {
+            store.send(.tvShows(.fetchTrending))
+        }
+
+        if discoverTVShows.isEmpty {
+            store.send(.tvShows(.fetchDiscover))
+        }
+
+        if trendingPeople.isEmpty {
+            store.send(.people(.fetchTrending))
+        }
     }
 
 }

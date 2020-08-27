@@ -13,7 +13,7 @@ enum TVShowsAction {
     case appendTrending(tvShows: [TVShowListItem])
     case fetchDiscover
     case appendDiscover(tvShows: [TVShowListItem])
-    case fetch(id: TVShow.ID)
+    case fetchTVShow(id: TVShow.ID)
     case appendTVShow(tvShow: TVShow)
     case fetchRecommendations(tvShowID: Movie.ID)
     case setRecommendations(recommendations: [TVShowListItem], tvShowID: TVShow.ID)

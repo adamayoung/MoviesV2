@@ -53,17 +53,6 @@ struct ShowDetailsHeader: View {
                 .padding(.horizontal, 10)
                 .padding(.top, topPadding)
             }
-
-            if let subtitle = subtitle {
-                HStack(alignment: .center) {
-                    Text(subtitle)
-                        .italic()
-                        .multilineTextAlignment(.center)
-                }
-                .padding(.horizontal)
-
-                    //.fixedSize(horizontal: false, vertical: true)
-            }
         }
         .foregroundColor(.primary)
         .textCase(.none)

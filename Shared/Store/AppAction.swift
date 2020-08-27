@@ -10,7 +10,8 @@ import Foundation
 enum AppAction {
 
     case movies(MoviesAction)
-    case tvShows(TVShowsAction)
+    case people(PeopleAction)
     case search(SearchAction)
+    case tvShows(TVShowsAction)
 
 }

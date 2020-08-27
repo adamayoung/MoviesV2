@@ -16,4 +16,12 @@ extension DateFormatter {
         return dateFormatter
     }
 
+    static var longDate: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = .current
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .none
+        return dateFormatter
+    }
+
 }

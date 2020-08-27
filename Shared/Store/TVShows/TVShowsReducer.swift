@@ -22,8 +22,8 @@ func tvShowsReducer(state: inout TVShowsState, action: TVShowsAction, environmen
     case .appendDiscover(let tvShows):
         return appendDiscover(tvShows: tvShows, state: &state)
 
-    case .fetch(let id):
-        return fetch(id: id, environment: environment)
+    case .fetchTVShow(let id):
+        return fetchTVShow(id: id, environment: environment)
 
     case .appendTVShow(let tvShow):
         return appendTVShow(tvShow: tvShow, state: &state)
@@ -100,7 +100,7 @@ private func appendDiscover(tvShows: [TVShowListItem], state: inout TVShowsState
         .eraseToAnyPublisher()
 }
 
-private func fetch(id: TVShow.ID, environment: AppEnvironment) -> AnyPublisher<TVShowsAction, Never> {
+private func fetchTVShow(id: TVShow.ID, environment: AppEnvironment) -> AnyPublisher<TVShowsAction, Never> {
     return environment.tvShowsManager
         .fetchTVShow(withID: id)
         .filter { $0 != nil }

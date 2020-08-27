@@ -10,7 +10,8 @@ import Foundation
 struct AppState: Equatable {
 
     var movies: MoviesState = MoviesState()
-    var tvShows: TVShowsState = TVShowsState()
+    var people: PeopleState = PeopleState()
     var search: SearchState = SearchState()
+    var tvShows: TVShowsState = TVShowsState()
 
 }

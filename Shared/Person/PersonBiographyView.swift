@@ -1,17 +1,18 @@
 //
-//  ShowFullOverview.swift
+//  PersonBiographyView.swift
 //  Movies
 //
-//  Created by Adam Young on 16/07/2020.
+//  Created by Adam Young on 27/08/2020.
 //
 
 import SwiftUI
 
-struct ShowPlotView: View {
+struct PersonBiographyView: View {
 
     @Environment(\.presentationMode) private var presentationMode
 
-    var plot: String
+    var name: String
+    var biography: String
 
     var body: some View {
         #if os(watchOS)
@@ -37,7 +38,7 @@ struct ShowPlotView: View {
     private var content: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                Text(plot)
+                Text(biography)
                 HStack {
                     Spacer()
                 }
@@ -45,12 +46,12 @@ struct ShowPlotView: View {
             .multilineTextAlignment(.leading)
             .padding()
         }
-        .navigationTitle("Plot")
+        .navigationTitle(name)
     }
 
 }
 
-extension ShowPlotView {
+extension PersonBiographyView {
 
     private func dismiss() {
         self.presentationMode.wrappedValue.dismiss()
@@ -58,10 +59,10 @@ extension ShowPlotView {
 
 }
 
-struct ShowPlotView_Previews: PreviewProvider {
-
+struct PersonBiographyView_Previews: PreviewProvider {
     static var previews: some View {
-        ShowPlotView(plot: "Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text.")
+        NavigationView {
+            PersonBiographyView(name: "Adam Young", biography: "Some biography text. Some biography text. Some biography text. Some biography text. Some biography text. Some biography text. Some biography text. Some biography text. Some biography text. Some biography text. Some biography text. Some biography text. Some biography text.")
+        }
     }
-
 }

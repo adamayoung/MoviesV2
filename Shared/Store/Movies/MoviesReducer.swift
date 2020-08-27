@@ -22,8 +22,8 @@ func moviesReducer(state: inout MoviesState, action: MoviesAction, environment: 
     case .appendDiscover(let movies):
         return appendDiscover(movies: movies, state: &state)
 
-    case .fetch(let id):
-        return fetch(id: id, environment: environment)
+    case .fetchMovie(let id):
+        return fetchMovie(id: id, environment: environment)
 
     case .appendMovie(let movie):
         return appendMovie(movie: movie, state: &state)
@@ -100,7 +100,7 @@ private func appendDiscover(movies: [MovieListItem], state: inout MoviesState) -
         .eraseToAnyPublisher()
 }
 
-private func fetch(id: Movie.ID, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
+private func fetchMovie(id: Movie.ID, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
     return environment.moviesManager
         .fetchMovie(withID: id)
         .filter { $0 != nil }

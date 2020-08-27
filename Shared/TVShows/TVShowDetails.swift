@@ -37,10 +37,10 @@ struct TVShowDetails: View {
             if let overview = tvShow.overview {
                 #if !os(watchOS)
                 Section {
-                    ShowPlotRow(title: tvShow.name, text: overview)
+                    ShowPlotRow(title: tvShow.name, plot: overview)
                 }
                 #else
-                ShowPlotRow(title: tvShow.name, text: overview)
+                ShowPlotRow(title: tvShow.name, plot: overview)
                 #endif
             }
 

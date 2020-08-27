@@ -67,7 +67,7 @@ extension TVShowDetailsView {
             return
         }
 
-        store.send(.tvShows(.fetch(id: id)))
+        store.send(.tvShows(.fetchTVShow(id: id)))
         store.send(.tvShows(.fetchCredits(tvShowID: id)))
         store.send(.tvShows(.fetchRecommendations(tvShowID: id)))
     }

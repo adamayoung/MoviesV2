@@ -13,7 +13,7 @@ enum MoviesAction {
     case appendTrending(movies: [MovieListItem])
     case fetchDiscover
     case appendDiscover(movies: [MovieListItem])
-    case fetch(id: Movie.ID)
+    case fetchMovie(id: Movie.ID)
     case appendMovie(movie: Movie)
     case fetchRecommendations(movieID: Movie.ID)
     case setRecommendations(recommendations: [MovieListItem], movieID: Movie.ID)

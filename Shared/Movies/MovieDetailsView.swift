@@ -67,7 +67,7 @@ extension MovieDetailsView {
             return
         }
 
-        store.send(.movies(.fetch(id: id)))
+        store.send(.movies(.fetchMovie(id: id)))
         store.send(.movies(.fetchCredits(movieID: id)))
         store.send(.movies(.fetchRecommendations(movieID: id)))
     }
