@@ -1,20 +1,17 @@
 //
-//  RootView.swift
-//  Movies
+//  MacAppScene.swift
+//  Movies (macOS)
 //
-//  Created by Adam Young on 24/07/2020.
+//  Created by Adam Young on 27/08/2020.
 //
 
 import SwiftUI
 
-struct RootView: View {
+struct WatchAppScene: Scene {
 
-    var body: some View {
-        #if os(iOS)
-        AppTabNavigation()
-        #elseif os(watchOS)
-        AppWatchNavigation()
-        #else
+    @ObservedObject var store: AppStore
+
+    var body: some Scene {
         AppSidebarNavigation()
             .toolbar {
                 ToolbarItem(placement: .automatic) {
@@ -23,15 +20,6 @@ struct RootView: View {
                 }
             }
             .frame(minWidth: 900, maxWidth: .infinity, minHeight: 500, maxHeight: .infinity)
-        #endif
-    }
-
-}
-
-struct RootView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        RootView()
     }
 
 }

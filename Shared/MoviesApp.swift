@@ -7,14 +7,9 @@
 
 import SwiftUI
 import TMDb
-#if os(iOS)
-import WidgetKit
-#endif
 
 @main
 struct MoviesApp: App {
-
-    @Environment(\.scenePhase) var scenePhase
 
     @StateObject var store = AppStore(
         initialState: AppState(),
@@ -24,19 +19,15 @@ struct MoviesApp: App {
 
     init() {
         TMDbAPIClient.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
-        #if os(iOS)
-        WidgetCenter.shared.reloadAllTimelines()
-        #endif
     }
 
-    @SceneBuilder var body: some Scene {
-        WindowGroup {
-            RootView()
-                .environmentObject(store)
-        }
-
+    var body: some Scene {
         #if os(watchOS)
-        WKNotificationScene(controller: NotificationController.self, category: "myCategory")
+        WatchAppScene(store: store)
+        #elseif os(macOS)
+        MacAppScene(store: store)
+        #else
+        MainAppScene(store: store)
         #endif
     }
 
