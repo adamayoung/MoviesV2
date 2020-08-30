@@ -1,27 +1,27 @@
 //
-//  TVShowsCarousel.swift
+//  ShowsCarousel.swift
 //  Movies
 //
-//  Created by Adam Young on 15/07/2020.
+//  Created by Adam Young on 27/08/2020.
 //
 
 import SwiftUI
 
-struct TVShowsCarousel: View {
+struct ShowsCarousel: View {
 
-    var tvShows: [TVShowListItem]
+    var shows: [ShowListItem]
     var displaySize: BackdropImage.DisplaySize = .medium
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .top, spacing: 20) {
-                if !tvShows.isEmpty {
-                    ForEach(tvShows) { tvShow in
-                        TVShowCarouselItem(tvShow: tvShow, displaySize: displaySize)
+                if !shows.isEmpty {
+                    ForEach(shows) { show in
+                        ShowCarouselItem(show: show, displaySize: displaySize)
                     }
                 } else {
                     ForEach(0...10, id: \.self) { _ in
-                        TVShowCarouselItem(displaySize: displaySize)
+                        ShowCarouselItem(displaySize: displaySize)
                             .redacted(reason: .placeholder)
                     }
                 }
@@ -29,15 +29,15 @@ struct TVShowsCarousel: View {
             .padding(.horizontal, 20)
             .padding(.top)
         }
-        .disabled(tvShows.isEmpty)
+        .disabled(shows.isEmpty)
     }
 
 }
 
-struct TVShowsCarousel_Previews: PreviewProvider {
+struct ShowsCarousel_Previews: PreviewProvider {
 
     static var previews: some View {
-        TVShowsCarousel(tvShows: [])
+        ShowsCarousel(shows: [])
     }
 
 }

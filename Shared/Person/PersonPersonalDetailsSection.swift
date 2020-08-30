@@ -22,10 +22,6 @@ struct PersonPersonalDetailsSection: View {
             return true
         }
 
-        if person.knownForDepartment != nil {
-            return true
-        }
-
         return false
     }
 
@@ -81,16 +77,6 @@ struct PersonPersonalDetailsSection: View {
                 Text("Place of birth")
                 Spacer()
                 Text("\(placeOfBirth)")
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.trailing)
-            }
-        }
-
-        if let knownForDepartment = person.knownForDepartment {
-            HStack {
-                Text("Known for")
-                Spacer()
-                Text("\(knownForDepartment)")
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.trailing)
             }

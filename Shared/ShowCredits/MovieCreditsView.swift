@@ -34,7 +34,7 @@ struct MovieCreditsView: View {
 
     @ViewBuilder private var content: some View {
         if let credits = self.credits {
-            CreditsList(credits: credits)
+            ShowCreditsList(credits: credits)
                 .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
         } else {
             ProgressView()

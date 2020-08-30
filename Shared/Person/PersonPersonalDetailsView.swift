@@ -56,16 +56,6 @@ struct PersonPersonalDetailsView: View {
                     Divider()
                 }
 
-                if let knownForDepartment = person.knownForDepartment {
-                    VStack(alignment: .leading) {
-                        Text("Known for")
-                        Text("\(knownForDepartment)")
-                            .foregroundColor(.secondary)
-                    }
-
-                    Divider()
-                }
-
                 HStack {
                     Spacer()
                 }

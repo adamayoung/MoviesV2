@@ -14,10 +14,14 @@ struct PeopleState: Equatable {
     var personList: [PersonListItem.ID: PersonListItem] = [:]
     var people: [Person.ID: Person] = [:]
 
+    var knownFor: [Person.ID: [ShowListItem]] = [:]
+
     var isFetchingTrending = false
     var trendingIDs: [PersonListItem.ID] = []
     var currentTrendingPage = 0
     var isMoreTrendingAvailable = true
+
+    var credits: [Person.ID: PersonCombinedCredits] = [:]
 
     var trending: [PersonListItem] {
         trendingIDs.compactMap { personList[$0] }

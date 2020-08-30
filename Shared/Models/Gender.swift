@@ -12,5 +12,6 @@ enum Gender: Equatable {
     case unknown
     case female
     case male
+    case other
 
 }

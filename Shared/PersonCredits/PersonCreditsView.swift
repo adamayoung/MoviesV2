@@ -1,26 +1,26 @@
 //
-//  TVShowCreditsView.swift
+//  PersonCreditsView.swift
 //  Movies
 //
-//  Created by Adam Young on 20/07/2020.
+//  Created by Adam Young on 28/08/2020.
 //
 
 import SwiftUI
 
-struct TVShowCreditsView: View {
+struct PersonCreditsView: View {
 
-    var tvShowID: TVShow.ID
+    var personID: Person.ID
 
     @EnvironmentObject private var store: AppStore
 
-    private var credits: Credits? {
-        store.state.tvShows.credits[tvShowID]
+    private var credits: PersonCombinedCredits? {
+        store.state.people.credits[personID]
     }
 
     var body: some View {
         container
             .onAppear(perform: fetch)
-            .navigationTitle("Cast & Crew")
+            .navigationTitle("Filmography")
     }
 
     @ViewBuilder private var container: some View {
@@ -34,7 +34,7 @@ struct TVShowCreditsView: View {
 
     @ViewBuilder private var content: some View {
         if let credits = self.credits {
-            CreditsList(credits: credits)
+            PersonCreditsList(credits: credits)
                 .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
         } else {
             ProgressView()
@@ -43,22 +43,22 @@ struct TVShowCreditsView: View {
 
 }
 
-extension TVShowCreditsView {
+extension PersonCreditsView {
 
     private func fetch() {
         guard credits == nil else {
             return
         }
 
-        store.send(.tvShows(.fetchCredits(tvShowID: tvShowID)))
+        store.send(.people(.fetchCredits(personID: personID)))
     }
 
 }
 
-struct TVShowCreditsView_Previews: PreviewProvider {
+struct PersonCreditsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        TVShowCreditsView(tvShowID: 1)
+        MovieCreditsView(movieID: 1)
     }
 
 }

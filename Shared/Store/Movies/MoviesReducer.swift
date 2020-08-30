@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 
+// swiftlint:disable cyclomatic_complexity
 func moviesReducer(state: inout MoviesState, action: MoviesAction, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
     switch action {
     case .fetchTrending:
@@ -28,6 +29,12 @@ func moviesReducer(state: inout MoviesState, action: MoviesAction, environment: 
     case .appendMovie(let movie):
         return appendMovie(movie: movie, state: &state)
 
+    case .fetchMovieExtended(let id):
+        return fetchMovieExtended(id: id, environment: environment)
+
+    case .appendMovieExtended(let movieExtended):
+        return appendMovieExtended(movieExtended: movieExtended, state: &state)
+
     case .fetchRecommendations(let movieID):
         return fetchRecommendations(movieID: movieID, state: &state, environment: environment)
 
@@ -41,6 +48,7 @@ func moviesReducer(state: inout MoviesState, action: MoviesAction, environment: 
         return setCredits(credits: credits, movieID: movieID, state: &state)
     }
 }
+// swiftlint:enable cyclomatic_complexity
 
 private func fetchTrending(state: inout MoviesState, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
     guard !state.isFetchingTrending, state.isMoreTrendingAvailable else {
@@ -111,6 +119,23 @@ private func fetchMovie(id: Movie.ID, environment: AppEnvironment) -> AnyPublish
 
 private func appendMovie(movie: Movie, state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
     state.movies[movie.id] = movie
+    return Empty()
+        .eraseToAnyPublisher()
+}
+
+private func fetchMovieExtended(id: MovieExtended.ID, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
+    return environment.moviesManager
+        .fetchMovieExtended(withID: id)
+        .filter { $0 != nil }
+        .map { $0! }
+        .map { .appendMovieExtended(movieExtended: $0) }
+        .eraseToAnyPublisher()
+}
+
+private func appendMovieExtended(movieExtended: MovieExtended, state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+    state.movies[movieExtended.id] = movieExtended.movie
+    state.credits[movieExtended.id] = movieExtended.credits
+    state.recommendations[movieExtended.id] = movieExtended.recommendations
     return Empty()
         .eraseToAnyPublisher()
 }

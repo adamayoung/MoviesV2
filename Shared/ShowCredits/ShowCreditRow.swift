@@ -1,5 +1,5 @@
 //
-//  CreditRow.swift
+//  ShowCreditRow.swift
 //  Movies
 //
 //  Created by Adam Young on 20/07/2020.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CreditRow: View {
+struct ShowCreditRow: View {
 
     var name: String
     var detail: String
@@ -29,7 +29,7 @@ struct CreditRow: View {
 
 }
 
-extension CreditRow {
+extension ShowCreditRow {
 
     init(castMember: CastMember) {
         self.init(name: castMember.name, detail: castMember.character, profileURL: castMember.profileURL)
@@ -41,10 +41,10 @@ extension CreditRow {
 
 }
 
-struct CreditRow_Previews: PreviewProvider {
+struct ShowCreditRow_Previews: PreviewProvider {
 
     static var previews: some View {
-        CreditRow(name: "Adam Young", detail: "Director")
+        ShowCreditRow(name: "Adam Young", detail: "Director")
     }
 
 }

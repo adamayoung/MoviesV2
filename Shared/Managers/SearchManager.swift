@@ -9,21 +9,16 @@ import Combine
 import Foundation
 import TMDb
 
-protocol SearchManaging {
-
-    func search(query: String) -> AnyPublisher<[MultiTypeListItem], Never>
-}
-
 final class SearchManager: SearchManaging {
 
-    private let searchService: MultiSearchService
+    private let searchService: SearchService
 
-    init(searchService: MultiSearchService = TMDbMultiSearchService()) {
+    init(searchService: SearchService = TMDbSearchService()) {
         self.searchService = searchService
     }
 
     func search(query: String) -> AnyPublisher<[MultiTypeListItem], Never> {
-        searchService.search(query: query)
+        searchService.searchAll(query: query)
             .map(\.results)
             .map(MultiTypeListItem.create)
             .replaceError(with: [])

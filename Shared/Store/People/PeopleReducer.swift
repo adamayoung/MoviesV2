@@ -21,6 +21,18 @@ func peopleReducer(state: inout PeopleState, action: PeopleAction, environment: 
 
     case .appendPerson(let person):
         return appendPerson(person: person, state: &state)
+
+    case .fetchKnownFor(let personID):
+        return fetchKnownFor(personID: personID, environment: environment)
+
+    case .setKnownFor(let shows, let personID):
+        return setKnownFor(shows: shows, personID: personID, state: &state)
+
+    case .fetchCredits(let personID):
+        return fetchCredits(personID: personID, environment: environment)
+
+    case .setCredits(let credits, let personID):
+        return setCredits(credits: credits, personID: personID, state: &state)
     }
 }
 
@@ -64,6 +76,32 @@ private func fetchPerson(id: Person.ID, environment: AppEnvironment) -> AnyPubli
 
 private func appendPerson(person: Person, state: inout PeopleState) -> AnyPublisher<PeopleAction, Never> {
     state.people[person.id] = person
+    return Empty()
+        .eraseToAnyPublisher()
+}
+
+private func fetchKnownFor(personID: Person.ID, environment: AppEnvironment) -> AnyPublisher<PeopleAction, Never> {
+    return environment.peopleManager
+        .fetchKnownFor(forPerson: personID)
+        .map { .setKnownFor(shows: $0, personID: personID) }
+        .eraseToAnyPublisher()
+}
+
+private func setKnownFor(shows: [ShowListItem], personID: Person.ID, state: inout PeopleState) -> AnyPublisher<PeopleAction, Never> {
+    state.knownFor[personID] = shows
+    return Empty()
+        .eraseToAnyPublisher()
+}
+
+private func fetchCredits(personID: Person.ID, environment: AppEnvironment) -> AnyPublisher<PeopleAction, Never> {
+    return environment.peopleManager
+        .fetchCredits(forPerson: personID)
+        .map { .setCredits(credits: $0, personID: personID) }
+        .eraseToAnyPublisher()
+}
+
+private func setCredits(credits: PersonCombinedCredits, personID: Person.ID, state: inout PeopleState) -> AnyPublisher<PeopleAction, Never> {
+    state.credits[personID] = credits
     return Empty()
         .eraseToAnyPublisher()
 }

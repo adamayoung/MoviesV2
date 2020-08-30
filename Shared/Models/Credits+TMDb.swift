@@ -10,11 +10,23 @@ import TMDb
 
 extension Credits {
 
-    init(credits: TMDb.Credits) {
-        let cast = CastMember.create(castMembers: credits.cast)
-        let crew = CrewMember.create(crewMembers: credits.crew)
+    init(cast: [TMDb.CastMember], crew: [TMDb.CrewMember]) {
+        let cast = CastMember.create(castMembers: cast)
+        let crew = CrewMember.create(crewMembers: crew)
 
-        self.init(id: credits.id, cast: cast, crew: crew)
+        self.init(cast: cast, crew: crew)
+    }
+
+    init(credits: TMDb.ShowCredits) {
+        self.init(cast: credits.cast, crew: credits.crew)
+    }
+
+    init(credits: TMDb.Movie.Credits) {
+        self.init(cast: credits.cast, crew: credits.crew)
+    }
+
+    init(credits: TMDb.TVShow.Credits) {
+        self.init(cast: credits.cast, crew: credits.crew)
     }
 
 }

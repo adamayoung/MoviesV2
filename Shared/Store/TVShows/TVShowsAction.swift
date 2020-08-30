@@ -15,6 +15,8 @@ enum TVShowsAction {
     case appendDiscover(tvShows: [TVShowListItem])
     case fetchTVShow(id: TVShow.ID)
     case appendTVShow(tvShow: TVShow)
+    case fetchTVShowExtended(id: TVShowExtended.ID)
+    case appendTVShowExtended(tvShowExtended: TVShowExtended)
     case fetchRecommendations(tvShowID: Movie.ID)
     case setRecommendations(recommendations: [TVShowListItem], tvShowID: TVShow.ID)
     case fetchCredits(tvShowID: TVShow.ID)

@@ -15,6 +15,8 @@ enum MoviesAction {
     case appendDiscover(movies: [MovieListItem])
     case fetchMovie(id: Movie.ID)
     case appendMovie(movie: Movie)
+    case fetchMovieExtended(id: MovieExtended.ID)
+    case appendMovieExtended(movieExtended: MovieExtended)
     case fetchRecommendations(movieID: Movie.ID)
     case setRecommendations(recommendations: [MovieListItem], movieID: Movie.ID)
     case fetchCredits(movieID: Movie.ID)

@@ -10,6 +10,7 @@ import SwiftUI
 struct PersonDetails: View {
 
     var person: Person
+    var popularShows: [ShowListItem]
 
     var body: some View {
         #if os(iOS)
@@ -35,7 +36,41 @@ struct PersonDetails: View {
             if PersonPersonalDetailsSection.hasPersonalDetails(person: person) {
                 PersonPersonalDetailsSection(person: person)
             }
+
+            if !popularShows.isEmpty {
+                #if !os(watchOS)
+                Section(header: filmographySectionHeader) {
+                    ShowsCarousel(shows: popularShows, displaySize: .medium)
+                        .listRowInsets(EdgeInsets())
+                }
+                #else
+                NavigationLink(destination: PersonCreditsView(personID: person.id)) {
+                    HStack {
+                        Spacer()
+                        Text("Filmography")
+                        Spacer()
+                    }
+                }
+                #endif
+            }
         }
+    }
+
+    private var filmographySectionHeader: some View {
+        HStack(alignment: .center) {
+            Text("Filmography")
+                .font(.title2)
+                .fontWeight(.heavy)
+
+            Spacer()
+            NavigationLink(destination: PersonCreditsView(personID: person.id)) {
+                Text("See more")
+                    .font(.body)
+                    .foregroundColor(.accentColor)
+            }
+        }
+        .textCase(.none)
+        .foregroundColor(.primary)
     }
 
 }
@@ -46,7 +81,7 @@ struct PersonDetails_Previews: PreviewProvider {
         let person = Person(id: 1, name: "Adam Young", biography: "Adam is an iOS Developer", gender: .male, popularity: 10, imdbId: "abc123")
 
         return NavigationView {
-            PersonDetails(person: person)
+            PersonDetails(person: person, popularShows: [])
         }
         .navigationTitle(person.name)
     }

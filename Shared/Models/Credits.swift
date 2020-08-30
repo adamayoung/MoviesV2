@@ -7,14 +7,12 @@
 
 import Foundation
 
-struct Credits: Identifiable, Equatable {
+struct Credits: Equatable {
 
-    let id: Int
     let cast: [CastMember]
     let crew: [CrewMember]
 
-    init(id: Int, cast: [CastMember] = [], crew: [CrewMember] = []) {
-        self.id = id
+    init(cast: [CastMember] = [], crew: [CrewMember] = []) {
         self.cast = cast
         self.crew = crew
     }

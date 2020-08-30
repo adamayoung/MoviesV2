@@ -19,7 +19,12 @@ struct AppWatchNavigation: View {
                         destination: SearchView(),
                         tag: NavigationItem.search,
                         selection: $selection) {
-                        navLabel("Search", iconName: "magnifyingglass")
+                        Label(title: {
+                            Text("Search")
+                        }, icon: {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.accentColor)
+                        })
                     }
                     .accessibility(label: Text("Search"))
                 }
@@ -29,7 +34,12 @@ struct AppWatchNavigation: View {
                         destination: TrendingMoviesView(),
                         tag: NavigationItem.trendingMovies,
                         selection: $selection) {
-                        navLabel("Trending", iconName: "film")
+                        Label(title: {
+                            Text("Trending")
+                        }, icon: {
+                            Image(systemName: "film")
+                                .foregroundColor(.accentColor)
+                        })
                     }
                     .accessibility(label: Text("Trending Movies"))
 
@@ -37,9 +47,14 @@ struct AppWatchNavigation: View {
                         destination: DiscoverMoviesView(),
                         tag: NavigationItem.discoverMovies,
                         selection: $selection) {
-                        navLabel("Discover", iconName: "film")
+                        Label(title: {
+                            Text("Discover")
+                        }, icon: {
+                            Image(systemName: "film.fill")
+                                .foregroundColor(.accentColor)
+                        })
                     }
-                    .accessibility(label: Text("Trending Movies"))
+                    .accessibility(label: Text("Discover Movies"))
                 }
 
                 Section(header: Text("TV Shows")) {
@@ -47,7 +62,12 @@ struct AppWatchNavigation: View {
                         destination: TrendingTVShowsView(),
                         tag: NavigationItem.trendingTVShows,
                         selection: $selection) {
-                        navLabel("Trending", iconName: "tv")
+                        Label(title: {
+                            Text("Trending")
+                        }, icon: {
+                            Image(systemName: "tv")
+                                .foregroundColor(.accentColor)
+                        })
                     }
                     .accessibility(label: Text("Trending TV Shows"))
 
@@ -55,9 +75,30 @@ struct AppWatchNavigation: View {
                         destination: DiscoverTVShowsView(),
                         tag: NavigationItem.discoverTVShows,
                         selection: $selection) {
-                        navLabel("Discover", iconName: "tv")
+                        Label(title: {
+                            Text("Discover")
+                        }, icon: {
+                            Image(systemName: "tv.fill")
+                                .foregroundColor(.accentColor)
+                        })
                     }
-                    .accessibility(label: Text("Trending TV Shows"))
+                    .accessibility(label: Text("Discover TV Shows"))
+                }
+
+                Section(header: Text("People")) {
+                    NavigationLink(
+                        destination: TrendingPeopleView(),
+                        tag: NavigationItem.trendingPeople,
+                        selection: $selection) {
+                        Label(title: {
+                            Text("Trending")
+                        }, icon: {
+                            Image(systemName: "person.2.fill")
+                                .foregroundColor(.accentColor)
+                        })
+
+                    }
+                    .accessibility(label: Text("Trending People"))
                 }
             }
             .navigationTitle("Movies")
@@ -79,11 +120,12 @@ struct AppWatchNavigation: View {
 extension AppWatchNavigation {
 
     enum NavigationItem: Int {
+        case search
         case trendingMovies
         case discoverMovies
         case trendingTVShows
         case discoverTVShows
-        case search
+        case trendingPeople
     }
 
 }

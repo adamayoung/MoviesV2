@@ -17,6 +17,10 @@ struct PersonDetailsView: View {
         store.state.people.people[id]
     }
 
+    private var popularShows: [ShowListItem]? {
+        store.state.people.knownFor[id]
+    }
+
     private var title: String {
         person?.name ?? ""
     }
@@ -40,8 +44,8 @@ struct PersonDetailsView: View {
     }
 
     @ViewBuilder private var content: some View {
-        if let person = self.person {
-            PersonDetails(person: person)
+        if let person = self.person, let popularShows = self.popularShows {
+            PersonDetails(person: person, popularShows: popularShows)
                 .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
         } else {
             ProgressView()
@@ -57,6 +61,7 @@ extension PersonDetailsView {
         }
 
         store.send(.people(.fetchPerson(id: id)))
+        store.send(.people(.fetchKnownFor(personID: id)))
     }
 
 }
