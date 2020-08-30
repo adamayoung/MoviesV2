@@ -15,15 +15,17 @@ struct MovieListItem: Identifiable, Equatable {
     let releaseDate: Date?
     let posterURL: URL?
     let backdropURL: URL?
+    let popularity: Float
 
     init(id: Int, title: String, overview: String? = nil, releaseDate: Date? = nil, posterURL: URL? = nil,
-         backdropURL: URL? = nil) {
+         backdropURL: URL? = nil, popularity: Float = 0) {
         self.id = id
         self.title = title
         self.overview = overview
         self.releaseDate = releaseDate
         self.posterURL = posterURL
         self.backdropURL = backdropURL
+        self.popularity = popularity
     }
 
 }
@@ -36,6 +38,19 @@ extension MovieListItem: Hashable {
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+
+}
+
+extension Array where Element == MovieListItem {
+
+    func sortedByPopularity(limit: Int? = nil) -> [MovieListItem] {
+        let movies = sorted { $0.popularity > $1.popularity }
+        guard let limit = limit else {
+            return movies
+        }
+
+        return Array(movies.prefix(limit))
     }
 
 }

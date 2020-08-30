@@ -9,44 +9,24 @@ import Combine
 import Foundation
 import TMDb
 
-protocol MoviesManaging {
-
-    func fetchTrending(page: Int) -> AnyPublisher<[MovieListItem], Never>
-
-    func fetchDiscover(page: Int) -> AnyPublisher<[MovieListItem], Never>
-
-    func fetchRecommendations(forMovie movieID: Movie.ID) -> AnyPublisher<[MovieListItem], Never>
-
-    func fetchMovie(withID id: Movie.ID) -> AnyPublisher<Movie?, Never>
-
-    func fetchCredits(forMovie movieID: Movie.ID) -> AnyPublisher<Credits, Never>
-
-}
-
-extension MoviesManaging {
-
-    func fetchTrending(page: Int = 1) -> AnyPublisher<[MovieListItem], Never> {
-        fetchTrending(page: page)
-    }
-
-    func fetchDiscover(page: Int = 1) -> AnyPublisher<[MovieListItem], Never> {
-        fetchDiscover(page: page)
-    }
-
-}
-
 final class MoviesManager: MoviesManaging {
 
     private let movieService: MovieService
-    private let creditsService: CreditsService
+    private let trendingService: TrendingService
+    private let discoverService: DiscoverService
 
-    init(movieService: MovieService = TMDbMovieService(), creditsService: CreditsService = TMDbCreditsService()) {
+    init(
+        movieService: MovieService = TMDbMovieService(),
+        trendingService: TrendingService = TMDbTrendingService(),
+        discoverService: DiscoverService = TMDbDiscoverService()
+    ) {
         self.movieService = movieService
-        self.creditsService = creditsService
+        self.trendingService = trendingService
+        self.discoverService = discoverService
     }
 
     func fetchTrending(page: Int = 1) -> AnyPublisher<[MovieListItem], Never> {
-        movieService.fetchTrending(timeWindow: .day, page: page)
+        trendingService.fetchMovies(timeWindow: .day, page: page)
             .map(\.results)
             .map(MovieListItem.create)
             .replaceError(with: [])
@@ -54,7 +34,7 @@ final class MoviesManager: MoviesManaging {
     }
 
     func fetchDiscover(page: Int = 1) -> AnyPublisher<[MovieListItem], Never> {
-        movieService.fetchDiscover(page: page)
+        discoverService.fetchMovies(page: page)
             .map(\.results)
             .map(MovieListItem.create)
             .replaceError(with: [])
@@ -70,16 +50,23 @@ final class MoviesManager: MoviesManaging {
     }
 
     func fetchMovie(withID id: Movie.ID) -> AnyPublisher<Movie?, Never> {
-        movieService.fetch(id: id)
+        movieService.fetchDetails(forMovie: id)
             .map(Movie.init)
             .replaceError(with: nil)
             .eraseToAnyPublisher()
     }
 
+    func fetchMovieExtended(withID id: Movie.ID) -> AnyPublisher<MovieExtended?, Never> {
+        movieService.fetchDetails(forMovie: id, include: [.credits, .recommendations])
+            .map(MovieExtended.init)
+            .replaceError(with: nil)
+            .eraseToAnyPublisher()
+    }
+
     func fetchCredits(forMovie movieID: Movie.ID) -> AnyPublisher<Credits, Never> {
-        creditsService.fetch(forMovie: movieID)
+        movieService.fetchCredits(forMovie: movieID)
             .map(Credits.init)
-            .replaceError(with: Credits(id: movieID))
+            .replaceError(with: Credits())
             .eraseToAnyPublisher()
     }
 

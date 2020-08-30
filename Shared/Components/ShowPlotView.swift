@@ -11,8 +11,7 @@ struct ShowPlotView: View {
 
     @Environment(\.presentationMode) private var presentationMode
 
-    var title: String
-    var text: String
+    var plot: String
 
     var body: some View {
         #if os(watchOS)
@@ -37,8 +36,14 @@ struct ShowPlotView: View {
 
     private var content: some View {
         ScrollView {
-            Text(text)
-                .padding()
+            VStack(alignment: .leading) {
+                Text(plot)
+                HStack {
+                    Spacer()
+                }
+            }
+            .multilineTextAlignment(.leading)
+            .padding()
         }
         .navigationTitle("Plot")
     }
@@ -54,7 +59,9 @@ extension ShowPlotView {
 }
 
 struct ShowPlotView_Previews: PreviewProvider {
+
     static var previews: some View {
-        ShowPlotView(title: "The Old Guard", text: "Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text.")
+        ShowPlotView(plot: "Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text.")
     }
+
 }

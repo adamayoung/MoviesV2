@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 
+// swiftlint:disable cyclomatic_complexity
 func tvShowsReducer(state: inout TVShowsState, action: TVShowsAction, environment: AppEnvironment) -> AnyPublisher<TVShowsAction, Never> {
     switch action {
     case .fetchTrending:
@@ -22,11 +23,17 @@ func tvShowsReducer(state: inout TVShowsState, action: TVShowsAction, environmen
     case .appendDiscover(let tvShows):
         return appendDiscover(tvShows: tvShows, state: &state)
 
-    case .fetch(let id):
-        return fetch(id: id, environment: environment)
+    case .fetchTVShow(let id):
+        return fetchTVShow(id: id, environment: environment)
 
     case .appendTVShow(let tvShow):
         return appendTVShow(tvShow: tvShow, state: &state)
+
+    case .fetchTVShowExtended(let id):
+        return fetchTVShowExtended(id: id, environment: environment)
+
+    case .appendTVShowExtended(let tvShowExtended):
+        return appendTVShowExtended(tvShowExtended: tvShowExtended, state: &state)
 
     case .fetchRecommendations(let tvShowID):
         return fetchRecommendations(tvShowID: tvShowID, state: &state, environment: environment)
@@ -41,6 +48,7 @@ func tvShowsReducer(state: inout TVShowsState, action: TVShowsAction, environmen
         return setCredits(credits: credits, tvShowID: tvShowID, state: &state)
     }
 }
+// swiftlint:enable cyclomatic_complexity
 
 private func fetchTrending(state: inout TVShowsState, environment: AppEnvironment) -> AnyPublisher<TVShowsAction, Never> {
     guard !state.isFetchingTrending, state.isMoreTrendingAvailable else {
@@ -100,7 +108,7 @@ private func appendDiscover(tvShows: [TVShowListItem], state: inout TVShowsState
         .eraseToAnyPublisher()
 }
 
-private func fetch(id: TVShow.ID, environment: AppEnvironment) -> AnyPublisher<TVShowsAction, Never> {
+private func fetchTVShow(id: TVShow.ID, environment: AppEnvironment) -> AnyPublisher<TVShowsAction, Never> {
     return environment.tvShowsManager
         .fetchTVShow(withID: id)
         .filter { $0 != nil }
@@ -111,6 +119,25 @@ private func fetch(id: TVShow.ID, environment: AppEnvironment) -> AnyPublisher<T
 
 private func appendTVShow(tvShow: TVShow, state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
     state.tvShows[tvShow.id] = tvShow
+    return Empty()
+        .eraseToAnyPublisher()
+}
+
+private func fetchTVShowExtended(id: TVShowExtended.ID,
+                                 environment: AppEnvironment) -> AnyPublisher<TVShowsAction, Never> {
+    return environment.tvShowsManager
+        .fetchTVShowExtended(withID: id)
+        .filter { $0 != nil }
+        .map { $0! }
+        .map { .appendTVShowExtended(tvShowExtended: $0) }
+        .eraseToAnyPublisher()
+}
+
+private func appendTVShowExtended(tvShowExtended: TVShowExtended,
+                                  state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
+    state.tvShows[tvShowExtended.id] = tvShowExtended.tvShow
+    state.credits[tvShowExtended.id] = tvShowExtended.credits
+    state.recommendations[tvShowExtended.id] = tvShowExtended.recommendations
     return Empty()
         .eraseToAnyPublisher()
 }

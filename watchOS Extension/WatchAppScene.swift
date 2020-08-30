@@ -14,6 +14,7 @@ struct WatchAppScene: Scene {
     var body: some Scene {
         WindowGroup {
             AppWatchNavigation()
+                .accentColor(Color(UIColor(named: "AccentColor")!))
                 .environmentObject(store)
         }
 

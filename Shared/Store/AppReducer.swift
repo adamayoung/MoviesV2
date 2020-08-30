@@ -15,14 +15,19 @@ func appReducer(state: inout AppState, action: AppAction, environment: AppEnviro
             .map { .movies($0) }
             .eraseToAnyPublisher()
 
-    case .tvShows(let action):
-        return tvShowsReducer(state: &state.tvShows, action: action, environment: environment)
-            .map { .tvShows($0) }
+    case .people(let action):
+        return peopleReducer(state: &state.people, action: action, environment: environment)
+            .map { .people($0) }
             .eraseToAnyPublisher()
 
     case .search(let action):
         return searchReducer(state: &state.search, action: action, environment: environment)
             .map { .search($0) }
+            .eraseToAnyPublisher()
+
+    case .tvShows(let action):
+        return tvShowsReducer(state: &state.tvShows, action: action, environment: environment)
+            .map { .tvShows($0) }
             .eraseToAnyPublisher()
     }
 }

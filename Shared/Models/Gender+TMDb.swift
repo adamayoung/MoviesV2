@@ -20,6 +20,9 @@ extension Gender {
 
         case .male:
             self = .male
+
+        case .other:
+            self = .other
         }
     }
 

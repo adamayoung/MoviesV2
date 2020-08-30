@@ -13,6 +13,7 @@ struct HomeList: View {
     var discoverMovies: [MovieListItem] = []
     var trendingTVShows: [TVShowListItem] = []
     var discoverTVShows: [TVShowListItem] = []
+    var trendingPeople: [PersonListItem] = []
 
     @State private var selection: MovieListItem?
 
@@ -44,6 +45,11 @@ struct HomeList: View {
 
             Section(header: discoverTVShowsSectionHeader) {
                 TVShowsCarousel(tvShows: discoverTVShows)
+                    .listRowInsets(EdgeInsets())
+            }
+
+            Section(header: trendingPeopleSectionHeader) {
+                PeopleCarousel(people: trendingPeople, displaySize: .medium)
                     .listRowInsets(EdgeInsets())
             }
         }
@@ -108,6 +114,23 @@ struct HomeList: View {
 
             Spacer()
             NavigationLink(destination: TrendingTVShowsView()) {
+                Text("See more")
+                    .font(.body)
+                    .foregroundColor(.accentColor)
+            }
+        }
+        .textCase(.none)
+        .foregroundColor(.primary)
+    }
+
+    private var trendingPeopleSectionHeader: some View {
+        HStack(alignment: .center) {
+            Text("Trending People")
+                .font(.title2)
+                .fontWeight(.heavy)
+
+            Spacer()
+            NavigationLink(destination: TrendingPeopleView()) {
                 Text("See more")
                     .font(.body)
                     .foregroundColor(.accentColor)

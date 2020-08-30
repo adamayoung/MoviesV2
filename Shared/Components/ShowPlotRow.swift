@@ -12,17 +12,12 @@ struct ShowPlotRow: View {
     @State private var isShowingFullOverview = false
 
     var title: String
-    var text: String
-
-    init(title: String, text: String) {
-        self.title = title
-        self.text = text
-    }
+    var plot: String
 
     #if !os(watchOS)
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(text)
+            Text(plot)
                 .fixedSize(horizontal: false, vertical: true)
                 .lineLimit(5)
 
@@ -34,7 +29,7 @@ struct ShowPlotRow: View {
         .padding(.vertical, 5)
         .sheet(isPresented: $isShowingFullOverview) {
             NavigationView {
-                ShowPlotView(title: title, text: text)
+                ShowPlotView(plot: plot)
             }
         }
     }
@@ -42,7 +37,7 @@ struct ShowPlotRow: View {
 
     #if os(watchOS)
     var body: some View {
-        NavigationLink(destination: ShowPlotView(title: title, text: text)) {
+        NavigationLink(destination: ShowPlotView(plot: plot)) {
             HStack {
                 Spacer()
                 Text("Plot")
@@ -65,7 +60,7 @@ extension ShowPlotRow {
 struct ShowPlotRow_Previews: PreviewProvider {
 
     static var previews: some View {
-        ShowPlotRow(title: "The Old Guard", text: "Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text.")
+        ShowPlotRow(title: "The Old Guard", plot: "Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text. Some overview text.")
     }
 
 }

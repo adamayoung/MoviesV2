@@ -10,7 +10,8 @@ import Foundation
 struct AppEnvironment {
 
     let moviesManager: MoviesManaging = MoviesManager()
-    let tvShowsManager: TVShowsManaging = TVShowsManager()
+    let peopleManager: PeopleManaging = PeopleManager()
     let searchManager: SearchManaging = SearchManager()
+    let tvShowsManager: TVShowsManaging = TVShowsManager()
 
 }

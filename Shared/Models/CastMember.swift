@@ -18,8 +18,8 @@ struct CastMember: Identifiable, Equatable {
     let profileURL: URL?
     let order: Int
 
-    public init(id: Int, castID: Int? = nil, creditID: String, name: String, character: String, gender: Gender? = nil,
-                profileURL: URL? = nil, order: Int) {
+    init(id: Int, castID: Int? = nil, creditID: String, name: String, character: String, gender: Gender? = nil,
+         profileURL: URL? = nil, order: Int) {
         self.id = id
         self.castID = castID
         self.creditID = creditID

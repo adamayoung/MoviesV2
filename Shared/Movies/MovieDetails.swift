@@ -37,10 +37,10 @@ struct MovieDetails: View {
             if let overview = movie.overview {
                 #if !os(watchOS)
                 Section {
-                    ShowPlotRow(title: movie.title, text: overview)
+                    ShowPlotRow(title: movie.title, plot: overview)
                 }
                 #else
-                ShowPlotRow(title: movie.title, text: overview)
+                ShowPlotRow(title: movie.title, plot: overview)
                 #endif
             }
 
