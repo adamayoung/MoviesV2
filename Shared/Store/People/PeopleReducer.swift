@@ -13,6 +13,9 @@ func peopleReducer(state: inout PeopleState, action: PeopleAction, environment: 
     case .fetchTrending:
         return fetchTrending(state: &state, environment: environment)
 
+    case .fetchNextTrendingIfNeeded(let currentPerson, let offset):
+        return fetchNextTrendingIfNeeded(currentPerson: currentPerson, offset: offset, state: &state)
+
     case .appendTrending(let people):
         return appendTrending(people: people, state: &state)
 
@@ -48,6 +51,19 @@ private func fetchTrending(state: inout PeopleState, environment: AppEnvironment
     return environment.peopleManager
         .fetchTrending(page: state.currentTrendingPage)
         .map { .appendTrending(people: $0) }
+        .eraseToAnyPublisher()
+}
+
+private func fetchNextTrendingIfNeeded(currentPerson: PersonListItem, offset: Int,
+                                       state: inout PeopleState) -> AnyPublisher<PeopleAction, Never> {
+    let index = state.trendingIDs.firstIndex(where: { $0 == currentPerson.id })
+    let thresholdIndex = state.trendingIDs.index(state.trendingIDs.endIndex, offsetBy: -offset)
+    guard index == thresholdIndex else {
+        return Empty()
+            .eraseToAnyPublisher()
+    }
+
+    return Just(.fetchTrending)
         .eraseToAnyPublisher()
 }
 

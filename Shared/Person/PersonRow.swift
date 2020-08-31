@@ -20,7 +20,7 @@ struct PersonRow: View {
                     .font(.headline)
 
                 Group {
-                    if let knownForSummary = knownForSummary {
+                    if let knownForSummary = person.knownForSummary {
                         Text(knownForSummary)
                             .foregroundColor(.secondary)
                     }
@@ -29,19 +29,6 @@ struct PersonRow: View {
                 .font(.subheadline)
             }
         }
-    }
-
-    private var knownForSummary: String? {
-        guard let knownForItem = person.knownFor?.first else {
-            return nil
-        }
-
-        var summary = knownForItem.title
-        if let date = knownForItem.date {
-            summary += " (\(DateFormatter.year.string(from: date)))"
-        }
-
-        return summary
     }
 
 }

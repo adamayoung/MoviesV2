@@ -16,7 +16,7 @@ struct DiscoverTVShowsView: View {
     }
 
     var body: some View {
-        TVShowsList(tvShows: tvShows, tvShowDidAppear: tvShowDidAppear)
+        TVShowsCollection(tvShows: tvShows, tvShowDidAppear: tvShowDidAppear)
             .onAppear(perform: fetch)
             .navigationTitle("Discover TV Shows")
     }
@@ -33,8 +33,8 @@ extension DiscoverTVShowsView {
         store.send(.tvShows(.fetchDiscover))
     }
 
-    private func tvShowDidAppear(_ tvShow: TVShowListItem) {
-//        store.fetchNextDiscoverPageIfNeeded(currentTVShow: tvShow)
+    private func tvShowDidAppear(_ tvShow: TVShowListItem, offset: Int) {
+        store.send(.tvShows(.fetchNextDiscoverIfNeeded(currentTVShow: tvShow, offset: offset)))
     }
 
 }

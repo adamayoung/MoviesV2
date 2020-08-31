@@ -10,8 +10,10 @@ import Foundation
 enum MoviesAction {
 
     case fetchTrending
+    case fetchNextTrendingIfNeeded(currentMovie: MovieListItem, offset: Int = 15)
     case appendTrending(movies: [MovieListItem])
     case fetchDiscover
+    case fetchNextDiscoverIfNeeded(currentMovie: MovieListItem, offset: Int = 15)
     case appendDiscover(movies: [MovieListItem])
     case fetchMovie(id: Movie.ID)
     case appendMovie(movie: Movie)

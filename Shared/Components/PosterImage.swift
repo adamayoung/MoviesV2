@@ -10,16 +10,26 @@ import SwiftUI
 struct PosterImage: View {
 
     var url: URL?
-    var displaySize: DisplaySize = .medium
+    var displaySize: DisplaySize?
 
     var body: some View {
+        Group {
+            if let displaySize = displaySize {
+                content
+                    .frame(width: displaySize.size.width, alignment: .center)
+            } else {
+                content
+            }
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 5))
+    }
+
+    private var content: some View {
         ZStack(alignment: .center) {
             placeholder
             WebImage(url: url)
         }
-        .aspectRatio(displaySize.size, contentMode: .fit)
-        .frame(width: displaySize.size.width, alignment: .center)
-        .clipShape(RoundedRectangle(cornerRadius: displaySize.size.height / 50))
+        .aspectRatio(DisplaySize.aspectRatio, contentMode: .fit)
     }
 
     private var placeholder: some View {
@@ -45,7 +55,7 @@ extension PosterImage {
         #endif
         // swiftlint:enable duplicate_enum_cases
 
-        private static let aspectRatio: CGFloat = 100 / 150
+        static let aspectRatio: CGFloat = 100 / 150
 
         var size: CGSize {
             CGSize(width: (rawValue * Self.aspectRatio), height: rawValue)

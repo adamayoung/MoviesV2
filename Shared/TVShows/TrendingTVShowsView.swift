@@ -12,11 +12,11 @@ struct TrendingTVShowsView: View {
     @EnvironmentObject private var store: AppStore
 
     private var tvShows: [TVShowListItem] {
-        store.state.tvShows.discover
+        store.state.tvShows.trending
     }
 
     var body: some View {
-        TVShowsList(tvShows: tvShows, tvShowDidAppear: tvShowDidAppear)
+        TVShowsCollection(tvShows: tvShows, tvShowDidAppear: tvShowDidAppear)
             .onAppear(perform: fetch)
             .navigationTitle("Trending TV Shows")
     }
@@ -33,8 +33,8 @@ extension TrendingTVShowsView {
         store.send(.tvShows(.fetchTrending))
     }
 
-    private func tvShowDidAppear(_ tvShow: TVShowListItem) {
-//        store.fetchNextTrendingPageIfNeeded(currentTVShow: tvShow)
+    private func tvShowDidAppear(_ tvShow: TVShowListItem, offset: Int) {
+        store.send(.tvShows(.fetchNextTrendingIfNeeded(currentTVShow: tvShow, offset: offset)))
     }
 
 }

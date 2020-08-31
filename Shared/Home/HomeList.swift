@@ -15,6 +15,46 @@ struct HomeList: View {
     var discoverTVShows: [TVShowListItem] = []
     var trendingPeople: [PersonListItem] = []
 
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    #endif
+
+    private var largeBackdropDisplaySize: BackdropImage.DisplaySize {
+        #if os(iOS)
+        if horizontalSizeClass == .compact {
+            return .large
+        } else {
+            return .extraLarge
+        }
+        #else
+        return .large
+        #endif
+    }
+
+    private var mediumBackdropDisplaySize: BackdropImage.DisplaySize {
+        #if os(iOS)
+        if horizontalSizeClass == .compact {
+            return .medium
+        } else {
+            return .large
+        }
+        #else
+        return .medium
+        #endif
+    }
+
+    private var personDisplaySize: PersonImage.DisplaySize {
+        #if os(iOS)
+        if horizontalSizeClass == .compact {
+            return .large
+        } else {
+            return .extraLarge
+        }
+        #else
+        return .medium
+        #endif
+    }
+
     @State private var selection: MovieListItem?
 
     var body: some View {
@@ -29,27 +69,27 @@ struct HomeList: View {
     private var content: some View {
         List {
             Section(header: trendingMoviesSectionHeader) {
-                MoviesCarousel(movies: trendingMovies, displaySize: .large)
+                MoviesCarousel(movies: trendingMovies, displaySize: largeBackdropDisplaySize)
                     .listRowInsets(EdgeInsets())
             }
 
             Section(header: discoverMoviesSectionHeader) {
-                MoviesCarousel(movies: discoverMovies)
+                MoviesCarousel(movies: discoverMovies, displaySize: mediumBackdropDisplaySize)
                     .listRowInsets(EdgeInsets())
             }
 
             Section(header: trendingTVShowsSectionHeader) {
-                TVShowsCarousel(tvShows: trendingTVShows, displaySize: .large)
+                TVShowsCarousel(tvShows: trendingTVShows, displaySize: largeBackdropDisplaySize)
                     .listRowInsets(EdgeInsets())
             }
 
             Section(header: discoverTVShowsSectionHeader) {
-                TVShowsCarousel(tvShows: discoverTVShows)
+                TVShowsCarousel(tvShows: discoverTVShows, displaySize: mediumBackdropDisplaySize)
                     .listRowInsets(EdgeInsets())
             }
 
             Section(header: trendingPeopleSectionHeader) {
-                PeopleCarousel(people: trendingPeople, displaySize: .medium)
+                PeopleCarousel(people: trendingPeople, displaySize: personDisplaySize)
                     .listRowInsets(EdgeInsets())
             }
         }
@@ -58,7 +98,7 @@ struct HomeList: View {
     private var trendingMoviesSectionHeader: some View {
         HStack(alignment: .center) {
             Text("Trending Movies")
-                .font(.title2)
+                .font(.title)
                 .fontWeight(.heavy)
 
             Spacer()
@@ -75,7 +115,7 @@ struct HomeList: View {
     private var discoverMoviesSectionHeader: some View {
         HStack(alignment: .center) {
             Text("Discover Movies")
-                .font(.title3)
+                .font(.title2)
                 .fontWeight(.heavy)
 
             Spacer()
@@ -92,7 +132,7 @@ struct HomeList: View {
     private var trendingTVShowsSectionHeader: some View {
         HStack(alignment: .center) {
             Text("Trending TV Shows")
-                .font(.title2)
+                .font(.title)
                 .fontWeight(.heavy)
 
             Spacer()
@@ -109,11 +149,11 @@ struct HomeList: View {
     private var discoverTVShowsSectionHeader: some View {
         HStack(alignment: .center) {
             Text("Discover TV Shows")
-                .font(.title3)
+                .font(.title2)
                 .fontWeight(.heavy)
 
             Spacer()
-            NavigationLink(destination: TrendingTVShowsView()) {
+            NavigationLink(destination: DiscoverTVShowsView()) {
                 Text("See more")
                     .font(.body)
                     .foregroundColor(.accentColor)
@@ -126,7 +166,7 @@ struct HomeList: View {
     private var trendingPeopleSectionHeader: some View {
         HStack(alignment: .center) {
             Text("Trending People")
-                .font(.title2)
+                .font(.title)
                 .fontWeight(.heavy)
 
             Spacer()

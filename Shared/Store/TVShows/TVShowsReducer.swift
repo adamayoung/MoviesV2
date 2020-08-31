@@ -9,16 +9,23 @@ import Combine
 import Foundation
 
 // swiftlint:disable cyclomatic_complexity
-func tvShowsReducer(state: inout TVShowsState, action: TVShowsAction, environment: AppEnvironment) -> AnyPublisher<TVShowsAction, Never> {
+func tvShowsReducer(state: inout TVShowsState, action: TVShowsAction,
+                    environment: AppEnvironment) -> AnyPublisher<TVShowsAction, Never> {
     switch action {
     case .fetchTrending:
         return fetchTrending(state: &state, environment: environment)
+
+    case .fetchNextTrendingIfNeeded(let currentTVShow, let offset):
+        return fetchNextTrendingIfNeeded(currentTVShow: currentTVShow, offset: offset, state: &state)
 
     case .appendTrending(let tvShows):
         return appendTrending(tvShows: tvShows, state: &state)
 
     case .fetchDiscover:
         return fetchDiscover(state: &state, environment: environment)
+
+    case .fetchNextDiscoverIfNeeded(let currentTVShow, let offset):
+        return fetchNextDiscoverIfNeeded(currentTVShow: currentTVShow, offset: offset, state: &state)
 
     case .appendDiscover(let tvShows):
         return appendDiscover(tvShows: tvShows, state: &state)
@@ -65,6 +72,19 @@ private func fetchTrending(state: inout TVShowsState, environment: AppEnvironmen
         .eraseToAnyPublisher()
 }
 
+private func fetchNextTrendingIfNeeded(currentTVShow: TVShowListItem, offset: Int,
+                                       state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
+    let index = state.trendingIDs.firstIndex(where: { $0 == currentTVShow.id })
+    let thresholdIndex = state.trendingIDs.index(state.trendingIDs.endIndex, offsetBy: -offset)
+    guard index == thresholdIndex else {
+        return Empty()
+            .eraseToAnyPublisher()
+    }
+
+    return Just(.fetchTrending)
+        .eraseToAnyPublisher()
+}
+
 private func appendTrending(tvShows: [TVShowListItem], state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
     state.isFetchingTrending = false
     guard !tvShows.isEmpty else {
@@ -91,6 +111,19 @@ private func fetchDiscover(state: inout TVShowsState, environment: AppEnvironmen
     return environment.tvShowsManager
         .fetchDiscover(page: state.currentDiscoverPage)
         .map { .appendDiscover(tvShows: $0) }
+        .eraseToAnyPublisher()
+}
+
+private func fetchNextDiscoverIfNeeded(currentTVShow: TVShowListItem, offset: Int,
+                                       state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
+    let index = state.discoverIDs.firstIndex(where: { $0 == currentTVShow.id })
+    let thresholdIndex = state.discoverIDs.index(state.discoverIDs.endIndex, offsetBy: -offset)
+    guard index == thresholdIndex else {
+        return Empty()
+            .eraseToAnyPublisher()
+    }
+
+    return Just(.fetchDiscover)
         .eraseToAnyPublisher()
 }
 

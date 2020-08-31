@@ -16,7 +16,7 @@ struct TrendingMoviesView: View {
     }
 
     var body: some View {
-        MoviesList(movies: movies, movieDidAppear: movieDidAppear)
+        MoviesCollection(movies: movies, movieDidAppear: movieDidAppear)
             .onAppear(perform: fetch)
             .navigationTitle("Trending Movies")
     }
@@ -33,8 +33,8 @@ extension TrendingMoviesView {
         store.send(.movies(.fetchTrending))
     }
 
-    private func movieDidAppear(currentMovie movie: MovieListItem) {
-        //store.fetchNextTrendingPageIfNeeded(currentMovie: movie)
+    private func movieDidAppear(currentMovie movie: MovieListItem, offset: Int) {
+        store.send(.movies(.fetchNextTrendingIfNeeded(currentMovie: movie, offset: offset)))
     }
 
 }

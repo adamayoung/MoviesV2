@@ -14,7 +14,7 @@ struct MoviesCarousel: View {
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(alignment: .top, spacing: 20) {
+            LazyHStack(alignment: .top, spacing: 20) {
                 if !movies.isEmpty {
                     ForEach(movies) { movie in
                         MovieCarouselItem(movie: movie, displaySize: displaySize)
