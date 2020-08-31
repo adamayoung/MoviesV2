@@ -25,7 +25,7 @@ struct RecommendedTVShowsView: View {
 
     @ViewBuilder private var content: some View {
         if let tvShows = self.tvShows {
-            TVShowsList(tvShows: tvShows)
+            TVShowsCollection(tvShows: tvShows)
                 .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
         } else {
             ProgressView()

@@ -9,10 +9,26 @@ import SwiftUI
 
 struct MovieCarouselItem: View {
 
-    @State private var isDetailActive = false
-
     var movie: MovieListItem?
     var displaySize: BackdropImage.DisplaySize = .medium
+
+    @State private var isDetailActive = false
+
+    private var titleFont: Font {
+        switch displaySize {
+        case .extraLarge:
+            return Font.title.weight(.heavy)
+
+        case .large:
+            return Font.headline.weight(.heavy)
+
+        case .medium:
+            return Font.subheadline.weight(.bold)
+
+        case .small:
+            return Font.body.weight(.bold)
+        }
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -31,9 +47,8 @@ struct MovieCarouselItem: View {
                 }
 
             Text(movie?.title ?? "              ")
-                .font(displaySize == .large ? .headline : .subheadline)
-                .fontWeight(displaySize == .large ? .heavy : .bold)
-                .lineLimit(1)
+                .font(titleFont)
+                .lineLimit(2)
                 .multilineTextAlignment(.leading)
                 .fixedSize(horizontal: false, vertical: true)
                 .accessibility(label: Text(movie?.title ?? " "))

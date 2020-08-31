@@ -14,7 +14,7 @@ struct TVShowsCarousel: View {
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(alignment: .top, spacing: 20) {
+            LazyHStack(alignment: .top, spacing: 20) {
                 if !tvShows.isEmpty {
                     ForEach(tvShows) { tvShow in
                         TVShowCarouselItem(tvShow: tvShow, displaySize: displaySize)

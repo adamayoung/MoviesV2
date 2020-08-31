@@ -33,6 +33,7 @@ extension BackdropImage {
         case small = 60
         case medium = 100
         case large = 150
+        case extraLarge = 250
 
         private static let aspectRatio: CGFloat = 500 / 281
 

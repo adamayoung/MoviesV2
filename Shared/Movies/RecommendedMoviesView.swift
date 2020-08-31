@@ -25,7 +25,7 @@ struct RecommendedMoviesView: View {
 
     @ViewBuilder private var content: some View {
         if let movies = movies {
-            MoviesList(movies: movies)
+            MoviesCollection(movies: movies)
                 .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
         } else {
             ProgressView()

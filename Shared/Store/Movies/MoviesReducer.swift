@@ -9,16 +9,23 @@ import Combine
 import Foundation
 
 // swiftlint:disable cyclomatic_complexity
-func moviesReducer(state: inout MoviesState, action: MoviesAction, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
+func moviesReducer(state: inout MoviesState, action: MoviesAction,
+                   environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
     switch action {
     case .fetchTrending:
         return fetchTrending(state: &state, environment: environment)
+
+    case .fetchNextTrendingIfNeeded(let currentMovie, let offset):
+        return fetchNextTrendingIfNeeded(currentMovie: currentMovie, offset: offset, state: &state)
 
     case .appendTrending(let movies):
         return appendTrending(movies: movies, state: &state)
 
     case .fetchDiscover:
         return fetchDiscover(state: &state, environment: environment)
+
+    case .fetchNextDiscoverIfNeeded(let currentMovie, let offset):
+        return fetchNextDiscoverIfNeeded(currentMovie: currentMovie, offset: offset, state: &state)
 
     case .appendDiscover(let movies):
         return appendDiscover(movies: movies, state: &state)
@@ -65,6 +72,19 @@ private func fetchTrending(state: inout MoviesState, environment: AppEnvironment
         .eraseToAnyPublisher()
 }
 
+private func fetchNextTrendingIfNeeded(currentMovie: MovieListItem, offset: Int,
+                                       state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+    let index = state.trendingIDs.firstIndex(where: { $0 == currentMovie.id })
+    let thresholdIndex = state.trendingIDs.index(state.trendingIDs.endIndex, offsetBy: -offset)
+    guard index == thresholdIndex else {
+        return Empty()
+            .eraseToAnyPublisher()
+    }
+
+    return Just(.fetchTrending)
+        .eraseToAnyPublisher()
+}
+
 private func appendTrending(movies: [MovieListItem], state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
     state.isFetchingTrending = false
     guard !movies.isEmpty else {
@@ -91,6 +111,19 @@ private func fetchDiscover(state: inout MoviesState, environment: AppEnvironment
     return environment.moviesManager
         .fetchDiscover(page: state.currentDiscoverPage)
         .map { .appendDiscover(movies: $0) }
+        .eraseToAnyPublisher()
+}
+
+private func fetchNextDiscoverIfNeeded(currentMovie: MovieListItem, offset: Int,
+                                       state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+    let index = state.discoverIDs.firstIndex(where: { $0 == currentMovie.id })
+    let thresholdIndex = state.discoverIDs.index(state.discoverIDs.endIndex, offsetBy: -offset)
+    guard index == thresholdIndex else {
+        return Empty()
+            .eraseToAnyPublisher()
+    }
+
+    return Just(.fetchDiscover)
         .eraseToAnyPublisher()
 }
 

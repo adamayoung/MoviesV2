@@ -20,6 +20,9 @@ struct MultiTypeList: View {
         content
             .frame(minWidth: 270, idealWidth: 300, maxWidth: 400, maxHeight: .infinity)
             .toolbar { Spacer() }
+        #elseif os(iOS)
+        content
+            .listStyle(GroupedListStyle())
         #else
         content
         #endif
@@ -34,8 +37,9 @@ struct MultiTypeList: View {
             }
             #else
             List(selection: $selection) {
-                SearchBar(text: $searchText)
-                rows
+                Section(header: searchHeader) {
+                    rows
+                }
             }
             .dismissKeyboardOnDrag()
             #endif
@@ -45,6 +49,12 @@ struct MultiTypeList: View {
                 ProgressView()
             }
         })
+    }
+
+    private var searchHeader: some View {
+        SearchBar(text: $searchText)
+            .font(.body)
+            .textCase(.none)
     }
 
     @ViewBuilder private var rows: some View {

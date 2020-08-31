@@ -24,7 +24,7 @@ struct PersonDetailsHeader: View {
         HStack {
             Spacer()
             VStack(alignment: .center) {
-                PersonImage(url: profileURL, displaySize: .large)
+                PersonImage(url: profileURL, displaySize: .extraLarge)
                     .shadow(radius: 5)
                     .padding(.bottom, 10)
 

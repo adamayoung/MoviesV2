@@ -10,7 +10,7 @@ import SwiftUI
 struct PeopleList: View {
 
     var people: [PersonListItem] = []
-    var personDidAppear: ((PersonListItem) -> Void)?
+    var itemDidAppear: ((PersonListItem) -> Void)?
 
     var body: some View {
         #if os(macOS)
@@ -24,12 +24,12 @@ struct PeopleList: View {
         #endif
     }
 
-    var content: some View {
+    private var content: some View {
         List(people) { person in
             NavigationLink(destination: PersonDetailsView(id: person.id)) {
                 PersonRow(person: person)
                     .onAppear {
-                        self.personDidAppear?(person)
+                        self.itemDidAppear?(person)
                     }
             }
         }

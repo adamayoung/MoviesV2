@@ -16,7 +16,7 @@ struct TrendingPeopleView: View {
     }
 
     var body: some View {
-        PeopleList(people: people, personDidAppear: personDidAppear)
+        PeopleCollection(people: people, itemDidAppear: itemDidAppear)
             .onAppear(perform: fetch)
             .navigationTitle("Trending People")
     }
@@ -33,8 +33,8 @@ extension TrendingPeopleView {
         store.send(.people(.fetchTrending))
     }
 
-    private func personDidAppear(currentPerson person: PersonListItem) {
-        //store.fetchNextTrendingPageIfNeeded(currentMovie: movie)
+    private func itemDidAppear(currentItem item: PersonListItem, offset: Int) {
+        store.send(.people(.fetchNextTrendingIfNeeded(currentPerson: item, offset: offset)))
     }
 
 }

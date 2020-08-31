@@ -10,6 +10,7 @@ import Foundation
 enum PeopleAction {
 
     case fetchTrending
+    case fetchNextTrendingIfNeeded(currentPerson: PersonListItem, offset: Int = 15)
     case appendTrending(people: [PersonListItem])
     case fetchPerson(id: Person.ID)
     case appendPerson(person: Person)

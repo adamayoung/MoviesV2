@@ -15,6 +15,19 @@ struct PersonListItem: Identifiable, Equatable {
     let knownFor: [KnownForItem]?
     let popularity: Float?
 
+    var knownForSummary: String? {
+        guard let knownForItem = knownFor?.first else {
+            return nil
+        }
+
+        var summary = knownForItem.title
+        if let date = knownForItem.date {
+            summary += " (\(DateFormatter.year.string(from: date)))"
+        }
+
+        return summary
+    }
+
     init(id: Int, name: String? = nil, profileURL: URL? = nil, knownFor: [KnownForItem]? = nil,
          popularity: Float? = nil) {
         self.id = id

@@ -14,7 +14,7 @@ struct PeopleCarousel: View {
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(alignment: .top, spacing: 20) {
+            LazyHStack(alignment: .top, spacing: 20) {
                 if !people.isEmpty {
                     ForEach(people) { person in
                         PersonCarouselItem(person: person, displaySize: displaySize)

@@ -16,7 +16,7 @@ struct DiscoverMoviesView: View {
     }
 
     var body: some View {
-        MoviesList(movies: movies, movieDidAppear: movieDidAppear)
+        MoviesCollection(movies: movies, movieDidAppear: movieDidAppear)
             .onAppear(perform: fetch)
             .navigationTitle("Discover Movies")
     }
@@ -33,8 +33,8 @@ extension DiscoverMoviesView {
         store.send(.movies(.fetchDiscover))
     }
 
-    private func movieDidAppear(currentMovie movie: MovieListItem) {
-        //store.fetchNextDiscoverPageIfNeeded(currentMovie: movie)
+    private func movieDidAppear(currentMovie movie: MovieListItem, offset: Int) {
+        store.send(.movies(.fetchNextDiscoverIfNeeded(currentMovie: movie, offset: offset)))
     }
 
 }

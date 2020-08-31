@@ -10,15 +10,26 @@ import SwiftUI
 struct PersonImage: View {
 
     var url: URL?
-    var displaySize: DisplaySize = .medium
+    var displaySize: DisplaySize?
 
     var body: some View {
+        Group {
+            if let displaySize = displaySize {
+                content
+                    .frame(width: displaySize.size.width, height: displaySize.size.height, alignment: .center)
+            } else {
+                content
+            }
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 5))
+    }
+
+    private var content: some View {
         ZStack(alignment: .center) {
             placeholder
             WebImage(url: url)
         }
-        .frame(width: displaySize.size.width, height: displaySize.size.height, alignment: .center)
-        .clipShape(Circle())
+        .aspectRatio(DisplaySize.aspectRatio, contentMode: .fit)
     }
 
     @ViewBuilder private var placeholder: some View {
@@ -26,8 +37,9 @@ struct PersonImage: View {
         Image(systemName: "person.fill")
             .resizable()
             .scaleEffect(0.6)
+            .aspectRatio(1.0, contentMode: .fit)
             .foregroundColor(Color.primary.opacity(0.25))
-            .frame(width: displaySize.size.width, height: displaySize.size.height, alignment: .center)
+            .opacity(url == nil ? 1 : 0)
     }
 
 }
@@ -36,19 +48,23 @@ extension PersonImage {
 
     enum DisplaySize: CGFloat {
         // swiftlint:disable duplicate_enum_cases
-        #if !os(watchOS)
-        case small = 60
-        case medium = 90
-        case large = 160
-        #else
+        #if os(watchOS)
         case small = 40
         case medium = 60
-        case large = 100
+        case large = 110
+        case extraLarge = 150
+        #else
+        case small = 60
+        case medium = 90
+        case large = 170
+        case extraLarge = 250
         #endif
         // swiftlint:enable duplicate_enum_cases
 
+        static let aspectRatio: CGFloat = 100 / 150
+
         var size: CGSize {
-            CGSize(width: rawValue, height: rawValue)
+            CGSize(width: (rawValue * Self.aspectRatio), height: rawValue)
         }
     }
 
