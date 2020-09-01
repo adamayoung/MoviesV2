@@ -15,7 +15,7 @@ struct ShowCreditRow: View {
 
     var body: some View {
         HStack(alignment: .center) {
-            PersonImage(url: profileURL, displaySize: .small)
+            PersonImage(url: profileURL, displaySize: .medium)
 
             VStack(alignment: .leading) {
                 Text(name)

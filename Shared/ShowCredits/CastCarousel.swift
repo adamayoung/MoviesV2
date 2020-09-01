@@ -14,7 +14,7 @@ struct CastCarousel: View {
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(alignment: .top, spacing: 20) {
+            HStack(alignment: .top, spacing: 20) {
                 if !cast.isEmpty {
                     ForEach(cast) { castMember in
                         CastMemberCarouselItem(castMember: castMember, displaySize: displaySize)

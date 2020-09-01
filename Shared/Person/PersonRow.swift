@@ -13,7 +13,7 @@ struct PersonRow: View {
 
     var body: some View {
         HStack(alignment: .center) {
-            PersonImage(url: person.profileURL, displaySize: .small)
+            PersonImage(url: person.profileURL, displaySize: .medium)
 
             VStack(alignment: .leading) {
                 Text(person.name ?? " ")

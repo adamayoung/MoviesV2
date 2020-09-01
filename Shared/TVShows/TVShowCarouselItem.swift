@@ -45,13 +45,14 @@ struct TVShowCarouselItem: View {
                     self.isDetailActive = true
                 }
 
-            Text(tvShow?.name ?? "              ")
+            Text(tvShow?.name ?? "              \n        ")
+                .fixedSize(horizontal: false, vertical: true)
                 .font(titleFont)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
-                .fixedSize(horizontal: false, vertical: true)
                 .accessibility(label: Text(tvShow?.name ?? ""))
                 .frame(width: displaySize.size.width, alignment: .leading)
+
             Spacer()
         }
     }
