@@ -42,7 +42,6 @@ struct HomeView: View {
         )
         .onAppear(perform: fetch)
         .navigationTitle("Home")
-        .navigationBarHidden(true)
     }
 
 }

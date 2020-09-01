@@ -54,6 +54,7 @@ struct MultiTypeList: View {
     private var searchHeader: some View {
         SearchBar(text: $searchText)
             .font(.body)
+            .foregroundColor(.primary)
             .textCase(.none)
     }
 

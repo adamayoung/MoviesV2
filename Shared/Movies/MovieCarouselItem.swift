@@ -46,11 +46,11 @@ struct MovieCarouselItem: View {
                     self.isDetailActive = true
                 }
 
-            Text(movie?.title ?? "              ")
+            Text(movie?.title ?? "              \n        ")
                 .font(titleFont)
+                .fixedSize(horizontal: false, vertical: true)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
-                .fixedSize(horizontal: false, vertical: true)
                 .accessibility(label: Text(movie?.title ?? " "))
                 .frame(width: displaySize.size.width, alignment: .leading)
             Spacer()
