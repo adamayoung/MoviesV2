@@ -33,11 +33,6 @@ struct MoviesList: View {
                     }
             }
         }
-        .overlay(Group {
-            if movies.isEmpty {
-                ProgressView()
-            }
-        })
     }
 
 }

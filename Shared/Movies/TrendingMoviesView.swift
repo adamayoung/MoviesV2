@@ -17,6 +17,11 @@ struct TrendingMoviesView: View {
 
     var body: some View {
         MoviesCollection(movies: movies, movieDidAppear: movieDidAppear)
+            .overlay(Group {
+                if movies.isEmpty {
+                    ProgressView()
+                }
+            })
             .onAppear(perform: fetch)
             .navigationTitle("Trending Movies")
     }

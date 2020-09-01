@@ -6,10 +6,11 @@
 //
 
 import Combine
+import CloudKit
 import Foundation
 import TMDb
 
-final class MoviesManager: MoviesManaging {
+final class TMDbMoviesManager: MoviesManaging {
 
     private let movieService: MovieService
     private let trendingService: TrendingService

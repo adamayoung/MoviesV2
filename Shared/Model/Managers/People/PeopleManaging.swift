@@ -1,5 +1,5 @@
 //
-//  PeopleManaging.swift
+//  PeopleManager.swift
 //  Movies
 //
 //  Created by Adam Young on 28/08/2020.
@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-protocol PeopleManaging {
+protocol PeopleManager {
 
     func fetchTrending(page: Int) -> AnyPublisher<[PersonListItem], Never>
 
@@ -20,7 +20,7 @@ protocol PeopleManaging {
 
 }
 
-extension PeopleManaging {
+extension PeopleManager {
 
     func fetchTrending(page: Int = 1) -> AnyPublisher<[PersonListItem], Never> {
         fetchTrending(page: page)

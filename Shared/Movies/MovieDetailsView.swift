@@ -17,6 +17,14 @@ struct MovieDetailsView: View {
         store.state.movies.movies[id]
     }
 
+    private var isFavourite: Bool {
+        guard let movie = movie else {
+            return false
+        }
+
+        return store.state.movies.isFavourite(movie.id)
+    }
+
     private var credits: Credits? {
         store.state.movies.credits[id]
     }
@@ -31,6 +39,17 @@ struct MovieDetailsView: View {
 
     var body: some View {
         container
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    if movie != nil {
+                        Button {
+                            toogleFavourite()
+                        } label: {
+                            Image(systemName: isFavourite ? "heart.fill" : "heart" )
+                        }
+                    }
+                }
+            }
             .onAppear(perform: fetch)
             .navigationTitle(title)
     }
@@ -55,6 +74,16 @@ struct MovieDetailsView: View {
                 .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
         } else {
             ProgressView()
+        }
+    }
+
+    private func toogleFavourite() {
+        let isFavourite = !self.isFavourite
+
+        if isFavourite {
+            store.send(.movies(.addFavourite(movieID: id)))
+        } else {
+            store.send(.movies(.removeFavourite(movieID: id)))
         }
     }
 

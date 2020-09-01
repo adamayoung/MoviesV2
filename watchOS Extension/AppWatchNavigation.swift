@@ -55,6 +55,20 @@ struct AppWatchNavigation: View {
                         })
                     }
                     .accessibility(label: Text("Discover Movies"))
+
+                    NavigationLink(
+                        destination: FavouriteMoviesView(),
+                        tag: NavigationItem.favouriteMovies,
+                        selection: $selection) {
+                        Label(title: {
+                            Text("Favourites")
+                        }, icon: {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.accentColor)
+                        })
+
+                    }
+                    .accessibility(label: Text("Favourites"))
                 }
 
                 Section(header: Text("TV Shows")) {
@@ -100,6 +114,22 @@ struct AppWatchNavigation: View {
                     }
                     .accessibility(label: Text("Trending People"))
                 }
+
+                Section(header: Text("Favourites")) {
+                    NavigationLink(
+                        destination: FavouriteMoviesView(),
+                        tag: NavigationItem.favouriteMovies,
+                        selection: $selection) {
+                        Label(title: {
+                            Text("Favourite Movies")
+                        }, icon: {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.accentColor)
+                        })
+
+                    }
+                    .accessibility(label: Text("Favourite Movies"))
+                }
             }
             .navigationTitle("Movies")
         }
@@ -123,6 +153,7 @@ extension AppWatchNavigation {
         case search
         case trendingMovies
         case discoverMovies
+        case favouriteMovies
         case trendingTVShows
         case discoverTVShows
         case trendingPeople

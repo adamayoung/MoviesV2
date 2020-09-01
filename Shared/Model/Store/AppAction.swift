@@ -9,6 +9,8 @@ import Foundation
 
 enum AppAction {
 
+    case handleRemoteNotification(userInfo: [AnyHashable : Any])
+
     case movies(MoviesAction)
     case people(PeopleAction)
     case search(SearchAction)

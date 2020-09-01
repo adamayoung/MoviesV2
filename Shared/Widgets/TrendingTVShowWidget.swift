@@ -30,10 +30,10 @@ extension TrendingTVShowWidget {
     final class ProviderService {
 
         private var cancellables = Set<AnyCancellable>()
-        private let tvShowsManager: TVShowsManaging
+        private let tvShowsManager: TVShowsManager
         private let urlSession: URLSession
 
-        init(tvShowsManager: TVShowsManaging = TVShowsManager(), urlSession: URLSession = .shared) {
+        init(tvShowsManager: TVShowsManager = TMDbTVShowsManager(), urlSession: URLSession = .shared) {
             TMDbAPIClient.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
             self.tvShowsManager = tvShowsManager
             self.urlSession = urlSession

@@ -23,6 +23,8 @@ struct MoviesState: Equatable {
     var currentDiscoverPage = 0
     var isMoreDiscoverAvailable = true
 
+    var favouriteIDs: [MovieListItem.ID] = []
+
     var movies: [Movie.ID: Movie] = [:]
     var recommendations: [Movie.ID: [MovieListItem]] = [:]
     var credits: [Movie.ID: Credits] = [:]
@@ -44,5 +46,15 @@ struct MoviesState: Equatable {
         Array(discoverIDs.prefix(Self.topLimit))
             .compactMap { movieList[$0] }
     }
+
+    var favourites: [MovieListItem] {
+        favouriteIDs.compactMap { movieList[$0] }
+    }
+
+    func isFavourite(_ movieID: Movie.ID) -> Bool {
+        favouriteIDs.contains(movieID)
+    }
+
+
 
 }

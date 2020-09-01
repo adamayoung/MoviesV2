@@ -8,17 +8,22 @@
 import SwiftUI
 import TMDb
 
+let store = AppStore(
+    initialState: AppState(),
+    reducer: appReducer,
+    environment: AppEnvironment()
+)
+
 @main
 struct MoviesApp: App {
 
-    @StateObject var store = AppStore(
-        initialState: AppState(),
-        reducer: appReducer,
-        environment: AppEnvironment()
-    )
+    #if os(iOS)
+    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+    #endif
 
     init() {
         TMDbAPIClient.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
+        store.send(.movies(.fetchFavourites))
     }
 
     var body: some Scene {

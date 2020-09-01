@@ -24,4 +24,12 @@ enum MoviesAction {
     case fetchCredits(movieID: Movie.ID)
     case setCredits(credits: Credits, movieID: Movie.ID)
 
+    case fetchFavourites
+    case setFavourites(movies: [MovieListItem])
+    case addFavourite(movieID: Movie.ID)
+    case removeFavourite(movieID: Movie.ID)
+    case syncFavouriteCreated(movieID: Movie.ID)
+    case addSyncedFavourite(movie: MovieListItem)
+    case syncFavouriteDeleted(movieID: Movie.ID)
+
 }

@@ -33,14 +33,15 @@ struct AppTabNavigation: View {
             }
             .tag(Tab.search)
 
-//            NavigationView {
-//                FavouritesView()
-//            }
-//            .tabItem {
-//                Label("Favourites", systemImage: "heart.circle")
-//                    .accessibility(label: Text("Favourites"))
-//            }
-//            .tag(Tab.favourites)
+            NavigationView {
+                FavouriteMoviesView()
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .tabItem {
+                Label("Favourites", systemImage: "heart.circle")
+                    .accessibility(label: Text("Favourites"))
+            }
+            .tag(Tab.favourites)
 //
 //            NavigationView {
 //                WatchListView()

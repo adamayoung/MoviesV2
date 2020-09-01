@@ -53,6 +53,27 @@ func moviesReducer(state: inout MoviesState, action: MoviesAction,
 
     case .setCredits(let credits, let movieID):
         return setCredits(credits: credits, movieID: movieID, state: &state)
+
+    case .fetchFavourites:
+        return fetchFavourites(environment: environment)
+
+    case .setFavourites(let movies):
+        return setFavourites(movies: movies, state: &state)
+
+    case .addFavourite(let movieID):
+        return addFavourite(movieID: movieID, state: &state, environment: environment)
+
+    case .removeFavourite(let movieID):
+        return removeFavourite(movieID: movieID, state: &state, environment: environment)
+
+    case .syncFavouriteCreated(let movieID):
+        return syncFavouriteCreated(movieID: movieID, state: &state, environment: environment)
+
+    case .addSyncedFavourite(let movie):
+        return addSyncedFavourite(movie: movie, state: &state)
+
+    case .syncFavouriteDeleted(let movieID):
+        return syncFavouriteDeleted(movieID: movieID, state: &state)
     }
 }
 // swiftlint:enable cyclomatic_complexity
@@ -195,6 +216,90 @@ private func fetchCredits(movieID: Movie.ID, environment: AppEnvironment) -> Any
 
 private func setCredits(credits: Credits, movieID: Movie.ID, state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
     state.credits[movieID] = credits
+    return Empty()
+        .eraseToAnyPublisher()
+}
+
+private func fetchFavourites(environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
+    environment.favouritesService
+        .fetchFavouriteMovies()
+        .map { .setFavourites(movies: $0) }
+        .eraseToAnyPublisher()
+}
+
+private func setFavourites(movies: [MovieListItem], state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+    movies.forEach { state.movieList[$0.id] = $0 }
+    state.favouriteIDs = movies.map(\.id)
+    return Empty()
+        .eraseToAnyPublisher()
+}
+
+private func addFavourite(movieID: Movie.ID, state: inout MoviesState, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
+    guard !state.favouriteIDs.contains(movieID) else {
+        return Empty()
+            .eraseToAnyPublisher()
+    }
+
+    guard let movie = state.movieList[movieID] ?? state.movies[movieID]?.asListItem() else {
+        return Empty()
+            .eraseToAnyPublisher()
+    }
+
+    state.favouriteIDs.insert(movieID, at: 0)
+    return environment.favouritesService.addFavourite(movie: movie)
+        .replaceError(with: Void())
+        .flatMap { Empty() }
+        .eraseToAnyPublisher()
+}
+
+private func removeFavourite(movieID: Movie.ID, state: inout MoviesState, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
+    guard state.favouriteIDs.contains(movieID) else {
+        return Empty()
+            .eraseToAnyPublisher()
+    }
+
+    state.favouriteIDs.removeAll { $0 == movieID }
+    return environment.favouritesService.removeFavourite(movie: movieID)
+        .replaceError(with: Void())
+        .flatMap { Empty() }
+        .eraseToAnyPublisher()
+}
+
+private func syncFavouriteCreated(movieID: Movie.ID, state: inout MoviesState, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
+    guard !state.favouriteIDs.contains(movieID) else {
+        return Empty()
+            .eraseToAnyPublisher()
+    }
+
+    state.favouriteIDs.insert(movieID, at: 0)
+
+    return environment.favouritesService
+        .fetchFavourite(movie: movieID)
+        .map { movie in
+            guard let movie = movie else {
+                return .syncFavouriteDeleted(movieID: movieID)
+            }
+
+            return .addSyncedFavourite(movie: movie)
+        }
+        .eraseToAnyPublisher()
+}
+
+private func addSyncedFavourite(movie: MovieListItem, state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+    guard !state.favouriteIDs.contains(movie.id) else {
+        return Empty()
+            .eraseToAnyPublisher()
+    }
+
+    state.movieList[movie.id] = movie
+
+    return Empty()
+        .eraseToAnyPublisher()
+}
+
+private func syncFavouriteDeleted(movieID: Movie.ID, state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+    state.favouriteIDs.removeAll { $0 == movieID }
+
     return Empty()
         .eraseToAnyPublisher()
 }
