@@ -45,7 +45,7 @@ struct MovieDetailsView: View {
                         Button(action: {
                             toogleFavourite()
                         }, label: {
-                            Image(systemName: isFavourite ? "heart.fill" : "heart" )
+                            favouriteButtonLabel
                         })
                     }
                 }
@@ -75,6 +75,17 @@ struct MovieDetailsView: View {
         } else {
             ProgressView()
         }
+    }
+
+    private var favouriteButtonLabel: some View {
+        let imageName = isFavourite ? "heart.fill" : "heart"
+
+        #if !os(watchOS)
+        return Image(systemName: imageName)
+        #else
+        let title = isFavourite ? "Remove Favourite" : "Add Favourite"
+        return Label(title, systemImage: imageName)
+        #endif
     }
 
     private func toogleFavourite() {

@@ -47,12 +47,6 @@ struct Sidebar: View {
                 }
                 .accessibility(label: Text("Favourites"))
                 .tag(NavigationItem.favourites)
-
-                NavigationLink(destination: WatchListView()) {
-                    Label("Watch List", systemImage: "eyeglasses")
-                }
-                .accessibility(label: Text("Watch List"))
-                .tag(NavigationItem.watchList)
             }
 
             Section(header: Text("Movies")) {

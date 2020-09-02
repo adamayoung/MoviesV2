@@ -88,7 +88,7 @@ struct MovieWidgetView: View {
     }
 
     private var backgroundPlaceholder: some View {
-        LinearGradient(gradient: Gradient(colors: [Color(.darkGray), Color(UIColor(white: 0.4, alpha: 1.0))]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        LinearGradient(gradient: Gradient(colors: [Color(.darkGray), Color(white: 0.4, opacity: 1.0)]), startPoint: .topLeading, endPoint: .bottomTrailing)
     }
 
 }

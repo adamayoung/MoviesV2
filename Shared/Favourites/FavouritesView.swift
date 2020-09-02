@@ -23,15 +23,7 @@ struct FavouritesView: View {
         content
             .overlay(Group {
                 if !hasFavourites {
-                    VStack {
-                        Text("Add a Favourite")
-                            .font(.headline)
-                            .multilineTextAlignment(.center)
-
-                        Text("Favourites are synced across all your devices")
-                            .multilineTextAlignment(.center)
-                    }
-                    .padding(.horizontal)
+                    AddFavouriteOverlay()
                 }
             })
             .navigationTitle("Favourites")

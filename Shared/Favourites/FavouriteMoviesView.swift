@@ -20,16 +20,7 @@ struct FavouriteMoviesView: View {
         MoviesCollection(movies: movies)
             .overlay(Group {
                 if movies.isEmpty {
-                    VStack {
-                        Text("Add a Favourite")
-                            .font(.headline)
-
-                        Text("Favourites are synced across all your devices")
-                            .lineLimit(2)
-                            .multilineTextAlignment(.center)
-                    }
-                    .padding(.bottom, 50)
-                    .padding(.horizontal, 50)
+                    AddFavouriteOverlay()
                 }
             })
             .animation(self.allowAnimations ? .default : nil)
