@@ -41,7 +41,9 @@ platform :ios do
   lane :pr do
     match(type: "appstore")
     swiftlint
+    disable_automatic_code_signing
     gym
+    enable_automatic_code_signing
     scan
   end
 
@@ -55,7 +57,6 @@ platform :ios do
     disable_automatic_code_signing
     gym
     enable_automatic_code_signing
-    
     testflight
   end
 end
