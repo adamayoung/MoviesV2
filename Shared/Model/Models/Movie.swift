@@ -16,9 +16,10 @@ struct Movie: Identifiable, Equatable {
     let releaseDate: Date
     let posterURL: URL?
     let backdropURL: URL?
+    let popularity: Float
 
     init(id: Int, title: String, tagline: String? = nil, overview: String? = nil, releaseDate: Date,
-         posterURL: URL? = nil, backdropURL: URL? = nil) {
+         posterURL: URL? = nil, backdropURL: URL? = nil, popularity: Float) {
         self.id = id
         self.title = title
         self.tagline = tagline
@@ -26,6 +27,16 @@ struct Movie: Identifiable, Equatable {
         self.releaseDate = releaseDate
         self.posterURL = posterURL
         self.backdropURL = backdropURL
+        self.popularity = popularity
+    }
+
+}
+
+extension Movie {
+
+    func asListItem() -> MovieListItem {
+        MovieListItem(id: id, title: title, overview: overview, releaseDate: releaseDate, posterURL: posterURL,
+                      backdropURL: backdropURL, popularity: popularity)
     }
 
 }

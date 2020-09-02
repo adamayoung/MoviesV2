@@ -66,11 +66,6 @@ struct TVShowsGrid: View {
             }
             .padding(.horizontal)
         }
-        .overlay(Group {
-            if tvShows.isEmpty {
-                ProgressView()
-            }
-        })
     }
 
 }

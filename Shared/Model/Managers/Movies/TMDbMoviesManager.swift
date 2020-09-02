@@ -1,15 +1,16 @@
 //
-//  MoviesManager.swift
+//  TMDbMoviesManager.swift
 //  Movies
 //
 //  Created by Adam Young on 25/08/2020.
 //
 
+import CloudKit
 import Combine
 import Foundation
 import TMDb
 
-final class MoviesManager: MoviesManaging {
+final class TMDbMoviesManager: MoviesManager {
 
     private let movieService: MovieService
     private let trendingService: TrendingService

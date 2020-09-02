@@ -9,7 +9,7 @@ import Combine
 import Foundation
 import TMDb
 
-final class PeopleManager: PeopleManaging {
+final class TMDbPeopleManager: PeopleManaging {
 
     private let personService: PersonService
     private let trendingService: TrendingService

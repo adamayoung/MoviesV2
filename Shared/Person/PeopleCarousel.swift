@@ -29,6 +29,7 @@ struct PeopleCarousel: View {
             .padding(.horizontal, 20)
             .padding(.top)
         }
+        .animation(.default)
         .disabled(people.isEmpty)
     }
 

@@ -1,4 +1,5 @@
 apple_id("me@adam-young.co.uk") # Your Apple email address
+team_id("B43ZJ6HHUE")
 
 for_platform :ios do
     app_identifier "uk.co.adam-young.Movies"

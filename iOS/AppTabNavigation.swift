@@ -17,48 +17,32 @@ struct AppTabNavigation: View {
             NavigationView {
                 HomeView()
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem {
                 Label("Home", systemImage: "house.fill")
                     .accessibility(label: Text("Home"))
             }
-            .navigationViewStyle(StackNavigationViewStyle())
             .tag(Tab.home)
 
             NavigationView {
                 SearchView()
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem {
                 Label("Search", systemImage: "magnifyingglass")
                     .accessibility(label: Text("Search"))
             }
             .tag(Tab.search)
 
-//            NavigationView {
-//                FavouritesView()
-//            }
-//            .tabItem {
-//                Label("Favourites", systemImage: "heart.circle")
-//                    .accessibility(label: Text("Favourites"))
-//            }
-//            .tag(Tab.favourites)
-//
-//            NavigationView {
-//                WatchListView()
-//            }
-//            .tabItem {
-//                Label("Watch List", systemImage: "eyeglasses")
-//                    .accessibility(label: Text("Watch List"))
-//            }
-//            .tag(Tab.watchList)
-//
-//            NavigationView {
-//                WatchListView()
-//            }
-//            .tabItem {
-//                Label("Settings", systemImage: "gear")
-//                    .accessibility(label: Text("Settings"))
-//            }
-//            .tag(Tab.settings)
+            NavigationView {
+                FavouritesView()
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .tabItem {
+                Label("Favourites", systemImage: "heart.fill")
+                    .accessibility(label: Text("Favourites"))
+            }
+            .tag(Tab.favourites)
         }
         .onOpenURL(perform: openURL)
     }

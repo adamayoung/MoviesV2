@@ -1,5 +1,5 @@
 //
-//  TVShowsManaging.swift
+//  TVShowsManager.swift
 //  Movies
 //
 //  Created by Adam Young on 28/08/2020.
@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-protocol TVShowsManaging {
+protocol TVShowsManager {
 
     func fetchTrending(page: Int) -> AnyPublisher<[TVShowListItem], Never>
 
@@ -24,7 +24,7 @@ protocol TVShowsManaging {
 
 }
 
-extension TVShowsManaging {
+extension TVShowsManager {
 
     func fetchTrending(page: Int = 1) -> AnyPublisher<[TVShowListItem], Never> {
         fetchTrending(page: page)

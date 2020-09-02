@@ -28,6 +28,7 @@ struct CastCarousel: View {
             .padding(.horizontal, 20)
             .padding(.top)
         }
+        .animation(.default)
         .disabled(cast.isEmpty)
     }
 

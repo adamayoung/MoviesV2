@@ -30,10 +30,10 @@ extension TrendingMovieWidget {
     final class ProviderService {
 
         private var cancellables = Set<AnyCancellable>()
-        private let moviesManager: MoviesManaging
+        private let moviesManager: MoviesManager
         private let urlSession: URLSession
 
-        init(moviesManager: MoviesManaging = MoviesManager(), urlSession: URLSession = .shared) {
+        init(moviesManager: MoviesManager = TMDbMoviesManager(), urlSession: URLSession = .shared) {
             TMDbAPIClient.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
             self.moviesManager = moviesManager
             self.urlSession = urlSession

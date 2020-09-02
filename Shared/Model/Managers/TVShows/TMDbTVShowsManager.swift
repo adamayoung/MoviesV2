@@ -1,5 +1,5 @@
 //
-//  TVShowsManager.swift
+//  TMDbTVShowsManager.swift
 //  Movies
 //
 //  Created by Adam Young on 25/08/2020.
@@ -9,7 +9,7 @@ import Combine
 import Foundation
 import TMDb
 
-final class TVShowsManager: TVShowsManaging {
+final class TMDbTVShowsManager: TVShowsManager {
 
     private let tvShowService: TVShowService
     private let trendingService: TrendingService

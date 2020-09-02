@@ -41,19 +41,23 @@ platform :ios do
   lane :pr do
     match(type: "appstore")
     swiftlint
+    disable_automatic_code_signing
     gym
     scan
+    enable_automatic_code_signing
   end
 
   desc "Upload to TestFlight"
   lane :beta do
-    # ensure_git_branch(branch: "main")
+    ensure_git_branch(branch: "main")
     match(type: "appstore")
     increment_build_number(
       build_number: latest_testflight_build_number + 1,
     )
+    disable_automatic_code_signing
     gym
     testflight
+    enable_automatic_code_signing
   end
 end
 

@@ -33,11 +33,6 @@ struct TVShowsList: View {
                     }
             }
         }
-        .overlay(Group {
-            if tvShows.isEmpty {
-                ProgressView()
-            }
-        })
     }
 
 }

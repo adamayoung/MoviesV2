@@ -1,5 +1,5 @@
 //
-//  MoviesManaging.swift
+//  MoviesManager.swift
 //  Movies
 //
 //  Created by Adam Young on 28/08/2020.
@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-protocol MoviesManaging {
+protocol MoviesManager {
 
     func fetchTrending(page: Int) -> AnyPublisher<[MovieListItem], Never>
 
@@ -24,7 +24,7 @@ protocol MoviesManaging {
 
 }
 
-extension MoviesManaging {
+extension MoviesManager {
 
     func fetchTrending(page: Int = 1) -> AnyPublisher<[MovieListItem], Never> {
         fetchTrending(page: page)

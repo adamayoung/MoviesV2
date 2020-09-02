@@ -17,6 +17,11 @@ struct TrendingTVShowsView: View {
 
     var body: some View {
         TVShowsCollection(tvShows: tvShows, tvShowDidAppear: tvShowDidAppear)
+            .overlay(Group {
+                if tvShows.isEmpty {
+                    ProgressView()
+                }
+            })
             .onAppear(perform: fetch)
             .navigationTitle("Trending TV Shows")
     }
