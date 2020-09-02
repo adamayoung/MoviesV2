@@ -12,6 +12,7 @@
 
 derived_data_path("./DerivedData")
 configuration("Release")
+codesigning_identity("Apple Distribution")
 
 for_platform :ios do
   scheme("Movies (iOS)")
