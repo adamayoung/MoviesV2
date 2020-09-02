@@ -417,6 +417,12 @@
 		6FA9DEA324C655C60071121B /* MultiTypeListItem+TMDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9DEA024C655C60071121B /* MultiTypeListItem+TMDb.swift */; };
 		6FA9DEA824C65E400071121B /* MultiTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9DEA724C65E400071121B /* MultiTypeList.swift */; };
 		6FA9DEA924C65E400071121B /* MultiTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9DEA724C65E400071121B /* MultiTypeList.swift */; };
+		6FA9F57B250000B600E3AA73 /* AddFavouriteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9F578250000B600E3AA73 /* AddFavouriteOverlay.swift */; };
+		6FA9F57D2500026400E3AA73 /* AddFavouriteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9F578250000B600E3AA73 /* AddFavouriteOverlay.swift */; };
+		6FA9F57E2500026500E3AA73 /* AddFavouriteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9F578250000B600E3AA73 /* AddFavouriteOverlay.swift */; };
+		6FA9F5802500048600E3AA73 /* FetchImage in Frameworks */ = {isa = PBXBuildFile; productRef = 6FA9F57F2500048600E3AA73 /* FetchImage */; };
+		6FA9F5822500048A00E3AA73 /* SwiftRedux in Frameworks */ = {isa = PBXBuildFile; productRef = 6FA9F5812500048A00E3AA73 /* SwiftRedux */; };
+		6FA9F5842500055200E3AA73 /* FetchImage in Frameworks */ = {isa = PBXBuildFile; productRef = 6FA9F5832500055200E3AA73 /* FetchImage */; };
 		6FAB659024C8924A006ABC39 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB658F24C8924A006ABC39 /* Launch Screen.storyboard */; };
 		6FAB659524C89769006ABC39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB659424C89769006ABC39 /* Assets.xcassets */; };
 		6FAB659724C897BA006ABC39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB659624C897BA006ABC39 /* Assets.xcassets */; };
@@ -776,6 +782,7 @@
 		6FA9DE9C24C6557E0071121B /* MultiTypeListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiTypeListItem.swift; sourceTree = "<group>"; };
 		6FA9DEA024C655C60071121B /* MultiTypeListItem+TMDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultiTypeListItem+TMDb.swift"; sourceTree = "<group>"; };
 		6FA9DEA724C65E400071121B /* MultiTypeList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiTypeList.swift; sourceTree = "<group>"; };
+		6FA9F578250000B600E3AA73 /* AddFavouriteOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavouriteOverlay.swift; sourceTree = "<group>"; };
 		6FAB658F24C8924A006ABC39 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		6FAB659124C89656006ABC39 /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
 		6FAB659224C8967B006ABC39 /* watchOSExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchOSExtension.entitlements; sourceTree = "<group>"; };
@@ -849,6 +856,7 @@
 				6FF393BE24FE8499000E2A48 /* CloudKit.framework in Frameworks */,
 				6FA5A98B24BF14F400E828AA /* TMDb in Frameworks */,
 				6FD64B8824F5035D00213104 /* SwiftRedux in Frameworks */,
+				6FA9F5842500055200E3AA73 /* FetchImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,6 +903,8 @@
 				6FA5AA2624BF47D300E828AA /* SwiftUI.framework in Frameworks */,
 				6FA5AA2524BF47D300E828AA /* WidgetKit.framework in Frameworks */,
 				6FA5AA3824BF481100E828AA /* TMDb in Frameworks */,
+				6FA9F5822500048A00E3AA73 /* SwiftRedux in Frameworks */,
+				6FA9F5802500048600E3AA73 /* FetchImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -977,6 +987,7 @@
 				6F6A0ED624FF9773007E8F9A /* FavouritesView.swift */,
 				6F6A0EDA24FF97AD007E8F9A /* FavouritesList.swift */,
 				6F39700A24C741AE008A8E2A /* FavouriteMoviesView.swift */,
+				6FA9F578250000B600E3AA73 /* AddFavouriteOverlay.swift */,
 			);
 			path = Favourites;
 			sourceTree = "<group>";
@@ -1458,6 +1469,7 @@
 			packageProductDependencies = (
 				6FA5A98A24BF14F400E828AA /* TMDb */,
 				6FD64B8724F5035D00213104 /* SwiftRedux */,
+				6FA9F5832500055200E3AA73 /* FetchImage */,
 			);
 			productName = "Movies (macOS)";
 			productReference = 6FA5A95324BF144600E828AA /* Movies.app */;
@@ -1574,6 +1586,8 @@
 			name = "Movies (macOS Widgets)";
 			packageProductDependencies = (
 				6FA5AA3724BF481100E828AA /* TMDb */,
+				6FA9F57F2500048600E3AA73 /* FetchImage */,
+				6FA9F5812500048A00E3AA73 /* SwiftRedux */,
 			);
 			productName = "Movies (macOS Widgets)Extension";
 			productReference = 6FA5AA2424BF47D300E828AA /* MoviesWidgets.appex */;
@@ -1813,6 +1827,7 @@
 				6FA7D3CF24C5C5BB00581529 /* CastMemberCarouselItem.swift in Sources */,
 				6FABA3C424C6D53F00DDD18A /* PersonRow.swift in Sources */,
 				6FA5A96D24BF144600E828AA /* MoviesApp.swift in Sources */,
+				6FA9F57D2500026400E3AA73 /* AddFavouriteOverlay.swift in Sources */,
 				6FA7D39A24C5B0B900581529 /* Gender.swift in Sources */,
 				6FA7D3A624C5B19000581529 /* CastMember+TMDb.swift in Sources */,
 				6F6F0CF924BF9136001AD4BA /* WebImage.swift in Sources */,
@@ -1954,6 +1969,7 @@
 				6F66453024F7A9D90034FA08 /* Person+TMDb.swift in Sources */,
 				6F04854B24F9362400EA8327 /* MoviesManaging.swift in Sources */,
 				6FA5A96E24BF144600E828AA /* MoviesApp.swift in Sources */,
+				6FA9F57E2500026500E3AA73 /* AddFavouriteOverlay.swift in Sources */,
 				6F42097B24FC67B2002ACFF6 /* PeopleGrid.swift in Sources */,
 				6F4AF11424F7D2ED00306BA4 /* PersonCarouselItem.swift in Sources */,
 				6F4AF13224F7E87C00306BA4 /* PersonCombinedCredits+TMDb.swift in Sources */,
@@ -2023,6 +2039,7 @@
 			files = (
 				6FF393D324FEBCAE000E2A48 /* WatchExtensionDelegate.swift in Sources */,
 				6F03EC7924F5AD930069A2F2 /* AppAction.swift in Sources */,
+				6FA9F57B250000B600E3AA73 /* AddFavouriteOverlay.swift in Sources */,
 				6FD3E1AD24C10CCE00E62E67 /* Movie.swift in Sources */,
 				6F21386F24F7B1690050CF3B /* PersonDetailsHeader.swift in Sources */,
 				6FC657AE24C09C88002B998A /* ShowDetailsHeader.swift in Sources */,
@@ -3002,6 +3019,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb" */;
 			productName = TMDb;
+		};
+		6FA9F57F2500048600E3AA73 /* FetchImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage" */;
+			productName = FetchImage;
+		};
+		6FA9F5812500048A00E3AA73 /* SwiftRedux */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6FD64B6824F4FCAD00213104 /* XCRemoteSwiftPackageReference "SwiftRedux" */;
+			productName = SwiftRedux;
+		};
+		6FA9F5832500055200E3AA73 /* FetchImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage" */;
+			productName = FetchImage;
 		};
 		6FD64B6924F4FCAD00213104 /* SwiftRedux */ = {
 			isa = XCSwiftPackageProductDependency;

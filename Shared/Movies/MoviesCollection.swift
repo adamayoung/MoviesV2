@@ -21,7 +21,7 @@ struct MoviesCollection: View {
     }
 
     var body: some View {
-        #if !os(watchOS)
+        #if os(iOS)
         MoviesGrid(movies: movies, movieDidAppear: collectionMovieDidAppear)
         #else
         MoviesList(movies: movies, movieDidAppear: collectionMovieDidAppear)
