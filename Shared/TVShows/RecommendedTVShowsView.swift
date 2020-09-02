@@ -19,6 +19,11 @@ struct RecommendedTVShowsView: View {
 
     var body: some View {
         content
+            .overlay(Group {
+                if tvShows == nil {
+                    ProgressView()
+                }
+            })
             .onAppear(perform: fetch)
             .navigationTitle("Recommendations")
     }
@@ -28,7 +33,7 @@ struct RecommendedTVShowsView: View {
             TVShowsCollection(tvShows: tvShows)
                 .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
         } else {
-            ProgressView()
+            List { }
         }
     }
 

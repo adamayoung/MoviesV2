@@ -66,11 +66,6 @@ struct PeopleGrid: View {
             }
             .padding(.horizontal)
         }
-        .overlay(Group {
-            if people.isEmpty {
-                ProgressView()
-            }
-        })
     }
 
 }

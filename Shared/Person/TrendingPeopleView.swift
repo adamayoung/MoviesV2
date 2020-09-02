@@ -17,6 +17,11 @@ struct TrendingPeopleView: View {
 
     var body: some View {
         PeopleCollection(people: people, itemDidAppear: itemDidAppear)
+            .overlay(Group {
+                if people.isEmpty {
+                    ProgressView()
+                }
+            })
             .onAppear(perform: fetch)
             .navigationTitle("Trending People")
     }

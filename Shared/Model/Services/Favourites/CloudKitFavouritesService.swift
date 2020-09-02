@@ -5,21 +5,22 @@
 //  Created by Adam Young on 01/09/2020.
 //
 
-import Combine
 import CloudKit
+import Combine
 import Foundation
 
 final class CloudKitFavouritesService: FavouritesService {
 
+    static let defaultContainerIdentifier = "iCloud.uk.co.adam-young.Movies"
     static let favouriteMovieRecordType: CKRecord.RecordType = "FavouriteMovie"
     static let favouriteMoviesSubscriptionID: CKSubscription.ID = "MyFavouriteMovies"
 
     private let database: CKDatabase
 
-    init(database: CKDatabase = CKContainer(identifier: "iCloud.uk.co.adam-young.Movies").privateCloudDatabase) {
+    init(database: CKDatabase = CKContainer(identifier: CloudKitFavouritesService.defaultContainerIdentifier).privateCloudDatabase) {
         self.database = database
 
-        subscribeToUpdates()
+        self.subscribeToUpdates()
     }
 
     func addFavourite(movie: MovieListItem) -> AnyPublisher<Void, Error> {
@@ -33,7 +34,7 @@ final class CloudKitFavouritesService: FavouritesService {
         record["popularity"] = movie.popularity
 
         return Future { [self] promise in
-            self.database.save(record) { record, error in
+            self.database.save(record) { _, error in
                 if let error = error {
                     promise(.failure(error))
                     return
@@ -48,7 +49,7 @@ final class CloudKitFavouritesService: FavouritesService {
     func removeFavourite(movie movieID: Movie.ID) -> AnyPublisher<Void, Error> {
         let recordID = CKRecord.ID(recordName: String(movieID))
         return Future { [self] promise in
-            self.database.delete(withRecordID: recordID) { recordID, error in
+            self.database.delete(withRecordID: recordID) { _, error in
                 if let error = error {
                     promise(.failure(error))
                     return
@@ -101,7 +102,7 @@ final class CloudKitFavouritesService: FavouritesService {
         }
         .eraseToAnyPublisher()
     }
-    
+
 }
 
 extension CloudKitFavouritesService {
@@ -126,6 +127,7 @@ extension CloudKitFavouritesService {
 
             print("Subscription Created")
         }
+
         database.add(createOperation)
     }
 

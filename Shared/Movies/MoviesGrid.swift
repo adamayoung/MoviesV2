@@ -13,7 +13,8 @@ struct MoviesGrid: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
 
-    var movies: [MovieListItem]
+    var movies: [MovieListItem] = []
+    var favourites: [MovieListItem.ID] = []
     var movieDidAppear: ((MovieListItem) -> Void)?
 
     private let columnsCompact: [GridItem] = [
@@ -66,11 +67,6 @@ struct MoviesGrid: View {
             }
             .padding(.horizontal)
         }
-        .overlay(Group {
-            if movies.isEmpty {
-                ProgressView()
-            }
-        })
     }
 
 }
@@ -78,7 +74,7 @@ struct MoviesGrid: View {
 struct MoviesGrid_Previews: PreviewProvider {
 
     static var previews: some View {
-        MoviesGrid(movies: [])
+        MoviesGrid()
     }
 
 }

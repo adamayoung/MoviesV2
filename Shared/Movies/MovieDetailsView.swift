@@ -42,11 +42,11 @@ struct MovieDetailsView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     if movie != nil {
-                        Button {
+                        Button(action: {
                             toogleFavourite()
-                        } label: {
+                        }, label: {
                             Image(systemName: isFavourite ? "heart.fill" : "heart" )
-                        }
+                        })
                     }
                 }
             }

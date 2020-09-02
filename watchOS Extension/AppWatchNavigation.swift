@@ -114,22 +114,6 @@ struct AppWatchNavigation: View {
                     }
                     .accessibility(label: Text("Trending People"))
                 }
-
-                Section(header: Text("Favourites")) {
-                    NavigationLink(
-                        destination: FavouriteMoviesView(),
-                        tag: NavigationItem.favouriteMovies,
-                        selection: $selection) {
-                        Label(title: {
-                            Text("Favourite Movies")
-                        }, icon: {
-                            Image(systemName: "heart.fill")
-                                .foregroundColor(.accentColor)
-                        })
-
-                    }
-                    .accessibility(label: Text("Favourite Movies"))
-                }
             }
             .navigationTitle("Movies")
         }

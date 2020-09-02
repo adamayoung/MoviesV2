@@ -33,11 +33,6 @@ struct PeopleList: View {
                     }
             }
         }
-        .overlay(Group {
-            if people.isEmpty {
-                ProgressView()
-            }
-        })
     }
 
 }

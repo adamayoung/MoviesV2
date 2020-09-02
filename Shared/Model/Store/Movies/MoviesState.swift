@@ -51,10 +51,13 @@ struct MoviesState: Equatable {
         favouriteIDs.compactMap { movieList[$0] }
     }
 
+    var topFavourites: [MovieListItem] {
+        Array(favouriteIDs.prefix(Self.topLimit))
+            .compactMap { movieList[$0] }
+    }
+
     func isFavourite(_ movieID: Movie.ID) -> Bool {
         favouriteIDs.contains(movieID)
     }
-
-
 
 }

@@ -12,24 +12,33 @@ struct FavouriteMoviesView: View {
     @EnvironmentObject private var store: AppStore
     @State private var allowAnimations = false
 
-    private var favourites: [MovieListItem] {
+    private var movies: [MovieListItem] {
         store.state.movies.favourites
     }
 
     var body: some View {
-        MoviesCollection(movies: favourites)
+        MoviesCollection(movies: movies)
             .overlay(Group {
-                if favourites.isEmpty {
-                    Text("Add a Favourite")
+                if movies.isEmpty {
+                    VStack {
+                        Text("Add a Favourite")
+                            .font(.headline)
+
+                        Text("Favourites are synced across all your devices")
+                            .lineLimit(2)
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding(.bottom, 50)
+                    .padding(.horizontal, 50)
                 }
             })
             .animation(self.allowAnimations ? .default : nil)
-            .onAppear() {
+            .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                     self.allowAnimations = true
                 }
             }
-            .navigationTitle("Favourites")
+            .navigationTitle("Favourite Movies")
     }
 
 }

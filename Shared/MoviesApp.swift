@@ -21,6 +21,10 @@ struct MoviesApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     #endif
 
+    #if os(watchOS)
+    @WKExtensionDelegateAdaptor(WatchExtensionDelegate.self) private var appDelegate
+    #endif
+
     init() {
         TMDbAPIClient.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
         store.send(.movies(.fetchFavourites))

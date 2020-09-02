@@ -17,5 +17,5 @@ protocol FavouritesService {
     func fetchFavourite(movie movieID: Movie.ID) -> AnyPublisher<MovieListItem?, Never>
 
     func fetchFavouriteMovies() -> AnyPublisher<[MovieListItem], Never>
-    
+
 }

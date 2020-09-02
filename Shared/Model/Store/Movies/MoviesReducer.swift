@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-// swiftlint:disable cyclomatic_complexity
+// swiftlint:disable cyclomatic_complexity function_body_length
 func moviesReducer(state: inout MoviesState, action: MoviesAction,
                    environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
     switch action {
@@ -76,7 +76,7 @@ func moviesReducer(state: inout MoviesState, action: MoviesAction,
         return syncFavouriteDeleted(movieID: movieID, state: &state)
     }
 }
-// swiftlint:enable cyclomatic_complexity
+// swiftlint:enable cyclomatic_complexity function_body_length
 
 private func fetchTrending(state: inout MoviesState, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
     guard !state.isFetchingTrending, state.isMoreTrendingAvailable else {

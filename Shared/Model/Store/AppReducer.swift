@@ -36,8 +36,9 @@ func appReducer(state: inout AppState, action: AppAction, environment: AppEnviro
     }
 }
 
-private func handleRemoteNotification(userInfo: [AnyHashable : Any]) -> AnyPublisher<AppAction, Never> {
-    if let notification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String : NSObject]) {
+private func handleRemoteNotification(userInfo: [AnyHashable: Any]) -> AnyPublisher<AppAction, Never> {
+    if let userInfo = userInfo as? [String: NSObject],
+       let notification = CKNotification(fromRemoteNotificationDictionary: userInfo) {
         return handleCloudKitNotification(notification: notification)
     }
 
@@ -59,7 +60,7 @@ private func handleCloudKitQueryNotification(notification: CKQueryNotification) 
     if notification.queryNotificationReason == .recordCreated {
         if let idString = notification.recordID?.recordName, let id = Int(idString) {
             return Just(.movies(.syncFavouriteCreated(movieID: id)))
-                            .eraseToAnyPublisher()
+                .eraseToAnyPublisher()
         }
 
     }
@@ -67,11 +68,10 @@ private func handleCloudKitQueryNotification(notification: CKQueryNotification) 
     if notification.queryNotificationReason == .recordDeleted {
         if let idString = notification.recordID?.recordName, let id = Int(idString) {
             return Just(.movies(.syncFavouriteDeleted(movieID: id)))
-                            .eraseToAnyPublisher()
+                .eraseToAnyPublisher()
         }
 
     }
-
 
     return Empty()
         .eraseToAnyPublisher()

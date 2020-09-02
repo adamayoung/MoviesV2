@@ -29,6 +29,7 @@ struct ShowsCarousel: View {
             .padding(.horizontal, 20)
             .padding(.top)
         }
+        .animation(.default)
         .disabled(shows.isEmpty)
     }
 
