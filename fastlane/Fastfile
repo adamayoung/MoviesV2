@@ -42,9 +42,9 @@ platform :ios do
     match(type: "appstore")
     swiftlint
     disable_automatic_code_signing
-    gym
-    enable_automatic_code_signing
+    gym(codesigning_identity: "Apple Distribution")
     scan
+    enable_automatic_code_signing
   end
 
   desc "Upload to TestFlight"
@@ -55,6 +55,7 @@ platform :ios do
       build_number: latest_testflight_build_number + 1,
     )
     disable_automatic_code_signing
+    gym(codesigning_identity: "Apple Distribution")
     gym
     enable_automatic_code_signing
     testflight
