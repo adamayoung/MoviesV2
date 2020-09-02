@@ -16,7 +16,7 @@ final class CloudKitFavouritesService: FavouritesService {
 
     private let database: CKDatabase
 
-    init(database: CKDatabase = CKContainer.default().privateCloudDatabase) {
+    init(database: CKDatabase = CKContainer(identifier: "iCloud.uk.co.adam-young.Movies").privateCloudDatabase) {
         self.database = database
 
         subscribeToUpdates()
