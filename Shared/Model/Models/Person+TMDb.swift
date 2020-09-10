@@ -12,20 +12,30 @@ extension Person {
 
     init(person: TMDb.Person) {
         let biography: String? = {
-            guard !person.biography.isEmpty else {
+            guard let biography = person.biography else {
                 return nil
             }
 
-            return person.biography
+            return biography
         }()
 
-        let gender = Gender(gender: person.gender)
+        let gender: Gender? = {
+            guard let gender = person.gender else {
+                return nil
+            }
+
+            return Gender(gender: gender)
+        }()
 
         self.init(id: person.id, name: person.name, alsoKnownAs: person.alsoKnownAs,
                   knownForDepartment: person.knownForDepartment, biography: biography, birthday: person.birthday,
                   deathday: person.deathday, gender: gender, placeOfBirth: person.placeOfBirth,
                   profileURL: person.profileURL, popularity: person.popularity, imdbId: person.imdbId,
                   homepage: person.homepage)
+    }
+
+    static func create(people: [TMDb.Person]) -> [Self] {
+        people.map(Self.init)
     }
 
 }

@@ -13,8 +13,8 @@ struct TVShowsGrid: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
 
-    var tvShows: [TVShowListItem] = []
-    var tvShowDidAppear: ((TVShowListItem) -> Void)?
+    var tvShows: [TVShow] = []
+    var tvShowDidAppear: ((TVShow) -> Void)?
 
     private let columnsCompact: [GridItem] = [
         GridItem(.adaptive(minimum: 100), spacing: 16)

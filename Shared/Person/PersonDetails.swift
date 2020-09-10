@@ -10,7 +10,7 @@ import SwiftUI
 struct PersonDetails: View {
 
     var person: Person
-    var popularShows: [ShowListItem]
+    var popularShows: [Show]
 
     var body: some View {
         #if os(iOS)

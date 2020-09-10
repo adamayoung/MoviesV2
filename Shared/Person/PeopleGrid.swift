@@ -13,8 +13,8 @@ struct PeopleGrid: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
 
-    var people: [PersonListItem] = []
-    var itemDidAppear: ((PersonListItem) -> Void)?
+    var people: [Person] = []
+    var itemDidAppear: ((Person) -> Void)?
 
     private let columnsCompact: [GridItem] = [
         GridItem(.adaptive(minimum: 100), spacing: 16)

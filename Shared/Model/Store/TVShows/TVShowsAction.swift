@@ -10,17 +10,15 @@ import Foundation
 enum TVShowsAction {
 
     case fetchTrending
-    case fetchNextTrendingIfNeeded(currentTVShow: TVShowListItem, offset: Int = 15)
-    case appendTrending(tvShows: [TVShowListItem])
+    case fetchNextTrendingIfNeeded(currentTVShow: TVShow, offset: Int = 15)
+    case appendTrending(tvShows: [TVShow])
     case fetchDiscover
-    case fetchNextDiscoverIfNeeded(currentTVShow: TVShowListItem, offset: Int = 15)
-    case appendDiscover(tvShows: [TVShowListItem])
+    case fetchNextDiscoverIfNeeded(currentTVShow: TVShow, offset: Int = 15)
+    case appendDiscover(tvShows: [TVShow])
     case fetchTVShow(id: TVShow.ID)
     case appendTVShow(tvShow: TVShow)
-    case fetchTVShowExtended(id: TVShowExtended.ID)
-    case appendTVShowExtended(tvShowExtended: TVShowExtended)
-    case fetchRecommendations(tvShowID: Movie.ID)
-    case setRecommendations(recommendations: [TVShowListItem], tvShowID: TVShow.ID)
+    case fetchRecommendations(tvShowID: TVShow.ID)
+    case setRecommendations(recommendations: [TVShow], tvShowID: TVShow.ID)
     case fetchCredits(tvShowID: TVShow.ID)
     case setCredits(credits: Credits, tvShowID: TVShow.ID)
 

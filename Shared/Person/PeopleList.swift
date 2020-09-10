@@ -9,8 +9,8 @@ import SwiftUI
 
 struct PeopleList: View {
 
-    var people: [PersonListItem] = []
-    var itemDidAppear: ((PersonListItem) -> Void)?
+    var people: [Person] = []
+    var itemDidAppear: ((Person) -> Void)?
 
     var body: some View {
         #if os(macOS)

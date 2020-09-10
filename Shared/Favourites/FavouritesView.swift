@@ -11,7 +11,7 @@ struct FavouritesView: View {
 
     @EnvironmentObject private var store: AppStore
 
-    private var movies: [MovieListItem] {
+    private var movies: [Movie] {
         store.state.movies.topFavourites
     }
 

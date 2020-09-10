@@ -11,7 +11,7 @@ struct DiscoverTVShowsView: View {
 
     @EnvironmentObject private var store: AppStore
 
-    private var tvShows: [TVShowListItem] {
+    private var tvShows: [TVShow] {
         store.state.tvShows.discover
     }
 
@@ -38,7 +38,7 @@ extension DiscoverTVShowsView {
         store.send(.tvShows(.fetchDiscover))
     }
 
-    private func tvShowDidAppear(_ tvShow: TVShowListItem, offset: Int) {
+    private func tvShowDidAppear(_ tvShow: TVShow, offset: Int) {
         store.send(.tvShows(.fetchNextDiscoverIfNeeded(currentTVShow: tvShow, offset: offset)))
     }
 

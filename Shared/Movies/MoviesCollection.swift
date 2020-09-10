@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MoviesCollection: View {
 
-    var movies: [MovieListItem]
-    var movieDidAppear: ((MovieListItem, Int) -> Void)?
+    var movies: [Movie]
+    var movieDidAppear: ((Movie, Int) -> Void)?
 
     private var offset: Int {
         #if !os(watchOS)
@@ -28,7 +28,7 @@ struct MoviesCollection: View {
         #endif
     }
 
-    private func collectionMovieDidAppear(currentMovie movie: MovieListItem) {
+    private func collectionMovieDidAppear(currentMovie movie: Movie) {
         movieDidAppear?(movie, offset)
     }
 

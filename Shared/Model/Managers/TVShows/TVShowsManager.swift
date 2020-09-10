@@ -10,15 +10,13 @@ import Foundation
 
 protocol TVShowsManager {
 
-    func fetchTrending(page: Int) -> AnyPublisher<[TVShowListItem], Never>
+    func fetchTrending(page: Int) -> AnyPublisher<[TVShow], Never>
 
-    func fetchDiscover(page: Int) -> AnyPublisher<[TVShowListItem], Never>
+    func fetchDiscover(page: Int) -> AnyPublisher<[TVShow], Never>
 
-    func fetchRecommendations(forTVShow tvShowID: TVShow.ID) -> AnyPublisher<[TVShowListItem], Never>
+    func fetchRecommendations(forTVShow tvShowID: TVShow.ID) -> AnyPublisher<[TVShow], Never>
 
     func fetchTVShow(withID id: TVShow.ID) -> AnyPublisher<TVShow?, Never>
-
-    func fetchTVShowExtended(withID id: TVShow.ID) -> AnyPublisher<TVShowExtended?, Never>
 
     func fetchCredits(forTVShow tvShowID: TVShow.ID) -> AnyPublisher<Credits, Never>
 
@@ -26,11 +24,11 @@ protocol TVShowsManager {
 
 extension TVShowsManager {
 
-    func fetchTrending(page: Int = 1) -> AnyPublisher<[TVShowListItem], Never> {
+    func fetchTrending(page: Int = 1) -> AnyPublisher<[TVShow], Never> {
         fetchTrending(page: page)
     }
 
-    func fetchDiscover(page: Int = 1) -> AnyPublisher<[TVShowListItem], Never> {
+    func fetchDiscover(page: Int = 1) -> AnyPublisher<[TVShow], Never> {
         fetchDiscover(page: page)
     }
 

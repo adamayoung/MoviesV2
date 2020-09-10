@@ -11,7 +11,7 @@ struct TrendingMoviesView: View {
 
     @EnvironmentObject private var store: AppStore
 
-    private var movies: [MovieListItem] {
+    private var movies: [Movie] {
         store.state.movies.trending
     }
 
@@ -38,7 +38,7 @@ extension TrendingMoviesView {
         store.send(.movies(.fetchTrending))
     }
 
-    private func movieDidAppear(currentMovie movie: MovieListItem, offset: Int) {
+    private func movieDidAppear(currentMovie movie: Movie, offset: Int) {
         store.send(.movies(.fetchNextTrendingIfNeeded(currentMovie: movie, offset: offset)))
     }
 

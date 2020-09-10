@@ -29,8 +29,8 @@ struct MovieDetailsView: View {
         store.state.movies.credits[id]
     }
 
-    private var recommendations: [MovieListItem]? {
-        store.state.movies.recommendations[id]
+    private var recommendations: [Movie]? {
+        store.state.movies.recommendations(forMovie: id)
     }
 
     private var title: String {
@@ -103,11 +103,15 @@ struct MovieDetailsView: View {
 extension MovieDetailsView {
 
     private func fetch() {
-        guard movie == nil else {
-            return
+        store.send(.movies(.fetchMovie(id: id)))
+
+        if credits == nil {
+            store.send(.movies(.fetchCredits(movieID: id)))
         }
 
-        store.send(.movies(.fetchMovieExtended(id: id)))
+        if recommendations == nil {
+            store.send(.movies(.fetchRecommendations(movieID: id)))
+        }
     }
 
 }

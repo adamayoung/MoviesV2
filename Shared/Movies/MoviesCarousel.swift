@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoviesCarousel: View {
 
-    var movies: [MovieListItem]
+    var movies: [Movie]
     var displaySize: BackdropImage.DisplaySize = .medium
 
     var body: some View {

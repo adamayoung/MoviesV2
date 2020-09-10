@@ -10,15 +10,13 @@ import Foundation
 
 protocol MoviesManager {
 
-    func fetchTrending(page: Int) -> AnyPublisher<[MovieListItem], Never>
+    func fetchTrending(page: Int) -> AnyPublisher<[Movie], Never>
 
-    func fetchDiscover(page: Int) -> AnyPublisher<[MovieListItem], Never>
+    func fetchDiscover(page: Int) -> AnyPublisher<[Movie], Never>
 
-    func fetchRecommendations(forMovie movieID: Movie.ID) -> AnyPublisher<[MovieListItem], Never>
+    func fetchRecommendations(forMovie movieID: Movie.ID) -> AnyPublisher<[Movie], Never>
 
     func fetchMovie(withID id: Movie.ID) -> AnyPublisher<Movie?, Never>
-
-    func fetchMovieExtended(withID id: Movie.ID) -> AnyPublisher<MovieExtended?, Never>
 
     func fetchCredits(forMovie movieID: Movie.ID) -> AnyPublisher<Credits, Never>
 
@@ -26,11 +24,11 @@ protocol MoviesManager {
 
 extension MoviesManager {
 
-    func fetchTrending(page: Int = 1) -> AnyPublisher<[MovieListItem], Never> {
+    func fetchTrending(page: Int = 1) -> AnyPublisher<[Movie], Never> {
         fetchTrending(page: page)
     }
 
-    func fetchDiscover(page: Int = 1) -> AnyPublisher<[MovieListItem], Never> {
+    func fetchDiscover(page: Int = 1) -> AnyPublisher<[Movie], Never> {
         fetchDiscover(page: page)
     }
 

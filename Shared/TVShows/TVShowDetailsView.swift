@@ -21,8 +21,8 @@ struct TVShowDetailsView: View {
         store.state.tvShows.credits[id]
     }
 
-    private var recommendations: [TVShowListItem]? {
-        store.state.tvShows.recommendations[id]
+    private var recommendations: [TVShow]? {
+        store.state.tvShows.recommendations(forTVShow: id)
     }
 
     private var title: String {
@@ -63,11 +63,15 @@ struct TVShowDetailsView: View {
 extension TVShowDetailsView {
 
     private func fetch() {
-        guard tvShow == nil else {
-            return
+        store.send(.tvShows(.fetchTVShow(id: id)))
+
+        if credits == nil {
+            store.send((.tvShows(.fetchCredits(tvShowID: id))))
         }
 
-        store.send(.tvShows(.fetchTVShowExtended(id: id)))
+        if recommendations == nil {
+            store.send(.tvShows(.fetchRecommendations(tvShowID: id)))
+        }
     }
 
 }

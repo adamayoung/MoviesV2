@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TVShowRow: View {
 
-    var tvShow: TVShowListItem
+    var tvShow: TVShow
 
     var verticalRowPadding: CGFloat {
         #if os(macOS)
@@ -49,7 +49,7 @@ struct TVShowRow: View {
 struct TVShowRow_Previews: PreviewProvider {
 
     static var previews: some View {
-        let tvShow = TVShowListItem(id: 1, name: "Thundercats")
+        let tvShow = TVShow(id: 1, name: "Thundercats")
 
         return List {
             TVShowRow(tvShow: tvShow)

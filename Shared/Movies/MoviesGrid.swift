@@ -13,9 +13,9 @@ struct MoviesGrid: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
 
-    var movies: [MovieListItem] = []
-    var favourites: [MovieListItem.ID] = []
-    var movieDidAppear: ((MovieListItem) -> Void)?
+    var movies: [Movie] = []
+    var favourites: [Movie.ID] = []
+    var movieDidAppear: ((Movie) -> Void)?
 
     private let columnsCompact: [GridItem] = [
         GridItem(.adaptive(minimum: 100), spacing: 16)

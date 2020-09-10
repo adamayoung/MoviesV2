@@ -10,5 +10,5 @@ import Foundation
 
 protocol SearchManager {
 
-    func search(query: String) -> AnyPublisher<[MultiTypeListItem], Never>
+    func search(query: String) -> AnyPublisher<[Media], Never>
 }

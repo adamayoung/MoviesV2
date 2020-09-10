@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FavouritesList: View {
 
-    var movies: [MovieListItem]
+    var movies: [Movie]
 
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass

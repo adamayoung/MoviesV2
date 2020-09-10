@@ -11,16 +11,16 @@ struct Person: Identifiable, Equatable {
 
     let id: Int
     let name: String
-    let alsoKnownAs: [String]
+    let alsoKnownAs: [String]?
     let knownForDepartment: String?
     let biography: String?
     let birthday: Date?
     let deathday: Date?
-    let gender: Gender
+    let gender: Gender?
     let placeOfBirth: String?
     let profileURL: URL?
-    let popularity: Float
-    let imdbId: String
+    let popularity: Float?
+    let imdbId: String?
     let homepage: URL?
 
     var age: Int? {
@@ -33,9 +33,10 @@ struct Person: Identifiable, Equatable {
         return components.year
     }
 
-    init(id: Int, name: String, alsoKnownAs: [String] = [], knownForDepartment: String? = nil, biography: String? = nil,
-         birthday: Date? = nil, deathday: Date? = nil, gender: Gender, placeOfBirth: String? = nil,
-         profileURL: URL? = nil, popularity: Float, imdbId: String, homepage: URL? = nil) {
+    init(id: Int, name: String, alsoKnownAs: [String]? = nil, knownForDepartment: String? = nil,
+         biography: String? = nil, birthday: Date? = nil, deathday: Date? = nil, gender: Gender? = nil,
+         placeOfBirth: String? = nil, profileURL: URL? = nil, popularity: Float? = nil, imdbId: String? = nil,
+         homepage: URL? = nil) {
         self.id = id
         self.name = name
         self.alsoKnownAs = alsoKnownAs

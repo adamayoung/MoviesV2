@@ -11,7 +11,7 @@ struct DiscoverMoviesView: View {
 
     @EnvironmentObject private var store: AppStore
 
-    private var movies: [MovieListItem] {
+    private var movies: [Movie] {
         store.state.movies.discover
     }
 
@@ -38,7 +38,7 @@ extension DiscoverMoviesView {
         store.send(.movies(.fetchDiscover))
     }
 
-    private func movieDidAppear(currentMovie movie: MovieListItem, offset: Int) {
+    private func movieDidAppear(currentMovie movie: Movie, offset: Int) {
         store.send(.movies(.fetchNextDiscoverIfNeeded(currentMovie: movie, offset: offset)))
     }
 

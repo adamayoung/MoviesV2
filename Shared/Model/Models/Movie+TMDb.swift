@@ -16,6 +16,10 @@ extension Movie {
                   popularity: movie.popularity)
     }
 
+    static func create(movies: [TMDb.Movie]) -> [Movie] {
+        movies.map(Self.init)
+    }
+
 }
 
 extension TMDb.Movie: PosterURLProviding, BackdropURLProviding { }

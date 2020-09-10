@@ -11,8 +11,8 @@ import TMDb
 extension PersonCombinedCredits {
 
     init(credits: TMDb.PersonCombinedCredits) {
-        let cast = ShowListItem.create(showItems: credits.cast)
-        let crew = ShowListItem.create(showItems: credits.crew)
+        let cast = Show.create(showItems: credits.cast)
+        let crew = Show.create(showItems: credits.crew)
 
         self.init(id: credits.id, cast: cast, crew: crew)
     }

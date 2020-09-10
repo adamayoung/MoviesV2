@@ -9,8 +9,8 @@ import SwiftUI
 
 struct TVShowsList: View {
 
-    var tvShows: [TVShowListItem] = []
-    var tvShowDidAppear: ((TVShowListItem) -> Void)?
+    var tvShows: [TVShow] = []
+    var tvShowDidAppear: ((TVShow) -> Void)?
 
     var body: some View {
         #if os(macOS)

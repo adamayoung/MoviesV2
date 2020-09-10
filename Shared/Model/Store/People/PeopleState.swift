@@ -11,25 +11,24 @@ struct PeopleState: Equatable {
 
     private static let topLimit = 10
 
-    var personList: [PersonListItem.ID: PersonListItem] = [:]
     var people: [Person.ID: Person] = [:]
 
-    var knownFor: [Person.ID: [ShowListItem]] = [:]
+    var knownFor: [Person.ID: [Show]] = [:]
 
     var isFetchingTrending = false
-    var trendingIDs: [PersonListItem.ID] = []
+    var trendingIDs: [Person.ID] = []
     var currentTrendingPage = 0
     var isMoreTrendingAvailable = true
 
     var credits: [Person.ID: PersonCombinedCredits] = [:]
 
-    var trending: [PersonListItem] {
-        trendingIDs.compactMap { personList[$0] }
+    var trending: [Person] {
+        trendingIDs.compactMap { people[$0] }
     }
 
-    var topTrending: [PersonListItem] {
+    var topTrending: [Person] {
         Array(trendingIDs.prefix(Self.topLimit))
-            .compactMap { personList[$0] }
+            .compactMap { people[$0] }
     }
 
 }

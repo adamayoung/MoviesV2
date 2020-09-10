@@ -11,7 +11,7 @@ struct TVShowDetails: View {
 
     var tvShow: TVShow
     var credits: Credits
-    var recommendations: [TVShowListItem]
+    var recommendations: [TVShow]
 
     private var topCast: [CastMember] {
         Array(credits.cast.prefix(10))

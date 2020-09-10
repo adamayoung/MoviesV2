@@ -9,8 +9,8 @@ import SwiftUI
 
 struct TVShowsCollection: View {
 
-    var tvShows: [TVShowListItem]
-    var tvShowDidAppear: ((TVShowListItem, Int) -> Void)?
+    var tvShows: [TVShow]
+    var tvShowDidAppear: ((TVShow, Int) -> Void)?
 
     private var offset: Int {
         #if !os(watchOS)
@@ -28,7 +28,7 @@ struct TVShowsCollection: View {
         #endif
     }
 
-    private func collectionTVShowDidAppear(currentTVShow tvShow: TVShowListItem) {
+    private func collectionTVShowDidAppear(currentTVShow tvShow: TVShow) {
         tvShowDidAppear?(tvShow, offset)
     }
 

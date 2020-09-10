@@ -11,6 +11,6 @@ struct SearchState: Equatable {
 
     var isSearching = false
     var query: String = ""
-    var results: [MultiTypeListItem] = []
+    var results: [Media] = []
 
 }

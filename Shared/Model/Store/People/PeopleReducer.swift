@@ -54,7 +54,7 @@ private func fetchTrending(state: inout PeopleState, environment: AppEnvironment
         .eraseToAnyPublisher()
 }
 
-private func fetchNextTrendingIfNeeded(currentPerson: PersonListItem, offset: Int,
+private func fetchNextTrendingIfNeeded(currentPerson: Person, offset: Int,
                                        state: inout PeopleState) -> AnyPublisher<PeopleAction, Never> {
     let index = state.trendingIDs.firstIndex(where: { $0 == currentPerson.id })
     let thresholdIndex = state.trendingIDs.index(state.trendingIDs.endIndex, offsetBy: -offset)
@@ -67,7 +67,7 @@ private func fetchNextTrendingIfNeeded(currentPerson: PersonListItem, offset: In
         .eraseToAnyPublisher()
 }
 
-private func appendTrending(people: [PersonListItem], state: inout PeopleState) -> AnyPublisher<PeopleAction, Never> {
+private func appendTrending(people: [Person], state: inout PeopleState) -> AnyPublisher<PeopleAction, Never> {
     state.isFetchingTrending = false
     guard !people.isEmpty else {
         state.isMoreTrendingAvailable = false
@@ -75,7 +75,7 @@ private func appendTrending(people: [PersonListItem], state: inout PeopleState) 
             .eraseToAnyPublisher()
     }
 
-    people.forEach { state.personList[$0.id] = $0 }
+    people.forEach { state.people[$0.id] = $0 }
     state.trendingIDs.append(contentsOf: people.map(\.id))
     return Empty()
         .eraseToAnyPublisher()
@@ -103,7 +103,7 @@ private func fetchKnownFor(personID: Person.ID, environment: AppEnvironment) -> 
         .eraseToAnyPublisher()
 }
 
-private func setKnownFor(shows: [ShowListItem], personID: Person.ID, state: inout PeopleState) -> AnyPublisher<PeopleAction, Never> {
+private func setKnownFor(shows: [Show], personID: Person.ID, state: inout PeopleState) -> AnyPublisher<PeopleAction, Never> {
     state.knownFor[personID] = shows
     return Empty()
         .eraseToAnyPublisher()

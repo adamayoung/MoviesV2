@@ -10,12 +10,12 @@ import Foundation
 
 protocol FavouritesService {
 
-    func addFavourite(movie: MovieListItem) -> AnyPublisher<Void, Error>
+    func addFavourite(movie: Movie) -> AnyPublisher<Void, Error>
 
     func removeFavourite(movie movieID: Movie.ID) -> AnyPublisher<Void, Error>
 
-    func fetchFavourite(movie movieID: Movie.ID) -> AnyPublisher<MovieListItem?, Never>
+    func fetchFavourite(movie movieID: Movie.ID) -> AnyPublisher<Movie?, Never>
 
-    func fetchFavouriteMovies() -> AnyPublisher<[MovieListItem], Never>
+    func fetchFavouriteMovies() -> AnyPublisher<[Movie], Never>
 
 }
