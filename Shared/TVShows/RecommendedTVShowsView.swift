@@ -13,8 +13,8 @@ struct RecommendedTVShowsView: View {
 
     @EnvironmentObject private var store: AppStore
 
-    private var tvShows: [TVShowListItem]? {
-        store.state.tvShows.recommendations[tvShowID]
+    private var tvShows: [TVShow]? {
+        store.state.tvShows.recommendations(forTVShow: tvShowID)
     }
 
     var body: some View {

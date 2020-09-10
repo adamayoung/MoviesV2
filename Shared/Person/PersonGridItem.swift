@@ -9,26 +9,15 @@ import SwiftUI
 
 struct PersonGridItem: View {
 
-    var person: PersonListItem
+    var person: Person
 
     var body: some View {
         VStack {
             PersonImage(url: person.profileURL)
-            Text(person.name ?? " ")
+            Text(person.name)
                 .foregroundColor(.primary)
                 .font(.headline)
                 .multilineTextAlignment(.center)
-
-            Group {
-                if let knownForSummary = person.knownForSummary {
-                    Text(knownForSummary)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                }
-            }
-            .foregroundColor(.gray)
-            .font(.subheadline)
-
             Spacer()
         }
     }

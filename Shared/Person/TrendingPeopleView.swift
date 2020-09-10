@@ -11,7 +11,7 @@ struct TrendingPeopleView: View {
 
     @EnvironmentObject private var store: AppStore
 
-    private var people: [PersonListItem] {
+    private var people: [Person] {
         store.state.people.trending
     }
 
@@ -38,7 +38,7 @@ extension TrendingPeopleView {
         store.send(.people(.fetchTrending))
     }
 
-    private func itemDidAppear(currentItem item: PersonListItem, offset: Int) {
+    private func itemDidAppear(currentItem item: Person, offset: Int) {
         store.send(.people(.fetchNextTrendingIfNeeded(currentPerson: item, offset: offset)))
     }
 

@@ -26,26 +26,26 @@ final class TMDbMoviesManager: MoviesManager {
         self.discoverService = discoverService
     }
 
-    func fetchTrending(page: Int = 1) -> AnyPublisher<[MovieListItem], Never> {
+    func fetchTrending(page: Int = 1) -> AnyPublisher<[Movie], Never> {
         trendingService.fetchMovies(timeWindow: .day, page: page)
             .map(\.results)
-            .map(MovieListItem.create)
+            .map(Movie.create)
             .replaceError(with: [])
             .eraseToAnyPublisher()
     }
 
-    func fetchDiscover(page: Int = 1) -> AnyPublisher<[MovieListItem], Never> {
+    func fetchDiscover(page: Int = 1) -> AnyPublisher<[Movie], Never> {
         discoverService.fetchMovies(page: page)
             .map(\.results)
-            .map(MovieListItem.create)
+            .map(Movie.create)
             .replaceError(with: [])
             .eraseToAnyPublisher()
     }
 
-    func fetchRecommendations(forMovie movieID: Movie.ID) -> AnyPublisher<[MovieListItem], Never> {
+    func fetchRecommendations(forMovie movieID: Movie.ID) -> AnyPublisher<[Movie], Never> {
         movieService.fetchRecommendations(forMovie: movieID)
             .map(\.results)
-            .map(MovieListItem.create)
+            .map(Movie.create)
             .replaceError(with: [])
             .eraseToAnyPublisher()
     }
@@ -53,13 +53,6 @@ final class TMDbMoviesManager: MoviesManager {
     func fetchMovie(withID id: Movie.ID) -> AnyPublisher<Movie?, Never> {
         movieService.fetchDetails(forMovie: id)
             .map(Movie.init)
-            .replaceError(with: nil)
-            .eraseToAnyPublisher()
-    }
-
-    func fetchMovieExtended(withID id: Movie.ID) -> AnyPublisher<MovieExtended?, Never> {
-        movieService.fetchDetails(forMovie: id, include: [.credits, .recommendations])
-            .map(MovieExtended.init)
             .replaceError(with: nil)
             .eraseToAnyPublisher()
     }

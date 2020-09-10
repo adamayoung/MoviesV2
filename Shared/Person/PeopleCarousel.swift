@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PeopleCarousel: View {
 
-    var people: [PersonListItem]
+    var people: [Person]
     var displaySize: PersonImage.DisplaySize = .medium
 
     var body: some View {

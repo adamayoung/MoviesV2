@@ -10,11 +10,11 @@ import Foundation
 
 protocol PeopleManager {
 
-    func fetchTrending(page: Int) -> AnyPublisher<[PersonListItem], Never>
+    func fetchTrending(page: Int) -> AnyPublisher<[Person], Never>
 
     func fetchPerson(withID id: Person.ID) -> AnyPublisher<Person?, Never>
 
-    func fetchKnownFor(forPerson personID: Person.ID) -> AnyPublisher<[ShowListItem], Never>
+    func fetchKnownFor(forPerson personID: Person.ID) -> AnyPublisher<[Show], Never>
 
     func fetchCredits(forPerson personID: Person.ID) -> AnyPublisher<PersonCombinedCredits, Never>
 
@@ -22,7 +22,7 @@ protocol PeopleManager {
 
 extension PeopleManager {
 
-    func fetchTrending(page: Int = 1) -> AnyPublisher<[PersonListItem], Never> {
+    func fetchTrending(page: Int = 1) -> AnyPublisher<[Person], Never> {
         fetchTrending(page: page)
     }
 

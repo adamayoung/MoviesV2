@@ -25,26 +25,26 @@ final class TMDbTVShowsManager: TVShowsManager {
         self.discoverService = discoverService
     }
 
-    func fetchTrending(page: Int = 1) -> AnyPublisher<[TVShowListItem], Never> {
+    func fetchTrending(page: Int = 1) -> AnyPublisher<[TVShow], Never> {
         trendingService.fetchTVShows(timeWindow: .day, page: page)
             .map(\.results)
-            .map(TVShowListItem.create)
+            .map(TVShow.create)
             .replaceError(with: [])
             .eraseToAnyPublisher()
     }
 
-    func fetchDiscover(page: Int = 1) -> AnyPublisher<[TVShowListItem], Never> {
+    func fetchDiscover(page: Int = 1) -> AnyPublisher<[TVShow], Never> {
         discoverService.fetchTVShows(page: page)
             .map(\.results)
-            .map(TVShowListItem.create)
+            .map(TVShow.create)
             .replaceError(with: [])
             .eraseToAnyPublisher()
     }
 
-    func fetchRecommendations(forTVShow tvShowID: TVShow.ID) -> AnyPublisher<[TVShowListItem], Never> {
+    func fetchRecommendations(forTVShow tvShowID: TVShow.ID) -> AnyPublisher<[TVShow], Never> {
         tvShowService.fetchRecommendations(forTVShow: tvShowID)
             .map(\.results)
-            .map(TVShowListItem.create)
+            .map(TVShow.create)
             .replaceError(with: [])
             .eraseToAnyPublisher()
     }
@@ -52,13 +52,6 @@ final class TMDbTVShowsManager: TVShowsManager {
     func fetchTVShow(withID id: TVShow.ID) -> AnyPublisher<TVShow?, Never> {
         tvShowService.fetchDetails(forTVShow: id)
             .map(TVShow.init)
-            .replaceError(with: nil)
-            .eraseToAnyPublisher()
-    }
-
-    func fetchTVShowExtended(withID id: TVShow.ID) -> AnyPublisher<TVShowExtended?, Never> {
-        tvShowService.fetchDetails(forTVShow: id, include: [.credits, .recommendations])
-            .map(TVShowExtended.init)
             .replaceError(with: nil)
             .eraseToAnyPublisher()
     }

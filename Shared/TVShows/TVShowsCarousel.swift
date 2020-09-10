@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TVShowsCarousel: View {
 
-    var tvShows: [TVShowListItem]
+    var tvShows: [TVShow]
     var displaySize: BackdropImage.DisplaySize = .medium
 
     var body: some View {

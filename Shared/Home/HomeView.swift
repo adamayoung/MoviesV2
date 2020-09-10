@@ -12,23 +12,23 @@ struct HomeView: View {
 
     @EnvironmentObject private var store: AppStore
 
-    private var trendingMovies: [MovieListItem] {
+    private var trendingMovies: [Movie] {
         store.state.movies.topTrending
     }
 
-    private var discoverMovies: [MovieListItem] {
+    private var discoverMovies: [Movie] {
         store.state.movies.topDiscover
     }
 
-    private var trendingTVShows: [TVShowListItem] {
+    private var trendingTVShows: [TVShow] {
         store.state.tvShows.topTrending
     }
 
-    private var discoverTVShows: [TVShowListItem] {
+    private var discoverTVShows: [TVShow] {
         store.state.tvShows.topDiscover
     }
 
-    private var trendingPeople: [PersonListItem] {
+    private var trendingPeople: [Person] {
         store.state.people.topTrending
     }
 

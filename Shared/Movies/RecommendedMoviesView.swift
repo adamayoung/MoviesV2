@@ -13,8 +13,8 @@ struct RecommendedMoviesView: View {
 
     @EnvironmentObject private var store: AppStore
 
-    private var movies: [MovieListItem]? {
-        store.state.movies.recommendations[movieID]
+    private var movies: [Movie]? {
+        store.state.movies.recommendations(forMovie: movieID)
     }
 
     var body: some View {

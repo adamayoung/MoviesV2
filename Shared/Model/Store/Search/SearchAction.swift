@@ -10,6 +10,6 @@ import Foundation
 enum SearchAction {
 
     case search(query: String)
-    case setResults(results: [MultiTypeListItem], query: String)
+    case setResults(results: [Media], query: String)
 
 }

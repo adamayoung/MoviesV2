@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ShowCarouselItem: View {
 
-    var show: ShowListItem?
+    var show: Show?
     var displaySize: BackdropImage.DisplaySize = .medium
 
     var body: some View {

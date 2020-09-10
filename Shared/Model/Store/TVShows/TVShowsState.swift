@@ -11,38 +11,46 @@ struct TVShowsState: Equatable {
 
     private static let topLimit = 10
 
-    var tvShowList: [TVShowListItem.ID: TVShowListItem] = [:]
+    var tvShows: [TVShow.ID: TVShow] = [:]
 
     var isFetchingTrending = false
-    var trendingIDs: [TVShowListItem.ID] = []
+    var trendingIDs: [TVShow.ID] = []
     var currentTrendingPage = 0
     var isMoreTrendingAvailable = true
 
     var isFetchingDiscover: Bool = false
-    var discoverIDs: [TVShowListItem.ID] = []
+    var discoverIDs: [TVShow.ID] = []
     var currentDiscoverPage = 0
     var isMoreDiscoverAvailable = true
 
-    var tvShows: [TVShow.ID: TVShow] = [:]
-    var recommendations: [TVShow.ID: [TVShowListItem]] = [:]
+    var recommendationsIDs: [TVShow.ID: [TVShow.ID]] = [:]
+
     var credits: [TVShow.ID: Credits] = [:]
 
-    var trending: [TVShowListItem] {
-        trendingIDs.compactMap { tvShowList[$0] }
+}
+
+extension TVShowsState {
+
+    var trending: [TVShow] {
+        trendingIDs.compactMap { tvShows[$0] }
     }
 
-    var topTrending: [TVShowListItem] {
+    var topTrending: [TVShow] {
         Array(trendingIDs.prefix(Self.topLimit))
-            .compactMap { tvShowList[$0] }
+            .compactMap { tvShows[$0] }
     }
 
-    var discover: [TVShowListItem] {
-        discoverIDs.compactMap { tvShowList[$0] }
+    var discover: [TVShow] {
+        discoverIDs.compactMap { tvShows[$0] }
     }
 
-    var topDiscover: [TVShowListItem] {
+    var topDiscover: [TVShow] {
         Array(discoverIDs.prefix(Self.topLimit))
-            .compactMap { tvShowList[$0] }
+            .compactMap { tvShows[$0] }
+    }
+
+    func recommendations(forTVShow tvShowID: TVShow.ID) -> [TVShow]? {
+        recommendationsIDs[tvShowID]?.compactMap { tvShows[$0] }
     }
 
 }

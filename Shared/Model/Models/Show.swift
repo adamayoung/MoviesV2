@@ -1,5 +1,5 @@
 //
-//  ShowListItem.swift
+//  Show.swift
 //  Movies
 //
 //  Created by Adam Young on 27/08/2020.

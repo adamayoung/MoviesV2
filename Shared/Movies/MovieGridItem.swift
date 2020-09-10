@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MovieGridItem: View {
 
-    var movie: MovieListItem
+    var movie: Movie
 
     var body: some View {
         PosterImage(url: movie.posterURL)

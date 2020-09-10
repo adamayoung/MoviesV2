@@ -11,7 +11,7 @@ struct TrendingTVShowsView: View {
 
     @EnvironmentObject private var store: AppStore
 
-    private var tvShows: [TVShowListItem] {
+    private var tvShows: [TVShow] {
         store.state.tvShows.trending
     }
 
@@ -38,7 +38,7 @@ extension TrendingTVShowsView {
         store.send(.tvShows(.fetchTrending))
     }
 
-    private func tvShowDidAppear(_ tvShow: TVShowListItem, offset: Int) {
+    private func tvShowDidAppear(_ tvShow: TVShow, offset: Int) {
         store.send(.tvShows(.fetchNextTrendingIfNeeded(currentTVShow: tvShow, offset: offset)))
     }
 

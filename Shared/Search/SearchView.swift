@@ -17,7 +17,7 @@ struct SearchView: View {
         store.state.search.isSearching
     }
 
-    private var results: [MultiTypeListItem] {
+    private var results: [Media] {
         store.state.search.results
     }
 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TVShowGridItem: View {
 
-    var tvShow: TVShowListItem
+    var tvShow: TVShow
 
     var body: some View {
         PosterImage(url: tvShow.posterURL)

@@ -12,7 +12,7 @@ struct FavouriteMoviesView: View {
     @EnvironmentObject private var store: AppStore
     @State private var allowAnimations = false
 
-    private var movies: [MovieListItem] {
+    private var movies: [Movie] {
         store.state.movies.favourites
     }
 

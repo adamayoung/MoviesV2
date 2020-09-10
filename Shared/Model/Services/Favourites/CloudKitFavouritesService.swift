@@ -23,7 +23,7 @@ final class CloudKitFavouritesService: FavouritesService {
         self.subscribeToUpdates()
     }
 
-    func addFavourite(movie: MovieListItem) -> AnyPublisher<Void, Error> {
+    func addFavourite(movie: Movie) -> AnyPublisher<Void, Error> {
         let recordID = CKRecord.ID(recordName: String(movie.id))
         let record = CKRecord(recordType: Self.favouriteMovieRecordType, recordID: recordID)
         record["title"] = movie.title
@@ -61,7 +61,7 @@ final class CloudKitFavouritesService: FavouritesService {
         .eraseToAnyPublisher()
     }
 
-    func fetchFavourite(movie movieID: Movie.ID) -> AnyPublisher<MovieListItem?, Never> {
+    func fetchFavourite(movie movieID: Movie.ID) -> AnyPublisher<Movie?, Never> {
         let recordID = CKRecord.ID(recordName: String(movieID))
         return Future { [self] promise in
             self.database.fetch(withRecordID: recordID) { record, error in
@@ -75,14 +75,14 @@ final class CloudKitFavouritesService: FavouritesService {
                     return
                 }
 
-                let movie = MovieListItem(record: record)
+                let movie = Movie(record: record)
                 promise(.success(movie))
             }
         }
         .eraseToAnyPublisher()
     }
 
-    func fetchFavouriteMovies() -> AnyPublisher<[MovieListItem], Never> {
+    func fetchFavouriteMovies() -> AnyPublisher<[Movie], Never> {
         let query = CKQuery(recordType: Self.favouriteMovieRecordType, predicate: NSPredicate(value: true))
         return Future { [self] promise in
             self.database.perform(query, inZoneWith: nil) { records, error in
@@ -96,7 +96,7 @@ final class CloudKitFavouritesService: FavouritesService {
                     return
                 }
 
-                let movies = MovieListItem.create(records: records)
+                let movies = Movie.create(records: records)
                 promise(.success(movies))
             }
         }

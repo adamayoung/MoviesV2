@@ -9,11 +9,11 @@ import SwiftUI
 
 struct HomeList: View {
 
-    var trendingMovies: [MovieListItem] = []
-    var discoverMovies: [MovieListItem] = []
-    var trendingTVShows: [TVShowListItem] = []
-    var discoverTVShows: [TVShowListItem] = []
-    var trendingPeople: [PersonListItem] = []
+    var trendingMovies: [Movie] = []
+    var discoverMovies: [Movie] = []
+    var trendingTVShows: [TVShow] = []
+    var discoverTVShows: [TVShow] = []
+    var trendingPeople: [Person] = []
 
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -55,7 +55,7 @@ struct HomeList: View {
         #endif
     }
 
-    @State private var selection: MovieListItem?
+    @State private var selection: Movie?
 
     var body: some View {
         #if os(iOS)

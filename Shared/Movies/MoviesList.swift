@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MoviesList: View {
 
-    var movies: [MovieListItem] = []
-    var movieDidAppear: ((MovieListItem) -> Void)?
+    var movies: [Movie] = []
+    var movieDidAppear: ((Movie) -> Void)?
 
     var body: some View {
         #if os(macOS)

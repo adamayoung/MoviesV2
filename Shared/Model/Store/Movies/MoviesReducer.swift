@@ -36,12 +36,6 @@ func moviesReducer(state: inout MoviesState, action: MoviesAction,
     case .appendMovie(let movie):
         return appendMovie(movie: movie, state: &state)
 
-    case .fetchMovieExtended(let id):
-        return fetchMovieExtended(id: id, environment: environment)
-
-    case .appendMovieExtended(let movieExtended):
-        return appendMovieExtended(movieExtended: movieExtended, state: &state)
-
     case .fetchRecommendations(let movieID):
         return fetchRecommendations(movieID: movieID, state: &state, environment: environment)
 
@@ -93,7 +87,7 @@ private func fetchTrending(state: inout MoviesState, environment: AppEnvironment
         .eraseToAnyPublisher()
 }
 
-private func fetchNextTrendingIfNeeded(currentMovie: MovieListItem, offset: Int,
+private func fetchNextTrendingIfNeeded(currentMovie: Movie, offset: Int,
                                        state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
     let index = state.trendingIDs.firstIndex(where: { $0 == currentMovie.id })
     let thresholdIndex = state.trendingIDs.index(state.trendingIDs.endIndex, offsetBy: -offset)
@@ -106,7 +100,7 @@ private func fetchNextTrendingIfNeeded(currentMovie: MovieListItem, offset: Int,
         .eraseToAnyPublisher()
 }
 
-private func appendTrending(movies: [MovieListItem], state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+private func appendTrending(movies: [Movie], state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
     state.isFetchingTrending = false
     guard !movies.isEmpty else {
         state.isMoreTrendingAvailable = false
@@ -114,7 +108,7 @@ private func appendTrending(movies: [MovieListItem], state: inout MoviesState) -
             .eraseToAnyPublisher()
     }
 
-    movies.forEach { state.movieList[$0.id] = $0 }
+    movies.forEach { state.movies[$0.id] = $0 }
     state.trendingIDs.append(contentsOf: movies.map(\.id))
     return Empty()
         .eraseToAnyPublisher()
@@ -135,7 +129,7 @@ private func fetchDiscover(state: inout MoviesState, environment: AppEnvironment
         .eraseToAnyPublisher()
 }
 
-private func fetchNextDiscoverIfNeeded(currentMovie: MovieListItem, offset: Int,
+private func fetchNextDiscoverIfNeeded(currentMovie: Movie, offset: Int,
                                        state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
     let index = state.discoverIDs.firstIndex(where: { $0 == currentMovie.id })
     let thresholdIndex = state.discoverIDs.index(state.discoverIDs.endIndex, offsetBy: -offset)
@@ -148,7 +142,7 @@ private func fetchNextDiscoverIfNeeded(currentMovie: MovieListItem, offset: Int,
         .eraseToAnyPublisher()
 }
 
-private func appendDiscover(movies: [MovieListItem], state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+private func appendDiscover(movies: [Movie], state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
     state.isFetchingDiscover = false
     guard !movies.isEmpty else {
         state.isMoreDiscoverAvailable = false
@@ -156,7 +150,7 @@ private func appendDiscover(movies: [MovieListItem], state: inout MoviesState) -
             .eraseToAnyPublisher()
     }
 
-    movies.forEach { state.movieList[$0.id] = $0 }
+    movies.forEach { state.movies[$0.id] = $0 }
     state.discoverIDs.append(contentsOf: movies.map(\.id))
     return Empty()
         .eraseToAnyPublisher()
@@ -177,23 +171,6 @@ private func appendMovie(movie: Movie, state: inout MoviesState) -> AnyPublisher
         .eraseToAnyPublisher()
 }
 
-private func fetchMovieExtended(id: MovieExtended.ID, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
-    return environment.moviesManager
-        .fetchMovieExtended(withID: id)
-        .filter { $0 != nil }
-        .map { $0! }
-        .map { .appendMovieExtended(movieExtended: $0) }
-        .eraseToAnyPublisher()
-}
-
-private func appendMovieExtended(movieExtended: MovieExtended, state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
-    state.movies[movieExtended.id] = movieExtended.movie
-    state.credits[movieExtended.id] = movieExtended.credits
-    state.recommendations[movieExtended.id] = movieExtended.recommendations
-    return Empty()
-        .eraseToAnyPublisher()
-}
-
 private func fetchRecommendations(movieID: Movie.ID, state: inout MoviesState, environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
     return environment.moviesManager
         .fetchRecommendations(forMovie: movieID)
@@ -201,8 +178,13 @@ private func fetchRecommendations(movieID: Movie.ID, state: inout MoviesState, e
         .eraseToAnyPublisher()
 }
 
-private func setRecommendations(recommendations: [MovieListItem], movieID: Movie.ID, state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
-    state.recommendations[movieID] = recommendations
+private func setRecommendations(recommendations: [Movie], movieID: Movie.ID, state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+    var recommendationIDs = state.recommendationsIDs[movieID] ?? []
+    recommendations.forEach {
+        state.movies[$0.id] = $0
+        recommendationIDs.append($0.id)
+    }
+    state.recommendationsIDs[movieID] = recommendationIDs
     return Empty()
         .eraseToAnyPublisher()
 }
@@ -227,8 +209,8 @@ private func fetchFavourites(environment: AppEnvironment) -> AnyPublisher<Movies
         .eraseToAnyPublisher()
 }
 
-private func setFavourites(movies: [MovieListItem], state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
-    movies.forEach { state.movieList[$0.id] = $0 }
+private func setFavourites(movies: [Movie], state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+    movies.forEach { state.movies[$0.id] = $0 }
     state.favouriteIDs = movies.map(\.id)
     return Empty()
         .eraseToAnyPublisher()
@@ -240,7 +222,7 @@ private func addFavourite(movieID: Movie.ID, state: inout MoviesState, environme
             .eraseToAnyPublisher()
     }
 
-    guard let movie = state.movieList[movieID] ?? state.movies[movieID]?.asListItem() else {
+    guard let movie = state.movies[movieID] else {
         return Empty()
             .eraseToAnyPublisher()
     }
@@ -285,13 +267,13 @@ private func syncFavouriteCreated(movieID: Movie.ID, state: inout MoviesState, e
         .eraseToAnyPublisher()
 }
 
-private func addSyncedFavourite(movie: MovieListItem, state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
+private func addSyncedFavourite(movie: Movie, state: inout MoviesState) -> AnyPublisher<MoviesAction, Never> {
     guard !state.favouriteIDs.contains(movie.id) else {
         return Empty()
             .eraseToAnyPublisher()
     }
 
-    state.movieList[movie.id] = movie
+    state.movies[movie.id] = movie
 
     return Empty()
         .eraseToAnyPublisher()

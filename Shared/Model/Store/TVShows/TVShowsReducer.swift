@@ -36,12 +36,6 @@ func tvShowsReducer(state: inout TVShowsState, action: TVShowsAction,
     case .appendTVShow(let tvShow):
         return appendTVShow(tvShow: tvShow, state: &state)
 
-    case .fetchTVShowExtended(let id):
-        return fetchTVShowExtended(id: id, environment: environment)
-
-    case .appendTVShowExtended(let tvShowExtended):
-        return appendTVShowExtended(tvShowExtended: tvShowExtended, state: &state)
-
     case .fetchRecommendations(let tvShowID):
         return fetchRecommendations(tvShowID: tvShowID, state: &state, environment: environment)
 
@@ -72,7 +66,7 @@ private func fetchTrending(state: inout TVShowsState, environment: AppEnvironmen
         .eraseToAnyPublisher()
 }
 
-private func fetchNextTrendingIfNeeded(currentTVShow: TVShowListItem, offset: Int,
+private func fetchNextTrendingIfNeeded(currentTVShow: TVShow, offset: Int,
                                        state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
     let index = state.trendingIDs.firstIndex(where: { $0 == currentTVShow.id })
     let thresholdIndex = state.trendingIDs.index(state.trendingIDs.endIndex, offsetBy: -offset)
@@ -85,7 +79,7 @@ private func fetchNextTrendingIfNeeded(currentTVShow: TVShowListItem, offset: In
         .eraseToAnyPublisher()
 }
 
-private func appendTrending(tvShows: [TVShowListItem], state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
+private func appendTrending(tvShows: [TVShow], state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
     state.isFetchingTrending = false
     guard !tvShows.isEmpty else {
         state.isMoreTrendingAvailable = false
@@ -93,7 +87,7 @@ private func appendTrending(tvShows: [TVShowListItem], state: inout TVShowsState
             .eraseToAnyPublisher()
     }
 
-    tvShows.forEach { state.tvShowList[$0.id] = $0 }
+    tvShows.forEach { state.tvShows[$0.id] = $0 }
     state.trendingIDs.append(contentsOf: tvShows.map(\.id))
     return Empty()
         .eraseToAnyPublisher()
@@ -114,7 +108,7 @@ private func fetchDiscover(state: inout TVShowsState, environment: AppEnvironmen
         .eraseToAnyPublisher()
 }
 
-private func fetchNextDiscoverIfNeeded(currentTVShow: TVShowListItem, offset: Int,
+private func fetchNextDiscoverIfNeeded(currentTVShow: TVShow, offset: Int,
                                        state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
     let index = state.discoverIDs.firstIndex(where: { $0 == currentTVShow.id })
     let thresholdIndex = state.discoverIDs.index(state.discoverIDs.endIndex, offsetBy: -offset)
@@ -127,7 +121,7 @@ private func fetchNextDiscoverIfNeeded(currentTVShow: TVShowListItem, offset: In
         .eraseToAnyPublisher()
 }
 
-private func appendDiscover(tvShows: [TVShowListItem], state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
+private func appendDiscover(tvShows: [TVShow], state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
     state.isFetchingDiscover = false
     guard !tvShows.isEmpty else {
         state.isMoreDiscoverAvailable = false
@@ -135,7 +129,7 @@ private func appendDiscover(tvShows: [TVShowListItem], state: inout TVShowsState
             .eraseToAnyPublisher()
     }
 
-    tvShows.forEach { state.tvShowList[$0.id] = $0 }
+    tvShows.forEach { state.tvShows[$0.id] = $0 }
     state.discoverIDs.append(contentsOf: tvShows.map(\.id))
     return Empty()
         .eraseToAnyPublisher()
@@ -156,25 +150,6 @@ private func appendTVShow(tvShow: TVShow, state: inout TVShowsState) -> AnyPubli
         .eraseToAnyPublisher()
 }
 
-private func fetchTVShowExtended(id: TVShowExtended.ID,
-                                 environment: AppEnvironment) -> AnyPublisher<TVShowsAction, Never> {
-    return environment.tvShowsManager
-        .fetchTVShowExtended(withID: id)
-        .filter { $0 != nil }
-        .map { $0! }
-        .map { .appendTVShowExtended(tvShowExtended: $0) }
-        .eraseToAnyPublisher()
-}
-
-private func appendTVShowExtended(tvShowExtended: TVShowExtended,
-                                  state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
-    state.tvShows[tvShowExtended.id] = tvShowExtended.tvShow
-    state.credits[tvShowExtended.id] = tvShowExtended.credits
-    state.recommendations[tvShowExtended.id] = tvShowExtended.recommendations
-    return Empty()
-        .eraseToAnyPublisher()
-}
-
 private func fetchRecommendations(tvShowID: TVShow.ID, state: inout TVShowsState, environment: AppEnvironment) -> AnyPublisher<TVShowsAction, Never> {
     return environment.tvShowsManager
         .fetchRecommendations(forTVShow: tvShowID)
@@ -182,8 +157,13 @@ private func fetchRecommendations(tvShowID: TVShow.ID, state: inout TVShowsState
         .eraseToAnyPublisher()
 }
 
-private func setRecommendations(recommendations: [TVShowListItem], tvShowID: TVShow.ID, state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
-    state.recommendations[tvShowID] = recommendations
+private func setRecommendations(recommendations: [TVShow], tvShowID: TVShow.ID, state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
+    var recommendationIDs = state.recommendationsIDs[tvShowID] ?? []
+    recommendations.forEach {
+        state.tvShows[$0.id] = $0
+        recommendationIDs.append($0.id)
+    }
+    state.recommendationsIDs[tvShowID] = recommendationIDs
     return Empty()
         .eraseToAnyPublisher()
 }

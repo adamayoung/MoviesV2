@@ -17,7 +17,7 @@ struct PersonDetailsView: View {
         store.state.people.people[id]
     }
 
-    private var popularShows: [ShowListItem]? {
+    private var popularShows: [Show]? {
         store.state.people.knownFor[id]
     }
 
@@ -56,12 +56,11 @@ struct PersonDetailsView: View {
 extension PersonDetailsView {
 
     private func fetch() {
-        guard person == nil else {
-            return
-        }
-
         store.send(.people(.fetchPerson(id: id)))
-        store.send(.people(.fetchKnownFor(personID: id)))
+
+        if popularShows == nil {
+            store.send(.people(.fetchKnownFor(personID: id)))
+        }
     }
 
 }

@@ -10,26 +10,24 @@ import Foundation
 enum MoviesAction {
 
     case fetchTrending
-    case fetchNextTrendingIfNeeded(currentMovie: MovieListItem, offset: Int = 15)
-    case appendTrending(movies: [MovieListItem])
+    case fetchNextTrendingIfNeeded(currentMovie: Movie, offset: Int = 15)
+    case appendTrending(movies: [Movie])
     case fetchDiscover
-    case fetchNextDiscoverIfNeeded(currentMovie: MovieListItem, offset: Int = 15)
-    case appendDiscover(movies: [MovieListItem])
+    case fetchNextDiscoverIfNeeded(currentMovie: Movie, offset: Int = 15)
+    case appendDiscover(movies: [Movie])
     case fetchMovie(id: Movie.ID)
     case appendMovie(movie: Movie)
-    case fetchMovieExtended(id: MovieExtended.ID)
-    case appendMovieExtended(movieExtended: MovieExtended)
     case fetchRecommendations(movieID: Movie.ID)
-    case setRecommendations(recommendations: [MovieListItem], movieID: Movie.ID)
+    case setRecommendations(recommendations: [Movie], movieID: Movie.ID)
     case fetchCredits(movieID: Movie.ID)
     case setCredits(credits: Credits, movieID: Movie.ID)
 
     case fetchFavourites
-    case setFavourites(movies: [MovieListItem])
+    case setFavourites(movies: [Movie])
     case addFavourite(movieID: Movie.ID)
     case removeFavourite(movieID: Movie.ID)
     case syncFavouriteCreated(movieID: Movie.ID)
-    case addSyncedFavourite(movie: MovieListItem)
+    case addSyncedFavourite(movie: Movie)
     case syncFavouriteDeleted(movieID: Movie.ID)
 
 }

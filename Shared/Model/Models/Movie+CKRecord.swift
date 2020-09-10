@@ -1,5 +1,5 @@
 //
-//  MovieListItem+CKRecord.swift
+//  Movie+CKRecord.swift
 //  Movies
 //
 //  Created by Adam Young on 01/09/2020.
@@ -8,7 +8,7 @@
 import CloudKit
 import Foundation
 
-extension MovieListItem {
+extension Movie {
 
     init?(record: CKRecord) {
         guard record.recordType == "FavouriteMovie" else {

@@ -22,10 +22,10 @@ final class TMDbPeopleManager: PeopleManager {
         self.trendingService = trendingService
     }
 
-    func fetchTrending(page: Int = 1) -> AnyPublisher<[PersonListItem], Never> {
+    func fetchTrending(page: Int = 1) -> AnyPublisher<[Person], Never> {
         trendingService.fetchPeople(timeWindow: .day, page: page)
             .map(\.results)
-            .map(PersonListItem.create)
+            .map(Person.create)
             .handleEvents(receiveCompletion: { (comp) in
                 switch comp {
                 case .failure(let error):
@@ -46,9 +46,9 @@ final class TMDbPeopleManager: PeopleManager {
             .eraseToAnyPublisher()
     }
 
-    func fetchKnownFor(forPerson personID: Person.ID) -> AnyPublisher<[ShowListItem], Never> {
+    func fetchKnownFor(forPerson personID: Person.ID) -> AnyPublisher<[Show], Never> {
         personService.fetchKnownFor(forPerson: personID)
-            .map(ShowListItem.create)
+            .map(Show.create)
             .replaceError(with: [])
             .eraseToAnyPublisher()
     }

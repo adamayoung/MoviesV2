@@ -9,25 +9,14 @@ import SwiftUI
 
 struct PersonRow: View {
 
-    var person: PersonListItem
+    var person: Person
 
     var body: some View {
         HStack(alignment: .center) {
             PersonImage(url: person.profileURL, displaySize: .medium)
 
-            VStack(alignment: .leading) {
-                Text(person.name ?? " ")
-                    .font(.headline)
-
-                Group {
-                    if let knownForSummary = person.knownForSummary {
-                        Text(knownForSummary)
-                            .foregroundColor(.secondary)
-                    }
-                }
-                .foregroundColor(.gray)
-                .font(.subheadline)
-            }
+            Text(person.name)
+                .font(.headline)
         }
     }
 
@@ -36,7 +25,7 @@ struct PersonRow: View {
 struct PersonRow_Previews: PreviewProvider {
 
     static var previews: some View {
-        let person = PersonListItem(id: 1, name: "Adam Young")
+        let person = Person(id: 1, name: "Adam Young")
         return PersonRow(person: person)
     }
 

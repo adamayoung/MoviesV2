@@ -9,11 +9,11 @@ import SwiftUI
 
 struct MultiTypeList: View {
 
-    @State private var selection: MultiTypeListItem?
+    @State private var selection: Media?
 
     @Binding var searchText: String
     var isSearching: Bool
-    var results: [MultiTypeListItem]
+    var results: [Media]
 
     var body: some View {
         #if os(macOS)

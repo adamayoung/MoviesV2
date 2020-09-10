@@ -17,10 +17,10 @@ final class TMDbSearchManager: SearchManager {
         self.searchService = searchService
     }
 
-    func search(query: String) -> AnyPublisher<[MultiTypeListItem], Never> {
+    func search(query: String) -> AnyPublisher<[Media], Never> {
         searchService.searchAll(query: query)
             .map(\.results)
-            .map(MultiTypeListItem.create)
+            .map(Media.create)
             .replaceError(with: [])
             .eraseToAnyPublisher()
     }
