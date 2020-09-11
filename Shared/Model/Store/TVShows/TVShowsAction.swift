@@ -21,5 +21,7 @@ enum TVShowsAction {
     case setRecommendations(recommendations: [TVShow], tvShowID: TVShow.ID)
     case fetchCredits(tvShowID: TVShow.ID)
     case setCredits(credits: Credits, tvShowID: TVShow.ID)
+    case fetchSeason(seasonNumber: Int, tvShowID: TVShow.ID)
+    case setSeason(season: TVShowSeason, seasonNumber: Int, tvShowID: TVShow.ID)
 
 }

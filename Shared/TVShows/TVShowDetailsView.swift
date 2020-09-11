@@ -17,6 +17,10 @@ struct TVShowDetailsView: View {
         store.state.tvShows.tvShows[id]
     }
 
+    private var seasons: [TVShowSeason]? {
+        store.state.tvShows.tvShows[id]?.seasons
+    }
+
     private var credits: Credits? {
         store.state.tvShows.credits[id]
     }
@@ -49,9 +53,10 @@ struct TVShowDetailsView: View {
 
     @ViewBuilder private var content: some View {
         if let tvShow = self.tvShow,
+           let seasons = self.seasons,
            let credits = self.credits,
            let recommendations = self.recommendations {
-            TVShowDetails(tvShow: tvShow, credits: credits, recommendations: recommendations)
+            TVShowDetails(tvShow: tvShow, seasons: seasons, credits: credits, recommendations: recommendations)
                 .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
         } else {
             ProgressView()
@@ -64,6 +69,10 @@ extension TVShowDetailsView {
 
     private func fetch() {
         store.send(.tvShows(.fetchTVShow(id: id)))
+
+        if seasons == nil {
+            store.send(.tvShows(.fetchTVShow(id: id)))
+        }
 
         if credits == nil {
             store.send((.tvShows(.fetchCredits(tvShowID: id))))

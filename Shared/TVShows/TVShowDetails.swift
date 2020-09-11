@@ -10,6 +10,7 @@ import SwiftUI
 struct TVShowDetails: View {
 
     var tvShow: TVShow
+    var seasons: [TVShowSeason]
     var credits: Credits
     var recommendations: [TVShow]
 
@@ -41,6 +42,24 @@ struct TVShowDetails: View {
                 }
                 #else
                 ShowPlotRow(title: tvShow.name, plot: overview)
+                #endif
+            }
+
+
+            if let seasons = tvShow.seasons, !seasons.isEmpty {
+                #if !os(watchOS)
+                Section(header: Text("Seasons")) {
+                    TVShowSeasonsCarousel(tvShowID: tvShow.id, seasons: seasons, displaySize: .medium)
+                        .listRowInsets(EdgeInsets())
+                }
+                #else
+                NavigationLink(destination: TVShowSeasonsView(tvShowID: tvShow.id)) {
+                    HStack {
+                            Spacer()
+                            Text("Seasons")
+                            Spacer()
+                        }
+                }
                 #endif
             }
 

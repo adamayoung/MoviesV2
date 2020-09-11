@@ -12,15 +12,18 @@ import TMDb
 final class TMDbTVShowsManager: TVShowsManager {
 
     private let tvShowService: TVShowService
+    private let tvShowSeasonService: TVShowSeasonService
     private let trendingService: TrendingService
     private let discoverService: DiscoverService
 
     init(
         tvShowService: TVShowService = TMDbTVShowService(),
+        tvShowSeasonService: TVShowSeasonService = TMDbTVShowSeasonService(),
         trendingService: TrendingService = TMDbTrendingService(),
         discoverService: DiscoverService = TMDbDiscoverService()
     ) {
         self.tvShowService = tvShowService
+        self.tvShowSeasonService = tvShowSeasonService
         self.trendingService = trendingService
         self.discoverService = discoverService
     }
@@ -60,6 +63,13 @@ final class TMDbTVShowsManager: TVShowsManager {
         tvShowService.fetchCredits(forTVShow: tvShowID)
             .map(Credits.init)
             .replaceError(with: Credits())
+            .eraseToAnyPublisher()
+    }
+
+    func fetchSeason(_ seasonNumber: Int, forTVShow tvShowID: TVShow.ID) -> AnyPublisher<TVShowSeason?, Never> {
+        tvShowSeasonService.fetchDetails(forSeasonNumber: seasonNumber, inTVShow: tvShowID)
+            .map(TVShowSeason.init)
+            .replaceError(with: nil)
             .eraseToAnyPublisher()
     }
 
