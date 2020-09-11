@@ -108,8 +108,15 @@ private func appendTrending(movies: [Movie], state: inout MoviesState) -> AnyPub
             .eraseToAnyPublisher()
     }
 
-    movies.forEach { state.movies[$0.id] = $0 }
-    state.trendingIDs.append(contentsOf: movies.map(\.id))
+    var trendingIDs = state.trendingIDs
+    movies.forEach {
+        state.movies[$0.id] = $0
+        if !trendingIDs.contains($0.id) {
+            trendingIDs.append($0.id)
+        }
+    }
+    state.trendingIDs = trendingIDs
+
     return Empty()
         .eraseToAnyPublisher()
 }
@@ -150,8 +157,15 @@ private func appendDiscover(movies: [Movie], state: inout MoviesState) -> AnyPub
             .eraseToAnyPublisher()
     }
 
-    movies.forEach { state.movies[$0.id] = $0 }
-    state.discoverIDs.append(contentsOf: movies.map(\.id))
+    var discoverIDs = state.discoverIDs
+    movies.forEach {
+        state.movies[$0.id] = $0
+        if !discoverIDs.contains($0.id) {
+            discoverIDs.append($0.id)
+        }
+    }
+    state.discoverIDs = discoverIDs
+
     return Empty()
         .eraseToAnyPublisher()
 }
