@@ -93,8 +93,15 @@ private func appendTrending(tvShows: [TVShow], state: inout TVShowsState) -> Any
             .eraseToAnyPublisher()
     }
 
-    tvShows.forEach { state.tvShows[$0.id] = $0 }
-    state.trendingIDs.append(contentsOf: tvShows.map(\.id))
+    var trendingIDs = state.trendingIDs
+    tvShows.forEach {
+        state.tvShows[$0.id] = $0
+        if !trendingIDs.contains($0.id) {
+            trendingIDs.append($0.id)
+        }
+    }
+    state.trendingIDs = trendingIDs
+
     return Empty()
         .eraseToAnyPublisher()
 }
@@ -135,8 +142,15 @@ private func appendDiscover(tvShows: [TVShow], state: inout TVShowsState) -> Any
             .eraseToAnyPublisher()
     }
 
-    tvShows.forEach { state.tvShows[$0.id] = $0 }
-    state.discoverIDs.append(contentsOf: tvShows.map(\.id))
+    var discoverIDs = state.discoverIDs
+    tvShows.forEach {
+        state.tvShows[$0.id] = $0
+        if !discoverIDs.contains($0.id) {
+            discoverIDs.append($0.id)
+        }
+    }
+    state.discoverIDs = discoverIDs
+
     return Empty()
         .eraseToAnyPublisher()
 }
@@ -167,7 +181,9 @@ private func setRecommendations(recommendations: [TVShow], tvShowID: TVShow.ID, 
     var recommendationIDs = state.recommendationsIDs[tvShowID] ?? []
     recommendations.forEach {
         state.tvShows[$0.id] = $0
-        recommendationIDs.append($0.id)
+        if !recommendationIDs.contains($0.id) {
+            recommendationIDs.append($0.id)
+        }
     }
     state.recommendationsIDs[tvShowID] = recommendationIDs
     return Empty()

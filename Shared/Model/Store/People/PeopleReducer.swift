@@ -75,8 +75,15 @@ private func appendTrending(people: [Person], state: inout PeopleState) -> AnyPu
             .eraseToAnyPublisher()
     }
 
-    people.forEach { state.people[$0.id] = $0 }
-    state.trendingIDs.append(contentsOf: people.map(\.id))
+    var trendingIDs = state.trendingIDs
+    people.forEach {
+        state.people[$0.id] = $0
+        if !trendingIDs.contains($0.id) {
+            trendingIDs.append($0.id)
+        }
+    }
+    state.trendingIDs = trendingIDs
+
     return Empty()
         .eraseToAnyPublisher()
 }
