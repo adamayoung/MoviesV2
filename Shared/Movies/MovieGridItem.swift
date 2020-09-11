@@ -13,6 +13,7 @@ struct MovieGridItem: View {
 
     var body: some View {
         PosterImage(url: movie.posterURL)
+            .shadow(radius: 5)
     }
 
 }

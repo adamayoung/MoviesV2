@@ -10,15 +10,26 @@ import SwiftUI
 struct BackdropImage: View {
 
     var url: URL?
-    var displaySize: DisplaySize = .medium
+    var displaySize: DisplaySize?
 
     var body: some View {
+        Group {
+            if let displaySize = displaySize {
+                content
+                    .frame(width: displaySize.size.width, alignment: .center)
+            } else {
+                content
+            }
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 5))
+    }
+
+    private var content: some View {
         ZStack(alignment: .center) {
             placeholder
             WebImage(url: url)
         }
-        .frame(width: displaySize.size.width, height: displaySize.size.height)
-        .cornerRadius(displaySize.size.height / 10)
+        .aspectRatio(DisplaySize.aspectRatio, contentMode: .fit)
     }
 
     private var placeholder: some View {
@@ -35,7 +46,7 @@ extension BackdropImage {
         case large = 150
         case extraLarge = 250
 
-        private static let aspectRatio: CGFloat = 500 / 281
+        static let aspectRatio: CGFloat = 500 / 281
 
         var size: CGSize {
             CGSize(width: (rawValue * Self.aspectRatio), height: rawValue)

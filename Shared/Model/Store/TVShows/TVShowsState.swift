@@ -27,6 +27,8 @@ struct TVShowsState: Equatable {
 
     var credits: [TVShow.ID: Credits] = [:]
 
+    var seasons: [TVShow.ID: [Int: TVShowSeason]] = [:]
+
 }
 
 extension TVShowsState {
@@ -51,6 +53,10 @@ extension TVShowsState {
 
     func recommendations(forTVShow tvShowID: TVShow.ID) -> [TVShow]? {
         recommendationsIDs[tvShowID]?.compactMap { tvShows[$0] }
+    }
+
+    func season(_ seasonNumber: Int, forTVShow tvShowID: TVShow.ID) -> TVShowSeason? {
+        seasons[tvShowID]?[seasonNumber]
     }
 
 }

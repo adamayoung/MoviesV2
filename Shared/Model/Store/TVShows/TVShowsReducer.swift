@@ -47,6 +47,12 @@ func tvShowsReducer(state: inout TVShowsState, action: TVShowsAction,
 
     case .setCredits(let credits, let tvShowID):
         return setCredits(credits: credits, tvShowID: tvShowID, state: &state)
+
+    case .fetchSeason(let seasonNumber, let tvShowID):
+        return fetchSeason(seasonNumber: seasonNumber, tvShowID: tvShowID, environment: environment)
+
+    case .setSeason(let season, let seasonNumber, let tvShowID):
+        return setSeason(season: season, seasonNumber: seasonNumber, tvShowID: tvShowID, state: &state)
     }
 }
 // swiftlint:enable cyclomatic_complexity
@@ -177,6 +183,24 @@ private func fetchCredits(tvShowID: TVShow.ID, environment: AppEnvironment) -> A
 
 private func setCredits(credits: Credits, tvShowID: TVShow.ID, state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
     state.credits[tvShowID] = credits
+    return Empty()
+        .eraseToAnyPublisher()
+}
+
+private func fetchSeason(seasonNumber: Int, tvShowID: TVShow.ID, environment: AppEnvironment) -> AnyPublisher<TVShowsAction, Never> {
+    environment.tvShowsManager
+        .fetchSeason(seasonNumber, forTVShow: tvShowID)
+        .filter { $0 != nil }
+        .map { $0! }
+        .map { .setSeason(season: $0, seasonNumber: seasonNumber, tvShowID: tvShowID) }
+        .eraseToAnyPublisher()
+}
+
+private func setSeason(season: TVShowSeason, seasonNumber: Int, tvShowID: TVShow.ID, state: inout TVShowsState) -> AnyPublisher<TVShowsAction, Never> {
+    var seasons = state.seasons[tvShowID] ?? [:]
+    seasons[seasonNumber] = season
+    state.seasons[tvShowID] = seasons
+
     return Empty()
         .eraseToAnyPublisher()
 }

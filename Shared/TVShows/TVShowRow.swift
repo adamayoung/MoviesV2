@@ -11,7 +11,7 @@ struct TVShowRow: View {
 
     var tvShow: TVShow
 
-    var verticalRowPadding: CGFloat {
+    private var verticalRowPadding: CGFloat {
         #if os(macOS)
         return 10
         #else

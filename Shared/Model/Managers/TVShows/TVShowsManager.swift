@@ -20,6 +20,8 @@ protocol TVShowsManager {
 
     func fetchCredits(forTVShow tvShowID: TVShow.ID) -> AnyPublisher<Credits, Never>
 
+    func fetchSeason(_ seasonNumber: Int, forTVShow tvShowID: TVShow.ID) -> AnyPublisher<TVShowSeason?, Never>
+
 }
 
 extension TVShowsManager {
