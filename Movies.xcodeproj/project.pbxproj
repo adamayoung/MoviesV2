@@ -12,6 +12,27 @@
 		6F00469E24EC691C00F1CF66 /* RecommendedTVShowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F00469B24EC691C00F1CF66 /* RecommendedTVShowsView.swift */; };
 		6F0046A024EC6DFD00F1CF66 /* HomeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F00469F24EC6DFD00F1CF66 /* HomeList.swift */; };
 		6F0046A124EC6DFD00F1CF66 /* HomeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F00469F24EC6DFD00F1CF66 /* HomeList.swift */; };
+		6F01451D25129F10001E436C /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01451C25129F10001E436C /* Genre.swift */; };
+		6F01451E25129F10001E436C /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01451C25129F10001E436C /* Genre.swift */; };
+		6F01451F25129F10001E436C /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01451C25129F10001E436C /* Genre.swift */; };
+		6F01452025129F10001E436C /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01451C25129F10001E436C /* Genre.swift */; };
+		6F01452125129F10001E436C /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01451C25129F10001E436C /* Genre.swift */; };
+		6F01452B25129F5C001E436C /* Genre+TMDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01452A25129F5C001E436C /* Genre+TMDb.swift */; };
+		6F01452C25129F5C001E436C /* Genre+TMDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01452A25129F5C001E436C /* Genre+TMDb.swift */; };
+		6F01452D25129F5C001E436C /* Genre+TMDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01452A25129F5C001E436C /* Genre+TMDb.swift */; };
+		6F01452E25129F5C001E436C /* Genre+TMDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01452A25129F5C001E436C /* Genre+TMDb.swift */; };
+		6F01452F25129F5C001E436C /* Genre+TMDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01452A25129F5C001E436C /* Genre+TMDb.swift */; };
+		6F0145412512AAA1001E436C /* MovieDetailsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0145402512AAA1001E436C /* MovieDetailsHeader.swift */; };
+		6F0145422512AAA1001E436C /* MovieDetailsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0145402512AAA1001E436C /* MovieDetailsHeader.swift */; };
+		6F0145432512AAA1001E436C /* MovieDetailsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0145402512AAA1001E436C /* MovieDetailsHeader.swift */; };
+		6F01457D2512BAB0001E436C /* TVShowDetailsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01457C2512BAB0001E436C /* TVShowDetailsHeader.swift */; };
+		6F01457E2512BAB0001E436C /* TVShowDetailsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01457C2512BAB0001E436C /* TVShowDetailsHeader.swift */; };
+		6F01457F2512BAB0001E436C /* TVShowDetailsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01457C2512BAB0001E436C /* TVShowDetailsHeader.swift */; };
+		6F01458B2512BBE1001E436C /* VoteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01458A2512BBE1001E436C /* VoteLabel.swift */; };
+		6F01458C2512BBE1001E436C /* VoteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01458A2512BBE1001E436C /* VoteLabel.swift */; };
+		6F01458D2512BBE1001E436C /* VoteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01458A2512BBE1001E436C /* VoteLabel.swift */; };
+		6F01458E2512BBE1001E436C /* VoteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01458A2512BBE1001E436C /* VoteLabel.swift */; };
+		6F01458F2512BBE1001E436C /* VoteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F01458A2512BBE1001E436C /* VoteLabel.swift */; };
 		6F03EC7724F5AD930069A2F2 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03EC7624F5AD930069A2F2 /* AppAction.swift */; };
 		6F03EC7824F5AD930069A2F2 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03EC7624F5AD930069A2F2 /* AppAction.swift */; };
 		6F03EC7924F5AD930069A2F2 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F03EC7624F5AD930069A2F2 /* AppAction.swift */; };
@@ -660,6 +681,11 @@
 /* Begin PBXFileReference section */
 		6F00469B24EC691C00F1CF66 /* RecommendedTVShowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedTVShowsView.swift; sourceTree = "<group>"; };
 		6F00469F24EC6DFD00F1CF66 /* HomeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeList.swift; sourceTree = "<group>"; };
+		6F01451C25129F10001E436C /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		6F01452A25129F5C001E436C /* Genre+TMDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Genre+TMDb.swift"; sourceTree = "<group>"; };
+		6F0145402512AAA1001E436C /* MovieDetailsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsHeader.swift; sourceTree = "<group>"; };
+		6F01457C2512BAB0001E436C /* TVShowDetailsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowDetailsHeader.swift; sourceTree = "<group>"; };
+		6F01458A2512BBE1001E436C /* VoteLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteLabel.swift; sourceTree = "<group>"; };
 		6F03EC7624F5AD930069A2F2 /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 		6F03EC7A24F5ADA50069A2F2 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		6F03EC7E24F5ADD80069A2F2 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
@@ -1068,6 +1094,8 @@
 				6FA7D3A924C5B23100581529 /* CrewMember+TMDb.swift */,
 				6FA7D39924C5B0B900581529 /* Gender.swift */,
 				6FA7D39D24C5B0E500581529 /* Gender+TMDb.swift */,
+				6F01451C25129F10001E436C /* Genre.swift */,
+				6F01452A25129F5C001E436C /* Genre+TMDb.swift */,
 				6FA9DE9C24C6557E0071121B /* Media.swift */,
 				6FA9DEA024C655C60071121B /* Media+TMDb.swift */,
 				6FD3E1AA24C10CCE00E62E67 /* Movie.swift */,
@@ -1228,6 +1256,7 @@
 				6F1AB46424FC479F00A0F59C /* MovieGridItem.swift */,
 				6FD7777224BFC28100E31D4D /* MovieDetailsView.swift */,
 				6FC657AF24C0A38B002B998A /* MovieDetails.swift */,
+				6F0145402512AAA1001E436C /* MovieDetailsHeader.swift */,
 				6FD7776424BFB8E600E31D4D /* MoviesCarousel.swift */,
 				6FD7775E24BFA26400E31D4D /* MovieCarouselItem.swift */,
 			);
@@ -1247,6 +1276,7 @@
 				6F42096D24FC5501002ACFF6 /* TVShowGridItem.swift */,
 				6FD7777624BFC2EA00E31D4D /* TVShowDetailsView.swift */,
 				6FC657B324C0A437002B998A /* TVShowDetails.swift */,
+				6F01457C2512BAB0001E436C /* TVShowDetailsHeader.swift */,
 				6FD7776E24BFC02500E31D4D /* TVShowsCarousel.swift */,
 				6FD7776A24BFBB6000E31D4D /* TVShowCarouselItem.swift */,
 			);
@@ -1335,6 +1365,7 @@
 				6FD3E18024C0C21400E62E67 /* ShowPlotRow.swift */,
 				6FD3E18424C0C37100E62E67 /* ShowPlotView.swift */,
 				6FABA3D324C6EDDF00DDD18A /* SearchBar.swift */,
+				6F01458A2512BBE1001E436C /* VoteLabel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1779,6 +1810,7 @@
 				6FABA3D924C70CD300DDD18A /* DismissKeyboardOnDragModifier.swift in Sources */,
 				6F03ECB724F5B6580069A2F2 /* BaseImageURLProviding.swift in Sources */,
 				6FF245D6250A72C300E0A69C /* TVShowSeason.swift in Sources */,
+				6F01457D2512BAB0001E436C /* TVShowDetailsHeader.swift in Sources */,
 				6FABA3C824C6D72600DDD18A /* MovieRow.swift in Sources */,
 				6F1AB46824FC496200A0F59C /* TrendingMoviesView.swift in Sources */,
 				6FA7D3B624C5B4CF00581529 /* MovieCreditsView.swift in Sources */,
@@ -1819,6 +1851,7 @@
 				6F21387924F7BC500050CF3B /* PersonPersonalDetailsSection.swift in Sources */,
 				6F4AF10F24F7D28E00306BA4 /* PeopleCarousel.swift in Sources */,
 				6F05456E24C08EEC003A82E7 /* ShowDetailsHeader.swift in Sources */,
+				6F01452B25129F5C001E436C /* Genre+TMDb.swift in Sources */,
 				6FD7777724BFC2EA00E31D4D /* TVShowDetailsView.swift in Sources */,
 				6F66452F24F7A9D90034FA08 /* Person+TMDb.swift in Sources */,
 				6FA5A9A324BF18BE00E828AA /* AppTabNavigation.swift in Sources */,
@@ -1836,6 +1869,7 @@
 				6FA5AA4324BF7F3300E828AA /* PersonImage.swift in Sources */,
 				6F21387524F7B4580050CF3B /* PersonBiographyView.swift in Sources */,
 				6FD7776B24BFBB6000E31D4D /* TVShowCarouselItem.swift in Sources */,
+				6F0145412512AAA1001E436C /* MovieDetailsHeader.swift in Sources */,
 				6F05B715250B8906009BC112 /* TVShowEpisodesList.swift in Sources */,
 				6F04857324F951DA00EA8327 /* PersonCreditsList.swift in Sources */,
 				6F4AF11F24F7E75400306BA4 /* PersonCombinedCredits.swift in Sources */,
@@ -1856,6 +1890,7 @@
 				6FC657B424C0A437002B998A /* TVShowDetails.swift in Sources */,
 				6F6A0EDB24FF97AD007E8F9A /* FavouritesList.swift in Sources */,
 				6FC44AA424C6243F00C0DCF3 /* SearchView.swift in Sources */,
+				6F01458B2512BBE1001E436C /* VoteLabel.swift in Sources */,
 				6F05B726250BB01F009BC112 /* TVShowSeasonsCarousel.swift in Sources */,
 				6F9E676F24F5A1C3003B66E8 /* MoviesAction.swift in Sources */,
 				6FD3E1AB24C10CCE00E62E67 /* Movie.swift in Sources */,
@@ -1885,6 +1920,7 @@
 				6F4AF13124F7E87C00306BA4 /* PersonCombinedCredits+TMDb.swift in Sources */,
 				6FD3E1B324C10EF400E62E67 /* Movie+TMDb.swift in Sources */,
 				6FA5A99424BF16CE00E828AA /* HomeView.swift in Sources */,
+				6F01451D25129F10001E436C /* Genre.swift in Sources */,
 				6F1AB45124FC304100A0F59C /* PersonPersonalDetailsView.swift in Sources */,
 				6FF393C724FE9B3A000E2A48 /* CloudKitFavouritesService.swift in Sources */,
 				6F42097624FC5591002ACFF6 /* MoviesCollection.swift in Sources */,
@@ -1927,6 +1963,7 @@
 				6F21386E24F7B1690050CF3B /* PersonDetailsHeader.swift in Sources */,
 				6FD64B8324F501D200213104 /* TMDbMoviesManager.swift in Sources */,
 				6FF245D7250A72C300E0A69C /* TVShowSeason.swift in Sources */,
+				6F01457E2512BAB0001E436C /* TVShowDetailsHeader.swift in Sources */,
 				6F21387624F7B4580050CF3B /* PersonBiographyView.swift in Sources */,
 				6F9E676424F5A157003B66E8 /* TVShowsAction.swift in Sources */,
 				6F05456724C05870003A82E7 /* TVShowsList.swift in Sources */,
@@ -1967,6 +2004,7 @@
 				6F66454224F7ACB30034FA08 /* PeopleState.swift in Sources */,
 				6F42096B24FC54A1002ACFF6 /* TVShowsGrid.swift in Sources */,
 				6FD3E1AC24C10CCE00E62E67 /* Movie.swift in Sources */,
+				6F01452C25129F5C001E436C /* Genre+TMDb.swift in Sources */,
 				6F1AB46624FC479F00A0F59C /* MovieGridItem.swift in Sources */,
 				6FD7776624BFB8E600E31D4D /* MoviesCarousel.swift in Sources */,
 				6FA5A99B24BF16FE00E828AA /* TrendingMoviesView.swift in Sources */,
@@ -1984,6 +2022,7 @@
 				6FA9DE9E24C6557E0071121B /* Media.swift in Sources */,
 				6F66454824F7AD0F0034FA08 /* PeopleReducer.swift in Sources */,
 				6F04855124F937AF00EA8327 /* PeopleManaging.swift in Sources */,
+				6F0145422512AAA1001E436C /* MovieDetailsHeader.swift in Sources */,
 				6F05B716250B8906009BC112 /* TVShowEpisodesList.swift in Sources */,
 				6FD64B7224F4FD5000213104 /* AppEnvironment.swift in Sources */,
 				6FD64B7E24F4FDF200213104 /* MoviesReducer.swift in Sources */,
@@ -2004,6 +2043,7 @@
 				6F1AB45224FC304200A0F59C /* PersonPersonalDetailsView.swift in Sources */,
 				6F6A0EDC24FF97AD007E8F9A /* FavouritesList.swift in Sources */,
 				6F42096F24FC5501002ACFF6 /* TVShowGridItem.swift in Sources */,
+				6F01458C2512BBE1001E436C /* VoteLabel.swift in Sources */,
 				6F05B727250BB01F009BC112 /* TVShowSeasonsCarousel.swift in Sources */,
 				6FA7D3D024C5C5BB00581529 /* CastMemberCarouselItem.swift in Sources */,
 				6FA7D3D424C5CB9000581529 /* PersonDetailsView.swift in Sources */,
@@ -2033,6 +2073,7 @@
 				6F21386A24F7AFBE0050CF3B /* PersonDetails.swift in Sources */,
 				6FC44AA524C6243F00C0DCF3 /* SearchView.swift in Sources */,
 				6F6F0CFA24BF9136001AD4BA /* WebImage.swift in Sources */,
+				6F01451E25129F10001E436C /* Genre.swift in Sources */,
 				6F4AF11024F7D28E00306BA4 /* PeopleCarousel.swift in Sources */,
 				6FD3E1B424C10EF400E62E67 /* Movie+TMDb.swift in Sources */,
 				6F611FE524CB9951003286E7 /* RecommendedMoviesView.swift in Sources */,
@@ -2115,6 +2156,7 @@
 				6F6F0CFB24BF9136001AD4BA /* WebImage.swift in Sources */,
 				6FEBAAF424C1DA58009871B3 /* TVShow.swift in Sources */,
 				6FD7777524BFC28100E31D4D /* MovieDetailsView.swift in Sources */,
+				6F01452D25129F5C001E436C /* Genre+TMDb.swift in Sources */,
 				6FD7777124BFC02500E31D4D /* TVShowsCarousel.swift in Sources */,
 				6FA7985924D06E6A0003F0D1 /* DateFormatter+custom.swift in Sources */,
 				6FA5A9EE24BF316900E828AA /* DiscoverMoviesView.swift in Sources */,
@@ -2149,6 +2191,8 @@
 				6FF2460D250A7A3300E0A69C /* TVShowSeasonGridItem.swift in Sources */,
 				6FA5A9F624BF317000E828AA /* URL+DeepLink.swift in Sources */,
 				6FA9DE9F24C6557E0071121B /* Media.swift in Sources */,
+				6F0145432512AAA1001E436C /* MovieDetailsHeader.swift in Sources */,
+				6F01457F2512BAB0001E436C /* TVShowDetailsHeader.swift in Sources */,
 				6F9E676D24F5A199003B66E8 /* TVShowsReducer.swift in Sources */,
 				6FD7777924BFC2EA00E31D4D /* TVShowDetailsView.swift in Sources */,
 				6FCCCAE824F5A2D400853D7F /* SearchAction.swift in Sources */,
@@ -2175,6 +2219,7 @@
 				6F04855224F937AF00EA8327 /* PeopleManaging.swift in Sources */,
 				6FA7D3AC24C5B23100581529 /* CrewMember+TMDb.swift in Sources */,
 				6FA5A9F224BF316D00E828AA /* DiscoverTVShowsView.swift in Sources */,
+				6F01451F25129F10001E436C /* Genre.swift in Sources */,
 				6F66452B24F7A89A0034FA08 /* Person.swift in Sources */,
 				6FF245E4250A73C500E0A69C /* TVShowSeason+TMDb.swift in Sources */,
 				6FA5A9ED24BF315A00E828AA /* AppConstants.swift in Sources */,
@@ -2222,6 +2267,7 @@
 				6FC657B624C0A437002B998A /* TVShowDetails.swift in Sources */,
 				6FD64B6E24F4FCBF00213104 /* AppReducer.swift in Sources */,
 				6FCCCAF424F5A4D800853D7F /* TMDbSearchManager.swift in Sources */,
+				6F01458D2512BBE1001E436C /* VoteLabel.swift in Sources */,
 				6FA7D3A424C5B13400581529 /* CrewMember.swift in Sources */,
 				6F05B728250BB01F009BC112 /* TVShowSeasonsCarousel.swift in Sources */,
 				6FD64B7F24F4FDF200213104 /* MoviesReducer.swift in Sources */,
@@ -2251,9 +2297,11 @@
 				6FF245EB250A74E500E0A69C /* TVShowEpisode+TMDb.swift in Sources */,
 				6FA5AA1824BF3EBD00E828AA /* MoviesWidgets.swift in Sources */,
 				6F66453224F7A9D90034FA08 /* Person+TMDb.swift in Sources */,
+				6F01458E2512BBE1001E436C /* VoteLabel.swift in Sources */,
 				6F03EC8A24F5B1130069A2F2 /* CastMember+TMDb.swift in Sources */,
 				6F05456124C04AC6003A82E7 /* WebImage.swift in Sources */,
 				6FA5AA1F24BF445000E828AA /* AppConstants.swift in Sources */,
+				6F01452E25129F5C001E436C /* Genre+TMDb.swift in Sources */,
 				6F4AF12E24F7E80600306BA4 /* Show+TMDb.swift in Sources */,
 				6FA5AA1A24BF3EF900E828AA /* TrendingMovieWidget.swift in Sources */,
 				6F04855F24F9395F00EA8327 /* SearchManager.swift in Sources */,
@@ -2271,6 +2319,7 @@
 				6F04854D24F9362400EA8327 /* MoviesManaging.swift in Sources */,
 				6F66453824F7AB450034FA08 /* TMDbPeopleManager.swift in Sources */,
 				6F05456324C0507A003A82E7 /* BackdropImage.swift in Sources */,
+				6F01452025129F10001E436C /* Genre.swift in Sources */,
 				6F04855924F9394300EA8327 /* TVShowsManager.swift in Sources */,
 				6F03EC8424F5B0FB0069A2F2 /* TMDbSearchManager.swift in Sources */,
 				6F03EC8E24F5B1130069A2F2 /* TVShow.swift in Sources */,
@@ -2305,9 +2354,11 @@
 				6FF245EC250A74E500E0A69C /* TVShowEpisode+TMDb.swift in Sources */,
 				6FA5AA5024BF8BE700E828AA /* PersonImage.swift in Sources */,
 				6F66453324F7A9D90034FA08 /* Person+TMDb.swift in Sources */,
+				6F01458F2512BBE1001E436C /* VoteLabel.swift in Sources */,
 				6F03EC9E24F5B1140069A2F2 /* CastMember+TMDb.swift in Sources */,
 				6F6F0CF724BF8CD2001AD4BA /* PosterImage.swift in Sources */,
 				6F6F0CFD24BF9136001AD4BA /* WebImage.swift in Sources */,
+				6F01452F25129F5C001E436C /* Genre+TMDb.swift in Sources */,
 				6F4AF12F24F7E80600306BA4 /* Show+TMDb.swift in Sources */,
 				6FA5AA3D24BF490000E828AA /* AppConstants.swift in Sources */,
 				6F04856024F9395F00EA8327 /* SearchManager.swift in Sources */,
@@ -2325,6 +2376,7 @@
 				6F04854E24F9362400EA8327 /* MoviesManaging.swift in Sources */,
 				6F66453924F7AB450034FA08 /* TMDbPeopleManager.swift in Sources */,
 				6FA5AA4124BF4E7400E828AA /* TrendingTVShowWidget.swift in Sources */,
+				6F01452125129F10001E436C /* Genre.swift in Sources */,
 				6F04855A24F9394300EA8327 /* TVShowsManager.swift in Sources */,
 				6F03EC8724F5B0FC0069A2F2 /* TMDbSearchManager.swift in Sources */,
 				6F03ECA224F5B1140069A2F2 /* TVShow.swift in Sources */,

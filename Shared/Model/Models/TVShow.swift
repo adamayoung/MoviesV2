@@ -18,9 +18,12 @@ struct TVShow: Identifiable, Equatable {
     let homepageURL: URL?
     let popularity: Float?
     let seasons: [TVShowSeason]?
+    let genres: [Genre]?
+    let voteAverage: Float?
 
     init(id: Int, name: String, overview: String? = nil, firstAirDate: Date? = nil, posterURL: URL? = nil,
-         backdropURL: URL? = nil, homepageURL: URL? = nil, popularity: Float? = nil, seasons: [TVShowSeason]? = nil) {
+         backdropURL: URL? = nil, homepageURL: URL? = nil, popularity: Float? = nil, seasons: [TVShowSeason]? = nil,
+         genres: [Genre]? = nil, voteAverage: Float? = nil) {
         self.id = id
         self.name = name
         self.overview = overview
@@ -30,6 +33,8 @@ struct TVShow: Identifiable, Equatable {
         self.homepageURL = homepageURL
         self.popularity = popularity
         self.seasons = seasons
+        self.genres = genres
+        self.voteAverage = voteAverage
     }
 
 }

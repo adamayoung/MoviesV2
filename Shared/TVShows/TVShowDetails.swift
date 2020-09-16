@@ -29,7 +29,7 @@ struct TVShowDetails: View {
 
     private var content: some View {
         List {
-            Section(header: ShowDetailsHeader(tvShow: tvShow)) {
+            Section(header: TVShowDetailsHeader(tvShow: tvShow)) {
                 EmptyView()
             }
             .listRowInsets(EdgeInsets())
