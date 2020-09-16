@@ -17,23 +17,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Cache vendor/bundle
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-
       - name: Install dependencies
-        run: |
-          bundle config deployment true
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-          brew bundle
+        run: brew bundle
 
       - name: Build and Upload to TestFlight
-        run: bundle exec fastlane ios beta
+        run: fastlane ios beta
         env:
           FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}

@@ -21,8 +21,4 @@ extension Credits {
         self.init(cast: credits.cast, crew: credits.crew)
     }
 
-    init(credits: TMDb.Movie.Credits) {
-        self.init(cast: credits.cast, crew: credits.crew)
-    }
-
 }

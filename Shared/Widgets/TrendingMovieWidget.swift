@@ -50,14 +50,14 @@ extension TrendingMovieWidget {
                         let thisMovie = movie,
                         let backdropURL = thisMovie.backdropURL
                     else {
-                        return Just(Entry(date: currentDate, title: movie?.title))
+                        return Just(Entry(id: movie?.id, date: currentDate, title: movie?.title))
                             .eraseToAnyPublisher()
                     }
 
                     return self.urlSession.dataTaskPublisher(for: backdropURL)
                         .map { $0.data as Data? }
                         .replaceError(with: nil)
-                        .map { Entry(date: currentDate, title: thisMovie.title, backdropData: $0) }
+                        .map { Entry(id: thisMovie.id, date: currentDate, title: thisMovie.title, backdropData: $0) }
                         .eraseToAnyPublisher()
                 }
                 .receive(on: DispatchQueue.main)
@@ -101,10 +101,19 @@ extension TrendingMovieWidget {
 
     struct Entry: TimelineEntry {
 
+        var id: Movie.ID?
         var date: Date
         var title: String?
         var backdropData: Data?
         var backdropImageName: String?
+
+        var url: URL? {
+            guard let id = id else {
+                return nil
+            }
+
+            return URL(string: "movies://movies/\(id)")!
+        }
 
     }
 
@@ -121,6 +130,7 @@ struct TrendingMovieEntryView: View {
 
     var body: some View {
         MovieWidgetView(type: .trendingMovie, title: entry.title, backdropData: entry.backdropData, backdropImageName: entry.backdropImageName)
+            .widgetURL(entry.url)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
     }
 

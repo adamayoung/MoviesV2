@@ -11,6 +11,7 @@ import TMDb
 struct HomeView: View {
 
     @EnvironmentObject private var store: AppStore
+    @State private var navigationSelection: HomeList.NavigationSelection?
 
     private var trendingMovies: [Movie] {
         store.state.movies.topTrending
@@ -38,15 +39,37 @@ struct HomeView: View {
             discoverMovies: discoverMovies,
             trendingTVShows: trendingTVShows,
             discoverTVShows: discoverTVShows,
-            trendingPeople: trendingPeople
+            trendingPeople: trendingPeople,
+            navigationSelection: $navigationSelection
         )
         .onAppear(perform: fetch)
+        .onOpenURL(perform: openURL)
         .navigationTitle("Home")
     }
 
 }
 
 extension HomeView {
+
+    private func openURL(url: URL) {
+        guard url.isDeeplink else {
+            return
+        }
+
+        guard let navigationSelection = HomeList.NavigationSelection(deepLink: url) else {
+            return
+        }
+
+        if self.navigationSelection == nil {
+            self.navigationSelection = navigationSelection
+            return
+        }
+
+        self.navigationSelection = nil
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.navigationSelection = navigationSelection
+        }
+    }
 
     private func fetch() {
         if trendingMovies.isEmpty {

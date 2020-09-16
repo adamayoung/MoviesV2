@@ -57,7 +57,7 @@ extension TrendingTVShowWidget {
                     return self.urlSession.dataTaskPublisher(for: backdropURL)
                         .map { $0.data as Data? }
                         .replaceError(with: nil)
-                        .map { Entry(date: currentDate, name: thisTVShow.name, backdropData: $0) }
+                        .map { Entry(id: thisTVShow.id, date: currentDate, name: thisTVShow.name, backdropData: $0) }
                         .eraseToAnyPublisher()
                 }
                 .receive(on: DispatchQueue.main)
@@ -101,10 +101,19 @@ extension TrendingTVShowWidget {
 
     struct Entry: TimelineEntry {
 
+        var id: TVShow.ID?
         var date: Date
         var name: String?
         var backdropData: Data?
         var backdropImageName: String?
+
+        var url: URL? {
+            guard let id = id else {
+                return nil
+            }
+
+            return URL(string: "movies://tvshows/\(id)")!
+        }
 
     }
 
@@ -120,6 +129,15 @@ struct TrendingTVShowEntryView: View {
     }
 
     var body: some View {
+        if let url = entry.url {
+            content
+                .widgetURL(url)
+        } else {
+            content
+        }
+    }
+
+    private var content: some View {
         MovieWidgetView(type: .trendingTVShow, title: entry.name, backdropData: entry.backdropData, backdropImageName: entry.backdropImageName)
     }
 

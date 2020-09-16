@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-// swiftlint:disable cyclomatic_complexity function_body_length
+// swiftlint:disable cyclomatic_complexity
 func moviesReducer(state: inout MoviesState, action: MoviesAction,
                    environment: AppEnvironment) -> AnyPublisher<MoviesAction, Never> {
     switch action {
