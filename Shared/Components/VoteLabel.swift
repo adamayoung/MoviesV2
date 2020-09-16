@@ -12,17 +12,19 @@ struct VoteLabel: View {
     var voteAverage: Float
 
     private var voteColor: Color {
-        get {
-            if voteAverage < 4 {
-                return .red
-            } else if voteAverage < 6 {
-                return .orange
-            } else if voteAverage < 7.5 {
-                return .yellow
-            }
-
-            return .green
+        if voteAverage < 4 {
+            return .red
         }
+
+        if voteAverage < 6 {
+            return .orange
+        }
+
+        if voteAverage < 7.5 {
+            return .yellow
+        }
+
+        return .green
     }
 
     var body: some View {

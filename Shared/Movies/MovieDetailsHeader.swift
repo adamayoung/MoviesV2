@@ -36,22 +36,6 @@ struct MovieDetailsHeader: View {
         return items
     }
 
-    var voteColor: Color {
-        get {
-            let voteAverage = movie.voteAverage ?? 0
-
-            if voteAverage < 4 {
-                return .red
-            } else if voteAverage < 6 {
-                return .orange
-            } else if voteAverage < 7.5 {
-                return .yellow
-            }
-
-            return .green
-        }
-    }
-
     var body: some View {
         VStack {
             ShowDetailsHeader(movie: movie)
