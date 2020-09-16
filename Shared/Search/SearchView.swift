@@ -27,6 +27,26 @@ struct SearchView: View {
             .onChange(of: searchText) { query in
                 store.send(.search(.search(query: query)))
             }
+            .onOpenURL(perform: openURL)
+    }
+
+}
+
+extension SearchView {
+
+    private func openURL(url: URL) {
+        guard
+            url.isDeeplink,
+            url.host == "search",
+            url.pathComponents.isEmpty,
+            let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true),
+            let qQueryItem = urlComponents.queryItems?.first(where: { $0.name == "q" }),
+            let searchText = qQueryItem.value
+        else {
+            return
+        }
+
+        self.searchText = searchText
     }
 
 }

@@ -14,6 +14,10 @@ struct HomeList: View {
     var trendingTVShows: [TVShow] = []
     var discoverTVShows: [TVShow] = []
     var trendingPeople: [Person] = []
+    @Binding var navigationSelection: NavigationSelection?
+
+    @State private var trendingMovieSelection: Movie.ID?
+    @State private var discoverMovieSelection: Movie.ID?
 
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -66,7 +70,7 @@ struct HomeList: View {
         #endif
     }
 
-    private var content: some View {
+    @ViewBuilder private var content: some View {
         List {
             Section(header: trendingMoviesSectionHeader) {
                 MoviesCarousel(movies: trendingMovies, displaySize: largeBackdropDisplaySize)
@@ -102,7 +106,11 @@ struct HomeList: View {
                 .fontWeight(.heavy)
 
             Spacer()
-            NavigationLink(destination: TrendingMoviesView()) {
+            NavigationLink(
+                destination: TrendingMoviesView(),
+                tag: .trendingMovies,
+                selection: $navigationSelection
+            ) {
                 Text("See more")
                     .font(.body)
                     .foregroundColor(.accentColor)
@@ -119,7 +127,11 @@ struct HomeList: View {
                 .fontWeight(.heavy)
 
             Spacer()
-            NavigationLink(destination: DiscoverMoviesView()) {
+            NavigationLink(
+                destination: DiscoverMoviesView(),
+                tag: .discoverMovies,
+                selection: $navigationSelection
+            ) {
                 Text("See more")
                     .font(.body)
                     .foregroundColor(.accentColor)
@@ -136,7 +148,11 @@ struct HomeList: View {
                 .fontWeight(.heavy)
 
             Spacer()
-            NavigationLink(destination: TrendingTVShowsView()) {
+            NavigationLink(
+                destination: TrendingTVShowsView(),
+                tag: .trendingTVShows,
+                selection: $navigationSelection
+            ) {
                 Text("See more")
                     .font(.body)
                     .foregroundColor(.accentColor)
@@ -153,7 +169,11 @@ struct HomeList: View {
                 .fontWeight(.heavy)
 
             Spacer()
-            NavigationLink(destination: DiscoverTVShowsView()) {
+            NavigationLink(
+                destination: DiscoverTVShowsView(),
+                tag: .discoverTVShows,
+                selection: $navigationSelection
+            ) {
                 Text("See more")
                     .font(.body)
                     .foregroundColor(.accentColor)
@@ -170,7 +190,11 @@ struct HomeList: View {
                 .fontWeight(.heavy)
 
             Spacer()
-            NavigationLink(destination: TrendingPeopleView()) {
+            NavigationLink(
+                destination: TrendingPeopleView(),
+                tag: .trendingPeople,
+                selection: $navigationSelection
+            ) {
                 Text("See more")
                     .font(.body)
                     .foregroundColor(.accentColor)
@@ -182,10 +206,62 @@ struct HomeList: View {
 
 }
 
+extension HomeList {
+
+    enum NavigationSelection: Hashable {
+        case trendingMovies
+        case discoverMovies
+        case trendingTVShows
+        case discoverTVShows
+        case trendingPeople
+
+        init?(deepLink url: URL) {
+            switch url.host {
+            case "movies":
+                switch url.path {
+                case "/trending":
+                    self = .trendingMovies
+
+                case "/discover":
+                    self = .discoverMovies
+
+                default:
+                    return nil
+                }
+
+            case "tvshows":
+                switch url.path {
+                case "/trending":
+                    self = .trendingTVShows
+
+                case "/discover":
+                    self = .discoverTVShows
+
+                default:
+                    return nil
+                }
+
+            case "people":
+                switch url.path {
+                case "/trending":
+                    self = .trendingPeople
+
+                default:
+                    return nil
+                }
+
+            default:
+                return nil
+            }
+        }
+    }
+
+}
+
 struct HomeList_Previews: PreviewProvider {
 
     static var previews: some View {
-        HomeList()
+        HomeList(navigationSelection: .constant(nil))
     }
 
 }
