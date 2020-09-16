@@ -101,7 +101,7 @@ extension TrendingTVShowWidget {
 
     struct Entry: TimelineEntry {
 
-        var id: TVShow.ID? = nil
+        var id: TVShow.ID?
         var date: Date
         var name: String?
         var backdropData: Data?

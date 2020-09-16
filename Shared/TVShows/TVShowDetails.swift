@@ -45,7 +45,6 @@ struct TVShowDetails: View {
                 #endif
             }
 
-
             if let seasons = tvShow.seasons, !seasons.isEmpty {
                 #if !os(watchOS)
                 Section(header: Text("Seasons")) {

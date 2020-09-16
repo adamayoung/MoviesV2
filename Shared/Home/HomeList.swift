@@ -215,6 +215,7 @@ extension HomeList {
         case discoverTVShows
         case trendingPeople
 
+        // swiftlint:disable cyclomatic_complexity
         init?(deepLink url: URL) {
             switch url.host {
             case "movies":
@@ -254,6 +255,7 @@ extension HomeList {
                 return nil
             }
         }
+        // swiftlint:enable cyclomatic_complexity
     }
 
 }
