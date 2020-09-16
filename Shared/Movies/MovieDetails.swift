@@ -28,7 +28,7 @@ struct MovieDetails: View {
 
     private var content: some View {
         List {
-            Section(header: ShowDetailsHeader(movie: movie)) {
+            Section(header: MovieDetailsHeader(movie: movie)) {
                 EmptyView()
             }
             .listRowInsets(EdgeInsets())
@@ -95,8 +95,24 @@ struct MovieDetails: View {
 
 }
 
-//struct MovieDetails_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MovieDetails()
-//    }
-//}
+struct MovieDetails_Previews: PreviewProvider {
+
+    static var previews: some View {
+        let movie = Movie(
+            id: 1,
+            title: "Fight Club",
+            overview: "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
+            runtime: TimeInterval(120 * 60),
+            genres: [
+                Genre(id: 1, name: "Drama"),
+                Genre(id: 2, name: "Action")
+            ],
+            releaseDate: Date(timeIntervalSinceNow: 0)
+        )
+
+        return NavigationView {
+            MovieDetails(movie: movie, credits: Credits(), recommendations: [])
+        }
+    }
+
+}

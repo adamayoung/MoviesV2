@@ -13,21 +13,28 @@ struct Movie: Identifiable, Equatable {
     let title: String
     let tagline: String?
     let overview: String?
+    let runtime: TimeInterval?
+    let genres: [Genre]?
     let releaseDate: Date?
     let posterURL: URL?
     let backdropURL: URL?
     let popularity: Float?
+    let voteAverage: Float?
 
-    init(id: Int, title: String, tagline: String? = nil, overview: String? = nil, releaseDate: Date? = nil,
-         posterURL: URL? = nil, backdropURL: URL? = nil, popularity: Float? = nil) {
+    init(id: Int, title: String, tagline: String? = nil, overview: String? = nil, runtime: TimeInterval? = nil,
+         genres: [Genre]? = nil, releaseDate: Date? = nil, posterURL: URL? = nil, backdropURL: URL? = nil,
+         popularity: Float? = nil, voteAverage: Float? = nil) {
         self.id = id
         self.title = title
         self.tagline = tagline
         self.overview = overview
+        self.runtime = runtime
+        self.genres = genres
         self.releaseDate = releaseDate
         self.posterURL = posterURL
         self.backdropURL = backdropURL
         self.popularity = popularity
+        self.voteAverage = voteAverage
     }
 
 }
