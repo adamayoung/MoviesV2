@@ -9,14 +9,14 @@ import SwiftUI
 
 struct TrendingPeopleView: View {
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var personStore: PersonStore
 
     private var people: [Person] {
-        store.state.people.trending
+        personStore.trending
     }
 
     var body: some View {
-        PeopleCollection(people: people, itemDidAppear: itemDidAppear)
+        PeopleCollection(people: people, personDidAppear: personDidAppear)
             .overlay(Group {
                 if people.isEmpty {
                     ProgressView()
@@ -31,15 +31,11 @@ struct TrendingPeopleView: View {
 extension TrendingPeopleView {
 
     private func fetch() {
-        guard people.isEmpty else {
-            return
-        }
-
-        store.send(.people(.fetchTrending))
+        personStore.fetchTrending()
     }
 
-    private func itemDidAppear(currentItem item: Person, offset: Int) {
-        store.send(.people(.fetchNextTrendingIfNeeded(currentPerson: item, offset: offset)))
+    private func personDidAppear(currentPerson person: Person, offset: Int) {
+        personStore.fetchNextTrendingIfNeeded(currentPerson: person, offset: offset)
     }
 
 }

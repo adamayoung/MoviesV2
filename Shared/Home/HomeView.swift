@@ -10,27 +10,30 @@ import TMDb
 
 struct HomeView: View {
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var movieStore: MovieStore
+    @EnvironmentObject private var tvShowStore: TVShowStore
+    @EnvironmentObject private var personStore: PersonStore
+
     @State private var navigationSelection: HomeList.NavigationSelection?
 
     private var trendingMovies: [Movie] {
-        store.state.movies.topTrending
+        movieStore.topTrending
     }
 
     private var discoverMovies: [Movie] {
-        store.state.movies.topDiscover
+        movieStore.topDiscover
     }
 
     private var trendingTVShows: [TVShow] {
-        store.state.tvShows.topTrending
+        tvShowStore.topTrending
     }
 
     private var discoverTVShows: [TVShow] {
-        store.state.tvShows.topDiscover
+        tvShowStore.topDiscover
     }
 
     private var trendingPeople: [Person] {
-        store.state.people.topTrending
+        personStore.topTrending
     }
 
     var body: some View {
@@ -73,23 +76,23 @@ extension HomeView {
 
     private func fetch() {
         if trendingMovies.isEmpty {
-            store.send(.movies(.fetchTrending))
+            movieStore.fetchTrending()
         }
 
         if discoverMovies.isEmpty {
-            store.send(.movies(.fetchDiscover))
+            movieStore.fetchDiscover()
         }
 
         if trendingTVShows.isEmpty {
-            store.send(.tvShows(.fetchTrending))
+            tvShowStore.fetchTrending()
         }
 
         if discoverTVShows.isEmpty {
-            store.send(.tvShows(.fetchDiscover))
+            tvShowStore.fetchDiscover()
         }
 
         if trendingPeople.isEmpty {
-            store.send(.people(.fetchTrending))
+            personStore.fetchTrending()
         }
     }
 

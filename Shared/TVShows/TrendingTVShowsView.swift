@@ -9,10 +9,10 @@ import SwiftUI
 
 struct TrendingTVShowsView: View {
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var tvShowStore: TVShowStore
 
     private var tvShows: [TVShow] {
-        store.state.tvShows.trending
+        tvShowStore.trending
     }
 
     var body: some View {
@@ -35,11 +35,11 @@ extension TrendingTVShowsView {
             return
         }
 
-        store.send(.tvShows(.fetchTrending))
+        tvShowStore.fetchTrending()
     }
 
     private func tvShowDidAppear(_ tvShow: TVShow, offset: Int) {
-        store.send(.tvShows(.fetchNextTrendingIfNeeded(currentTVShow: tvShow, offset: offset)))
+        tvShowStore.fetchNextTrendingIfNeeded(currentTVShow: tvShow, offset: offset)
     }
 
 }

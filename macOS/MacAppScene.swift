@@ -9,12 +9,16 @@ import SwiftUI
 
 struct MacAppScene: Scene {
 
-    @ObservedObject var store: AppStore
+    @ObservedObject var movieStore: MovieStore
+    @ObservedObject var tvShowStore: TVShowStore
+    @ObservedObject var personStore: PersonStore
 
     var body: some Scene {
         WindowGroup {
             AppSidebarNavigation()
-                .environmentObject(store)
+                .environmentObject(movieStore)
+                .environmentObject(tvShowStore)
+                .environmentObject(personStore)
                 .toolbar {
                     ToolbarItem(placement: .automatic) {
                         SearchBar(text: .constant(""))

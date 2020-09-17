@@ -9,24 +9,19 @@ import SwiftUI
 
 struct SearchView: View {
 
-    @EnvironmentObject private var store: AppStore
+    @StateObject private var searchStore = SearchStore()
 
     @State private var searchText: String = ""
-
-    private var isSearching: Bool {
-        store.state.search.isSearching
-    }
+    @State private var isSearching = false
 
     private var results: [Media] {
-        store.state.search.results
+        searchStore.results
     }
 
     var body: some View {
         MultiTypeList(searchText: $searchText, isSearching: isSearching, results: results)
             .navigationTitle("Search")
-            .onChange(of: searchText) { query in
-                store.send(.search(.search(query: query)))
-            }
+            .onChange(of: searchText, perform: search)
             .onOpenURL(perform: openURL)
     }
 
@@ -47,6 +42,13 @@ extension SearchView {
         }
 
         self.searchText = searchText
+    }
+
+    private func search(query: String) {
+        isSearching = true
+        searchStore.search(query: query) { _ in
+            isSearching = false
+        }
     }
 
 }

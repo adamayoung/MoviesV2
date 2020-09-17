@@ -11,26 +11,27 @@ struct MovieDetailsView: View {
 
     var id: Movie.ID
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var movieStore: MovieStore
 
     private var movie: Movie? {
-        store.state.movies.movies[id]
+        movieStore.movie(withID: id)
     }
 
     private var isFavourite: Bool {
-        guard let movie = movie else {
-            return false
-        }
+//        guard let movie = movie else {
+//            return false
+//        }
 
-        return store.state.movies.isFavourite(movie.id)
+        //return store.state.movies.isFavourite(movie.id)
+        return false
     }
 
     private var credits: Credits? {
-        store.state.movies.credits[id]
+        movieStore.credits(forMovie: id)
     }
 
     private var recommendations: [Movie]? {
-        store.state.movies.recommendations(forMovie: id)
+        movieStore.recommendations(forMovie: id)
     }
 
     private var title: String {
@@ -89,13 +90,13 @@ struct MovieDetailsView: View {
     }
 
     private func toogleFavourite() {
-        let isFavourite = !self.isFavourite
-
-        if isFavourite {
-            store.send(.movies(.addFavourite(movieID: id)))
-        } else {
-            store.send(.movies(.removeFavourite(movieID: id)))
-        }
+//        let isFavourite = !self.isFavourite
+//
+//        if isFavourite {
+//            store.send(.movies(.addFavourite(movieID: id)))
+//        } else {
+//            store.send(.movies(.removeFavourite(movieID: id)))
+//        }
     }
 
 }
@@ -103,15 +104,9 @@ struct MovieDetailsView: View {
 extension MovieDetailsView {
 
     private func fetch() {
-        store.send(.movies(.fetchMovie(id: id)))
-
-        if credits == nil {
-            store.send(.movies(.fetchCredits(movieID: id)))
-        }
-
-        if recommendations == nil {
-            store.send(.movies(.fetchRecommendations(movieID: id)))
-        }
+        movieStore.fetchMovie(withID: id)
+        movieStore.fetchCredits(forMovie: id)
+        movieStore.fetchRecommendations(forMovie: id)
     }
 
 }

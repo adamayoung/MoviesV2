@@ -30,7 +30,6 @@ struct Sidebar: View {
         }
     }
 
-    @EnvironmentObject private var store: AppStore
     @State private var selection: NavigationItem?
 
     var body: some View {

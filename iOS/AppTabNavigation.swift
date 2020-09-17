@@ -10,8 +10,12 @@ import SwiftUI
 struct AppTabNavigation: View {
 
     @AppStorage("tabNavigationSelecton") private var selection: Tab = .home
+
+    @EnvironmentObject private var movieStore: MovieStore
+    @EnvironmentObject private var tvShowStore: TVShowStore
+    @EnvironmentObject private var personStore: PersonStore
+
     @State private var sheetItem: SheetItem?
-    @EnvironmentObject private var store: AppStore
 
     var body: some View {
         TabView(selection: $selection) {
@@ -50,15 +54,17 @@ struct AppTabNavigation: View {
                 switch item {
                 case .movieDetails(let movieID):
                     MovieDetailsView(id: movieID)
+                        .environmentObject(movieStore)
 
                 case .tvShowDetails(let tvShowID):
                     TVShowDetailsView(id: tvShowID)
+                        .environmentObject(tvShowStore)
 
                 case .personDetails(let personID):
                     PersonDetailsView(id: personID)
+                        .environmentObject(personStore)
                 }
             }
-            .environmentObject(store)
         }
         .onOpenURL(perform: openURL)
     }

@@ -9,11 +9,11 @@ import SwiftUI
 
 struct FavouriteMoviesView: View {
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var movieStore: MovieStore
     @State private var allowAnimations = false
 
     private var movies: [Movie] {
-        store.state.movies.favourites
+        movieStore.favourites
     }
 
     var body: some View {

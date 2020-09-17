@@ -10,28 +10,25 @@ import WidgetKit
 
 struct MainAppScene: Scene {
 
-    @ObservedObject var store: AppStore
+    @ObservedObject var movieStore: MovieStore
+    @ObservedObject var tvShowStore: TVShowStore
+    @ObservedObject var personStore: PersonStore
 
     @Environment(\.scenePhase) private var scenePhase
 
-    init(store: AppStore) {
-        self.store = store
+    init(movieStore: MovieStore, tvShowStore: TVShowStore, personStore: PersonStore) {
+        self.movieStore = movieStore
+        self.tvShowStore = tvShowStore
+        self.personStore = personStore
         WidgetCenter.shared.reloadAllTimelines()
     }
 
     var body: some Scene {
         WindowGroup {
             AppTabNavigation()
-                .environmentObject(store)
-                .onChange(of: scenePhase) { phase in
-                    switch phase {
-                    case .active:
-                        store.send(.movies(.fetchFavourites))
-
-                    default:
-                        break
-                    }
-                }
+                .environmentObject(movieStore)
+                .environmentObject(tvShowStore)
+                .environmentObject(personStore)
         }
     }
 

@@ -11,10 +11,10 @@ struct RecommendedMoviesView: View {
 
     var movieID: Movie.ID
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var movieStore: MovieStore
 
     private var movies: [Movie]? {
-        store.state.movies.recommendations(forMovie: movieID)
+        movieStore.recommendations(forMovie: movieID)
     }
 
     var body: some View {
@@ -46,7 +46,7 @@ extension RecommendedMoviesView {
             return
         }
 
-        store.send(.movies(.fetchRecommendations(movieID: movieID)))
+        movieStore.fetchRecommendations(forMovie: movieID)
     }
 
 }

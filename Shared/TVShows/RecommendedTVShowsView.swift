@@ -11,10 +11,10 @@ struct RecommendedTVShowsView: View {
 
     var tvShowID: TVShow.ID
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var tvShowStore: TVShowStore
 
     private var tvShows: [TVShow]? {
-        store.state.tvShows.recommendations(forTVShow: tvShowID)
+        tvShowStore.recommendations(forTVShow: tvShowID)
     }
 
     var body: some View {
@@ -46,7 +46,7 @@ extension RecommendedTVShowsView {
             return
         }
 
-        store.send(.tvShows(.fetchRecommendations(tvShowID: tvShowID)))
+        tvShowStore.fetchRecommendations(forTVShow: tvShowID)
     }
 
 }

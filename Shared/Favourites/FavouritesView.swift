@@ -9,10 +9,10 @@ import SwiftUI
 
 struct FavouritesView: View {
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var movieStore: MovieStore
 
     private var movies: [Movie] {
-        store.state.movies.topFavourites
+        movieStore.topFavourites
     }
 
     private var hasFavourites: Bool {

@@ -11,22 +11,22 @@ struct TVShowDetailsView: View {
 
     var id: TVShow.ID
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var tvShowStore: TVShowStore
 
     private var tvShow: TVShow? {
-        store.state.tvShows.tvShows[id]
+        tvShowStore.tvShow(withID: id)
     }
 
     private var seasons: [TVShowSeason]? {
-        store.state.tvShows.tvShows[id]?.seasons
+        tvShowStore.seasons(forTVShow: id)
     }
 
     private var credits: Credits? {
-        store.state.tvShows.credits[id]
+        tvShowStore.credits(forTVShow: id)
     }
 
     private var recommendations: [TVShow]? {
-        store.state.tvShows.recommendations(forTVShow: id)
+        tvShowStore.recommendations(forTVShow: id)
     }
 
     private var title: String {
@@ -68,19 +68,9 @@ struct TVShowDetailsView: View {
 extension TVShowDetailsView {
 
     private func fetch() {
-        store.send(.tvShows(.fetchTVShow(id: id)))
-
-        if seasons == nil {
-            store.send(.tvShows(.fetchTVShow(id: id)))
-        }
-
-        if credits == nil {
-            store.send((.tvShows(.fetchCredits(tvShowID: id))))
-        }
-
-        if recommendations == nil {
-            store.send(.tvShows(.fetchRecommendations(tvShowID: id)))
-        }
+        tvShowStore.fetchTVShow(withID: id)
+        tvShowStore.fetchCredits(forTVShow: id)
+        tvShowStore.fetchRecommendations(forTVShow: id)
     }
 
 }

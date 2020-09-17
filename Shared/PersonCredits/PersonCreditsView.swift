@@ -11,10 +11,10 @@ struct PersonCreditsView: View {
 
     var personID: Person.ID
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var personStore: PersonStore
 
     private var credits: PersonCombinedCredits? {
-        store.state.people.credits[personID]
+        personStore.credits(forPerson: personID)
     }
 
     var body: some View {
@@ -46,11 +46,7 @@ struct PersonCreditsView: View {
 extension PersonCreditsView {
 
     private func fetch() {
-        guard credits == nil else {
-            return
-        }
-
-        store.send(.people(.fetchCredits(personID: personID)))
+        personStore.fetchCredits(personID: personID)
     }
 
 }

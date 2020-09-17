@@ -17,9 +17,4 @@ class WatchExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func didFailToRegisterForRemoteNotificationsWithError(_ error: Error) { }
 
-    func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (WKBackgroundFetchResult) -> Void) {
-        store.send(.handleRemoteNotification(userInfo: userInfo))
-        completionHandler(.newData)
-    }
-
 }

@@ -8,12 +8,6 @@
 import SwiftUI
 import TMDb
 
-let store = AppStore(
-    initialState: AppState(),
-    reducer: appReducer,
-    environment: AppEnvironment()
-)
-
 @main
 struct MoviesApp: App {
 
@@ -25,18 +19,21 @@ struct MoviesApp: App {
     @WKExtensionDelegateAdaptor(WatchExtensionDelegate.self) private var appDelegate
     #endif
 
+    @StateObject private var movieStore = MovieStore()
+    @StateObject private var tvShowStore = TVShowStore()
+    @StateObject private var personStore = PersonStore()
+
     init() {
         TMDbAPIClient.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
-        store.send(.movies(.fetchFavourites))
     }
 
     var body: some Scene {
         #if os(watchOS)
-        WatchAppScene(store: store)
+        WatchAppScene(movieStore: movieStore, tvShowStore: tvShowStore, personStore: personStore)
         #elseif os(macOS)
-        MacAppScene(store: store)
+        MacAppScene(movieStore: movieStore, tvShowStore: tvShowStore, personStore: personStore)
         #else
-        MainAppScene(store: store)
+        MainAppScene(movieStore: movieStore, tvShowStore: tvShowStore, personStore: personStore)
         #endif
     }
 
