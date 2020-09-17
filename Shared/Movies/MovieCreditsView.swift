@@ -11,10 +11,10 @@ struct MovieCreditsView: View {
 
     var movieID: Movie.ID
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var movieStore: MovieStore
 
     private var credits: Credits? {
-        store.state.movies.credits[movieID]
+        movieStore.credits(forMovie: movieID)
     }
 
     var body: some View {
@@ -46,11 +46,7 @@ struct MovieCreditsView: View {
 extension MovieCreditsView {
 
     private func fetch() {
-        guard credits == nil else {
-            return
-        }
-
-        store.send(.movies(.fetchCredits(movieID: movieID)))
+        movieStore.fetchCredits(forMovie: movieID)
     }
 
 }

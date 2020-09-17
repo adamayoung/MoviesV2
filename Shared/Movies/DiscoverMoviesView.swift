@@ -9,10 +9,10 @@ import SwiftUI
 
 struct DiscoverMoviesView: View {
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var movieStore: MovieStore
 
     private var movies: [Movie] {
-        store.state.movies.discover
+        movieStore.discover
     }
 
     var body: some View {
@@ -35,11 +35,11 @@ extension DiscoverMoviesView {
             return
         }
 
-        store.send(.movies(.fetchDiscover))
+        movieStore.fetchDiscover()
     }
 
     private func movieDidAppear(currentMovie movie: Movie, offset: Int) {
-        store.send(.movies(.fetchNextDiscoverIfNeeded(currentMovie: movie, offset: offset)))
+        movieStore.fetchNextDiscoverIfNeeded(currentMovie: movie, offset: offset)
     }
 
 }

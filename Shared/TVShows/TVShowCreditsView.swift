@@ -11,10 +11,10 @@ struct TVShowCreditsView: View {
 
     var tvShowID: TVShow.ID
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var tvShowStore: TVShowStore
 
     private var credits: Credits? {
-        store.state.tvShows.credits[tvShowID]
+        tvShowStore.credits(forTVShow: tvShowID)
     }
 
     var body: some View {
@@ -46,11 +46,7 @@ struct TVShowCreditsView: View {
 extension TVShowCreditsView {
 
     private func fetch() {
-        guard credits == nil else {
-            return
-        }
-
-        store.send(.tvShows(.fetchCredits(tvShowID: tvShowID)))
+        tvShowStore.fetchCredits(forTVShow: tvShowID)
     }
 
 }

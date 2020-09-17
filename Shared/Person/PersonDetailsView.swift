@@ -11,14 +11,14 @@ struct PersonDetailsView: View {
 
     var id: Person.ID
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var personStore: PersonStore
 
     private var person: Person? {
-        store.state.people.people[id]
+        personStore.person(withID: id)
     }
 
     private var popularShows: [Show]? {
-        store.state.people.knownFor[id]
+        personStore.showsKnownFor(forPerson: id)
     }
 
     private var title: String {
@@ -56,11 +56,8 @@ struct PersonDetailsView: View {
 extension PersonDetailsView {
 
     private func fetch() {
-        store.send(.people(.fetchPerson(id: id)))
-
-        if popularShows == nil {
-            store.send(.people(.fetchKnownFor(personID: id)))
-        }
+        personStore.fetchPerson(withID: id)
+        personStore.fetchShowsKnownFor(forPerson: id)
     }
 
 }

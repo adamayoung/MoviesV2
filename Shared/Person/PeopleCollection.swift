@@ -10,7 +10,7 @@ import SwiftUI
 struct PeopleCollection: View {
 
     var people: [Person]
-    var itemDidAppear: ((Person, Int) -> Void)?
+    var personDidAppear: ((Person, Int) -> Void)?
 
     private var offset: Int {
         #if !os(watchOS)
@@ -29,7 +29,7 @@ struct PeopleCollection: View {
     }
 
     private func collectionItemDidAppear(currentItem item: Person) {
-        itemDidAppear?(item, offset)
+        personDidAppear?(item, offset)
     }
 
 }

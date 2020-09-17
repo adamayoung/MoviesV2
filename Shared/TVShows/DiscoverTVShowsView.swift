@@ -9,10 +9,10 @@ import SwiftUI
 
 struct DiscoverTVShowsView: View {
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var tvShowStore: TVShowStore
 
     private var tvShows: [TVShow] {
-        store.state.tvShows.discover
+        tvShowStore.discover
     }
 
     var body: some View {
@@ -35,11 +35,11 @@ extension DiscoverTVShowsView {
             return
         }
 
-        store.send(.tvShows(.fetchDiscover))
+        tvShowStore.fetchDiscover()
     }
 
     private func tvShowDidAppear(_ tvShow: TVShow, offset: Int) {
-        store.send(.tvShows(.fetchNextDiscoverIfNeeded(currentTVShow: tvShow, offset: offset)))
+        tvShowStore.fetchNextDiscoverIfNeeded(currentTVShow: tvShow, offset: offset)
     }
 
 }

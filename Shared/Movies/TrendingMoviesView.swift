@@ -9,10 +9,10 @@ import SwiftUI
 
 struct TrendingMoviesView: View {
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var movieStore: MovieStore
 
     private var movies: [Movie] {
-        store.state.movies.trending
+        movieStore.trending
     }
 
     var body: some View {
@@ -35,11 +35,11 @@ extension TrendingMoviesView {
             return
         }
 
-        store.send(.movies(.fetchTrending))
+        movieStore.fetchTrending()
     }
 
     private func movieDidAppear(currentMovie movie: Movie, offset: Int) {
-        store.send(.movies(.fetchNextTrendingIfNeeded(currentMovie: movie, offset: offset)))
+        movieStore.fetchNextTrendingIfNeeded(currentMovie: movie, offset: offset)
     }
 
 }

@@ -17,10 +17,4 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
 
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        store.send(.handleRemoteNotification(userInfo: userInfo))
-        completionHandler(.newData)
-    }
-
 }

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct WatchAppScene: Scene {
 
-    @ObservedObject var store: AppStore
+    @ObservedObject var movieStore: MovieStore
+    @ObservedObject var tvShowStore: TVShowStore
+    @ObservedObject var personStore: PersonStore
 
     @Environment(\.scenePhase) private var scenePhase
 
@@ -17,16 +19,9 @@ struct WatchAppScene: Scene {
         WindowGroup {
             AppWatchNavigation()
                 .accentColor(Color(UIColor(named: "AccentColor")!))
-                .environmentObject(store)
-                .onChange(of: scenePhase) { phase in
-                    switch phase {
-                    case .active:
-                        store.send(.movies(.fetchFavourites))
-
-                    default:
-                        break
-                    }
-                }
+                .environmentObject(movieStore)
+                .environmentObject(tvShowStore)
+                .environmentObject(personStore)
         }
 
         WKNotificationScene(controller: NotificationController.self, category: "Notification")

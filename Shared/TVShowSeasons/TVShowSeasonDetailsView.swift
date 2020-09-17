@@ -12,10 +12,10 @@ struct TVShowSeasonDetailsView: View {
     var tvShowID: TVShow.ID
     var seasonNumber: Int
 
-    @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var tvShowStore: TVShowStore
 
     private var season: TVShowSeason? {
-        store.state.tvShows.season(seasonNumber, forTVShow: tvShowID)
+        tvShowStore.season(seasonNumber, forTVShow: tvShowID)
     }
 
     var body: some View {
@@ -50,7 +50,7 @@ struct TVShowSeasonDetailsView: View {
 extension TVShowSeasonDetailsView {
 
     private func fetch() {
-        store.send(.tvShows(.fetchSeason(seasonNumber: seasonNumber, tvShowID: tvShowID)))
+        tvShowStore.fetchSeason(seasonNumber, forTVShow: tvShowID)
     }
 
 }
