@@ -18,12 +18,11 @@ struct MovieDetailsView: View {
     }
 
     private var isFavourite: Bool {
-//        guard let movie = movie else {
-//            return false
-//        }
+        guard let movie = movie else {
+            return false
+        }
 
-        //return store.state.movies.isFavourite(movie.id)
-        return false
+        return movieStore.isFavourite(movieID: movie.id)
     }
 
     private var credits: Credits? {
@@ -90,13 +89,11 @@ struct MovieDetailsView: View {
     }
 
     private func toogleFavourite() {
-//        let isFavourite = !self.isFavourite
-//
-//        if isFavourite {
-//            store.send(.movies(.addFavourite(movieID: id)))
-//        } else {
-//            store.send(.movies(.removeFavourite(movieID: id)))
-//        }
+        guard let movie = movie else {
+            return
+        }
+
+        movieStore.toggleFavourite(movie: movie)
     }
 
 }

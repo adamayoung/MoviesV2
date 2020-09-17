@@ -10,6 +10,8 @@ import SwiftUI
 struct FavouritesList: View {
 
     var movies: [Movie]
+    var tvShows: [TVShow]
+    var people: [Person]
 
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -38,9 +40,25 @@ struct FavouritesList: View {
 
     private var content: some View {
         List {
-            Section(header: moviesSectionHeader) {
-                MoviesCarousel(movies: movies, displaySize: largeBackdropDisplaySize)
-                    .listRowInsets(EdgeInsets())
+            if !movies.isEmpty {
+                Section(header: moviesSectionHeader) {
+                    MoviesCarousel(movies: movies, displaySize: largeBackdropDisplaySize)
+                        .listRowInsets(EdgeInsets())
+                }
+            }
+
+            if !tvShows.isEmpty {
+                Section(header: tvShowsSectionHeader) {
+                    TVShowsCarousel(tvShows: tvShows, displaySize: largeBackdropDisplaySize)
+                        .listRowInsets(EdgeInsets())
+                }
+            }
+
+            if !people.isEmpty {
+                Section(header: peopleSectionHeader) {
+                    PeopleCarousel(people: people, displaySize: .extraLarge)
+                        .listRowInsets(EdgeInsets())
+                }
             }
         }
     }
@@ -62,10 +80,46 @@ struct FavouritesList: View {
         .foregroundColor(.primary)
     }
 
+    private var tvShowsSectionHeader: some View {
+        HStack(alignment: .center) {
+            Text("TV Shows")
+                .font(.title)
+                .fontWeight(.heavy)
+
+            Spacer()
+            NavigationLink(destination: FavouriteTVShowsView()) {
+                Text("See all")
+                    .font(.body)
+                    .foregroundColor(.accentColor)
+            }
+        }
+        .textCase(.none)
+        .foregroundColor(.primary)
+    }
+
+    private var peopleSectionHeader: some View {
+        HStack(alignment: .center) {
+            Text("People")
+                .font(.title)
+                .fontWeight(.heavy)
+
+            Spacer()
+            NavigationLink(destination: FavouritePeopleView()) {
+                Text("See all")
+                    .font(.body)
+                    .foregroundColor(.accentColor)
+            }
+        }
+        .textCase(.none)
+        .foregroundColor(.primary)
+    }
+
 }
 
 struct FavouritesList_Previews: PreviewProvider {
+
     static var previews: some View {
-        FavouritesList(movies: [])
+        FavouritesList(movies: [], tvShows: [], people: [])
     }
+
 }

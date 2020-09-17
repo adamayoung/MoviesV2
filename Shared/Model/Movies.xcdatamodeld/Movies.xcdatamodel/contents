@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="20A5364e" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="FavouriteMovie" representedClassName="FavouriteMovie" syncable="YES" codeGenerationType="class">
+        <attribute name="backdropURL" optional="YES" attributeType="URI"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="movieID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="overview" optional="YES" attributeType="String"/>
+        <attribute name="posterURL" optional="YES" attributeType="URI"/>
+        <attribute name="releaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="FavouritePerson" representedClassName="FavouritePerson" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="personID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="profileURL" optional="YES" attributeType="URI"/>
+    </entity>
+    <entity name="FavouriteTVShow" representedClassName="FavouriteTVShow" syncable="YES" codeGenerationType="class">
+        <attribute name="backdropURL" optional="YES" attributeType="URI"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="firstAirDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="overview" optional="YES" attributeType="String"/>
+        <attribute name="posterURL" optional="YES" attributeType="URI"/>
+        <attribute name="tvShowID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <elements>
+        <element name="FavouriteMovie" positionX="-63" positionY="-18" width="128" height="134"/>
+        <element name="FavouritePerson" positionX="-54" positionY="63" width="128" height="89"/>
+        <element name="FavouriteTVShow" positionX="-63" positionY="27" width="128" height="134"/>
+    </elements>
+</model>

@@ -5,10 +5,11 @@
 //  Created by Adam Young on 17/09/2020.
 //
 
+import CoreData
 import Combine
 import Foundation
 
-final class PersonStore: ObservableObject {
+final class PersonStore: NSObject, ObservableObject {
 
     private static let topLimit = 10
 
@@ -21,10 +22,21 @@ final class PersonStore: ObservableObject {
             .compactMap { people[$0] }
     }
 
+    var favourites: [Person] {
+        favouriteIDs.compactMap { people[$0] }
+    }
+
+    var topFavourites: [Person] {
+        Array(favouriteIDs.prefix(Self.topLimit))
+            .compactMap { people[$0] }
+    }
+
     private let peopleManager: PeopleManager
+    private let persistentContainer: NSPersistentContainer
 
     @Published private var people: [Person.ID: Person] = [:]
     @Published private var trendingIDs: [Person.ID] = []
+    @Published private var favouriteIDs: [Person.ID] = []
     @Published private var credits: [Person.ID: PersonCombinedCredits] = [:]
     @Published private var showsKnownFor: [Person.ID: [Show]] = [:]
 
@@ -33,8 +45,18 @@ final class PersonStore: ObservableObject {
     private var currentTrendingPage = 0
     private var isMoreTrendingAvailable = true
 
-    init(peopleManager: PeopleManager = TMDbPeopleManager()) {
+    init(peopleManager: PeopleManager = TMDbPeopleManager(),
+         persistentContainer: NSPersistentContainer = PersistenceController.shared.container) {
         self.peopleManager = peopleManager
+        self.persistentContainer = persistentContainer
+        super.init()
+
+        loadFavourites()
+        NotificationCenter.default
+            .addObserver(self, selector: #selector(loadFavourites),
+                         name: NSNotification.Name(rawValue: "NSPersistentStoreRemoteChangeNotification"),
+                         object: self.persistentContainer.persistentStoreCoordinator
+        )
     }
 
     func person(withID id: Person.ID) -> Person? {
@@ -47,6 +69,10 @@ final class PersonStore: ObservableObject {
 
     func showsKnownFor(forPerson personID: Person.ID) -> [Show]? {
         showsKnownFor[personID]
+    }
+
+    func isFavourite(personID: Person.ID) -> Bool {
+        favouriteIDs.contains(personID)
     }
 
 }
@@ -97,11 +123,6 @@ extension PersonStore {
     }
 
     func fetchPerson(withID id: Person.ID, completionHandler: ((Error?) -> Void)? = nil) {
-        guard people[id] == nil else {
-            completionHandler?(nil)
-            return
-        }
-
         peopleManager.fetchPerson(withID: id)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
@@ -166,6 +187,24 @@ extension PersonStore {
             .store(in: &cancellables)
     }
 
+    func toggleFavourite(person: Person) {
+        defer {
+            try? persistentContainer.viewContext.save()
+        }
+
+        let request: NSFetchRequest<FavouritePerson> = NSFetchRequest(entityName: "FavouritePerson")
+        request.predicate = NSPredicate(format: "personID = %d", person.id)
+        request.fetchBatchSize = 1
+        let results = (try? persistentContainer.viewContext.fetch(request)) ?? []
+
+        if let favouritePerson = results.first {
+            persistentContainer.viewContext.delete(favouritePerson)
+            return
+        }
+
+        let _ = FavouritePerson(context: persistentContainer.viewContext, person: person)
+    }
+
 }
 
 extension PersonStore {
@@ -173,12 +212,37 @@ extension PersonStore {
     private func appendTrending(people: [Person]) {
         var trendingIDs = self.trendingIDs
         people.forEach {
-            self.people[$0.id] = $0
+            if self.people[$0.id] == nil {
+                self.people[$0.id] = $0
+            }
+
             if !trendingIDs.contains($0.id) {
                 trendingIDs.append($0.id)
             }
         }
         self.trendingIDs = trendingIDs
+    }
+
+    @objc private func loadFavourites() {
+        persistentContainer.viewContext.perform { [weak self] in
+            guard let self = self else {
+                return
+            }
+
+            let fetchRequest = NSFetchRequest<FavouritePerson>(entityName: "FavouritePerson")
+            let sortDescriptor = NSSortDescriptor(key: "createdAt", ascending: false)
+            fetchRequest.sortDescriptors = [sortDescriptor]
+            let favouritePeople = (try? self.persistentContainer.viewContext.fetch(fetchRequest)) ?? []
+
+            let people = favouritePeople.compactMap(Person.init)
+            people.forEach {
+                if self.people[$0.id] == nil {
+                    self.people[$0.id] = $0
+                }
+            }
+
+            self.favouriteIDs = people.map(\.id)
+        }
     }
 
 }

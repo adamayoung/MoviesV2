@@ -17,6 +17,14 @@ struct PersonDetailsView: View {
         personStore.person(withID: id)
     }
 
+    private var isFavourite: Bool {
+        guard let person = person else {
+            return false
+        }
+
+        return personStore.isFavourite(personID: person.id)
+    }
+
     private var popularShows: [Show]? {
         personStore.showsKnownFor(forPerson: id)
     }
@@ -27,6 +35,17 @@ struct PersonDetailsView: View {
 
     var body: some View {
         container
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    if person != nil {
+                        Button(action: {
+                            toogleFavourite()
+                        }, label: {
+                            favouriteButtonLabel
+                        })
+                    }
+                }
+            }
             .onAppear(perform: fetch)
             .navigationTitle(title)
     }
@@ -51,6 +70,26 @@ struct PersonDetailsView: View {
             ProgressView()
         }
     }
+
+    private var favouriteButtonLabel: some View {
+        let imageName = isFavourite ? "heart.fill" : "heart"
+
+        #if !os(watchOS)
+        return Image(systemName: imageName)
+        #else
+        let title = isFavourite ? "Remove Favourite" : "Add Favourite"
+        return Label(title, systemImage: imageName)
+        #endif
+    }
+
+    private func toogleFavourite() {
+        guard let person = person else {
+            return
+        }
+
+        personStore.toggleFavourite(person: person)
+    }
+
 }
 
 extension PersonDetailsView {

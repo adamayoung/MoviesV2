@@ -59,8 +59,7 @@ struct PersonDetails: View {
     private var filmographySectionHeader: some View {
         HStack(alignment: .center) {
             Text("Filmography")
-                .font(.title2)
-                .fontWeight(.heavy)
+                .listSectionHeaderStyle()
 
             Spacer()
             NavigationLink(destination: PersonCreditsView(personID: person.id)) {

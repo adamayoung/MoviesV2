@@ -47,7 +47,7 @@ struct TVShowDetails: View {
 
             if let seasons = tvShow.seasons, !seasons.isEmpty {
                 #if !os(watchOS)
-                Section(header: Text("Seasons")) {
+                Section(header: Text("Seasons").listSectionHeaderStyle()) {
                     TVShowSeasonsCarousel(tvShowID: tvShow.id, seasons: seasons, displaySize: .medium)
                         .listRowInsets(EdgeInsets())
                 }
@@ -65,7 +65,7 @@ struct TVShowDetails: View {
             if !topCast.isEmpty {
                 #if !os(watchOS)
                 Section(header: castAndCrewSectionHeader) {
-                    CastCarousel(cast: topCast, displaySize: .medium)
+                    CastCarousel(cast: topCast, displaySize: .large)
                         .listRowInsets(EdgeInsets())
                 }
                 #else
@@ -81,7 +81,7 @@ struct TVShowDetails: View {
 
             if !recommendations.isEmpty {
                 #if !os(watchOS)
-                Section(header: Text("Recommendations")) {
+                Section(header: Text("Recommendations").listSectionHeaderStyle()) {
                     TVShowsCarousel(tvShows: recommendations, displaySize: .medium)
                         .listRowInsets(EdgeInsets())
                 }
@@ -101,6 +101,7 @@ struct TVShowDetails: View {
     private var castAndCrewSectionHeader: some View {
         HStack {
             Text("Top Cast")
+                .listSectionHeaderStyle()
             Spacer()
             NavigationLink(destination: TVShowCreditsView(tvShowID: tvShow.id)) {
                 Text("See all")

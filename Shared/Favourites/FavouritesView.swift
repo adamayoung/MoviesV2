@@ -10,13 +10,23 @@ import SwiftUI
 struct FavouritesView: View {
 
     @EnvironmentObject private var movieStore: MovieStore
+    @EnvironmentObject private var tvShowStore: TVShowStore
+    @EnvironmentObject private var personStore: PersonStore
 
     private var movies: [Movie] {
         movieStore.topFavourites
     }
 
+    private var tvShows: [TVShow] {
+        tvShowStore.topFavourites
+    }
+
+    private var people: [Person] {
+        personStore.topFavourites
+    }
+
     private var hasFavourites: Bool {
-        !movies.isEmpty
+        !movies.isEmpty || !tvShows.isEmpty || !people.isEmpty
     }
 
     var body: some View {
@@ -32,7 +42,7 @@ struct FavouritesView: View {
     @ViewBuilder private var content: some View {
         Group {
             if hasFavourites {
-                FavouritesList(movies: movies)
+                FavouritesList(movies: movies, tvShows: tvShows, people: people)
             } else {
                 List { }
             }

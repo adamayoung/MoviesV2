@@ -6,9 +6,10 @@
 //
 
 import Combine
+import CoreData
 import Foundation
 
-final class MovieStore: ObservableObject {
+final class MovieStore: NSObject, ObservableObject {
 
     private static let topLimit = 10
 
@@ -40,6 +41,7 @@ final class MovieStore: ObservableObject {
     }
 
     private let moviesManager: MoviesManager
+    private let persistentContainer: NSPersistentContainer
 
     @Published private var movies: [Movie.ID: Movie] = [:]
     @Published private var trendingIDs: [Movie.ID] = []
@@ -56,8 +58,18 @@ final class MovieStore: ObservableObject {
     private var currentDiscoverPage = 0
     private var isMoreDiscoverAvailable = true
 
-    init(moviesManager: MoviesManager = TMDbMoviesManager()) {
+    init(moviesManager: MoviesManager = TMDbMoviesManager(),
+         persistentContainer: NSPersistentContainer = PersistenceController.shared.container) {
         self.moviesManager = moviesManager
+        self.persistentContainer = persistentContainer
+        super.init()
+
+        loadFavourites()
+        NotificationCenter.default
+            .addObserver(self, selector: #selector(loadFavourites),
+                         name: NSNotification.Name(rawValue: "NSPersistentStoreRemoteChangeNotification"),
+                         object: self.persistentContainer.persistentStoreCoordinator
+        )
     }
 
     func movie(withID id: Movie.ID) -> Movie? {
@@ -70,6 +82,10 @@ final class MovieStore: ObservableObject {
 
     func recommendations(forMovie movieID: Movie.ID) -> [Movie]? {
         recommendationsIDs[movieID]?.compactMap { movies[$0] }
+    }
+
+    func isFavourite(movieID: Movie.ID) -> Bool {
+        favouriteIDs.contains(movieID)
     }
 
 }
@@ -163,11 +179,6 @@ extension MovieStore {
     }
 
     func fetchMovie(withID id: Movie.ID, completionHandler: ((Error?) -> Void)? = nil) {
-        guard movies[id] == nil else {
-            completionHandler?(nil)
-            return
-        }
-
         moviesManager.fetchMovie(withID: id)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
@@ -227,14 +238,31 @@ extension MovieStore {
                     completionHandler?(error)
                 }
             }, receiveValue: { [weak self] recommendations in
-                var recommendationIDs = self?.recommendationsIDs[movieID] ?? []
-                recommendations.forEach {
-                    self?.movies[$0.id] = $0
-                    recommendationIDs.append($0.id)
-                }
-                self?.recommendationsIDs[movieID] = recommendationIDs
+                self?.setRecommended(movies: recommendations, forMovie: movieID)
             })
             .store(in: &cancellables)
+    }
+
+    func toggleFavourite(movie: Movie) {
+        defer {
+            try? persistentContainer.viewContext.save()
+        }
+
+        let request: NSFetchRequest<FavouriteMovie> = NSFetchRequest(entityName: "FavouriteMovie")
+        request.predicate = NSPredicate(format: "movieID = %d", movie.id)
+        request.fetchBatchSize = 1
+        let results = (try? persistentContainer.viewContext.fetch(request)) ?? []
+
+        if let favouriteMovie = results.first {
+            favouriteIDs.removeAll(where: { id in
+                return id == movie.id
+            })
+
+            persistentContainer.viewContext.delete(favouriteMovie)
+            return
+        }
+
+        let _ = FavouriteMovie(context: persistentContainer.viewContext, movie: movie)
     }
 
 }
@@ -244,7 +272,10 @@ extension MovieStore {
     private func appendTrending(movies: [Movie]) {
         var trendingIDs = self.trendingIDs
         movies.forEach {
-            self.movies[$0.id] = $0
+            if self.movies[$0.id] == nil {
+                self.movies[$0.id] = $0
+            }
+
             if !trendingIDs.contains($0.id) {
                 trendingIDs.append($0.id)
             }
@@ -255,12 +286,46 @@ extension MovieStore {
     private func appendDiscover(movies: [Movie]) {
         var discoverIDs = self.discoverIDs
         movies.forEach {
-            self.movies[$0.id] = $0
+            if self.movies[$0.id] == nil {
+                self.movies[$0.id] = $0
+            }
+
             if !discoverIDs.contains($0.id) {
                 discoverIDs.append($0.id)
             }
         }
         self.discoverIDs = discoverIDs
+    }
+
+    private func setRecommended(movies: [Movie], forMovie movieID: Movie.ID) {
+        movies.forEach {
+            if self.movies[$0.id] == nil {
+                self.movies[$0.id] = $0
+            }
+        }
+        recommendationsIDs[movieID] = movies.map(\.id)
+    }
+
+    @objc private func loadFavourites() {
+        persistentContainer.viewContext.perform { [weak self] in
+            guard let self = self else {
+                return
+            }
+
+            let fetchRequest = NSFetchRequest<FavouriteMovie>(entityName: "FavouriteMovie")
+            let sortDescriptor = NSSortDescriptor(key: "createdAt", ascending: false)
+            fetchRequest.sortDescriptors = [sortDescriptor]
+            let favouriteMovies = (try? self.persistentContainer.viewContext.fetch(fetchRequest)) ?? []
+
+            let movies = favouriteMovies.compactMap(Movie.init)
+            movies.forEach {
+                if self.movies[$0.id] == nil {
+                    self.movies[$0.id] = $0
+                }
+            }
+
+            self.favouriteIDs = movies.map(\.id)
+        }
     }
 
 }

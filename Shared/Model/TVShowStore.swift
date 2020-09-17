@@ -5,10 +5,11 @@
 //  Created by Adam Young on 17/09/2020.
 //
 
+import CoreData
 import Combine
 import Foundation
 
-final class TVShowStore: ObservableObject {
+final class TVShowStore: NSObject, ObservableObject {
 
     private static let topLimit = 10
 
@@ -30,11 +31,22 @@ final class TVShowStore: ObservableObject {
             .compactMap { tvShows[$0] }
     }
 
+    var favourites: [TVShow] {
+        favouriteIDs.compactMap { tvShows[$0] }
+    }
+
+    var topFavourites: [TVShow] {
+        Array(favouriteIDs.prefix(Self.topLimit))
+            .compactMap { tvShows[$0] }
+    }
+
     private let tvShowsManager: TVShowsManager
+    private let persistentContainer: NSPersistentContainer
 
     @Published private var tvShows: [TVShow.ID: TVShow] = [:]
     @Published private var trendingIDs: [TVShow.ID] = []
     @Published private var discoverIDs: [TVShow.ID] = []
+    @Published private var favouriteIDs: [TVShow.ID] = []
     @Published private var seasons: [TVShow.ID: [Int: TVShowSeason]] = [:]
     @Published private var recommendationsIDs: [TVShow.ID: [TVShow.ID]] = [:]
     @Published private var credits: [TVShow.ID: Credits] = [:]
@@ -47,8 +59,18 @@ final class TVShowStore: ObservableObject {
     private var currentDiscoverPage = 0
     private var isMoreDiscoverAvailable = true
 
-    init(tvShowsManager: TVShowsManager = TMDbTVShowsManager()) {
+    init(tvShowsManager: TVShowsManager = TMDbTVShowsManager(),
+         persistentContainer: NSPersistentContainer = PersistenceController.shared.container) {
         self.tvShowsManager = tvShowsManager
+        self.persistentContainer = persistentContainer
+        super.init()
+
+        loadFavourites()
+        NotificationCenter.default
+            .addObserver(self, selector: #selector(loadFavourites),
+                         name: NSNotification.Name(rawValue: "NSPersistentStoreRemoteChangeNotification"),
+                         object: self.persistentContainer.persistentStoreCoordinator
+        )
     }
 
     func tvShow(withID id: TVShow.ID) -> TVShow? {
@@ -69,6 +91,10 @@ final class TVShowStore: ObservableObject {
 
     func recommendations(forTVShow tvShowID: TVShow.ID) -> [TVShow]? {
         recommendationsIDs[tvShowID]?.compactMap { tvShows[$0] }
+    }
+
+    func isFavourite(tvShowID: TVShow.ID) -> Bool {
+        favouriteIDs.contains(tvShowID)
     }
 
 }
@@ -162,11 +188,6 @@ extension TVShowStore {
     }
 
     func fetchTVShow(withID id: TVShow.ID, completionHandler: ((Error?) -> Void)? = nil) {
-        guard tvShows[id]?.seasons == nil else {
-            completionHandler?(nil)
-            return
-        }
-
         tvShowsManager.fetchTVShow(withID: id)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
@@ -258,14 +279,42 @@ extension TVShowStore {
             .store(in: &cancellables)
     }
 
+    func toggleFavourite(tvShow: TVShow) {
+        defer {
+            try? persistentContainer.viewContext.save()
+        }
+
+        let fetchRequest: NSFetchRequest<FavouriteTVShow> = NSFetchRequest(entityName: "FavouriteTVShow")
+        fetchRequest.predicate = NSPredicate(format: "tvShowID = %d", tvShow.id)
+        fetchRequest.fetchBatchSize = 1
+        let results = (try? persistentContainer.viewContext.fetch(fetchRequest)) ?? []
+
+        if let favouriteTVShow = results.first {
+            persistentContainer.viewContext.delete(favouriteTVShow)
+            return
+        }
+
+        let _ = FavouriteTVShow(context: persistentContainer.viewContext, tvShow: tvShow)
+    }
+
 }
 
 extension TVShowStore {
 
+    private static func favouritesFetchRequest() -> NSFetchRequest<FavouriteTVShow> {
+        let fetchRequest = NSFetchRequest<FavouriteTVShow>(entityName: "FavouriteTVShow")
+        let sortDescriptor = NSSortDescriptor(key: "createdAt", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        return fetchRequest
+    }
+
     private func appendTrending(tvShows: [TVShow]) {
         var trendingIDs = self.trendingIDs
         tvShows.forEach {
-            self.tvShows[$0.id] = $0
+            if self.tvShows[$0.id] == nil {
+                self.tvShows[$0.id] = $0
+            }
+
             if !trendingIDs.contains($0.id) {
                 trendingIDs.append($0.id)
             }
@@ -276,12 +325,46 @@ extension TVShowStore {
     private func appendDiscover(tvShows: [TVShow]) {
         var discoverIDs = self.discoverIDs
         tvShows.forEach {
-            self.tvShows[$0.id] = $0
+            if self.tvShows[$0.id] == nil {
+                self.tvShows[$0.id] = $0
+            }
+
             if !discoverIDs.contains($0.id) {
                 discoverIDs.append($0.id)
             }
         }
         self.discoverIDs = discoverIDs
+    }
+
+    private func setRecommended(tvShows: [TVShow], forMovie tvShowID: TVShow.ID) {
+        tvShows.forEach {
+            if self.tvShows[$0.id] == nil {
+                self.tvShows[$0.id] = $0
+            }
+        }
+        recommendationsIDs[tvShowID] = tvShows.map(\.id)
+    }
+
+    @objc private func loadFavourites() {
+        persistentContainer.viewContext.perform { [weak self] in
+            guard let self = self else {
+                return
+            }
+
+            let fetchRequest = NSFetchRequest<FavouriteTVShow>(entityName: "FavouriteTVShow")
+            let sortDescriptor = NSSortDescriptor(key: "createdAt", ascending: false)
+            fetchRequest.sortDescriptors = [sortDescriptor]
+            let favouriteTVShows = (try? self.persistentContainer.viewContext.fetch(fetchRequest)) ?? []
+
+            let tvShows = favouriteTVShows.compactMap(TVShow.init)
+            tvShows.forEach {
+                if self.tvShows[$0.id] == nil {
+                    self.tvShows[$0.id] = $0
+                }
+            }
+
+            self.favouriteIDs = tvShows.map(\.id)
+        }
     }
 
 }
