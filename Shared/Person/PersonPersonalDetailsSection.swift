@@ -29,7 +29,7 @@ struct PersonPersonalDetailsSection: View {
 
     var body: some View {
         #if !os(watchOS)
-        Section(header: Text("Personal details")) {
+        Section(header: Text("Personal details").listSectionHeaderStyle()) {
             content
         }
         #else

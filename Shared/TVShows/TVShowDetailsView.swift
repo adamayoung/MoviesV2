@@ -17,6 +17,14 @@ struct TVShowDetailsView: View {
         tvShowStore.tvShow(withID: id)
     }
 
+    private var isFavourite: Bool {
+        guard let tvShow = tvShow else {
+            return false
+        }
+
+        return tvShowStore.isFavourite(tvShowID: tvShow.id)
+    }
+
     private var seasons: [TVShowSeason]? {
         tvShowStore.seasons(forTVShow: id)
     }
@@ -35,6 +43,17 @@ struct TVShowDetailsView: View {
 
     var body: some View {
         container
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    if tvShow != nil {
+                        Button(action: {
+                            toogleFavourite()
+                        }, label: {
+                            favouriteButtonLabel
+                        })
+                    }
+                }
+            }
             .onAppear(perform: fetch)
             .navigationTitle(title)
     }
@@ -61,6 +80,25 @@ struct TVShowDetailsView: View {
         } else {
             ProgressView()
         }
+    }
+
+    private var favouriteButtonLabel: some View {
+        let imageName = isFavourite ? "heart.fill" : "heart"
+
+        #if !os(watchOS)
+        return Image(systemName: imageName)
+        #else
+        let title = isFavourite ? "Remove Favourite" : "Add Favourite"
+        return Label(title, systemImage: imageName)
+        #endif
+    }
+
+    private func toogleFavourite() {
+        guard let tvShow = tvShow else {
+            return
+        }
+
+        tvShowStore.toggleFavourite(tvShow: tvShow)
     }
 
 }

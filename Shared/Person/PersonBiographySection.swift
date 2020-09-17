@@ -16,7 +16,7 @@ struct PersonBiographySection: View {
 
     var body: some View {
         #if !os(watchOS)
-        Section(header: Text("Bio")) {
+        Section(header: Text("Bio").listSectionHeaderStyle()) {
             content
         }
         #else

@@ -32,8 +32,6 @@ struct TVShowRow: View {
 
                     if let firstAirDate = tvShow.firstAirDate {
                         Text("\(firstAirDate, formatter: DateFormatter.year)")
-                    } else {
-                        Text("No first air date")
                     }
                 }
                 .foregroundColor(.secondary)

@@ -17,7 +17,7 @@ extension BaseImageURLProviding {
 
     var baseImageURL: URL {
         URL(string: "https://image.tmdb.org/t/p/")!
-            .appendingPathComponent("w780")
+            .appendingPathComponent("w1280")
     }
 
 }

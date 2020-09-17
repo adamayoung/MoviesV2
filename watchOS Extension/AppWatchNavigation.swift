@@ -68,7 +68,7 @@ struct AppWatchNavigation: View {
                         })
 
                     }
-                    .accessibility(label: Text("Favourites"))
+                    .accessibility(label: Text("Favourite Movies"))
                 }
 
                 Section(header: Text("TV Shows")) {
@@ -97,6 +97,20 @@ struct AppWatchNavigation: View {
                         })
                     }
                     .accessibility(label: Text("Discover TV Shows"))
+
+                    NavigationLink(
+                        destination: FavouriteTVShowsView(),
+                        tag: NavigationItem.favouriteTVShows,
+                        selection: $selection) {
+                        Label(title: {
+                            Text("Favourites")
+                        }, icon: {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.accentColor)
+                        })
+
+                    }
+                    .accessibility(label: Text("Favourite TV Shows"))
                 }
 
                 Section(header: Text("People")) {
@@ -113,6 +127,20 @@ struct AppWatchNavigation: View {
 
                     }
                     .accessibility(label: Text("Trending People"))
+
+                    NavigationLink(
+                        destination: FavouritePeopleView(),
+                        tag: NavigationItem.favouritePeople,
+                        selection: $selection) {
+                        Label(title: {
+                            Text("Favourites")
+                        }, icon: {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.accentColor)
+                        })
+
+                    }
+                    .accessibility(label: Text("Favourite People"))
                 }
             }
             .navigationTitle("Movies")
@@ -140,7 +168,9 @@ extension AppWatchNavigation {
         case favouriteMovies
         case trendingTVShows
         case discoverTVShows
+        case favouriteTVShows
         case trendingPeople
+        case favouritePeople
     }
 
 }

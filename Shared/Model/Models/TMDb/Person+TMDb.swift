@@ -12,7 +12,7 @@ extension Person {
 
     init(person: TMDb.Person) {
         let biography: String? = {
-            guard let biography = person.biography else {
+            guard let biography = person.biography, !biography.isEmpty else {
                 return nil
             }
 

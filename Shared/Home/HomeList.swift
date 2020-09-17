@@ -125,6 +125,7 @@ struct HomeList: View {
             Text("Discover Movies")
                 .font(.title2)
                 .fontWeight(.heavy)
+                .foregroundColor(.primary)
 
             Spacer()
             NavigationLink(
@@ -167,6 +168,7 @@ struct HomeList: View {
             Text("Discover TV Shows")
                 .font(.title2)
                 .fontWeight(.heavy)
+                .foregroundColor(.primary)
 
             Spacer()
             NavigationLink(

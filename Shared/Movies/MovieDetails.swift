@@ -47,7 +47,7 @@ struct MovieDetails: View {
             if !topCast.isEmpty {
                 #if !os(watchOS)
                 Section(header: castAndCrewSectionHeader) {
-                    CastCarousel(cast: topCast, displaySize: .medium)
+                    CastCarousel(cast: topCast, displaySize: .large)
                         .listRowInsets(EdgeInsets())
                 }
                 #else
@@ -63,7 +63,7 @@ struct MovieDetails: View {
 
             if !recommendations.isEmpty {
                 #if !os(watchOS)
-                Section(header: Text("Recommendations")) {
+                Section(header: Text("Recommendations").listSectionHeaderStyle()) {
                     MoviesCarousel(movies: recommendations, displaySize: .medium)
                         .listRowInsets(EdgeInsets())
                 }
@@ -83,6 +83,7 @@ struct MovieDetails: View {
     private var castAndCrewSectionHeader: some View {
         HStack {
             Text("Top Cast")
+                .listSectionHeaderStyle()
             Spacer()
             NavigationLink(destination: MovieCreditsView(movieID: movie.id)) {
                 Text("See all")
