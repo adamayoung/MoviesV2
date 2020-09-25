@@ -21,7 +21,7 @@ struct MovieRow: View {
 
     var body: some View {
         HStack(alignment: .center) {
-            PosterImage(url: movie.posterURL, displaySize: .medium)
+            PosterImage(imageMetadata: movie.posterImage, displaySize: .small)
 
             VStack(alignment: .leading) {
                 Text(movie.title)
@@ -39,17 +39,17 @@ struct MovieRow: View {
 
 }
 
-struct MovieRow_Previews: PreviewProvider {
-
-    static var previews: some View {
-        let movie = Movie(id: 1,
-                          title: "Ad Astra",
-                          releaseDate: Date(),
-                          posterURL: URL(string: "https://image.tmdb.org/t/p/w780/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"))
-
-        return List {
-            MovieRow(movie: movie)
-        }
-    }
-
-}
+//struct MovieRow_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        let movie = Movie(id: 1,
+//                          title: "Ad Astra",
+//                          releaseDate: Date(),
+//                          posterURL: URL(string: "https://image.tmdb.org/t/p/w780/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"))
+//
+//        return List {
+//            MovieRow(movie: movie)
+//        }
+//    }
+//
+//}

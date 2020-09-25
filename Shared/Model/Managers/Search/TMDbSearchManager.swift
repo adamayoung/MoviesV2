@@ -11,14 +11,14 @@ import TMDb
 
 final class TMDbSearchManager: SearchManager {
 
-    private let searchService: SearchService
+    private let tmdb: MovieTVShowAPI
 
-    init(searchService: SearchService = TMDbSearchService()) {
-        self.searchService = searchService
+    init(tmdb: MovieTVShowAPI = TMDbAPI.shared) {
+        self.tmdb = tmdb
     }
 
     func search(query: String) -> AnyPublisher<[Media], Never> {
-        searchService.searchAll(query: query)
+        tmdb.searchPublisher(withQuery: query)
             .map(\.results)
             .map(Media.create)
             .replaceError(with: [])

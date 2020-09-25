@@ -23,7 +23,7 @@ struct TVShowSeasonCarouselItem: View {
                 }
             }
 
-            PosterImage(url: season?.posterURL, displaySize: displaySize)
+            PosterImage(imageMetadata: season?.posterImage, displaySize: displaySize)
                 .shadow(radius: 8)
 
             Group {
@@ -42,7 +42,7 @@ struct TVShowSeasonCarouselItem: View {
             .font(displaySize == .large ? .headline : .subheadline)
             .lineLimit(2)
             .multilineTextAlignment(.center)
-            .frame(width: displaySize.size.width * 1.25, alignment: .center)
+            //.frame(width: displaySize.size.width * 1.25, alignment: .center)
 
             Spacer()
         }

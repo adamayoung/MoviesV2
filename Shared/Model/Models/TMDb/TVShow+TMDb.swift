@@ -10,32 +10,41 @@ import TMDb
 
 extension TVShow {
 
-    init(tvShow: TMDb.TVShow) {
+    init(dto: TVShowDTO) {
         let seasons: [TVShowSeason]? = {
-            guard let seasons = tvShow.seasons else {
+            guard let seasons = dto.seasons else {
                 return nil
             }
 
-            return TVShowSeason.create(seasons: seasons)
+            return TVShowSeason.create(dtos: seasons)
         }()
 
         let genres: [Genre]? = {
-            guard let genres = tvShow.genres else {
+            guard let genres = dto.genres else {
                 return nil
             }
 
-            return Genre.create(genres: genres)
+            return Genre.create(dtos: genres)
         }()
 
-        self.init(id: tvShow.id, name: tvShow.name, overview: tvShow.overview, firstAirDate: tvShow.firstAirDate,
-                  posterURL: tvShow.posterURL, backdropURL: tvShow.backdropURL, homepageURL: tvShow.homepageURL,
-                  popularity: tvShow.popularity, seasons: seasons, genres: genres, voteAverage: tvShow.voteAverage)
+        let voteAverage: Float? = {
+            guard let voteAverage = dto.voteAverage else {
+                return nil
+            }
+
+            return voteAverage > 0 ? voteAverage : nil
+        }()
+
+        let posterImage = PosterImageMetadata(posterURLProvider: dto)
+        let backdropImage = BackdropImageMetadata(backdropURLProvider: dto)
+
+        self.init(id: dto.id, name: dto.name, overview: dto.overview, firstAirDate: dto.firstAirDate,
+                  posterImage: posterImage, backdropImage: backdropImage, homepageURL: dto.homepageURL,
+                  popularity: dto.popularity, seasons: seasons, genres: genres, voteAverage: voteAverage)
     }
 
-    static func create(tvShows: [TMDb.TVShow]) -> [Self] {
-        tvShows.map(Self.init)
+    static func create(dtos: [TVShowDTO]) -> [Self] {
+        dtos.map(Self.init)
     }
 
 }
-
-extension TMDb.TVShow: PosterURLProviding, BackdropURLProviding { }

@@ -10,12 +10,12 @@ import TMDb
 
 extension Genre {
 
-    init(genre: TMDb.Genre) {
-        self.init(id: genre.id, name: genre.name)
+    init(dto: GenreDTO) {
+        self.init(id: dto.id, name: dto.name)
     }
 
-    static func create(genres: [TMDb.Genre]) -> [Genre] {
-        genres.map(Self.init)
+    static func create(dtos: [GenreDTO]) -> [Genre] {
+        dtos.map(Self.init)
     }
 
 }

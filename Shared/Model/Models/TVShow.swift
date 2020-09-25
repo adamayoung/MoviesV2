@@ -13,23 +13,23 @@ struct TVShow: Identifiable, Equatable {
     let name: String
     let overview: String?
     let firstAirDate: Date?
-    let posterURL: URL?
-    let backdropURL: URL?
+    let posterImage: PosterImageMetadata?
+    let backdropImage: BackdropImageMetadata?
     let homepageURL: URL?
     let popularity: Float?
     let seasons: [TVShowSeason]?
     let genres: [Genre]?
     let voteAverage: Float?
 
-    init(id: Int, name: String, overview: String? = nil, firstAirDate: Date? = nil, posterURL: URL? = nil,
-         backdropURL: URL? = nil, homepageURL: URL? = nil, popularity: Float? = nil, seasons: [TVShowSeason]? = nil,
-         genres: [Genre]? = nil, voteAverage: Float? = nil) {
+    init(id: Int, name: String, overview: String? = nil, firstAirDate: Date? = nil,
+         posterImage: PosterImageMetadata? = nil, backdropImage: BackdropImageMetadata? = nil, homepageURL: URL? = nil,
+         popularity: Float? = nil, seasons: [TVShowSeason]? = nil, genres: [Genre]? = nil, voteAverage: Float? = nil) {
         self.id = id
         self.name = name
         self.overview = overview
         self.firstAirDate = firstAirDate
-        self.posterURL = posterURL
-        self.backdropURL = backdropURL
+        self.posterImage = posterImage
+        self.backdropImage = backdropImage
         self.homepageURL = homepageURL
         self.popularity = popularity
         self.seasons = seasons

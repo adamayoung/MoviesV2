@@ -29,13 +29,13 @@ enum Show: Identifiable, Equatable {
         }
     }
 
-    var backdropURL: URL? {
+    var backdropImage: BackdropImageMetadata? {
         switch self {
         case .movie(let movie):
-            return movie.backdropURL
+            return movie.backdropImage
 
         case .tvShow(let tvShow):
-            return tvShow.backdropURL
+            return tvShow.backdropImage
         }
     }
 

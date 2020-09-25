@@ -10,18 +10,18 @@ import SwiftUI
 struct MoviesCarousel: View {
 
     var movies: [Movie]
-    var displaySize: BackdropImage.DisplaySize = .medium
+    var imageType: MovieCarouselItem.ImageType = .backdrop(displaySize: .medium)
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .top, spacing: 20) {
                 if !movies.isEmpty {
                     ForEach(movies) { movie in
-                        MovieCarouselItem(movie: movie, displaySize: displaySize)
+                        MovieCarouselItem(movie: movie, imageType: imageType)
                     }
                 } else {
                     ForEach(0...10, id: \.self) { _ in
-                        MovieCarouselItem(displaySize: displaySize)
+                        MovieCarouselItem(imageType: imageType)
                             .redacted(reason: .placeholder)
                     }
                 }

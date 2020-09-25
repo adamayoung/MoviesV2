@@ -11,8 +11,8 @@ struct ShowDetailsHeader: View {
 
     var title: String
     var subtitle: String?
-    var posterURL: URL?
-    var backdropURL: URL?
+    var posterImageMetadata: PosterImageMetadata?
+    var backdropImageMetadata: BackdropImageMetadata?
 
     private var topPadding: CGFloat {
         #if os(watchOS)
@@ -30,7 +30,7 @@ struct ShowDetailsHeader: View {
                 HStack {
                     Spacer()
                     VStack(alignment: .center) {
-                        PosterImage(url: posterURL, displaySize: .extraLarge)
+                        PosterImage(imageMetadata: posterImageMetadata, displaySize: .large)
                             .shadow(radius: 5)
                             .padding(.bottom, 10)
 
@@ -61,9 +61,9 @@ struct ShowDetailsHeader: View {
     private var backdrop: some View {
         Color.gray
             .overlay(
-                WebImage(url: backdropURL)
+                WebImage(url: backdropImageMetadata?.url)
             )
-            .frame(height: PosterImage.DisplaySize.extraLarge.size.height * 1.4)
+            //.frame(height: PosterImage.DisplaySize.extraLarge.size.height * 1.4)
             .mask(LinearGradient(gradient: Gradient(colors: [Color.black, Color.black, Color.clear]), startPoint: .top, endPoint: .bottom))
             .clipped()
 
@@ -74,24 +74,24 @@ struct ShowDetailsHeader: View {
 extension ShowDetailsHeader {
 
     init(movie: Movie) {
-        self.init(title: movie.title, subtitle: movie.tagline, posterURL: movie.posterURL,
-                  backdropURL: movie.backdropURL)
+        self.init(title: movie.title, subtitle: movie.tagline, posterImageMetadata: movie.posterImage,
+                  backdropImageMetadata: movie.backdropImage)
     }
 
     init(tvShow: TVShow) {
-        self.init(title: tvShow.name, posterURL: tvShow.posterURL, backdropURL: tvShow.backdropURL)
+        self.init(title: tvShow.name, posterImageMetadata: tvShow.posterImage, backdropImageMetadata: tvShow.backdropImage)
     }
 
 }
 
-struct ShowDetailsHeader_Previews: PreviewProvider {
-
-    static var previews: some View {
-        NavigationView {
-            List {
-                ShowDetailsHeader(title: "The Old Guard", posterURL: URL(string: "https://image.tmdb.org/t/p/w500/cjr4NWURcVN3gW5FlHeabgBHLrY.jpg"), backdropURL: URL(string: "https://image.tmdb.org/t/p/w780/m0ObOaJBerZ3Unc74l471ar8Iiy.jpg"))
-            }
-        }
-    }
-
-}
+//struct ShowDetailsHeader_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        NavigationView {
+//            List {
+//                ShowDetailsHeader(title: "The Old Guard", posterURL: URL(string: "https://image.tmdb.org/t/p/w500/cjr4NWURcVN3gW5FlHeabgBHLrY.jpg"), backdropURL: URL(string: "https://image.tmdb.org/t/p/w780/m0ObOaJBerZ3Unc74l471ar8Iiy.jpg"))
+//            }
+//        }
+//    }
+//
+//}

@@ -27,6 +27,7 @@ identifier_name:
   excluded:
     - age
     - app
+    - dto
     - id
     - job
     - lhs

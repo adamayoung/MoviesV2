@@ -15,18 +15,18 @@ struct CastMember: Identifiable, Equatable {
     let name: String
     let character: String
     let gender: Gender?
-    let profileURL: URL?
+    let profileImage: ProfileImageMetadata?
     let order: Int
 
     init(id: Int, castID: Int? = nil, creditID: String, name: String, character: String, gender: Gender? = nil,
-         profileURL: URL? = nil, order: Int) {
+         profileImage: ProfileImageMetadata? = nil, order: Int) {
         self.id = id
         self.castID = castID
         self.creditID = creditID
         self.name = name
         self.character = character
         self.gender = gender
-        self.profileURL = profileURL
+        self.profileImage = profileImage
         self.order = order
     }
 

@@ -22,9 +22,10 @@ struct MoviesApp: App {
     @StateObject private var movieStore = MovieStore()
     @StateObject private var tvShowStore = TVShowStore()
     @StateObject private var personStore = PersonStore()
+    @StateObject private var networkMonitor = NetworkMonitor()
 
     init() {
-        TMDbAPIClient.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
+        TMDbAPI.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
     }
 
     var body: some Scene {
@@ -33,7 +34,7 @@ struct MoviesApp: App {
         #elseif os(macOS)
         MacAppScene(movieStore: movieStore, tvShowStore: tvShowStore, personStore: personStore)
         #else
-        MainAppScene(movieStore: movieStore, tvShowStore: tvShowStore, personStore: personStore)
+        MainAppScene(movieStore: movieStore, tvShowStore: tvShowStore, personStore: personStore, networkMonitor: networkMonitor)
         #endif
     }
 

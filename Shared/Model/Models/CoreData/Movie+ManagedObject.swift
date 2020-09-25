@@ -14,8 +14,32 @@ extension Movie {
             return nil
         }
 
+        let posterImage: PosterImageMetadata? = {
+            guard
+                let url = movie.posterURL,
+                let lowDataURL = movie.posterLowDataURL,
+                let originalURL = movie.posterOriginalURL
+            else {
+                return nil
+            }
+
+            return PosterImageMetadata(url: url, lowDataURL: lowDataURL, originalURL: originalURL)
+        }()
+
+        let backdropImage: BackdropImageMetadata? = {
+            guard
+                let url = movie.backdropURL,
+                let lowDataURL = movie.backdropLowDataURL,
+                let originalURL = movie.backdropOriginalURL
+            else {
+                return nil
+            }
+
+            return BackdropImageMetadata(url: url, lowDataURL: lowDataURL, originalURL: originalURL)
+        }()
+
         self.init(id: Int(movie.movieID), title: title, overview: movie.overview, releaseDate: movie.releaseDate,
-                  posterURL: movie.posterURL, backdropURL: movie.backdropURL)
+                  posterImage: posterImage, backdropImage: backdropImage)
     }
 
 }
@@ -28,8 +52,12 @@ extension FavouriteMovie {
         self.title = movie.title
         self.overview = movie.overview
         self.releaseDate = movie.releaseDate
-        self.posterURL = movie.posterURL
-        self.backdropURL = movie.backdropURL
+        self.posterURL = movie.posterImage?.url
+        self.posterLowDataURL = movie.posterImage?.lowDataURL
+        self.posterOriginalURL = movie.posterImage?.originalURL
+        self.backdropURL = movie.backdropImage?.url
+        self.backdropLowDataURL = movie.backdropImage?.lowDataURL
+        self.backdropOriginalURL = movie.backdropImage?.originalURL
         self.createdAt = Date()
     }
 

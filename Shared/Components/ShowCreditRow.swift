@@ -11,11 +11,11 @@ struct ShowCreditRow: View {
 
     var name: String
     var detail: String
-    var profileURL: URL?
+    var profileImageMetadata: ProfileImageMetadata?
 
     var body: some View {
         HStack(alignment: .center) {
-            PersonImage(url: profileURL, displaySize: .medium)
+            PersonImage(imageMetadata: profileImageMetadata, displaySize: .small)
 
             VStack(alignment: .leading) {
                 Text(name)
@@ -32,11 +32,13 @@ struct ShowCreditRow: View {
 extension ShowCreditRow {
 
     init(castMember: CastMember) {
-        self.init(name: castMember.name, detail: castMember.character, profileURL: castMember.profileURL)
+        self.init(name: castMember.name, detail: castMember.character,
+                  profileImageMetadata: castMember.profileImage)
     }
 
     init(crewMember: CrewMember) {
-        self.init(name: crewMember.name, detail: crewMember.department, profileURL: crewMember.profileURL)
+        self.init(name: crewMember.name, detail: crewMember.department,
+                  profileImageMetadata: crewMember.profileImage)
     }
 
 }

@@ -10,8 +10,7 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+update_fastlane
 
 default_platform(:ios)
 
@@ -40,7 +39,10 @@ platform :ios do
   desc "PR Build"
   lane :pr do
     match(type: "appstore")
-    swiftlint(ignore_exit_status: false)
+    swiftlint(
+      ignore_exit_status: false,
+      raise_if_swiftlint_error: true
+    )
     update_code_signing_settings(use_automatic_signing: false)
     gym
     scan

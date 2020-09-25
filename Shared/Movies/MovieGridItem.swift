@@ -12,7 +12,7 @@ struct MovieGridItem: View {
     var movie: Movie
 
     var body: some View {
-        PosterImage(url: movie.posterURL)
+        PosterImage(imageMetadata: movie.posterImage)
             .shadow(radius: 5)
     }
 

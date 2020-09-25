@@ -34,7 +34,7 @@ extension TrendingTVShowWidget {
         private let urlSession: URLSession
 
         init(tvShowsManager: TVShowsManager = TMDbTVShowsManager(), urlSession: URLSession = .shared) {
-            TMDbAPIClient.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
+            TMDbAPI.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
             self.tvShowsManager = tvShowsManager
             self.urlSession = urlSession
         }
@@ -48,7 +48,7 @@ extension TrendingTVShowWidget {
                     let currentDate = Date()
                     guard
                         let thisTVShow = tvShow,
-                        let backdropURL = thisTVShow.backdropURL
+                        let backdropURL = thisTVShow.backdropImage?.originalURL
                     else {
                         return Just(Entry(date: currentDate, name: tvShow?.name))
                             .eraseToAnyPublisher()
@@ -124,7 +124,7 @@ struct TrendingTVShowEntryView: View {
     var entry: TrendingTVShowWidget.Entry
 
     init(entry: TrendingTVShowWidget.Entry) {
-        TMDbAPIClient.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
+        TMDbAPI.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
         self.entry = entry
     }
 

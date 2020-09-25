@@ -15,13 +15,13 @@ struct ShowCarouselItem: View {
     var body: some View {
         switch show {
         case .movie(let movie):
-            MovieCarouselItem(movie: movie, displaySize: displaySize)
+            MovieCarouselItem(movie: movie, imageType: .backdrop(displaySize: displaySize))
 
         case .tvShow(let tvShow):
-            TVShowCarouselItem(tvShow: tvShow, displaySize: displaySize)
+            TVShowCarouselItem(tvShow: tvShow, imageType: .backdrop(displaySize: displaySize))
 
         case .none:
-            MovieCarouselItem(movie: nil, displaySize: displaySize)
+            MovieCarouselItem(movie: nil, imageType: .backdrop(displaySize: displaySize))
         }
     }
 

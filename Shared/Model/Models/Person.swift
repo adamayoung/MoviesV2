@@ -18,10 +18,10 @@ struct Person: Identifiable, Equatable {
     let deathday: Date?
     let gender: Gender?
     let placeOfBirth: String?
-    let profileURL: URL?
+    let profileImage: ProfileImageMetadata?
     let popularity: Float?
-    let imdbId: String?
-    let homepage: URL?
+    let imdbID: String?
+    let homepageURL: URL?
 
     var age: Int? {
         guard let birthday = birthday else {
@@ -35,8 +35,8 @@ struct Person: Identifiable, Equatable {
 
     init(id: Int, name: String, alsoKnownAs: [String]? = nil, knownForDepartment: String? = nil,
          biography: String? = nil, birthday: Date? = nil, deathday: Date? = nil, gender: Gender? = nil,
-         placeOfBirth: String? = nil, profileURL: URL? = nil, popularity: Float? = nil, imdbId: String? = nil,
-         homepage: URL? = nil) {
+         placeOfBirth: String? = nil, profileImage: ProfileImageMetadata? = nil, popularity: Float? = nil,
+         imdbID: String? = nil, homepageURL: URL? = nil) {
         self.id = id
         self.name = name
         self.alsoKnownAs = alsoKnownAs
@@ -46,10 +46,10 @@ struct Person: Identifiable, Equatable {
         self.deathday = deathday
         self.gender = gender
         self.placeOfBirth = placeOfBirth
-        self.profileURL = profileURL
+        self.profileImage = profileImage
         self.popularity = popularity
-        self.imdbId = imdbId
-        self.homepage = homepage
+        self.imdbID = imdbID
+        self.homepageURL = homepageURL
     }
 
 }

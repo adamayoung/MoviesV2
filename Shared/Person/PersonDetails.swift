@@ -40,7 +40,7 @@ struct PersonDetails: View {
             if !popularShows.isEmpty {
                 #if !os(watchOS)
                 Section(header: filmographySectionHeader) {
-                    ShowsCarousel(shows: popularShows, displaySize: .medium)
+                    ShowsCarousel(shows: popularShows, displaySize: .small)
                         .listRowInsets(EdgeInsets())
                 }
                 #else
@@ -77,7 +77,7 @@ struct PersonDetails: View {
 struct PersonDetails_Previews: PreviewProvider {
 
     static var previews: some View {
-        let person = Person(id: 1, name: "Adam Young", biography: "Adam is an iOS Developer", gender: .male, popularity: 10, imdbId: "abc123")
+        let person = Person(id: 1, name: "Adam Young", biography: "Adam is an iOS Developer", gender: .male, popularity: 10, imdbID: "abc123")
 
         return NavigationView {
             PersonDetails(person: person, popularShows: [])

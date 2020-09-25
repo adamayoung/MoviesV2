@@ -10,32 +10,41 @@ import TMDb
 
 extension Movie {
 
-    init(movie: TMDb.Movie) {
+    init(dto: MovieDTO) {
         let genres: [Genre]? = {
-            guard let genres = movie.genres else {
+            guard let genres = dto.genres else {
                 return nil
             }
 
-            return Genre.create(genres: genres)
+            return Genre.create(dtos: genres)
         }()
 
         let runtime: TimeInterval? = {
-            guard let runtime = movie.runtime else {
+            guard let runtime = dto.runtime else {
                 return nil
             }
 
             return TimeInterval(runtime * 60)
         }()
 
-        self.init(id: movie.id, title: movie.title, tagline: movie.tagline, overview: movie.overview, runtime: runtime,
-                  genres: genres, releaseDate: movie.releaseDate, posterURL: movie.posterURL,
-                  backdropURL: movie.backdropURL, popularity: movie.popularity, voteAverage: movie.voteAverage)
+        let voteAverage: Float? = {
+            guard let voteAverage = dto.voteAverage else {
+                return nil
+            }
+
+            return voteAverage > 0 ? voteAverage : nil
+        }()
+
+        let posterImage = PosterImageMetadata(posterURLProvider: dto)
+        let backdropImage = BackdropImageMetadata(backdropURLProvider: dto)
+
+        self.init(id: dto.id, title: dto.title, tagline: dto.tagline, overview: dto.overview, runtime: runtime,
+                  genres: genres, releaseDate: dto.releaseDate, posterImage: posterImage, backdropImage: backdropImage,
+                  popularity: dto.popularity, voteAverage: voteAverage)
     }
 
-    static func create(movies: [TMDb.Movie]) -> [Movie] {
-        movies.map(Self.init)
+    static func create(dtos: [MovieDTO]) -> [Movie] {
+        dtos.map(Self.init)
     }
 
 }
-
-extension TMDb.Movie: PosterURLProviding, BackdropURLProviding { }

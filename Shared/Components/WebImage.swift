@@ -11,11 +11,12 @@ import SwiftUI
 struct WebImage: View {
 
     var url: URL?
+    var lowDataURL: URL?
 
     var body: some View {
         Group {
             if let url = url {
-                InternalWebImage(url: url)
+                InternalWebImage(url: url, lowDataURL: lowDataURL)
             }
         }
         .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
@@ -27,8 +28,12 @@ private struct InternalWebImage: View {
 
     @ObservedObject var image: FetchImage
 
-    init(url: URL) {
-        image = FetchImage(url: url)
+    init(url: URL, lowDataURL: URL? = nil) {
+        if let lowDataURL = lowDataURL {
+            image = FetchImage(regularUrl: url, lowDataUrl: lowDataURL)
+        } else {
+            image = FetchImage(url: url)
+        }
     }
 
     var body: some View {

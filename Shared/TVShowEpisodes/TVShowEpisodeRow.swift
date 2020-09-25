@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct TVShowEpisodeRow: View {
 
@@ -31,7 +32,7 @@ struct TVShowEpisodeRow: View {
 
     private var content: some View {
         VStack(alignment: .leading, spacing: 20) {
-            BackdropImage(url: episode.stillURL)
+            StillImage(imageMetadata: episode.stillImage)
                 .shadow(radius: 8)
 
             VStack(alignment: .leading, spacing: 5) {
@@ -64,7 +65,7 @@ struct TVShowEpisodeRow: View {
 
     private var largeContent: some View {
         HStack(alignment: .top, spacing: 20) {
-            BackdropImage(url: episode.stillURL, displaySize: .large)
+            StillImage(imageMetadata: episode.stillImage, displaySize: .large)
                 .shadow(radius: 8)
 
             VStack(alignment: .leading, spacing: 5) {

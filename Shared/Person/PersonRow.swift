@@ -13,7 +13,7 @@ struct PersonRow: View {
 
     var body: some View {
         HStack(alignment: .center) {
-            PersonImage(url: person.profileURL, displaySize: .medium)
+            PersonImage(imageMetadata: person.profileImage, displaySize: .small)
 
             Text(person.name)
                 .font(.headline)

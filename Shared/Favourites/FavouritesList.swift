@@ -13,22 +13,6 @@ struct FavouritesList: View {
     var tvShows: [TVShow]
     var people: [Person]
 
-    #if os(iOS)
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    #endif
-
-    private var largeBackdropDisplaySize: BackdropImage.DisplaySize {
-        #if os(iOS)
-        if horizontalSizeClass == .compact {
-            return .large
-        } else {
-            return .extraLarge
-        }
-        #else
-        return .large
-        #endif
-    }
-
     var body: some View {
         #if os(iOS)
         content
@@ -42,21 +26,21 @@ struct FavouritesList: View {
         List {
             if !movies.isEmpty {
                 Section(header: moviesSectionHeader) {
-                    MoviesCarousel(movies: movies, displaySize: largeBackdropDisplaySize)
+                    MoviesCarousel(movies: movies, imageType: .backdrop(displaySize: .medium))
                         .listRowInsets(EdgeInsets())
                 }
             }
 
             if !tvShows.isEmpty {
                 Section(header: tvShowsSectionHeader) {
-                    TVShowsCarousel(tvShows: tvShows, displaySize: largeBackdropDisplaySize)
+                    TVShowsCarousel(tvShows: tvShows, imageType: .backdrop(displaySize: .medium))
                         .listRowInsets(EdgeInsets())
                 }
             }
 
             if !people.isEmpty {
                 Section(header: peopleSectionHeader) {
-                    PeopleCarousel(people: people, displaySize: .extraLarge)
+                    PeopleCarousel(people: people, displaySize: .medium)
                         .listRowInsets(EdgeInsets())
                 }
             }

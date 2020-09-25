@@ -9,25 +9,37 @@ import SwiftUI
 
 struct BackdropImage: View {
 
-    var url: URL?
+    var imageMetadata: BackdropImageMetadata?
     var displaySize: DisplaySize?
+
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    #endif
+
+    private var size: CGSize? {
+        #if os(iOS)
+        return displaySize?.size(forSizeClass: horizontalSizeClass)
+        #else
+        return displaySize?.size
+        #endif
+    }
 
     var body: some View {
         Group {
-            if let displaySize = displaySize {
+            if let size = size {
                 content
-                    .frame(width: displaySize.size.width, alignment: .center)
+                    .frame(width: size.width, height: size.height, alignment: .center)
             } else {
                 content
             }
         }
-        .clipShape(RoundedRectangle(cornerRadius: 5))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 
     private var content: some View {
         ZStack(alignment: .center) {
             placeholder
-            WebImage(url: url)
+            WebImage(url: imageMetadata?.url, lowDataURL: imageMetadata?.lowDataURL)
         }
         .aspectRatio(DisplaySize.aspectRatio, contentMode: .fit)
     }
@@ -41,31 +53,48 @@ struct BackdropImage: View {
 extension BackdropImage {
 
     enum DisplaySize: CGFloat {
-        case small = 60
-        case medium = 100
-        case large = 150
-        case extraLarge = 250
 
-        static let aspectRatio: CGFloat = 500 / 281
+        case small = 100
+        case medium = 150
+        case large = 200
 
+        static var aspectRatio: CGFloat {
+            CGFloat(BackdropImageMetadata.aspectRatio)
+        }
+
+        #if os(iOS)
+        func size(forSizeClass horizontalSizeClass: UserInterfaceSizeClass?) -> CGSize {
+            let height = horizontalSizeClass == .regular ? rawValue * 1.5 : rawValue
+
+            return CGSize(width: (height * Self.aspectRatio), height: height)
+        }
+        #elseif os(watchOS)
+        var size: CGSize {
+            let height = rawValue * 0.5
+
+            return CGSize(width: (height * Self.aspectRatio), height: height)
+        }
+        #else
         var size: CGSize {
             CGSize(width: (rawValue * Self.aspectRatio), height: rawValue)
         }
+        #endif
+
     }
 
 }
 
-struct BackdropImage_Previews: PreviewProvider {
-
-    private static let url = URL(string: "https://image.tmdb.org/t/p/w500/m0ObOaJBerZ3Unc74l471ar8Iiy.jpg")
-
-    static var previews: some View {
-        VStack {
-            BackdropImage(url: url, displaySize: .small)
-            BackdropImage(url: url, displaySize: .medium)
-            BackdropImage(url: url, displaySize: .large)
-            BackdropImage(url: nil, displaySize: .large)
-        }
-    }
-
-}
+//struct BackdropImage_Previews: PreviewProvider {
+//
+//    private static let url = URL(string: "https://image.tmdb.org/t/p/w500/m0ObOaJBerZ3Unc74l471ar8Iiy.jpg")
+//
+//    static var previews: some View {
+//        VStack {
+//            BackdropImage(url: url, displaySize: .small)
+//            BackdropImage(url: url, displaySize: .medium)
+//            BackdropImage(url: url, displaySize: .large)
+//            BackdropImage(url: nil, displaySize: .large)
+//        }
+//    }
+//
+//}
