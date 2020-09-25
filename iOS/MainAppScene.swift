@@ -14,14 +14,16 @@ struct MainAppScene: Scene {
     @ObservedObject var tvShowStore: TVShowStore
     @ObservedObject var personStore: PersonStore
     @ObservedObject var networkMonitor: NetworkMonitor
+    @ObservedObject var cloudKitAvailability: CloudKitAvailability
 
     @Environment(\.scenePhase) private var scenePhase
 
-    init(movieStore: MovieStore, tvShowStore: TVShowStore, personStore: PersonStore, networkMonitor: NetworkMonitor) {
+    init(movieStore: MovieStore, tvShowStore: TVShowStore, personStore: PersonStore, networkMonitor: NetworkMonitor, cloudKitAvailability: CloudKitAvailability) {
         self.movieStore = movieStore
         self.tvShowStore = tvShowStore
         self.personStore = personStore
         self.networkMonitor = networkMonitor
+        self.cloudKitAvailability = cloudKitAvailability
         WidgetCenter.shared.reloadAllTimelines()
     }
 
@@ -32,6 +34,7 @@ struct MainAppScene: Scene {
                 .environmentObject(tvShowStore)
                 .environmentObject(personStore)
                 .environmentObject(networkMonitor)
+                .environmentObject(cloudKitAvailability)
         }
     }
 

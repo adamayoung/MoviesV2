@@ -12,6 +12,7 @@ struct TVShowDetailsView: View {
     var id: TVShow.ID
 
     @EnvironmentObject private var tvShowStore: TVShowStore
+    @EnvironmentObject private var cloudKitAvailability: CloudKitAvailability
 
     private var tvShow: TVShow? {
         tvShowStore.tvShow(withID: id)
@@ -51,6 +52,7 @@ struct TVShowDetailsView: View {
                         }, label: {
                             favouriteButtonLabel
                         })
+                        .disabled(!cloudKitAvailability.isAvailable)
                     }
                 }
             }
@@ -94,6 +96,10 @@ struct TVShowDetailsView: View {
     }
 
     private func toogleFavourite() {
+        guard cloudKitAvailability.isAvailable else {
+            return
+        }
+
         guard let tvShow = tvShow else {
             return
         }

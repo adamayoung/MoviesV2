@@ -209,6 +209,9 @@
 		6F4AF13D24F7F0F100306BA4 /* ShowCarouselItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4AF13C24F7F0F100306BA4 /* ShowCarouselItem.swift */; };
 		6F4AF13E24F7F0F100306BA4 /* ShowCarouselItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4AF13C24F7F0F100306BA4 /* ShowCarouselItem.swift */; };
 		6F4AF13F24F7F0F100306BA4 /* ShowCarouselItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4AF13C24F7F0F100306BA4 /* ShowCarouselItem.swift */; };
+		6F4E128E251E035400A6A75A /* CloudKitAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4E128D251E035400A6A75A /* CloudKitAvailability.swift */; };
+		6F4E128F251E035400A6A75A /* CloudKitAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4E128D251E035400A6A75A /* CloudKitAvailability.swift */; };
+		6F4E1290251E035400A6A75A /* CloudKitAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4E128D251E035400A6A75A /* CloudKitAvailability.swift */; };
 		6F60CA0425135E6F008E79CF /* PersonStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F60CA0325135E6F008E79CF /* PersonStore.swift */; };
 		6F60CA0525135E6F008E79CF /* PersonStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F60CA0325135E6F008E79CF /* PersonStore.swift */; };
 		6F60CA0625135E6F008E79CF /* PersonStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F60CA0325135E6F008E79CF /* PersonStore.swift */; };
@@ -587,8 +590,6 @@
 		6FF393BC24FE838A000E2A48 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF393BB24FE838A000E2A48 /* CloudKit.framework */; };
 		6FF393BE24FE8499000E2A48 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF393BD24FE8499000E2A48 /* CloudKit.framework */; };
 		6FF393C024FE84A3000E2A48 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF393BF24FE84A3000E2A48 /* CloudKit.framework */; };
-		6FF393CF24FEBC6A000E2A48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF393CE24FEBC6A000E2A48 /* AppDelegate.swift */; };
-		6FF393D324FEBCAE000E2A48 /* WatchExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF393D224FEBCAE000E2A48 /* WatchExtensionDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -731,6 +732,7 @@
 		6F4AF13024F7E87C00306BA4 /* PersonCombinedCredits+TMDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonCombinedCredits+TMDb.swift"; sourceTree = "<group>"; };
 		6F4AF13624F7EFF900306BA4 /* ShowsCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsCarousel.swift; sourceTree = "<group>"; };
 		6F4AF13C24F7F0F100306BA4 /* ShowCarouselItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCarouselItem.swift; sourceTree = "<group>"; };
+		6F4E128D251E035400A6A75A /* CloudKitAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitAvailability.swift; sourceTree = "<group>"; };
 		6F60CA0325135E6F008E79CF /* PersonStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonStore.swift; sourceTree = "<group>"; };
 		6F60CA1F25136537008E79CF /* SearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStore.swift; sourceTree = "<group>"; };
 		6F60CA88251372C0008E79CF /* Movies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Movies.xcdatamodel; sourceTree = "<group>"; };
@@ -877,8 +879,6 @@
 		6FF393BB24FE838A000E2A48 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		6FF393BD24FE8499000E2A48 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		6FF393BF24FE84A3000E2A48 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
-		6FF393CE24FEBC6A000E2A48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6FF393D224FEBCAE000E2A48 /* WatchExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchExtensionDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1141,7 +1141,6 @@
 			isa = PBXGroup;
 			children = (
 				6FAB658F24C8924A006ABC39 /* Launch Screen.storyboard */,
-				6FF393CE24FEBC6A000E2A48 /* AppDelegate.swift */,
 				6F66452224F79A590034FA08 /* MainAppScene.swift */,
 				6FA5A9A224BF18BE00E828AA /* AppTabNavigation.swift */,
 				6FAB659424C89769006ABC39 /* Assets.xcassets */,
@@ -1265,7 +1264,6 @@
 		6FA5A9C724BF2E7200E828AA /* watchOS Extension */ = {
 			isa = PBXGroup;
 			children = (
-				6FF393D224FEBCAE000E2A48 /* WatchExtensionDelegate.swift */,
 				6F66452424F79B5C0034FA08 /* WatchAppScene.swift */,
 				6FA5A9E924BF308600E828AA /* AppWatchNavigation.swift */,
 				6FA5A9E724BF303C00E828AA /* Notifications */,
@@ -1409,6 +1407,7 @@
 				6F9B861424CB1A2F00E0B527 /* Models */,
 				6F60CA87251372C0008E79CF /* Movies.xcdatamodeld */,
 				6F60CA94251372D9008E79CF /* Persistence.swift */,
+				6F4E128D251E035400A6A75A /* CloudKitAvailability.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1865,6 +1864,7 @@
 				6FEBAAF224C1DA58009871B3 /* TVShow.swift in Sources */,
 				6F60CA95251372D9008E79CF /* Persistence.swift in Sources */,
 				6F42096E24FC5501002ACFF6 /* TVShowGridItem.swift in Sources */,
+				6F4E128E251E035400A6A75A /* CloudKitAvailability.swift in Sources */,
 				6FF245FF250A789D00E0A69C /* TVShowSeasonsGrid.swift in Sources */,
 				6F4AF11324F7D2ED00306BA4 /* PersonCarouselItem.swift in Sources */,
 				6FD7776524BFB8E600E31D4D /* MoviesCarousel.swift in Sources */,
@@ -1883,7 +1883,6 @@
 				6F4AF13724F7EFF900306BA4 /* ShowsCarousel.swift in Sources */,
 				6FA7D39E24C5B0E500581529 /* Gender+TMDb.swift in Sources */,
 				6FF245DC250A730400E0A69C /* TVShowEpisode.swift in Sources */,
-				6FF393CF24FEBC6A000E2A48 /* AppDelegate.swift in Sources */,
 				6FD3E18524C0C37100E62E67 /* ShowPlotView.swift in Sources */,
 				6F04856F24F950E100EA8327 /* PersonCreditsView.swift in Sources */,
 				6FA7985724D06E6A0003F0D1 /* DateFormatter+custom.swift in Sources */,
@@ -2017,6 +2016,7 @@
 				6F04857024F950E100EA8327 /* PersonCreditsView.swift in Sources */,
 				6FD7776024BFA26400E31D4D /* MovieCarouselItem.swift in Sources */,
 				6F21386A24F7AFBE0050CF3B /* PersonDetails.swift in Sources */,
+				6F4E128F251E035400A6A75A /* CloudKitAvailability.swift in Sources */,
 				6FC44AA524C6243F00C0DCF3 /* SearchView.swift in Sources */,
 				6F6F0CFA24BF9136001AD4BA /* WebImage.swift in Sources */,
 				6F01451E25129F10001E436C /* Genre.swift in Sources */,
@@ -2078,7 +2078,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FF393D324FEBCAE000E2A48 /* WatchExtensionDelegate.swift in Sources */,
 				6FA9F57B250000B600E3AA73 /* AddFavouriteOverlay.swift in Sources */,
 				6FD3E1AD24C10CCE00E62E67 /* Movie.swift in Sources */,
 				6F21386F24F7B1690050CF3B /* PersonDetailsHeader.swift in Sources */,
@@ -2198,6 +2197,7 @@
 				6F04857124F950E100EA8327 /* PersonCreditsView.swift in Sources */,
 				6FF058E0251CB50400DED463 /* StillImageMetadata+TMDb.swift in Sources */,
 				6F8ABCA52513E77800FC4022 /* FavouritePeopleView.swift in Sources */,
+				6F4E1290251E035400A6A75A /* CloudKitAvailability.swift in Sources */,
 				6F4AF13F24F7F0F100306BA4 /* ShowCarouselItem.swift in Sources */,
 				6F05B71B250B9C14009BC112 /* TVShowEpisodeRow.swift in Sources */,
 				6F42097824FC5591002ACFF6 /* MoviesCollection.swift in Sources */,

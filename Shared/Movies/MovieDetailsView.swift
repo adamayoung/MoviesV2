@@ -12,6 +12,7 @@ struct MovieDetailsView: View {
     var id: Movie.ID
 
     @EnvironmentObject private var movieStore: MovieStore
+    @EnvironmentObject private var cloudKitAvailability: CloudKitAvailability
 
     private var movie: Movie? {
         movieStore.movie(withID: id)
@@ -47,6 +48,7 @@ struct MovieDetailsView: View {
                         }, label: {
                             favouriteButtonLabel
                         })
+                        .disabled(!cloudKitAvailability.isAvailable)
                     }
                 }
             }
@@ -89,6 +91,10 @@ struct MovieDetailsView: View {
     }
 
     private func toogleFavourite() {
+        guard cloudKitAvailability.isAvailable else {
+            return
+        }
+
         guard let movie = movie else {
             return
         }

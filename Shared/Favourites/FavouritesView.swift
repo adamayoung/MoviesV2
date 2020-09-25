@@ -12,6 +12,7 @@ struct FavouritesView: View {
     @EnvironmentObject private var movieStore: MovieStore
     @EnvironmentObject private var tvShowStore: TVShowStore
     @EnvironmentObject private var personStore: PersonStore
+    @EnvironmentObject private var cloudKitAvailability: CloudKitAvailability
 
     private var movies: [Movie] {
         movieStore.topFavourites
@@ -25,15 +26,23 @@ struct FavouritesView: View {
         personStore.topFavourites
     }
 
+    private var isFavouritesAvailable: Bool {
+        cloudKitAvailability.isAvailable
+    }
+
     private var hasFavourites: Bool {
-        !movies.isEmpty || !tvShows.isEmpty || !people.isEmpty
+        guard isFavouritesAvailable else {
+            return false
+        }
+
+        return !movies.isEmpty || !tvShows.isEmpty || !people.isEmpty
     }
 
     var body: some View {
         content
             .overlay(Group {
                 if !hasFavourites {
-                    AddFavouriteOverlay()
+                    AddFavouriteOverlay(isAvailable: isFavouritesAvailable)
                 }
             })
             .navigationTitle("Favourites")
