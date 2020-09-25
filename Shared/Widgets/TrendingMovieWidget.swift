@@ -34,7 +34,7 @@ extension TrendingMovieWidget {
         private let urlSession: URLSession
 
         init(moviesManager: MoviesManager = TMDbMoviesManager(), urlSession: URLSession = .shared) {
-            TMDbAPIClient.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
+            TMDbAPI.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
             self.moviesManager = moviesManager
             self.urlSession = urlSession
         }
@@ -48,7 +48,7 @@ extension TrendingMovieWidget {
                     let currentDate = Date()
                     guard
                         let thisMovie = movie,
-                        let backdropURL = thisMovie.backdropURL
+                        let backdropURL = thisMovie.backdropImage?.originalURL
                     else {
                         return Just(Entry(id: movie?.id, date: currentDate, title: movie?.title))
                             .eraseToAnyPublisher()
@@ -124,7 +124,7 @@ struct TrendingMovieEntryView: View {
     var entry: TrendingMovieWidget.Entry
 
     init(entry: TrendingMovieWidget.Entry) {
-        TMDbAPIClient.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
+        TMDbAPI.setAPIKey(AppConstants.theMovieDatabaseAPIKey)
         self.entry = entry
     }
 

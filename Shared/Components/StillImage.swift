@@ -1,15 +1,15 @@
 //
-//  PosterImage.swift
+//  StillImage.swift
 //  Movies
 //
-//  Created by Adam Young on 15/07/2020.
+//  Created by Adam Young on 24/09/2020.
 //
 
 import SwiftUI
 
-struct PosterImage: View {
+struct StillImage: View {
 
-    var imageMetadata: PosterImageMetadata?
+    var imageMetadata: StillImageMetadata?
     var displaySize: DisplaySize?
 
     #if os(iOS)
@@ -33,13 +33,13 @@ struct PosterImage: View {
                 content
             }
         }
-        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .clipShape(RoundedRectangle(cornerRadius: 5))
     }
 
     private var content: some View {
         ZStack(alignment: .center) {
             placeholder
-            WebImage(url: imageMetadata?.url, lowDataURL: imageMetadata?.lowDataURL)
+            WebImage(url: imageMetadata?.originalURL, lowDataURL: imageMetadata?.lowDataURL)
         }
         .aspectRatio(DisplaySize.aspectRatio, contentMode: .fit)
     }
@@ -50,7 +50,7 @@ struct PosterImage: View {
 
 }
 
-extension PosterImage {
+extension StillImage {
 
     enum DisplaySize: CGFloat {
 
@@ -59,7 +59,7 @@ extension PosterImage {
         case large = 300
 
         static var aspectRatio: CGFloat {
-            CGFloat(PosterImageMetadata.aspectRatio)
+            CGFloat(StillImageMetadata.aspectRatio)
         }
 
         #if os(iOS)
@@ -84,16 +84,16 @@ extension PosterImage {
 
 }
 
-//struct PosterImage_Previews: PreviewProvider {
+//struct StillImage_Previews: PreviewProvider {
 //
-//    private static let url = URL(string: "https://image.tmdb.org/t/p/w780/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg")
+//    private static let url = URL(string: "https://image.tmdb.org/t/p/w500/m0ObOaJBerZ3Unc74l471ar8Iiy.jpg")
 //
 //    static var previews: some View {
 //        VStack {
-//            PosterImage(url: url, displaySize: .small)
-//            PosterImage(url: url, displaySize: .medium)
-//            PosterImage(url: url, displaySize: .large)
-//            PosterImage(url: nil, displaySize: .large)
+//            StillImage(url: url, displaySize: .small)
+//            StillImage(url: url, displaySize: .medium)
+//            StillImage(url: url, displaySize: .large)
+//            StillImage(url: nil, displaySize: .large)
 //        }
 //    }
 //

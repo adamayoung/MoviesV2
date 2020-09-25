@@ -23,13 +23,13 @@ struct PersonCreditsList: View {
     private var content: some View {
         List {
             if !credits.cast.isEmpty {
-                Section(header: Text("Actor")) {
+                Section(header: Text("Actor").listSectionHeaderStyle()) {
                     castSection
                 }
             }
 
             if !credits.crew.isEmpty {
-                Section(header: Text("Crew")) {
+                Section(header: Text("Crew").listSectionHeaderStyle()) {
                     crewSection
                 }
             }

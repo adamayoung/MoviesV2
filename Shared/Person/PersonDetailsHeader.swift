@@ -10,7 +10,7 @@ import SwiftUI
 struct PersonDetailsHeader: View {
 
     var name: String
-    var profileURL: URL?
+    var profileImageMetadata: ProfileImageMetadata?
 
     private var topPadding: CGFloat {
         #if os(watchOS)
@@ -24,7 +24,7 @@ struct PersonDetailsHeader: View {
         HStack {
             Spacer()
             VStack(alignment: .center) {
-                PersonImage(url: profileURL, displaySize: .extraLarge)
+                PersonImage(imageMetadata: profileImageMetadata, displaySize: .large)
                     .shadow(radius: 5)
                     .padding(.bottom, 10)
 
@@ -55,15 +55,15 @@ struct PersonDetailsHeader: View {
 extension PersonDetailsHeader {
 
     init(person: Person) {
-        self.init(name: person.name, profileURL: person.profileURL)
+        self.init(name: person.name, profileImageMetadata: person.profileImage)
     }
 
 }
 
-struct PersonDetailsHeader_Previews: PreviewProvider {
-
-    static var previews: some View {
-        PersonDetailsHeader(name: "Adam Young", profileURL: URL(string: "https://pbs.twimg.com/profile_images/1275513868664659968/rVhFV8C1_400x400.jpg")!)
-    }
-
-}
+//struct PersonDetailsHeader_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        PersonDetailsHeader(name: "Adam Young", profileURL: URL(string: "https://pbs.twimg.com/profile_images/1275513868664659968/rVhFV8C1_400x400.jpg")!)
+//    }
+//
+//}

@@ -13,7 +13,7 @@ struct PersonGridItem: View {
 
     var body: some View {
         VStack {
-            PersonImage(url: person.profileURL)
+            PersonImage(imageMetadata: person.profileImage)
             Text(person.name)
                 .foregroundColor(.primary)
                 .font(.headline)

@@ -16,14 +16,14 @@ struct TVShowEpisode: Identifiable, Equatable {
     let overview: String?
     let airDate: Date?
     let productionCode: String?
-    let stillURL: URL?
+    let stillImage: StillImageMetadata?
     let crew: [CrewMember]?
     let guestStars: [CastMember]?
     let voteAverage: Float?
     let voteCount: Int?
 
     init(id: Int, name: String, episodeNumber: Int, seasonNumber: Int, overview: String? = nil, airDate: Date? = nil,
-         productionCode: String? = nil, stillURL: URL? = nil, crew: [CrewMember]? = nil,
+         productionCode: String? = nil, stillImage: StillImageMetadata? = nil, crew: [CrewMember]? = nil,
          guestStars: [CastMember]? = nil, voteAverage: Float? = nil, voteCount: Int? = nil) {
         self.id = id
         self.name = name
@@ -32,7 +32,7 @@ struct TVShowEpisode: Identifiable, Equatable {
         self.overview = overview
         self.airDate = airDate
         self.productionCode = productionCode
-        self.stillURL = stillURL
+        self.stillImage = stillImage
         self.crew = crew
         self.guestStars = guestStars
         self.voteAverage = voteAverage

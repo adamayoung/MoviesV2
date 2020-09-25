@@ -69,7 +69,7 @@ struct PersonPersonalDetailsView: View {
 struct PersonPersonalDetailsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        let person = Person(id: 1, name: "Adam Young", biography: "Adam is an iOS Developer", gender: .male, popularity: 10, imdbId: "abc123")
+        let person = Person(id: 1, name: "Adam Young", biography: "Adam is an iOS Developer", gender: .male, popularity: 10, imdbID: "abc123")
 
         return PersonPersonalDetailsView(person: person)
     }

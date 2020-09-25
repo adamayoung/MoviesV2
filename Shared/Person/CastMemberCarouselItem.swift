@@ -9,10 +9,22 @@ import SwiftUI
 
 struct CastMemberCarouselItem: View {
 
-    @State private var isDetailActive = false
-
     var castMember: CastMember?
     var displaySize: PersonImage.DisplaySize = .medium
+
+    @State private var isDetailActive = false
+
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    #endif
+
+    private var size: CGSize {
+        #if os(iOS)
+        return displaySize.size(forSizeClass: horizontalSizeClass)
+        #else
+        return displaySize.size
+        #endif
+    }
 
     var body: some View {
         VStack(alignment: .center) {
@@ -23,7 +35,7 @@ struct CastMemberCarouselItem: View {
                 .frame(width: 0, height: 0)
             }
 
-            PersonImage(url: castMember?.profileURL, displaySize: displaySize)
+            PersonImage(imageMetadata: castMember?.profileImage, displaySize: displaySize)
                 .shadow(radius: 8)
                 .accessibility(label: Text(castMember?.name ?? ""))
                 .onTapGesture {
@@ -31,20 +43,19 @@ struct CastMemberCarouselItem: View {
                 }
 
             Group {
-                Text(castMember?.name ?? " \n ")
-                    .fontWeight(displaySize == .large ? .heavy : .bold)
+                Text(castMember?.name ?? "              \n        ")
+                    .font(.headline)
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibility(label: Text(castMember?.name ?? ""))
 
-                Text(castMember?.character ?? " \n ")
+                Text(castMember?.character ?? "              \n        ")
                     .foregroundColor(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibility(label: Text(castMember?.character ?? ""))
             }
-            .font(displaySize == .large ? .headline : .subheadline)
             .lineLimit(2)
             .multilineTextAlignment(.center)
-            .frame(width: displaySize.size.width * 1.25, alignment: .center)
+            .frame(width: size.width, alignment: .center)
 
             Spacer()
         }

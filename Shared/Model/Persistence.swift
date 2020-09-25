@@ -55,7 +55,7 @@ struct PersistenceController {
         description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         description.setOption(true as NSObject, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
 
-        container.loadPersistentStores { storeDescription, error in
+        container.loadPersistentStores { _, error in
             if let error = error as NSError? {
                 print("Error loading store: \(error), \(error.userInfo)")
             }

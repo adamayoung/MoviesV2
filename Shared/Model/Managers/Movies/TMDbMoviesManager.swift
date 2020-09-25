@@ -12,22 +12,14 @@ import TMDb
 
 final class TMDbMoviesManager: MoviesManager {
 
-    private let movieService: MovieService
-    private let trendingService: TrendingService
-    private let discoverService: DiscoverService
+    private let tmdb: MovieTVShowAPI
 
-    init(
-        movieService: MovieService = TMDbMovieService(),
-        trendingService: TrendingService = TMDbTrendingService(),
-        discoverService: DiscoverService = TMDbDiscoverService()
-    ) {
-        self.movieService = movieService
-        self.trendingService = trendingService
-        self.discoverService = discoverService
+    init(tmdb: MovieTVShowAPI = TMDbAPI.shared) {
+        self.tmdb = tmdb
     }
 
     func fetchTrending(page: Int = 1) -> AnyPublisher<[Movie], Never> {
-        trendingService.fetchMovies(timeWindow: .day, page: page)
+        tmdb.trendingMoviesPublisher(page: page)
             .map(\.results)
             .map(Movie.create)
             .replaceError(with: [])
@@ -35,7 +27,7 @@ final class TMDbMoviesManager: MoviesManager {
     }
 
     func fetchDiscover(page: Int = 1) -> AnyPublisher<[Movie], Never> {
-        discoverService.fetchMovies(page: page)
+        tmdb.discoverMoviesPublisher(page: page)
             .map(\.results)
             .map(Movie.create)
             .replaceError(with: [])
@@ -43,7 +35,7 @@ final class TMDbMoviesManager: MoviesManager {
     }
 
     func fetchRecommendations(forMovie movieID: Movie.ID) -> AnyPublisher<[Movie], Never> {
-        movieService.fetchRecommendations(forMovie: movieID)
+        tmdb.recommendationsPublisher(forMovie: movieID)
             .map(\.results)
             .map(Movie.create)
             .replaceError(with: [])
@@ -51,14 +43,14 @@ final class TMDbMoviesManager: MoviesManager {
     }
 
     func fetchMovie(withID id: Movie.ID) -> AnyPublisher<Movie?, Never> {
-        movieService.fetchDetails(forMovie: id)
+        tmdb.detailsPublisher(forMovie: id)
             .map(Movie.init)
             .replaceError(with: nil)
             .eraseToAnyPublisher()
     }
 
     func fetchCredits(forMovie movieID: Movie.ID) -> AnyPublisher<Credits, Never> {
-        movieService.fetchCredits(forMovie: movieID)
+        tmdb.creditsPublisher(forMovie: movieID)
             .map(Credits.init)
             .replaceError(with: Credits())
             .eraseToAnyPublisher()

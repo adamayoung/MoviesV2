@@ -23,42 +23,6 @@ struct HomeList: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
 
-    private var largeBackdropDisplaySize: BackdropImage.DisplaySize {
-        #if os(iOS)
-        if horizontalSizeClass == .compact {
-            return .large
-        } else {
-            return .extraLarge
-        }
-        #else
-        return .large
-        #endif
-    }
-
-    private var mediumBackdropDisplaySize: BackdropImage.DisplaySize {
-        #if os(iOS)
-        if horizontalSizeClass == .compact {
-            return .medium
-        } else {
-            return .large
-        }
-        #else
-        return .medium
-        #endif
-    }
-
-    private var personDisplaySize: PersonImage.DisplaySize {
-        #if os(iOS)
-        if horizontalSizeClass == .compact {
-            return .large
-        } else {
-            return .extraLarge
-        }
-        #else
-        return .medium
-        #endif
-    }
-
     @State private var selection: Movie?
 
     var body: some View {
@@ -73,27 +37,27 @@ struct HomeList: View {
     @ViewBuilder private var content: some View {
         List {
             Section(header: trendingMoviesSectionHeader) {
-                MoviesCarousel(movies: trendingMovies, displaySize: largeBackdropDisplaySize)
+                MoviesCarousel(movies: trendingMovies, imageType: .backdrop(displaySize: .large))
                     .listRowInsets(EdgeInsets())
             }
 
             Section(header: discoverMoviesSectionHeader) {
-                MoviesCarousel(movies: discoverMovies, displaySize: mediumBackdropDisplaySize)
+                MoviesCarousel(movies: discoverMovies, imageType: .poster(displaySize: .medium))
                     .listRowInsets(EdgeInsets())
             }
 
             Section(header: trendingTVShowsSectionHeader) {
-                TVShowsCarousel(tvShows: trendingTVShows, displaySize: largeBackdropDisplaySize)
+                TVShowsCarousel(tvShows: trendingTVShows, imageType: .backdrop(displaySize: .large))
                     .listRowInsets(EdgeInsets())
             }
 
             Section(header: discoverTVShowsSectionHeader) {
-                TVShowsCarousel(tvShows: discoverTVShows, displaySize: mediumBackdropDisplaySize)
+                TVShowsCarousel(tvShows: discoverTVShows, imageType: .poster(displaySize: .medium))
                     .listRowInsets(EdgeInsets())
             }
 
             Section(header: trendingPeopleSectionHeader) {
-                PeopleCarousel(people: trendingPeople, displaySize: personDisplaySize)
+                PeopleCarousel(people: trendingPeople, displaySize: .medium)
                     .listRowInsets(EdgeInsets())
             }
         }
@@ -125,7 +89,6 @@ struct HomeList: View {
             Text("Discover Movies")
                 .font(.title2)
                 .fontWeight(.heavy)
-                .foregroundColor(.primary)
 
             Spacer()
             NavigationLink(
@@ -168,7 +131,6 @@ struct HomeList: View {
             Text("Discover TV Shows")
                 .font(.title2)
                 .fontWeight(.heavy)
-                .foregroundColor(.primary)
 
             Spacer()
             NavigationLink(

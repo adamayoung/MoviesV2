@@ -10,33 +10,33 @@ import TMDb
 
 extension TVShowEpisode {
 
-    init(episode: TMDb.TVShowEpisode) {
+    init(dto: TVShowEpisodeDTO) {
         let crew: [CrewMember]? = {
-            guard let crew = episode.crew else {
+            guard let crew = dto.crew else {
                 return nil
             }
 
-            return CrewMember.create(crewMembers: crew)
+            return CrewMember.create(dtos: crew)
         }()
 
         let guestStars: [CastMember]? = {
-            guard let guestStars = episode.guestStars else {
+            guard let guestStars = dto.guestStars else {
                 return nil
             }
 
-            return CastMember.create(castMembers: guestStars)
+            return CastMember.create(dtos: guestStars)
         }()
 
-        self.init(id: episode.id, name: episode.name, episodeNumber: episode.episodeNumber,
-                  seasonNumber: episode.seasonNumber, overview: episode.overview, airDate: episode.airDate,
-                  productionCode: episode.productionCode, stillURL: episode.stillURL, crew: crew,
-                  guestStars: guestStars, voteAverage: episode.voteAverage, voteCount: episode.voteCount)
+        let stillImage = StillImageMetadata(stillURLProvider: dto)
+
+        self.init(id: dto.id, name: dto.name, episodeNumber: dto.episodeNumber, seasonNumber: dto.seasonNumber,
+                  overview: dto.overview, airDate: dto.airDate, productionCode: dto.productionCode,
+                  stillImage: stillImage, crew: crew, guestStars: guestStars, voteAverage: dto.voteAverage,
+                  voteCount: dto.voteCount)
     }
 
-    static func create(episodes: [TMDb.TVShowEpisode]) -> [Self] {
-        episodes.map(Self.init)
+    static func create(dtos: [TVShowEpisodeDTO]) -> [Self] {
+        dtos.map(Self.init)
     }
 
 }
-
-extension TMDb.TVShowEpisode: StillURLProviding { }

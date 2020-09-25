@@ -21,7 +21,7 @@ struct TVShowRow: View {
 
     var body: some View {
         HStack(alignment: .center) {
-            PosterImage(url: tvShow.posterURL, displaySize: .medium)
+            PosterImage(imageMetadata: tvShow.posterImage, displaySize: .small)
 
             VStack(alignment: .leading) {
                 Text(tvShow.name)

@@ -5,8 +5,8 @@
 //  Created by Adam Young on 17/09/2020.
 //
 
-import CoreData
 import Combine
+import CoreData
 import Foundation
 
 final class PersonStore: NSObject, ObservableObject {
@@ -202,7 +202,7 @@ extension PersonStore {
             return
         }
 
-        let _ = FavouritePerson(context: persistentContainer.viewContext, person: person)
+        _ = FavouritePerson(context: persistentContainer.viewContext, person: person)
     }
 
 }
@@ -223,7 +223,8 @@ extension PersonStore {
         self.trendingIDs = trendingIDs
     }
 
-    @objc private func loadFavourites() {
+    @objc
+    private func loadFavourites() {
         persistentContainer.viewContext.perform { [weak self] in
             guard let self = self else {
                 return

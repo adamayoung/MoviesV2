@@ -262,7 +262,7 @@ extension MovieStore {
             return
         }
 
-        let _ = FavouriteMovie(context: persistentContainer.viewContext, movie: movie)
+        _ = FavouriteMovie(context: persistentContainer.viewContext, movie: movie)
     }
 
 }
@@ -306,7 +306,8 @@ extension MovieStore {
         recommendationsIDs[movieID] = movies.map(\.id)
     }
 
-    @objc private func loadFavourites() {
+    @objc
+    private func loadFavourites() {
         persistentContainer.viewContext.perform { [weak self] in
             guard let self = self else {
                 return

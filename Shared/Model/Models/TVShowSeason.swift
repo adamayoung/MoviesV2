@@ -14,17 +14,17 @@ struct TVShowSeason: Identifiable, Equatable {
     let seasonNumber: Int
     let overview: String?
     let airDate: Date?
-    let posterURL: URL?
+    let posterImage: PosterImageMetadata?
     let episodes: [TVShowEpisode]?
 
     init(id: Int, name: String, seasonNumber: Int, overview: String? = nil, airDate: Date? = nil,
-         posterURL: URL? = nil, episodes: [TVShowEpisode]? = nil) {
+         posterImage: PosterImageMetadata? = nil, episodes: [TVShowEpisode]? = nil) {
         self.id = id
         self.name = name
         self.seasonNumber = seasonNumber
         self.overview = overview
         self.airDate = airDate
-        self.posterURL = posterURL
+        self.posterImage = posterImage
         self.episodes = episodes
     }
 

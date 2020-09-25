@@ -10,23 +10,29 @@ import SwiftUI
 struct MovieCarouselItem: View {
 
     var movie: Movie?
-    var displaySize: BackdropImage.DisplaySize = .medium
+    var imageType: ImageType
 
     @State private var isDetailActive = false
 
-    private var titleFont: Font {
-        switch displaySize {
-        case .extraLarge:
-            return Font.title.weight(.heavy)
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    #endif
 
-        case .large:
-            return Font.headline.weight(.heavy)
+    private var size: CGSize {
+        switch imageType {
+        case .backdrop(let displaySize):
+            #if os(iOS)
+            return displaySize.size(forSizeClass: horizontalSizeClass)
+            #else
+            return displaySize.size
+            #endif
 
-        case .medium:
-            return Font.subheadline.weight(.bold)
-
-        case .small:
-            return Font.body.weight(.bold)
+        case .poster(let displaySize):
+            #if os(iOS)
+            return displaySize.size(forSizeClass: horizontalSizeClass)
+            #else
+            return displaySize.size
+            #endif
         }
     }
 
@@ -39,33 +45,51 @@ struct MovieCarouselItem: View {
                 .frame(width: 0, height: 0)
             }
 
-            BackdropImage(url: movie?.backdropURL, displaySize: displaySize)
-                .shadow(radius: 8)
-                .accessibility(label: Text("Backdrop Image - \(movie?.title ?? "")"))
-                .onTapGesture {
-                    self.isDetailActive = true
+            Group {
+                switch imageType {
+                case .backdrop(let displaySize):
+                    BackdropImage(imageMetadata: movie?.backdropImage, displaySize: displaySize)
+                        .accessibility(label: Text("Backdrop Image - \(movie?.title ?? "")"))
+
+                case .poster(let displaySize):
+                    PosterImage(imageMetadata: movie?.posterImage, displaySize: displaySize)
+                        .accessibility(label: Text("Poster Image - \(movie?.title ?? "")"))
                 }
+            }
+            .shadow(radius: 8)
+            .onTapGesture {
+                self.isDetailActive = true
+            }
 
             Text(movie?.title ?? "              \n        ")
-                .font(titleFont)
+                .font(.headline)
                 .fixedSize(horizontal: false, vertical: true)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
                 .accessibility(label: Text(movie?.title ?? " "))
-                .frame(width: displaySize.size.width, alignment: .leading)
+                .frame(width: size.width, alignment: .leading)
             Spacer()
         }
     }
 
 }
 
-struct MovieCarouselItem_Previews: PreviewProvider {
+extension MovieCarouselItem {
 
-    static var previews: some View {
-        let movie = Movie(id: 1, title: "The Old Guard",
-                          backdropURL: URL(string: "https://image.tmdb.org/t/p/w500/m0ObOaJBerZ3Unc74l471ar8Iiy.jpg"))
-
-        return MovieCarouselItem(movie: movie)
+    enum ImageType {
+        case poster(displaySize: PosterImage.DisplaySize = .medium)
+        case backdrop(displaySize: BackdropImage.DisplaySize = .medium)
     }
 
 }
+
+//struct MovieCarouselItem_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        let movie = Movie(id: 1, title: "The Old Guard",
+//                          backdropURL: URL(string: "https://image.tmdb.org/t/p/w500/m0ObOaJBerZ3Unc74l471ar8Iiy.jpg"))
+//
+//        return MovieCarouselItem(movie: movie)
+//    }
+//
+//}

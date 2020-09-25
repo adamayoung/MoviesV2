@@ -5,8 +5,8 @@
 //  Created by Adam Young on 17/09/2020.
 //
 
-import CoreData
 import Combine
+import CoreData
 import Foundation
 
 final class TVShowStore: NSObject, ObservableObject {
@@ -263,6 +263,7 @@ extension TVShowStore {
         }
 
         tvShowsManager.fetchSeason(seasonNumber, forTVShow: tvShowID)
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
@@ -294,7 +295,7 @@ extension TVShowStore {
             return
         }
 
-        let _ = FavouriteTVShow(context: persistentContainer.viewContext, tvShow: tvShow)
+        _ = FavouriteTVShow(context: persistentContainer.viewContext, tvShow: tvShow)
     }
 
 }
@@ -345,7 +346,8 @@ extension TVShowStore {
         recommendationsIDs[tvShowID] = tvShows.map(\.id)
     }
 
-    @objc private func loadFavourites() {
+    @objc
+    private func loadFavourites() {
         persistentContainer.viewContext.perform { [weak self] in
             guard let self = self else {
                 return

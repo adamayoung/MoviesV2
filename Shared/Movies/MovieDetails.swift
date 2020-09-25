@@ -34,7 +34,7 @@ struct MovieDetails: View {
             .listRowInsets(EdgeInsets())
             .padding(.horizontal, -20)
 
-            if let overview = movie.overview {
+            if let overview = movie.overview, !overview.isEmpty {
                 #if !os(watchOS)
                 Section {
                     ShowPlotRow(title: movie.title, plot: overview)
@@ -47,7 +47,7 @@ struct MovieDetails: View {
             if !topCast.isEmpty {
                 #if !os(watchOS)
                 Section(header: castAndCrewSectionHeader) {
-                    CastCarousel(cast: topCast, displaySize: .large)
+                    CastCarousel(cast: topCast, displaySize: .small)
                         .listRowInsets(EdgeInsets())
                 }
                 #else
@@ -64,7 +64,7 @@ struct MovieDetails: View {
             if !recommendations.isEmpty {
                 #if !os(watchOS)
                 Section(header: Text("Recommendations").listSectionHeaderStyle()) {
-                    MoviesCarousel(movies: recommendations, displaySize: .medium)
+                    MoviesCarousel(movies: recommendations, imageType: .backdrop(displaySize: .small))
                         .listRowInsets(EdgeInsets())
                 }
                 #else

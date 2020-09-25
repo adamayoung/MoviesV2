@@ -10,24 +10,23 @@ import TMDb
 
 extension CastMember {
 
-    init(castMember: TMDb.CastMember) {
+    init(dto: CastMemberDTO) {
         let gender: Gender = {
-            guard let gender = castMember.gender else {
+            guard let gender = dto.gender else {
                 return .unknown
             }
 
-            return Gender(gender: gender)
+            return Gender(dto: gender)
         }()
 
-        self.init(id: castMember.id, castID: castMember.castID, creditID: castMember.creditID, name: castMember.name,
-                  character: castMember.character, gender: gender, profileURL: castMember.profileURL,
-                  order: castMember.order)
+        let profileImage = ProfileImageMetadata(profileURLProvider: dto)
+
+        self.init(id: dto.id, castID: dto.castID, creditID: dto.creditID, name: dto.name, character: dto.character,
+                  gender: gender, profileImage: profileImage, order: dto.order)
     }
 
-    static func create(castMembers: [TMDb.CastMember]) -> [CastMember] {
-        castMembers.map(Self.init)
+    static func create(dtos: [CastMemberDTO]) -> [CastMember] {
+        dtos.map(Self.init)
     }
 
 }
-
-extension TMDb.CastMember: ProfileURLProviding { }

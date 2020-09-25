@@ -12,7 +12,7 @@ struct TVShowGridItem: View {
     var tvShow: TVShow
 
     var body: some View {
-        PosterImage(url: tvShow.posterURL)
+        PosterImage(imageMetadata: tvShow.posterImage)
             .shadow(radius: 5)
     }
 

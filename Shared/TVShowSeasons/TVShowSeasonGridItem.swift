@@ -13,7 +13,7 @@ struct TVShowSeasonGridItem: View {
 
     var body: some View {
         VStack {
-            PosterImage(url: season.posterURL)
+            PosterImage(imageMetadata: season.posterImage)
 
             Text(season.name)
                 .foregroundColor(.primary)

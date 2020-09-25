@@ -10,18 +10,18 @@ import TMDb
 
 extension Show {
 
-    init(item: TMDb.Show) {
-        switch item {
+    init(dto: ShowDTO) {
+        switch dto {
         case .movie(let movie):
-            self = .movie(Movie(movie: movie))
+            self = .movie(Movie(dto: movie))
 
         case .tvShow(let tvShow):
-            self = .tvShow(TVShow(tvShow: tvShow))
+            self = .tvShow(TVShow(dto: tvShow))
         }
     }
 
-    static func create(showItems: [TMDb.Show]) -> [Show] {
-        showItems.compactMap(Self.init)
+    static func create(dtos: [ShowDTO]) -> [Show] {
+        dtos.compactMap(Self.init)
     }
 
 }

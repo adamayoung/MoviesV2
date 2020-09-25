@@ -10,18 +10,18 @@ import SwiftUI
 struct TVShowsCarousel: View {
 
     var tvShows: [TVShow]
-    var displaySize: BackdropImage.DisplaySize = .medium
+    var imageType: TVShowCarouselItem.ImageType = .backdrop(displaySize: .medium)
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .top, spacing: 20) {
                 if !tvShows.isEmpty {
                     ForEach(tvShows) { tvShow in
-                        TVShowCarouselItem(tvShow: tvShow, displaySize: displaySize)
+                        TVShowCarouselItem(tvShow: tvShow, imageType: imageType)
                     }
                 } else {
                     ForEach(0...10, id: \.self) { _ in
-                        TVShowCarouselItem(displaySize: displaySize)
+                        TVShowCarouselItem(imageType: imageType)
                             .redacted(reason: .placeholder)
                     }
                 }

@@ -10,8 +10,8 @@ import TMDb
 
 extension Gender {
 
-    init(gender: TMDb.Gender) {
-        switch gender {
+    init(dto: GenderDTO) {
+        switch dto {
         case .unknown:
             self = .unknown
 
