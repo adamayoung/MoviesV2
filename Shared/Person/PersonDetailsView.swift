@@ -12,6 +12,7 @@ struct PersonDetailsView: View {
     var id: Person.ID
 
     @EnvironmentObject private var personStore: PersonStore
+    @EnvironmentObject private var cloudKitAvailability: CloudKitAvailability
 
     private var person: Person? {
         personStore.person(withID: id)
@@ -43,6 +44,7 @@ struct PersonDetailsView: View {
                         }, label: {
                             favouriteButtonLabel
                         })
+                        .disabled(!cloudKitAvailability.isAvailable)
                     }
                 }
             }
@@ -83,6 +85,10 @@ struct PersonDetailsView: View {
     }
 
     private func toogleFavourite() {
+        guard cloudKitAvailability.isAvailable else {
+            return
+        }
+
         guard let person = person else {
             return
         }

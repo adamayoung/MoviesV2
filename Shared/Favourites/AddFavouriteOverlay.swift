@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct AddFavouriteOverlay: View {
+
+    var isAvailable: Bool
+
     var body: some View {
-        VStack {
+        VStack(spacing: 8) {
             Text("Add a Favourite")
                 .font(.headline)
                 .multilineTextAlignment(.center)
@@ -17,6 +21,14 @@ struct AddFavouriteOverlay: View {
             Text("Favourites are synced across all your devices")
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
+
+            if !isAvailable {
+                Text("You need to be signed into iCloud to use Favourites")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.top)
+            }
         }
         .fixedSize(horizontal: false, vertical: true)
         .padding(.horizontal)
@@ -31,7 +43,7 @@ struct AddFavouriteOverlay_Previews: PreviewProvider {
 
             }
             .overlay(Group {
-                AddFavouriteOverlay()
+                AddFavouriteOverlay(isAvailable: false)
             })
         }
         .navigationTitle("Favourites")
