@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6FA5A96524BF144600E828AA"
-               BuildableName = "Tests macOS.xctest"
-               BlueprintName = "Tests macOS"
+               BuildableName = "Tests (macOS).xctest"
+               BlueprintName = "Tests (macOS)"
                ReferencedContainer = "container:Movies.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6FA5A96524BF144600E828AA"
-               BuildableName = "Tests macOS.xctest"
-               BlueprintName = "Tests macOS"
+               BuildableName = "Tests (macOS).xctest"
+               BlueprintName = "Tests (macOS)"
                ReferencedContainer = "container:Movies.xcodeproj">
             </BuildableReference>
          </TestableReference>

@@ -26,6 +26,11 @@ Fetches the provisioning profiles so you can build locally and deploy to your de
 fastlane ios test
 ```
 Runs all tests
+### ios screenshots
+```
+fastlane ios screenshots
+```
+Creates screenshots for AppStore
 ### ios build
 ```
 fastlane ios build
@@ -41,6 +46,11 @@ PR Build
 fastlane ios beta
 ```
 Upload to TestFlight
+### ios submit_review
+```
+fastlane ios submit_review
+```
+Submit to AppStore for Review
 
 ----
 

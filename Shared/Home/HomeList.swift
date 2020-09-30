@@ -39,26 +39,36 @@ struct HomeList: View {
             Section(header: trendingMoviesSectionHeader) {
                 MoviesCarousel(movies: trendingMovies, imageType: .backdrop(displaySize: .large))
                     .listRowInsets(EdgeInsets())
+                    .accessibility(label: Text("Trending Movies Carousel"))
+                    .accessibility(identifier: "TrendingMoviesCarousel")
             }
 
             Section(header: discoverMoviesSectionHeader) {
                 MoviesCarousel(movies: discoverMovies, imageType: .poster(displaySize: .medium))
                     .listRowInsets(EdgeInsets())
+                    .accessibility(label: Text("Discover Movies Carousel"))
+                    .accessibility(identifier: "Discover Movies Carousel")
             }
 
             Section(header: trendingTVShowsSectionHeader) {
                 TVShowsCarousel(tvShows: trendingTVShows, imageType: .backdrop(displaySize: .large))
                     .listRowInsets(EdgeInsets())
+                    .accessibility(label: Text("Trending TV Shows Carousel"))
+                    .accessibility(identifier: "TrendingTVShowsCarousel")
             }
 
             Section(header: discoverTVShowsSectionHeader) {
                 TVShowsCarousel(tvShows: discoverTVShows, imageType: .poster(displaySize: .medium))
                     .listRowInsets(EdgeInsets())
+                    .accessibility(label: Text("Discover TV Shows Carousel"))
+                    .accessibility(identifier: "DiscoverTVShowsCarousel")
             }
 
             Section(header: trendingPeopleSectionHeader) {
                 PeopleCarousel(people: trendingPeople, displaySize: .medium)
                     .listRowInsets(EdgeInsets())
+                    .accessibility(label: Text("Trending People Carousel"))
+                    .accessibility(identifier: "TrendingPeopleCarousel")
             }
         }
     }
@@ -69,15 +79,19 @@ struct HomeList: View {
                 .font(.title)
                 .fontWeight(.heavy)
 
-            Spacer()
-            NavigationLink(
-                destination: TrendingMoviesView(),
-                tag: .trendingMovies,
-                selection: $navigationSelection
-            ) {
-                Text("See more")
-                    .font(.body)
-                    .foregroundColor(.accentColor)
+            if !trendingMovies.isEmpty {
+                Spacer()
+                NavigationLink(
+                    destination: TrendingMoviesView(),
+                    tag: .trendingMovies,
+                    selection: $navigationSelection
+                ) {
+                    Text("See more")
+                        .font(.body)
+                        .foregroundColor(.accentColor)
+                }
+                .accessibility(label: Text("See more Trending Movies"))
+                .accessibility(identifier: "SeeMoreTrendingMovies")
             }
         }
         .textCase(.none)
@@ -90,15 +104,19 @@ struct HomeList: View {
                 .font(.title2)
                 .fontWeight(.heavy)
 
-            Spacer()
-            NavigationLink(
-                destination: DiscoverMoviesView(),
-                tag: .discoverMovies,
-                selection: $navigationSelection
-            ) {
-                Text("See more")
-                    .font(.body)
-                    .foregroundColor(.accentColor)
+            if !discoverMovies.isEmpty {
+                Spacer()
+                NavigationLink(
+                    destination: DiscoverMoviesView(),
+                    tag: .discoverMovies,
+                    selection: $navigationSelection
+                ) {
+                    Text("See more")
+                        .font(.body)
+                        .foregroundColor(.accentColor)
+                }
+                .accessibility(label: Text("See more Discover Movies"))
+                .accessibility(identifier: "SeeMoreDiscoverMovies")
             }
         }
         .textCase(.none)
@@ -111,15 +129,19 @@ struct HomeList: View {
                 .font(.title)
                 .fontWeight(.heavy)
 
-            Spacer()
-            NavigationLink(
-                destination: TrendingTVShowsView(),
-                tag: .trendingTVShows,
-                selection: $navigationSelection
-            ) {
-                Text("See more")
-                    .font(.body)
-                    .foregroundColor(.accentColor)
+            if !trendingTVShows.isEmpty {
+                Spacer()
+                NavigationLink(
+                    destination: TrendingTVShowsView(),
+                    tag: .trendingTVShows,
+                    selection: $navigationSelection
+                ) {
+                    Text("See more")
+                        .font(.body)
+                        .foregroundColor(.accentColor)
+                }
+                .accessibility(label: Text("See more Trending TV Shows"))
+                .accessibility(identifier: "SeeMoreTrendingTVShows")
             }
         }
         .textCase(.none)
@@ -132,15 +154,19 @@ struct HomeList: View {
                 .font(.title2)
                 .fontWeight(.heavy)
 
-            Spacer()
-            NavigationLink(
-                destination: DiscoverTVShowsView(),
-                tag: .discoverTVShows,
-                selection: $navigationSelection
-            ) {
-                Text("See more")
-                    .font(.body)
-                    .foregroundColor(.accentColor)
+            if !discoverTVShows.isEmpty {
+                Spacer()
+                NavigationLink(
+                    destination: DiscoverTVShowsView(),
+                    tag: .discoverTVShows,
+                    selection: $navigationSelection
+                ) {
+                    Text("See more")
+                        .font(.body)
+                        .foregroundColor(.accentColor)
+                }
+                .accessibility(label: Text("See more Discover TV Shows"))
+                .accessibility(identifier: "SeeMoreDiscoverTVShows")
             }
         }
         .textCase(.none)
@@ -153,15 +179,19 @@ struct HomeList: View {
                 .font(.title)
                 .fontWeight(.heavy)
 
-            Spacer()
-            NavigationLink(
-                destination: TrendingPeopleView(),
-                tag: .trendingPeople,
-                selection: $navigationSelection
-            ) {
-                Text("See more")
-                    .font(.body)
-                    .foregroundColor(.accentColor)
+            if !trendingPeople.isEmpty {
+                Spacer()
+                NavigationLink(
+                    destination: TrendingPeopleView(),
+                    tag: .trendingPeople,
+                    selection: $navigationSelection
+                ) {
+                    Text("See more")
+                        .font(.body)
+                        .foregroundColor(.accentColor)
+                }
+                .accessibility(label: Text("See more Trending People"))
+                .accessibility(identifier: "SeeMoreTrendingPeople")
             }
         }
         .textCase(.none)

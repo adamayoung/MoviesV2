@@ -15,7 +15,7 @@ final class CloudKitAvailability: ObservableObject {
     private let defaultContainer: CKContainer
     private let notificationCenter: NotificationCenter
 
-    init(defaultContainer: CKContainer = .default(), notificationCenter: NotificationCenter = .default)  {
+    init(defaultContainer: CKContainer = .default(), notificationCenter: NotificationCenter = .default) {
         self.defaultContainer = defaultContainer
         self.notificationCenter = notificationCenter
 

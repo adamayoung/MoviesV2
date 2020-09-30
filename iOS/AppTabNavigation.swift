@@ -26,6 +26,7 @@ struct AppTabNavigation: View {
             .tabItem {
                 Label("Home", systemImage: "house.fill")
                     .accessibility(label: Text("Home"))
+                    .accessibility(identifier: "Home")
             }
             .tag(Tab.home)
 
@@ -36,6 +37,7 @@ struct AppTabNavigation: View {
             .tabItem {
                 Label("Search", systemImage: "magnifyingglass")
                     .accessibility(label: Text("Search"))
+                    .accessibility(identifier: "Search")
             }
             .tag(Tab.search)
 
@@ -46,6 +48,7 @@ struct AppTabNavigation: View {
             .tabItem {
                 Label("Favourites", systemImage: "heart.fill")
                     .accessibility(label: Text("Favourites"))
+                    .accessibility(identifier: "Favourites")
             }
             .tag(Tab.favourites)
         }

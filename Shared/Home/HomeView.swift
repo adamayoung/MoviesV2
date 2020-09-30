@@ -45,6 +45,8 @@ struct HomeView: View {
             trendingPeople: trendingPeople,
             navigationSelection: $navigationSelection
         )
+        .accessibility(label: Text("Home View"))
+        .accessibility(identifier: "HomeView")
         .onAppear(perform: fetch)
         .onOpenURL(perform: openURL)
         .navigationTitle("Home")

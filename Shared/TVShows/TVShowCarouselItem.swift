@@ -48,11 +48,13 @@ struct TVShowCarouselItem: View {
                 switch imageType {
                 case .backdrop(let displaySize):
                     BackdropImage(imageMetadata: tvShow?.backdropImage, displaySize: displaySize)
-                        .accessibility(label: Text("Backdrop Image - \(tvShow?.name ?? "")"))
+                        .accessibility(label: Text("\(tvShow?.name ?? "")"))
+                        .accessibility(identifier: "\(tvShow?.id ?? -1)")
 
                 case .poster(let displaySize):
                     PosterImage(imageMetadata: tvShow?.posterImage, displaySize: displaySize)
-                        .accessibility(label: Text("Poster Image - \(tvShow?.name ?? "")"))
+                        .accessibility(label: Text("\(tvShow?.name ?? "")"))
+                        .accessibility(identifier: "\(tvShow?.id ?? -1)")
                 }
             }
             .shadow(radius: 8)

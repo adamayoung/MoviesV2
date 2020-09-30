@@ -1,0 +1,17 @@
+devices([
+    "iPhone 11 Pro Max",
+    "iPhone 8 Plus",
+    "iPad Pro (12.9-inch) (4th generation)",
+    "iPad Pro (12.9-inch) (2nd generation)"
+])
+
+languages([
+  "en-GB"
+])
+
+scheme("Movies Snapshot UITests (iOS)")
+
+clear_previous_screenshots(true)
+reinstall_app(true)
+override_status_bar(true)
+dark_mode(false)

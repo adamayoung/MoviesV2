@@ -79,6 +79,7 @@ struct TVShowDetailsView: View {
            let recommendations = self.recommendations {
             TVShowDetails(tvShow: tvShow, seasons: seasons, credits: credits, recommendations: recommendations)
                 .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
+                .accessibility(identifier: "TVShowDetails")
         } else {
             ProgressView()
         }
