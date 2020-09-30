@@ -49,11 +49,13 @@ struct MovieCarouselItem: View {
                 switch imageType {
                 case .backdrop(let displaySize):
                     BackdropImage(imageMetadata: movie?.backdropImage, displaySize: displaySize)
-                        .accessibility(label: Text("Backdrop Image - \(movie?.title ?? "")"))
+                        .accessibility(label: Text("\(movie?.title ?? "")"))
+                        .accessibility(identifier: "\(movie?.id ?? -1)")
 
                 case .poster(let displaySize):
                     PosterImage(imageMetadata: movie?.posterImage, displaySize: displaySize)
-                        .accessibility(label: Text("Poster Image - \(movie?.title ?? "")"))
+                        .accessibility(label: Text("\(movie?.title ?? "")"))
+                        .accessibility(identifier: "\(movie?.id ?? -1)")
                 }
             }
             .shadow(radius: 8)

@@ -10,7 +10,7 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 
-update_fastlane
+# update_fastlane
 
 default_platform(:ios)
 
@@ -28,6 +28,11 @@ platform :ios do
   desc "Runs all tests"
   lane :test do
     scan
+  end
+
+  desc "Creates screenshots for AppStore"
+  lane :screenshots do
+    capture_screenshots
   end
 
   desc "Build"
@@ -60,6 +65,16 @@ platform :ios do
     gym
     testflight
     update_code_signing_settings(use_automatic_signing: true)
+  end
+
+  desc "Submit to AppStore for Review"
+  lane :submit_review do
+    deliver(
+      submit_for_review: true,
+      automatic_release: true,
+      skip_metadata: true,
+      skip_binary_upload: true
+    )
   end
 end
 
