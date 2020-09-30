@@ -167,7 +167,9 @@ open class Snapshot: NSObject {
             let screenshot = XCUIScreen.main.screenshot()
             let image = XCUIDevice.shared.orientation.isLandscape ?  fixLandscapeOrientation(image: screenshot.image) : screenshot.image
 
-            guard var simulator = ProcessInfo().environment["SIMULATOR_DEVICE_NAME"], let screenshotsDir = screenshotsDirectory else { return }
+            guard var simulator = ProcessInfo().environment["SIMULATOR_DEVICE_NAME"], let screenshotsDir = screenshotsDirectory else {
+                return
+            }
 
             do {
                 // The simulator name contains "Clone X of " inside the screenshot file when running parallelized UI Tests on concurrent devices
@@ -189,7 +191,7 @@ open class Snapshot: NSObject {
             let format = UIGraphicsImageRendererFormat()
             format.scale = image.scale
             let renderer = UIGraphicsImageRenderer(size: image.size, format: format)
-            return renderer.image { context in
+            return renderer.image { _ in
                 image.draw(in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
             }
         } else {
@@ -233,7 +235,9 @@ open class Snapshot: NSObject {
 
 private extension XCUIElementAttributes {
     var isNetworkLoadingIndicator: Bool {
-        if hasAllowListedIdentifier { return false }
+        if hasAllowListedIdentifier {
+            return false
+        }
 
         let hasOldLoadingIndicatorSize = frame.size == CGSize(width: 10, height: 20)
         let hasNewLoadingIndicatorSize = frame.size.width.isBetween(46, and: 47) && frame.size.height.isBetween(2, and: 3)
@@ -248,8 +252,13 @@ private extension XCUIElementAttributes {
     }
 
     func isStatusBar(_ deviceWidth: CGFloat) -> Bool {
-        if elementType == .statusBar { return true }
-        guard frame.origin == .zero else { return false }
+        if elementType == .statusBar {
+            return true
+        }
+
+        guard frame.origin == .zero else {
+            return false
+        }
 
         let oldStatusBarSize = CGSize(width: deviceWidth, height: 20)
         let newStatusBarSize = CGSize(width: deviceWidth, height: 44)
@@ -261,7 +270,9 @@ private extension XCUIElementAttributes {
 private extension XCUIElementQuery {
     var networkLoadingIndicators: XCUIElementQuery {
         let isNetworkLoadingIndicator = NSPredicate { (evaluatedObject, _) in
-            guard let element = evaluatedObject as? XCUIElementAttributes else { return false }
+            guard let element = evaluatedObject as? XCUIElementAttributes else {
+                return false
+            }
 
             return element.isNetworkLoadingIndicator
         }
@@ -277,7 +288,9 @@ private extension XCUIElementQuery {
         let deviceWidth = app.windows.firstMatch.frame.width
 
         let isStatusBar = NSPredicate { (evaluatedObject, _) in
-            guard let element = evaluatedObject as? XCUIElementAttributes else { return false }
+            guard let element = evaluatedObject as? XCUIElementAttributes else {
+                return false
+            }
 
             return element.isStatusBar(deviceWidth)
         }

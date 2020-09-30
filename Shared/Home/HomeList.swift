@@ -129,7 +129,6 @@ struct HomeList: View {
                 .font(.title)
                 .fontWeight(.heavy)
 
-
             if !trendingTVShows.isEmpty {
                 Spacer()
                 NavigationLink(

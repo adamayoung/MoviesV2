@@ -25,7 +25,7 @@ class MoviesUITests: XCTestCase {
     func testHomeSnapshot() throws {
         let seeMoreTrendingMoviesButton = app.tables.buttons["SeeMoreTrendingMovies"]
         guard seeMoreTrendingMoviesButton.waitForExistence(timeout: 5) else {
-            XCTFail()
+            XCTFail("See more Trending Movies button not found")
             return
         }
 
@@ -36,7 +36,7 @@ class MoviesUITests: XCTestCase {
     func testTrendingMoviesSnapshot() throws {
         let seeMoreTrendingMoviesButton = app.tables.buttons["SeeMoreTrendingMovies"]
         guard seeMoreTrendingMoviesButton.waitForExistence(timeout: 5) else {
-            XCTFail()
+            XCTFail("See more Trending Movies button not found")
             return
         }
 
@@ -49,7 +49,7 @@ class MoviesUITests: XCTestCase {
     func testTVShowDetailsSnapshot() throws {
         let seeMoreTrendingMoviesButton = app.tables.buttons["SeeMoreTrendingMovies"]
         guard seeMoreTrendingMoviesButton.waitForExistence(timeout: 5) else {
-            XCTFail()
+            XCTFail("See more Trending Movies button not found")
             return
         }
 
@@ -62,7 +62,7 @@ class MoviesUITests: XCTestCase {
 
         let tvShowDetailsView = app.tables["TVShowDetails"]
         guard tvShowDetailsView.waitForExistence(timeout: 5) else {
-            XCTFail()
+            XCTFail("TV Show details not found")
             return
         }
 
@@ -71,4 +71,3 @@ class MoviesUITests: XCTestCase {
     }
 
 }
-
