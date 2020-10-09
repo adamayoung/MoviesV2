@@ -15,6 +15,7 @@ struct HomeView: View {
     @EnvironmentObject private var personStore: PersonStore
 
     @State private var navigationSelection: HomeList.NavigationSelection?
+    @State var isSearchActive = false
 
     private var trendingMovies: [Movie] {
         movieStore.topTrending
@@ -45,8 +46,22 @@ struct HomeView: View {
             trendingPeople: trendingPeople,
             navigationSelection: $navigationSelection
         )
+        .background(
+            NavigationLink(destination: SearchView(), isActive: $isSearchActive) {}
+        )
         .accessibility(label: Text("Home View"))
         .accessibility(identifier: "HomeView")
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: {
+                    isSearchActive = true
+                }, label: {
+                    Image(systemName: "magnifyingglass")
+                })
+                .accessibility(label: Text("Search"))
+                .accessibility(identifier: "Search")
+            }
+        }
         .onAppear(perform: fetch)
         .onOpenURL(perform: openURL)
         .navigationTitle("Home")
