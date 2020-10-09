@@ -14,16 +14,22 @@ struct ShowPlotRow: View {
     var title: String
     var plot: String
 
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    #endif
+
     #if !os(watchOS)
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(plot)
                 .fixedSize(horizontal: false, vertical: true)
-                .lineLimit(5)
+                .lineLimit(horizontalSizeClass == .compact ? 5 : nil)
 
-            HStack {
-                Spacer()
-                Button("Read more", action: readMore)
+            if horizontalSizeClass == .compact {
+                HStack {
+                    Spacer()
+                    Button("Read more", action: readMore)
+                }
             }
         }
         .padding(.vertical, 5)

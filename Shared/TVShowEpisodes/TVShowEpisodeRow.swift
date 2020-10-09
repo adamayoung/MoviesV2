@@ -65,7 +65,7 @@ struct TVShowEpisodeRow: View {
 
     private var largeContent: some View {
         HStack(alignment: .top, spacing: 20) {
-            StillImage(imageMetadata: episode.stillImage, displaySize: .large)
+            StillImage(imageMetadata: episode.stillImage, displaySize: .small)
                 .shadow(radius: 8)
 
             VStack(alignment: .leading, spacing: 5) {
