@@ -31,17 +31,6 @@ struct AppTabNavigation: View {
             .tag(Tab.home)
 
             NavigationView {
-                SearchView()
-            }
-            .navigationViewStyle(StackNavigationViewStyle())
-            .tabItem {
-                Label("Search", systemImage: "magnifyingglass")
-                    .accessibility(label: Text("Search"))
-                    .accessibility(identifier: "Search")
-            }
-            .tag(Tab.search)
-
-            NavigationView {
                 FavouritesView()
             }
             .navigationViewStyle(StackNavigationViewStyle())
@@ -108,7 +97,6 @@ extension AppTabNavigation {
 
     private enum Tab: Int {
         case home
-        case search
         case favourites
         case watchList
         case settings
@@ -124,9 +112,6 @@ extension AppTabNavigation {
                 }
 
                 self = .home
-
-            case "search":
-                self = .search
 
             case "favourites":
                 self = .favourites
