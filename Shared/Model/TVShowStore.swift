@@ -258,7 +258,7 @@ extension TVShowStore {
     }
 
     func fetchSeason(_ seasonNumber: Int, forTVShow tvShowID: TVShow.ID, completionHandler: ((Error?) -> Void)? = nil) {
-        guard seasons[tvShowID] == nil else {
+        guard seasons[tvShowID]?[seasonNumber] == nil else {
             return
         }
 
