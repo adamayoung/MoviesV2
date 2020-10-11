@@ -14,6 +14,7 @@ struct AppTabNavigation: View {
     @EnvironmentObject private var movieStore: MovieStore
     @EnvironmentObject private var tvShowStore: TVShowStore
     @EnvironmentObject private var personStore: PersonStore
+    @EnvironmentObject private var cloudKitAvailability: CloudKitAvailability
 
     @State private var sheetItem: SheetItem?
 
@@ -57,6 +58,7 @@ struct AppTabNavigation: View {
                         .environmentObject(personStore)
                 }
             }
+            .environmentObject(cloudKitAvailability)
         }
         .onOpenURL(perform: openURL)
     }
