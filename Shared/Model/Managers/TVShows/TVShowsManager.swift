@@ -12,6 +12,8 @@ protocol TVShowsManager {
 
     func fetchTrending(page: Int) -> AnyPublisher<[TVShow], Never>
 
+    func fetchTopTrending(completionHandler: @escaping (TVShow?) -> Void)
+
     func fetchDiscover(page: Int) -> AnyPublisher<[TVShow], Never>
 
     func fetchRecommendations(forTVShow tvShowID: TVShow.ID) -> AnyPublisher<[TVShow], Never>
