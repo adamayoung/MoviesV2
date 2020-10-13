@@ -12,6 +12,8 @@ protocol MoviesManager {
 
     func fetchTrending(page: Int) -> AnyPublisher<[Movie], Never>
 
+    func fetchTopTrending(completionHandler: @escaping (Movie?) -> Void)
+
     func fetchDiscover(page: Int) -> AnyPublisher<[Movie], Never>
 
     func fetchRecommendations(forMovie movieID: Movie.ID) -> AnyPublisher<[Movie], Never>

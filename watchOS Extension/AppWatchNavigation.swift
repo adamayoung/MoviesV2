@@ -5,6 +5,7 @@
 //  Created by Adam Young on 15/07/2020.
 //
 
+import ClockKit
 import SwiftUI
 
 struct AppWatchNavigation: View {
@@ -42,6 +43,12 @@ struct AppWatchNavigation: View {
                         })
                     }
                     .accessibility(label: Text("Trending Movies"))
+                    .onAppear {
+                        let server = CLKComplicationServer.sharedInstance()
+                        server.activeComplications?.forEach {
+                            server.reloadTimeline(for: $0)
+                        }
+                    }
 
                     NavigationLink(
                         destination: DiscoverMoviesView(),

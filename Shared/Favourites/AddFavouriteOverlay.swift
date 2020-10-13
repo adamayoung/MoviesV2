@@ -16,20 +16,19 @@ struct AddFavouriteOverlay: View {
         VStack(spacing: 8) {
             Text("Add a Favourite")
                 .font(.headline)
-                .multilineTextAlignment(.center)
 
-            Text("Favourites are synced across all your devices")
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-
-            if !isAvailable {
+            if isAvailable {
+                Text("Favourites are synced across all your devices")
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+            } else {
                 Text("You need to be signed into iCloud to use Favourites")
                     .font(.caption)
                     .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
                     .padding(.top)
             }
         }
+        .multilineTextAlignment(.center)
         .fixedSize(horizontal: false, vertical: true)
         .padding(.horizontal)
     }

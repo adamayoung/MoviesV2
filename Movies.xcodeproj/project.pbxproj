@@ -457,6 +457,7 @@
 		6FD3E1B324C10EF400E62E67 /* Movie+TMDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD3E1B224C10EF400E62E67 /* Movie+TMDb.swift */; };
 		6FD3E1B424C10EF400E62E67 /* Movie+TMDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD3E1B224C10EF400E62E67 /* Movie+TMDb.swift */; };
 		6FD3E1B524C10EF400E62E67 /* Movie+TMDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD3E1B224C10EF400E62E67 /* Movie+TMDb.swift */; };
+		6FD572C82534744F008FBCF4 /* ComplicationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD572C72534744F008FBCF4 /* ComplicationType.swift */; };
 		6FD64B8224F501D200213104 /* TMDbMoviesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD64B8124F501D200213104 /* TMDbMoviesManager.swift */; };
 		6FD64B8324F501D200213104 /* TMDbMoviesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD64B8124F501D200213104 /* TMDbMoviesManager.swift */; };
 		6FD64B8424F501D200213104 /* TMDbMoviesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD64B8124F501D200213104 /* TMDbMoviesManager.swift */; };
@@ -855,6 +856,7 @@
 		6FD3E18424C0C37100E62E67 /* ShowPlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPlotView.swift; sourceTree = "<group>"; };
 		6FD3E1AA24C10CCE00E62E67 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		6FD3E1B224C10EF400E62E67 /* Movie+TMDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+TMDb.swift"; sourceTree = "<group>"; };
+		6FD572C72534744F008FBCF4 /* ComplicationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationType.swift; sourceTree = "<group>"; };
 		6FD64B8124F501D200213104 /* TMDbMoviesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbMoviesManager.swift; sourceTree = "<group>"; };
 		6FD64B8924F5132100213104 /* TMDbTVShowsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbTVShowsManager.swift; sourceTree = "<group>"; };
 		6FD7775E24BFA26400E31D4D /* MovieCarouselItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCarouselItem.swift; sourceTree = "<group>"; };
@@ -1319,6 +1321,7 @@
 		6FA5A9E824BF304900E828AA /* Complications */ = {
 			isa = PBXGroup;
 			children = (
+				6FD572C72534744F008FBCF4 /* ComplicationType.swift */,
 				6FA5A9D024BF2E7200E828AA /* ComplicationController.swift */,
 			);
 			path = Complications;
@@ -2150,6 +2153,7 @@
 				6F21387724F7B4580050CF3B /* PersonBiographyView.swift in Sources */,
 				6F6F0CF524BF8CD2001AD4BA /* PosterImage.swift in Sources */,
 				6FA7D3B824C5B4CF00581529 /* MovieCreditsView.swift in Sources */,
+				6FD572C82534744F008FBCF4 /* ComplicationType.swift in Sources */,
 				6F04855E24F9395F00EA8327 /* SearchManager.swift in Sources */,
 				6F4AF12D24F7E80600306BA4 /* Show+TMDb.swift in Sources */,
 				6F82A6152513456B00D2B9B2 /* TVShowStore.swift in Sources */,
@@ -2850,7 +2854,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
@@ -2873,7 +2877,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;

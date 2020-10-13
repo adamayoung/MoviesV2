@@ -12,6 +12,7 @@ import TMDb
 final class TMDbTVShowsManager: TVShowsManager {
 
     private let tmdb: MovieTVShowAPI
+    private var cancellables = Set<AnyCancellable>()
 
     init(tmdb: MovieTVShowAPI = TMDbAPI.shared) {
         self.tmdb = tmdb
@@ -23,6 +24,14 @@ final class TMDbTVShowsManager: TVShowsManager {
             .map(TVShow.create)
             .replaceError(with: [])
             .eraseToAnyPublisher()
+    }
+
+    func fetchTopTrending(completionHandler: @escaping (TVShow?) -> Void) {
+        fetchTrending()
+            .map(\.first)
+            .replaceError(with: nil)
+            .sink(receiveValue: completionHandler)
+            .store(in: &cancellables)
     }
 
     func fetchDiscover(page: Int = 1) -> AnyPublisher<[TVShow], Never> {

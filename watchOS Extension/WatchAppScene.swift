@@ -19,7 +19,6 @@ struct WatchAppScene: Scene {
     var body: some Scene {
         WindowGroup {
             AppWatchNavigation()
-                .accentColor(Color(UIColor(named: "AccentColor")!))
                 .environmentObject(movieStore)
                 .environmentObject(tvShowStore)
                 .environmentObject(personStore)
@@ -27,6 +26,7 @@ struct WatchAppScene: Scene {
         }
 
         WKNotificationScene(controller: NotificationController.self, category: "Notification")
+
     }
 
 }
