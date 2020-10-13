@@ -10,7 +10,7 @@ import Foundation
 
 final class SearchStore: ObservableObject {
 
-    @Published var results: [Media]? = nil
+    @Published var results: [Media]?
     @Published var isSearching = false
 
     private let searchManager: SearchManager
@@ -96,7 +96,6 @@ final class SearchStore: ObservableObject {
                     self?.isResultsAvailable = false
                     return
                 }
-
 
                 self?.results = results + media
             })

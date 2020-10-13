@@ -69,12 +69,8 @@ platform :ios do
 
   desc "Submit to AppStore for Review"
   lane :submit_review do
-    deliver(
-      submit_for_review: true,
-      automatic_release: true,
-      skip_metadata: true,
-      skip_binary_upload: true
-    )
+    screenshots
+    deliver
   end
 end
 
