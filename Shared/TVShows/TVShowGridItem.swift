@@ -10,10 +10,26 @@ import SwiftUI
 struct TVShowGridItem: View {
 
     var tvShow: TVShow
+    var showFooter = false
 
     var body: some View {
-        PosterImage(imageMetadata: tvShow.posterImage)
-            .shadow(radius: 5)
+        VStack {
+            PosterImage(imageMetadata: tvShow.posterImage)
+                .shadow(radius: 5)
+
+            if showFooter {
+                Group {
+                    Text("TV Show")
+
+                    if let firstAirDate = tvShow.firstAirDate {
+                        Text("\(firstAirDate, formatter: DateFormatter.year)")
+                    }
+                }
+                .foregroundColor(.secondary)
+            }
+
+            Spacer()
+        }
     }
 
 }

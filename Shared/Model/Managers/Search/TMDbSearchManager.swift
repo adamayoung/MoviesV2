@@ -17,8 +17,8 @@ final class TMDbSearchManager: SearchManager {
         self.tmdb = tmdb
     }
 
-    func search(query: String) -> AnyPublisher<[Media], Never> {
-        tmdb.searchPublisher(withQuery: query)
+    func search(query: String, page: Int = 1) -> AnyPublisher<[Media], Never> {
+        tmdb.searchPublisher(withQuery: query, page: page)
             .map(\.results)
             .map(Media.create)
             .replaceError(with: [])
