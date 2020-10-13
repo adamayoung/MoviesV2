@@ -10,5 +10,13 @@ import Foundation
 
 protocol SearchManager {
 
-    func search(query: String) -> AnyPublisher<[Media], Never>
+    func search(query: String, page: Int) -> AnyPublisher<[Media], Never>
+}
+
+extension SearchManager {
+
+    func search(query: String, page: Int = 1) -> AnyPublisher<[Media], Never> {
+        search(query: query, page: page)
+    }
+
 }

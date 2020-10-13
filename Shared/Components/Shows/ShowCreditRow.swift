@@ -19,7 +19,7 @@ struct ShowCreditRow: View {
 
             VStack(alignment: .leading) {
                 Text(name)
-                    .bold()
+                    .font(.headline)
 
                 Text(detail)
                     .foregroundColor(.secondary)

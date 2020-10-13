@@ -41,9 +41,6 @@ struct MoviesGrid: View {
         #if os(macOS)
         content
             .frame(minWidth: 270, idealWidth: 300, maxWidth: 400, maxHeight: .infinity)
-        #elseif os(iOS)
-        content
-            .listStyle(GroupedListStyle())
         #else
         content
         #endif

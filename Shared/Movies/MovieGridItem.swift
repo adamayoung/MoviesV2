@@ -10,10 +10,20 @@ import SwiftUI
 struct MovieGridItem: View {
 
     var movie: Movie
+    var showFooter = false
 
     var body: some View {
-        PosterImage(imageMetadata: movie.posterImage)
-            .shadow(radius: 5)
+        VStack {
+            PosterImage(imageMetadata: movie.posterImage)
+                .shadow(radius: 5)
+
+            if showFooter, let releaseDate = movie.releaseDate {
+                Text("\(releaseDate, formatter: DateFormatter.year)")
+                    .foregroundColor(.secondary)
+            }
+
+            Spacer()
+        }
     }
 
 }

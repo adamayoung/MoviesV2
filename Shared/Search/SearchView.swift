@@ -10,19 +10,42 @@ import SwiftUI
 struct SearchView: View {
 
     @StateObject private var searchStore = SearchStore()
-
     @State private var searchText: String = ""
-    @State private var isSearching = false
 
-    private var results: [Media] {
+    private var isSearching: Bool {
+        searchStore.isSearching
+    }
+
+    private var media: [Media]? {
         searchStore.results
     }
 
     var body: some View {
-        MultiTypeList(searchText: $searchText, isSearching: isSearching, results: results)
+        MediaCollection(searchText: $searchText, media: media ?? [], mediaItemDidAppear: mediaItemDidAppear)
+            .overlay(overlay)
             .navigationTitle("Search")
             .onChange(of: searchText, perform: search)
             .onOpenURL(perform: openURL)
+    }
+
+    @ViewBuilder private var overlay: some View {
+        if isSearching && (media?.isEmpty ?? true || media == nil) {
+            ProgressView()
+        }
+
+        Group {
+            if !isSearching && media == nil {
+                Text("Search for Movies, TV Shows and People")
+            }
+
+            if !isSearching && !searchText.isEmpty && (media?.isEmpty ?? false) {
+                Text("No results found")
+            }
+        }
+        .multilineTextAlignment(.center)
+        .foregroundColor(.secondary)
+        .fixedSize(horizontal: false, vertical: true)
+        .padding(.horizontal)
     }
 
 }
@@ -45,10 +68,11 @@ extension SearchView {
     }
 
     private func search(query: String) {
-        isSearching = true
-        searchStore.search(query: query) { _ in
-            isSearching = false
-        }
+        searchStore.search(query: query)
+    }
+
+    private func mediaItemDidAppear(currentMediaItem mediaItem: Media, offset: Int) {
+        searchStore.fetchNextPageIfNeeded(currentMediaItem: mediaItem, offset: offset)
     }
 
 }
