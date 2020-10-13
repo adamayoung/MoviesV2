@@ -145,9 +145,11 @@
 		6F21387A24F7BC500050CF3B /* PersonPersonalDetailsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F21387824F7BC500050CF3B /* PersonPersonalDetailsSection.swift */; };
 		6F21387B24F7BC500050CF3B /* PersonPersonalDetailsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F21387824F7BC500050CF3B /* PersonPersonalDetailsSection.swift */; };
 		6F21387F24F7BCFE0050CF3B /* PersonPersonalDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F21387C24F7BCFE0050CF3B /* PersonPersonalDetailsView.swift */; };
+		6F3747AA25367317003EED3E /* Settings-Watch.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6F3747672536716C003EED3E /* Settings-Watch.bundle */; };
 		6F39700B24C741AE008A8E2A /* FavouriteMoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F39700A24C741AE008A8E2A /* FavouriteMoviesView.swift */; };
 		6F39700C24C741AE008A8E2A /* FavouriteMoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F39700A24C741AE008A8E2A /* FavouriteMoviesView.swift */; };
 		6F39700D24C741AE008A8E2A /* FavouriteMoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F39700A24C741AE008A8E2A /* FavouriteMoviesView.swift */; };
+		6F3EB9AF25366E4F00D236CE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6F3EB9A525366DEB00D236CE /* Settings.bundle */; };
 		6F42096A24FC54A1002ACFF6 /* TVShowsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F42096924FC54A1002ACFF6 /* TVShowsGrid.swift */; };
 		6F42096B24FC54A1002ACFF6 /* TVShowsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F42096924FC54A1002ACFF6 /* TVShowsGrid.swift */; };
 		6F42096C24FC54A1002ACFF6 /* TVShowsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F42096924FC54A1002ACFF6 /* TVShowsGrid.swift */; };
@@ -732,7 +734,9 @@
 		6F21387424F7B4580050CF3B /* PersonBiographyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonBiographyView.swift; sourceTree = "<group>"; };
 		6F21387824F7BC500050CF3B /* PersonPersonalDetailsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPersonalDetailsSection.swift; sourceTree = "<group>"; };
 		6F21387C24F7BCFE0050CF3B /* PersonPersonalDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPersonalDetailsView.swift; sourceTree = "<group>"; };
+		6F3747672536716C003EED3E /* Settings-Watch.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "Settings-Watch.bundle"; sourceTree = "<group>"; };
 		6F39700A24C741AE008A8E2A /* FavouriteMoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteMoviesView.swift; sourceTree = "<group>"; };
+		6F3EB9A525366DEB00D236CE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		6F42096924FC54A1002ACFF6 /* TVShowsGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsGrid.swift; sourceTree = "<group>"; };
 		6F42096D24FC5501002ACFF6 /* TVShowGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowGridItem.swift; sourceTree = "<group>"; };
 		6F42097124FC5574002ACFF6 /* TVShowsCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsCollection.swift; sourceTree = "<group>"; };
@@ -1206,6 +1210,7 @@
 				6FAB659424C89769006ABC39 /* Assets.xcassets */,
 				6FA5A94E24BF144600E828AA /* Info.plist */,
 				6FAB659124C89656006ABC39 /* iOS.entitlements */,
+				6F3EB9A525366DEB00D236CE /* Settings.bundle */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -1317,6 +1322,7 @@
 			isa = PBXGroup;
 			children = (
 				6FA5A9BE24BF2E7200E828AA /* Info.plist */,
+				6F3747672536716C003EED3E /* Settings-Watch.bundle */,
 			);
 			path = watchOS;
 			sourceTree = "<group>";
@@ -1771,6 +1777,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F3747AA25367317003EED3E /* Settings-Watch.bundle in Resources */,
+				6F3EB9AF25366E4F00D236CE /* Settings.bundle in Resources */,
 				6FAB659024C8924A006ABC39 /* Launch Screen.storyboard in Resources */,
 				6FAB659524C89769006ABC39 /* Assets.xcassets in Resources */,
 				6FA5A9E524BF2FDA00E828AA /* Assets.xcassets in Resources */,
