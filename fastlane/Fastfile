@@ -40,10 +40,10 @@ platform :ios do
     screenshots
     deliver(
       skip_metadata: true,
-      skip_screenshots: false
+      skip_screenshots: false,
       skip_binary_upload: true,
       submit_for_review: false,
-      automatic_release: false,
+      automatic_release: false
     )
   end
 
