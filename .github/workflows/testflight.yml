@@ -33,7 +33,7 @@ jobs:
           brew bundle
 
       - name: Build and Upload to TestFlight
-        run: fastlane ios beta
+        run: bundle exec fastlane ios beta
         env:
           FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}

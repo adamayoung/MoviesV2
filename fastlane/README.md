@@ -31,6 +31,11 @@ Runs all tests
 fastlane ios screenshots
 ```
 Creates screenshots for AppStore
+### ios upload_screenshots
+```
+fastlane ios upload_screenshots
+```
+Upload screenshots
 ### ios build
 ```
 fastlane ios build

@@ -32,7 +32,7 @@ jobs:
           brew bundle
 
       - name: Build and Test
-        run: fastlane ios pr
+        run: bundle exec fastlane ios pr
         env:
           FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}

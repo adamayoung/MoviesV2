@@ -43,7 +43,7 @@ class MoviesUITests: XCTestCase {
         seeMoreTrendingMoviesButton.tap()
 
         sleep(10)
-        snapshot("1DiscoverMovies")
+        snapshot("1TrendingMovies")
     }
 
     func testTVShowDetailsSnapshot() throws {
