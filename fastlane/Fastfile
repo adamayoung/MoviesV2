@@ -81,7 +81,6 @@ platform :ios do
 
   desc "Submit to AppStore for Review"
   lane :submit_review do
-    screenshots
     deliver
   end
 end
