@@ -30,7 +30,6 @@ jobs:
           bundle config deployment true
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
-          brew bundle
 
       - name: Build and Upload to TestFlight
         run: bundle exec fastlane ios beta
