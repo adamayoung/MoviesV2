@@ -42,6 +42,12 @@ private struct InternalWebImage: View {
                 .resizable()
                 .scaledToFill()
         }
+        .onAppear {
+            image.fetch()
+        }
+        .onDisappear {
+            image.cancel()
+        }
     }
 
 }
