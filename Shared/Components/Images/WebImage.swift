@@ -37,17 +37,13 @@ private struct InternalWebImage: View {
     }
 
     var body: some View {
-        Group {
+        ZStack {
             image.view?
                 .resizable()
                 .scaledToFill()
         }
-        .onAppear {
-            image.fetch()
-        }
-        .onDisappear {
-            image.cancel()
-        }
+        .onAppear(perform: image.fetch)
+        .onDisappear(perform: image.reset)
     }
 
 }
