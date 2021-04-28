@@ -84,10 +84,10 @@ extension StillImage {
 
 }
 
-//struct StillImage_Previews: PreviewProvider {
-//
+// struct StillImage_Previews: PreviewProvider {
+
 //    private static let url = URL(string: "https://image.tmdb.org/t/p/w500/m0ObOaJBerZ3Unc74l471ar8Iiy.jpg")
-//
+
 //    static var previews: some View {
 //        VStack {
 //            StillImage(url: url, displaySize: .small)
@@ -96,5 +96,5 @@ extension StillImage {
 //            StillImage(url: nil, displaySize: .large)
 //        }
 //    }
-//
-//}
+
+// }

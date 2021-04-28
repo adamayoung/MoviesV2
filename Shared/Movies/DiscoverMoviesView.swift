@@ -44,10 +44,10 @@ extension DiscoverMoviesView {
 
 }
 
-//struct DiscoverMoviesView_Previews: PreviewProvider {
+// struct DiscoverMoviesView_Previews: PreviewProvider {
 //
 //    static var previews: some View {
 //        DiscoverMoviesView()
 //    }
 //
-//}
+// }

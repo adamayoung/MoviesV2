@@ -63,7 +63,7 @@ struct ShowDetailsHeader: View {
             .overlay(
                 WebImage(url: backdropImageMetadata?.url)
             )
-            //.frame(height: PosterImage.DisplaySize.extraLarge.size.height * 1.4)
+            // .frame(height: PosterImage.DisplaySize.extraLarge.size.height * 1.4)
             .mask(LinearGradient(gradient: Gradient(colors: [Color.black, Color.black, Color.clear]), startPoint: .top, endPoint: .bottom))
             .clipped()
 
@@ -84,8 +84,8 @@ extension ShowDetailsHeader {
 
 }
 
-//struct ShowDetailsHeader_Previews: PreviewProvider {
-//
+// struct ShowDetailsHeader_Previews: PreviewProvider {
+
 //    static var previews: some View {
 //        NavigationView {
 //            List {
@@ -93,5 +93,5 @@ extension ShowDetailsHeader {
 //            }
 //        }
 //    }
-//
-//}
+
+// }

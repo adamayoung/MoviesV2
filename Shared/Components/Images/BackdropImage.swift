@@ -84,10 +84,10 @@ extension BackdropImage {
 
 }
 
-//struct BackdropImage_Previews: PreviewProvider {
-//
+// struct BackdropImage_Previews: PreviewProvider {
+
 //    private static let url = URL(string: "https://image.tmdb.org/t/p/w500/m0ObOaJBerZ3Unc74l471ar8Iiy.jpg")
-//
+
 //    static var previews: some View {
 //        VStack {
 //            BackdropImage(url: url, displaySize: .small)
@@ -96,5 +96,5 @@ extension BackdropImage {
 //            BackdropImage(url: nil, displaySize: .large)
 //        }
 //    }
-//
-//}
+
+// }

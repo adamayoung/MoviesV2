@@ -44,10 +44,10 @@ extension TrendingMoviesView {
 
 }
 
-//struct TrendingMoviesView_Previews: PreviewProvider {
+// struct TrendingMoviesView_Previews: PreviewProvider {
 //
 //    static var previews: some View {
 //        TrendingMoviesView()
 //    }
 //
-//}
+// }

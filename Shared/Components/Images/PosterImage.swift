@@ -84,10 +84,10 @@ extension PosterImage {
 
 }
 
-//struct PosterImage_Previews: PreviewProvider {
-//
+// struct PosterImage_Previews: PreviewProvider {
+
 //    private static let url = URL(string: "https://image.tmdb.org/t/p/w780/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg")
-//
+
 //    static var previews: some View {
 //        VStack {
 //            PosterImage(url: url, displaySize: .small)
@@ -96,5 +96,5 @@ extension PosterImage {
 //            PosterImage(url: nil, displaySize: .large)
 //        }
 //    }
-//
-//}
+
+// }

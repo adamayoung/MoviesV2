@@ -85,7 +85,7 @@ extension MovieCarouselItem {
 
 }
 
-//struct MovieCarouselItem_Previews: PreviewProvider {
+// struct MovieCarouselItem_Previews: PreviewProvider {
 //
 //    static var previews: some View {
 //        let movie = Movie(id: 1, title: "The Old Guard",
@@ -94,4 +94,4 @@ extension MovieCarouselItem {
 //        return MovieCarouselItem(movie: movie)
 //    }
 //
-//}
+// }

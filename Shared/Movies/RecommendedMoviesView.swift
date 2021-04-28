@@ -51,10 +51,10 @@ extension RecommendedMoviesView {
 
 }
 
-//struct RecommendedMoviesView_Previews: PreviewProvider {
+// struct RecommendedMoviesView_Previews: PreviewProvider {
 //
 //    static var previews: some View {
 //        RecommendedMoviesView(movieID: 1)
 //    }
 //
-//}
+// }
