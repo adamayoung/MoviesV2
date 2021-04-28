@@ -38,6 +38,14 @@ struct MovieDetailsView: View {
         movie?.title ?? ""
     }
 
+    private var isFavouritesAvailable: Bool {
+        #if os(iOS)
+        return cloudKitAvailability.isAvailable
+        #else
+        return false
+        #endif
+    }
+
     var body: some View {
         container
             .toolbar {
@@ -48,7 +56,7 @@ struct MovieDetailsView: View {
                         }, label: {
                             favouriteButtonLabel
                         })
-                        .disabled(!cloudKitAvailability.isAvailable)
+                        .disabled(!isFavouritesAvailable)
                     }
                 }
             }

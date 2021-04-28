@@ -10,11 +10,11 @@ import TMDb
 
 extension PersonCombinedCredits {
 
-    init(dto: PersonCombinedCreditsDTO) {
-        let cast = Show.create(dtos: dto.cast)
-        let crew = Show.create(dtos: dto.crew)
+    init(model: TMDb.PersonCombinedCredits) {
+        let cast = Show.create(models: model.cast)
+        let crew = Show.create(models: model.crew)
 
-        self.init(id: dto.id, cast: cast, crew: crew)
+        self.init(id: model.id, cast: cast, crew: crew)
     }
 
 }

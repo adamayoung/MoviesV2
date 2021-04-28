@@ -10,21 +10,21 @@ import TMDb
 
 extension Media {
 
-    init(dto: MediaDTO) {
-        switch dto {
+    init(model: TMDb.Media) {
+        switch model {
         case .movie(let movie):
-            self = .movie(Movie(dto: movie))
+            self = .movie(Movie(model: movie))
 
         case .tvShow(let tvShow):
-            self = .tvShow(TVShow(dto: tvShow))
+            self = .tvShow(TVShow(model: tvShow))
 
         case .person(let person):
-            self = .person(Person(dto: person))
+            self = .person(Person(model: person))
         }
     }
 
-    static func create(dtos: [MediaDTO]) -> [Media] {
-        dtos.compactMap(Self.init)
+    static func create(models: [TMDb.Media]) -> [Media] {
+        models.map(Self.init)
     }
 
 }

@@ -18,7 +18,7 @@ final class TMDbPeopleManager: PeopleManager {
     }
 
     func fetchTrending(page: Int = 1) -> AnyPublisher<[Person], Never> {
-        tmdb.trendingPeoplePublisher(page: page)
+        tmdb.trending.peoplePublisher(page: page)
             .map(\.results)
             .map(Person.create)
             .replaceError(with: [])
@@ -26,21 +26,21 @@ final class TMDbPeopleManager: PeopleManager {
     }
 
     func fetchPerson(withID id: Person.ID) -> AnyPublisher<Person?, Never> {
-        tmdb.detailsPublisher(forPerson: id)
+        tmdb.people.detailsPublisher(forPerson: id)
             .map(Person.init)
             .replaceError(with: nil)
             .eraseToAnyPublisher()
     }
 
     func fetchKnownFor(forPerson personID: Person.ID) -> AnyPublisher<[Show], Never> {
-        tmdb.knownForPublisher(forPerson: personID)
+        tmdb.people.knownForPublisher(forPerson: personID)
             .map(Show.create)
             .replaceError(with: [])
             .eraseToAnyPublisher()
     }
 
     func fetchCredits(forPerson personID: Person.ID) -> AnyPublisher<PersonCombinedCredits, Never> {
-        tmdb.combinedCreditsPublisher(forPerson: personID)
+        tmdb.people.combinedCreditsPublisher(forPerson: personID)
             .map(PersonCombinedCredits.init)
             .replaceError(with: PersonCombinedCredits(id: personID))
             .eraseToAnyPublisher()

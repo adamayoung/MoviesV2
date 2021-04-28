@@ -27,7 +27,11 @@ struct FavouritesView: View {
     }
 
     private var isFavouritesAvailable: Bool {
-        cloudKitAvailability.isAvailable
+        #if os(iOS)
+        return cloudKitAvailability.isAvailable
+        #else
+        return false
+        #endif
     }
 
     private var hasFavourites: Bool {

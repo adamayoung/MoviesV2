@@ -10,23 +10,23 @@ import TMDb
 
 extension TVShowSeason {
 
-    init(dto: TVShowSeasonDTO) {
+    init(model: TMDb.TVShowSeason) {
         let episodes: [TVShowEpisode]? = {
-            guard let episodes = dto.episodes else {
+            guard let episodes = model.episodes else {
                 return nil
             }
 
-            return TVShowEpisode.create(dtos: episodes)
+            return TVShowEpisode.create(models: episodes)
         }()
 
-        let posterImage = PosterImageMetadata(posterURLProvider: dto)
+        let posterImage = PosterImageMetadata(posterURLProvider: model)
 
-        self.init(id: dto.id, name: dto.name, seasonNumber: dto.seasonNumber, overview: dto.overview,
-                  airDate: dto.airDate, posterImage: posterImage, episodes: episodes)
+        self.init(id: model.id, name: model.name, seasonNumber: model.seasonNumber, overview: model.overview,
+                  airDate: model.airDate, posterImage: posterImage, episodes: episodes)
     }
 
-    static func create(dtos: [TVShowSeasonDTO]) -> [Self] {
-        dtos.map(Self.init)
+    static func create(models: [TMDb.TVShowSeason]) -> [Self] {
+        models.map(Self.init)
     }
 
 }

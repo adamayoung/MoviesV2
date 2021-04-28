@@ -11,25 +11,24 @@ jobs:
     name: Build and Test
     runs-on: macos-latest
     env:
-      DEVELOPER_DIR: /Applications/Xcode_12.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_12_4.app/Contents/Developer
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Cache vendor/bundle
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: SPM Cache
         uses: actions/cache@v2
         with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          path: DerivedData/SourcePackages
+          key: ${{ runner.os }}-spm-${{ hashFiles('Movies.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: |
-            ${{ runner.os }}-gems-
-
-      - name: Install dependencies
-        run: |
-          bundle config deployment true
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+            ${{ runner.os }}-spm-
 
       - name: Build and Test
         run: bundle exec fastlane ios pr
