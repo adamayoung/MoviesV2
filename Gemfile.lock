@@ -200,7 +200,7 @@ PLATFORMS
   x86_64-darwin-19
 
 DEPENDENCIES
-  fastlane
+  fastlane (~> 2)
 
 BUNDLED WITH
    2.2.13
