@@ -39,7 +39,7 @@ struct MovieRow: View {
 
 }
 
-//struct MovieRow_Previews: PreviewProvider {
+// struct MovieRow_Previews: PreviewProvider {
 //
 //    static var previews: some View {
 //        let movie = Movie(id: 1,
@@ -52,4 +52,4 @@ struct MovieRow: View {
 //        }
 //    }
 //
-//}
+// }

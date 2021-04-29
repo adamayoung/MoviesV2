@@ -2,6 +2,7 @@ excluded:
   - build
   - DerivedData
   - vendor
+  - Snapshot UITests (iOS)/SnapshotHelper.swift
 
 disabled_rules:
   - line_length

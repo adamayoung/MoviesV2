@@ -20,7 +20,7 @@ final class TMDbMoviesManager: MoviesManager {
     }
 
     func fetchTrending(page: Int = 1) -> AnyPublisher<[Movie], Never> {
-        tmdb.trendingMoviesPublisher(page: page)
+        tmdb.trending.moviesPublisher(page: page)
             .map(\.results)
             .map(Movie.create)
             .replaceError(with: [])
@@ -36,7 +36,7 @@ final class TMDbMoviesManager: MoviesManager {
     }
 
     func fetchDiscover(page: Int = 1) -> AnyPublisher<[Movie], Never> {
-        tmdb.discoverMoviesPublisher(page: page)
+        tmdb.discover.moviesPublisher(page: page)
             .map(\.results)
             .map(Movie.create)
             .replaceError(with: [])
@@ -44,7 +44,7 @@ final class TMDbMoviesManager: MoviesManager {
     }
 
     func fetchRecommendations(forMovie movieID: Movie.ID) -> AnyPublisher<[Movie], Never> {
-        tmdb.recommendationsPublisher(forMovie: movieID)
+        tmdb.movies.recommendationsPublisher(forMovie: movieID)
             .map(\.results)
             .map(Movie.create)
             .replaceError(with: [])
@@ -52,14 +52,14 @@ final class TMDbMoviesManager: MoviesManager {
     }
 
     func fetchMovie(withID id: Movie.ID) -> AnyPublisher<Movie?, Never> {
-        tmdb.detailsPublisher(forMovie: id)
+        tmdb.movies.detailsPublisher(forMovie: id)
             .map(Movie.init)
             .replaceError(with: nil)
             .eraseToAnyPublisher()
     }
 
     func fetchCredits(forMovie movieID: Movie.ID) -> AnyPublisher<Credits, Never> {
-        tmdb.creditsPublisher(forMovie: movieID)
+        tmdb.movies.creditsPublisher(forMovie: movieID)
             .map(Credits.init)
             .replaceError(with: Credits())
             .eraseToAnyPublisher()

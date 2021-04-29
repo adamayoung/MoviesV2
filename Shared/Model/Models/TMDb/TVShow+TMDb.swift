@@ -10,41 +10,41 @@ import TMDb
 
 extension TVShow {
 
-    init(dto: TVShowDTO) {
+    init(model: TMDb.TVShow) {
         let seasons: [TVShowSeason]? = {
-            guard let seasons = dto.seasons else {
+            guard let seasons = model.seasons else {
                 return nil
             }
 
-            return TVShowSeason.create(dtos: seasons)
+            return TVShowSeason.create(models: seasons)
         }()
 
         let genres: [Genre]? = {
-            guard let genres = dto.genres else {
+            guard let genres = model.genres else {
                 return nil
             }
 
-            return Genre.create(dtos: genres)
+            return Genre.create(models: genres)
         }()
 
         let voteAverage: Float? = {
-            guard let voteAverage = dto.voteAverage else {
+            guard let voteAverage = model.voteAverage else {
                 return nil
             }
 
             return voteAverage > 0 ? voteAverage : nil
         }()
 
-        let posterImage = PosterImageMetadata(posterURLProvider: dto)
-        let backdropImage = BackdropImageMetadata(backdropURLProvider: dto)
+        let posterImage = PosterImageMetadata(posterURLProvider: model)
+        let backdropImage = BackdropImageMetadata(backdropURLProvider: model)
 
-        self.init(id: dto.id, name: dto.name, overview: dto.overview, firstAirDate: dto.firstAirDate,
-                  posterImage: posterImage, backdropImage: backdropImage, homepageURL: dto.homepageURL,
-                  popularity: dto.popularity, seasons: seasons, genres: genres, voteAverage: voteAverage)
+        self.init(id: model.id, name: model.name, overview: model.overview, firstAirDate: model.firstAirDate,
+                  posterImage: posterImage, backdropImage: backdropImage, homepageURL: model.homepageURL,
+                  popularity: model.popularity, seasons: seasons, genres: genres, voteAverage: voteAverage)
     }
 
-    static func create(dtos: [TVShowDTO]) -> [Self] {
-        dtos.map(Self.init)
+    static func create(models: [TMDb.TVShow]) -> [Self] {
+        models.map(Self.init)
     }
 
 }

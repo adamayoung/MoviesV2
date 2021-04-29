@@ -57,11 +57,11 @@ struct PersonCarouselItem: View {
 
 }
 
-//struct PersonCarouselItem_Previews: PreviewProvider {
+// struct PersonCarouselItem_Previews: PreviewProvider {
 //
 //    static var previews: some View {
 //        let person = Person(id: 1, name: "Adam Young", profileURL: URL(string: "https://pbs.twimg.com/profile_images/1275513868664659968/rVhFV8C1_400x400.jpg")!)
 //        return PersonCarouselItem(person: person)
 //    }
 //
-//}
+// }

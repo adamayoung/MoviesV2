@@ -34,6 +34,14 @@ struct PersonDetailsView: View {
         person?.name ?? ""
     }
 
+    private var isFavouritesAvailable: Bool {
+        #if os(iOS)
+        return cloudKitAvailability.isAvailable
+        #else
+        return false
+        #endif
+    }
+
     var body: some View {
         container
             .toolbar {
@@ -44,7 +52,7 @@ struct PersonDetailsView: View {
                         }, label: {
                             favouriteButtonLabel
                         })
-                        .disabled(!cloudKitAvailability.isAvailable)
+                        .disabled(!isFavouritesAvailable)
                     }
                 }
             }

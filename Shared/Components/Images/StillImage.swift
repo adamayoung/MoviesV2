@@ -39,7 +39,7 @@ struct StillImage: View {
     private var content: some View {
         ZStack(alignment: .center) {
             placeholder
-            WebImage(url: imageMetadata?.originalURL, lowDataURL: imageMetadata?.lowDataURL)
+            WebImage(url: imageMetadata?.originalURL)
         }
         .aspectRatio(DisplaySize.aspectRatio, contentMode: .fit)
     }
@@ -84,10 +84,10 @@ extension StillImage {
 
 }
 
-//struct StillImage_Previews: PreviewProvider {
-//
+// struct StillImage_Previews: PreviewProvider {
+
 //    private static let url = URL(string: "https://image.tmdb.org/t/p/w500/m0ObOaJBerZ3Unc74l471ar8Iiy.jpg")
-//
+
 //    static var previews: some View {
 //        VStack {
 //            StillImage(url: url, displaySize: .small)
@@ -96,5 +96,5 @@ extension StillImage {
 //            StillImage(url: nil, displaySize: .large)
 //        }
 //    }
-//
-//}
+
+// }

@@ -11,30 +11,8 @@ import SwiftUI
 struct WebImage: View {
 
     var url: URL?
-    var lowDataURL: URL?
 
-    var body: some View {
-        Group {
-            if let url = url {
-                InternalWebImage(url: url, lowDataURL: lowDataURL)
-            }
-        }
-        .transition(AnyTransition.opacity.animation(Animation.easeOut.speed(0.5)))
-    }
-
-}
-
-private struct InternalWebImage: View {
-
-    @ObservedObject var image: FetchImage
-
-    init(url: URL, lowDataURL: URL? = nil) {
-        if let lowDataURL = lowDataURL {
-            image = FetchImage(regularUrl: url, lowDataUrl: lowDataURL)
-        } else {
-            image = FetchImage(url: url)
-        }
-    }
+    @StateObject private var image = FetchImage()
 
     var body: some View {
         ZStack {
@@ -42,8 +20,20 @@ private struct InternalWebImage: View {
                 .resizable()
                 .scaledToFill()
         }
-        .onAppear(perform: image.fetch)
+        .onAppear {
+            if let url = url {
+                withoutAnimation {
+                    image.load(url)
+                }
+            }
+        }
         .onDisappear(perform: image.reset)
+    }
+
+    private func withoutAnimation(_ closure: () -> Void) {
+        var transaction = Transaction(animation: nil)
+        transaction.disablesAnimations = true
+        withTransaction(transaction, closure)
     }
 
 }

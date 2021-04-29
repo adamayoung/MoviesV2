@@ -28,8 +28,8 @@ struct MovieGridItem: View {
 
 }
 
-//struct MovieGridItem_Previews: PreviewProvider {
+// struct MovieGridItem_Previews: PreviewProvider {
 //    static var previews: some View {
 //        MovieGridItem()
 //    }
-//}
+// }

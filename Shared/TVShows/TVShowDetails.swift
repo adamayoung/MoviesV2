@@ -114,10 +114,10 @@ struct TVShowDetails: View {
 
 }
 
-//struct TVShowDetails_Previews: PreviewProvider {
+// struct TVShowDetails_Previews: PreviewProvider {
 //
 //    static var previews: some View {
 //        TVShowDetails()
 //    }
 //
-//}
+// }

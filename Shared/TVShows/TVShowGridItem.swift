@@ -34,10 +34,10 @@ struct TVShowGridItem: View {
 
 }
 
-//struct TVShowGridItem_Previews: PreviewProvider {
+// struct TVShowGridItem_Previews: PreviewProvider {
 //
 //    static var previews: some View {
 //        TVShowGridItem()
 //    }
 //
-//}
+// }

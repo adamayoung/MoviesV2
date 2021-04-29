@@ -18,7 +18,7 @@ struct ShowPlotRow: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
 
-    #if !os(watchOS)
+    #if os(iOS)
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(plot)
@@ -31,6 +31,21 @@ struct ShowPlotRow: View {
                     Button("Read more", action: readMore)
                 }
             }
+        }
+        .padding(.vertical, 5)
+        .sheet(isPresented: $isShowingFullOverview) {
+            NavigationView {
+                ShowPlotView(plot: plot)
+            }
+        }
+    }
+    #endif
+
+    #if os(macOS)
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(plot)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(.vertical, 5)
         .sheet(isPresented: $isShowingFullOverview) {

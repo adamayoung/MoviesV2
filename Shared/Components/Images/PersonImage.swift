@@ -39,7 +39,7 @@ struct PersonImage: View {
     private var content: some View {
         ZStack(alignment: .center) {
             placeholder
-            WebImage(url: imageMetadata?.url, lowDataURL: imageMetadata?.lowDataURL)
+            WebImage(url: imageMetadata?.url)
         }
         .aspectRatio(DisplaySize.aspectRatio, contentMode: .fit)
     }
@@ -90,10 +90,10 @@ extension PersonImage {
 
 }
 
-//struct PersonImage_Previews: PreviewProvider {
-//
+// struct PersonImage_Previews: PreviewProvider {
+
 //    private static let url = URL(string: "https://image.tmdb.org/t/p/w780/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg")
-//
+
 //    static var previews: some View {
 //        VStack {
 //            PersonImage(url: url, displaySize: .small)
@@ -102,5 +102,5 @@ extension PersonImage {
 //            PersonImage(url: nil, displaySize: .large)
 //        }
 //    }
-//
-//}
+
+// }

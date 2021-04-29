@@ -24,10 +24,10 @@ struct PersonGridItem: View {
 
 }
 
-//struct PersonGridItem_Previews: PreviewProvider {
+// struct PersonGridItem_Previews: PreviewProvider {
 //
 //    static var previews: some View {
 //        PersonGridItem()
 //    }
 //
-//}
+// }

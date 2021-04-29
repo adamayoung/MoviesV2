@@ -85,7 +85,7 @@ extension TVShowCarouselItem {
 
 }
 
-//struct TVShowCarouselItem_Previews: PreviewProvider {
+// struct TVShowCarouselItem_Previews: PreviewProvider {
 //
 //    static var previews: some View {
 //        let tvShow = TVShow(id: 1, name: "The Old Guard",
@@ -94,4 +94,4 @@ extension TVShowCarouselItem {
 //        return TVShowCarouselItem(tvShow: tvShow)
 //    }
 //
-//}
+// }

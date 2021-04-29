@@ -18,8 +18,8 @@ struct TVShowEpisodesList: View {
     }
 }
 
-//struct TVShowEpisodesList_Previews: PreviewProvider {
+// struct TVShowEpisodesList_Previews: PreviewProvider {
 //    static var previews: some View {
 //        TVShowEpisodesList()
 //    }
-//}
+// }

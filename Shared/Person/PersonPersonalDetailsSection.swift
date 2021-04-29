@@ -97,8 +97,8 @@ struct PersonPersonalDetailsSection: View {
     #endif
 }
 
-//struct PersonPersonalDetailsSection_Previews: PreviewProvider {
+// struct PersonPersonalDetailsSection_Previews: PreviewProvider {
 //    static var previews: some View {
 //        PersonPersonalDetailsSection()
 //    }
-//}
+// }

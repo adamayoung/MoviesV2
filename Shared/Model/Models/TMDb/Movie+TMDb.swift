@@ -10,17 +10,17 @@ import TMDb
 
 extension Movie {
 
-    init(dto: MovieDTO) {
+    init(model: TMDb.Movie) {
         let genres: [Genre]? = {
-            guard let genres = dto.genres else {
+            guard let genres = model.genres else {
                 return nil
             }
 
-            return Genre.create(dtos: genres)
+            return Genre.create(models: genres)
         }()
 
         let runtime: TimeInterval? = {
-            guard let runtime = dto.runtime else {
+            guard let runtime = model.runtime else {
                 return nil
             }
 
@@ -28,23 +28,23 @@ extension Movie {
         }()
 
         let voteAverage: Float? = {
-            guard let voteAverage = dto.voteAverage else {
+            guard let voteAverage = model.voteAverage else {
                 return nil
             }
 
             return voteAverage > 0 ? voteAverage : nil
         }()
 
-        let posterImage = PosterImageMetadata(posterURLProvider: dto)
-        let backdropImage = BackdropImageMetadata(backdropURLProvider: dto)
+        let posterImage = PosterImageMetadata(posterURLProvider: model)
+        let backdropImage = BackdropImageMetadata(backdropURLProvider: model)
 
-        self.init(id: dto.id, title: dto.title, tagline: dto.tagline, overview: dto.overview, runtime: runtime,
-                  genres: genres, releaseDate: dto.releaseDate, posterImage: posterImage, backdropImage: backdropImage,
-                  popularity: dto.popularity, voteAverage: voteAverage)
+        self.init(id: model.id, title: model.title, tagline: model.tagline, overview: model.overview, runtime: runtime,
+                  genres: genres, releaseDate: model.releaseDate, posterImage: posterImage,
+                  backdropImage: backdropImage, popularity: model.popularity, voteAverage: voteAverage)
     }
 
-    static func create(dtos: [MovieDTO]) -> [Movie] {
-        dtos.map(Self.init)
+    static func create(models: [TMDb.Movie]) -> [Movie] {
+        models.map(Self.init)
     }
 
 }

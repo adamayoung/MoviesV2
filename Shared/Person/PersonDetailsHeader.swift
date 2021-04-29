@@ -60,10 +60,10 @@ extension PersonDetailsHeader {
 
 }
 
-//struct PersonDetailsHeader_Previews: PreviewProvider {
+// struct PersonDetailsHeader_Previews: PreviewProvider {
 //
 //    static var previews: some View {
 //        PersonDetailsHeader(name: "Adam Young", profileURL: URL(string: "https://pbs.twimg.com/profile_images/1275513868664659968/rVhFV8C1_400x400.jpg")!)
 //    }
 //
-//}
+// }

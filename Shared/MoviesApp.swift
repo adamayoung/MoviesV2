@@ -33,8 +33,7 @@ struct MoviesApp: App {
         MacAppScene(
             movieStore: movieStore,
             tvShowStore: tvShowStore,
-            personStore: personStore,
-            cloudKitAvailability: cloudKitAvailability
+            personStore: personStore
         )
         #else
         MainAppScene(

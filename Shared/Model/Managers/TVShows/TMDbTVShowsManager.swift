@@ -19,7 +19,7 @@ final class TMDbTVShowsManager: TVShowsManager {
     }
 
     func fetchTrending(page: Int = 1) -> AnyPublisher<[TVShow], Never> {
-        tmdb.trendingTVShowsPublisher(page: page)
+        tmdb.trending.tvShowsPublisher(page: page)
             .map(\.results)
             .map(TVShow.create)
             .replaceError(with: [])
@@ -35,7 +35,7 @@ final class TMDbTVShowsManager: TVShowsManager {
     }
 
     func fetchDiscover(page: Int = 1) -> AnyPublisher<[TVShow], Never> {
-        tmdb.discoverTVShowsPublisher(page: page)
+        tmdb.discover.tvShowsPublisher(page: page)
             .map(\.results)
             .map(TVShow.create)
             .replaceError(with: [])
@@ -43,7 +43,7 @@ final class TMDbTVShowsManager: TVShowsManager {
     }
 
     func fetchRecommendations(forTVShow tvShowID: TVShow.ID) -> AnyPublisher<[TVShow], Never> {
-        tmdb.recommendationsPublisher(forTVShow: tvShowID)
+        tmdb.tvShows.recommendationsPublisher(forTVShow: tvShowID)
             .map(\.results)
             .map(TVShow.create)
             .replaceError(with: [])
@@ -51,21 +51,21 @@ final class TMDbTVShowsManager: TVShowsManager {
     }
 
     func fetchTVShow(withID id: TVShow.ID) -> AnyPublisher<TVShow?, Never> {
-        tmdb.detailsPublisher(forTVShow: id)
+        tmdb.tvShows.detailsPublisher(forTVShow: id)
             .map(TVShow.init)
             .replaceError(with: nil)
             .eraseToAnyPublisher()
     }
 
     func fetchCredits(forTVShow tvShowID: TVShow.ID) -> AnyPublisher<Credits, Never> {
-        tmdb.creditsPublisher(forTVShow: tvShowID)
+        tmdb.tvShows.creditsPublisher(forTVShow: tvShowID)
             .map(Credits.init)
             .replaceError(with: Credits())
             .eraseToAnyPublisher()
     }
 
     func fetchSeason(_ seasonNumber: Int, forTVShow tvShowID: TVShow.ID) -> AnyPublisher<TVShowSeason?, Never> {
-        tmdb.detailsPublisher(forSeason: seasonNumber, inTVShow: tvShowID)
+        tmdb.tvShowSeasons.detailsPublisher(forSeason: seasonNumber, inTVShow: tvShowID)
             .map(TVShowSeason.init)
             .replaceError(with: nil)
             .eraseToAnyPublisher()

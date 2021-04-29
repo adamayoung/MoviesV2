@@ -3195,7 +3195,7 @@
 			repositoryURL = "https://github.com/kean/FetchImage.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.1;
+				minimumVersion = 0.4.0;
 			};
 		};
 		6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb" */ = {
@@ -3203,7 +3203,7 @@
 			repositoryURL = "https://github.com/adamayoung/TMDb.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
+				minimumVersion = 4.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

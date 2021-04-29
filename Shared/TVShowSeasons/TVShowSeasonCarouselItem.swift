@@ -42,7 +42,7 @@ struct TVShowSeasonCarouselItem: View {
             .font(displaySize == .large ? .headline : .subheadline)
             .lineLimit(2)
             .multilineTextAlignment(.center)
-            //.frame(width: displaySize.size.width * 1.25, alignment: .center)
+            // .frame(width: displaySize.size.width * 1.25, alignment: .center)
 
             Spacer()
         }
@@ -53,8 +53,8 @@ struct TVShowSeasonCarouselItem: View {
     }
 }
 
-//struct TVShowSeasonCarouselItem_Previews: PreviewProvider {
+// struct TVShowSeasonCarouselItem_Previews: PreviewProvider {
 //    static var previews: some View {
 //        TVShowSeasonCarouselItem()
 //    }
-//}
+// }

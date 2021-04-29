@@ -29,8 +29,8 @@ struct TVShowSeasonGridItem: View {
 
 }
 
-//struct TVShowSeasonGridItem_Previews: PreviewProvider {
+// struct TVShowSeasonGridItem_Previews: PreviewProvider {
 //    static var previews: some View {
 //        TVShowSeasonGridItem()
 //    }
-//}
+// }

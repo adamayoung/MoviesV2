@@ -10,23 +10,23 @@ import TMDb
 
 extension CrewMember {
 
-    init(dto: CrewMemberDTO) {
+    init(model: TMDb.CrewMember) {
         let gender: Gender = {
-            guard let gender = dto.gender else {
+            guard let gender = model.gender else {
                 return .unknown
             }
 
-            return Gender(dto: gender)
+            return Gender(model: gender)
         }()
 
-        let profileImage = ProfileImageMetadata(profileURLProvider: dto)
+        let profileImage = ProfileImageMetadata(profileURLProvider: model)
 
-        self.init(id: dto.id, creditID: dto.creditID, name: dto.name, job: dto.job, department: dto.department,
-                  gender: gender, profileImage: profileImage)
+        self.init(id: model.id, creditID: model.creditID, name: model.name, job: model.job,
+                  department: model.department, gender: gender, profileImage: profileImage)
     }
 
-    static func create(dtos: [CrewMemberDTO]) -> [CrewMember] {
-        dtos.map(Self.init)
+    static func create(models: [TMDb.CrewMember]) -> [CrewMember] {
+        models.map(Self.init)
     }
 
 }

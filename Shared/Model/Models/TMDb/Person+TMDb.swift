@@ -10,9 +10,9 @@ import TMDb
 
 extension Person {
 
-    init(dto: PersonDTO) {
+    init(model: TMDb.Person) {
         let biography: String? = {
-            guard let biography = dto.biography, !biography.isEmpty else {
+            guard let biography = model.biography, !biography.isEmpty else {
                 return nil
             }
 
@@ -20,23 +20,24 @@ extension Person {
         }()
 
         let gender: Gender? = {
-            guard let gender = dto.gender else {
+            guard let gender = model.gender else {
                 return nil
             }
 
-            return Gender(dto: gender)
+            return Gender(model: gender)
         }()
 
-        let profileImage = ProfileImageMetadata(profileURLProvider: dto)
+        let profileImage = ProfileImageMetadata(profileURLProvider: model)
 
-        self.init(id: dto.id, name: dto.name, alsoKnownAs: dto.alsoKnownAs, knownForDepartment: dto.knownForDepartment,
-                  biography: biography, birthday: dto.birthday, deathday: dto.deathday, gender: gender,
-                  placeOfBirth: dto.placeOfBirth, profileImage: profileImage, popularity: dto.popularity,
-                  imdbID: dto.imdbID, homepageURL: dto.homepageURL)
+        self.init(id: model.id, name: model.name, alsoKnownAs: model.alsoKnownAs,
+                  knownForDepartment: model.knownForDepartment, biography: biography, birthday: model.birthday,
+                  deathday: model.deathday, gender: gender, placeOfBirth: model.placeOfBirth,
+                  profileImage: profileImage, popularity: model.popularity, imdbID: model.imdbID,
+                  homepageURL: model.homepageURL)
     }
 
-    static func create(dtos: [PersonDTO]) -> [Self] {
-        dtos.map(Self.init)
+    static func create(models: [TMDb.Person]) -> [Self] {
+        models.map(Self.init)
     }
 
 }
