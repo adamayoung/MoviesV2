@@ -6,6 +6,9 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  DEVELOPER_DIR: /Applications/Xcode_12_4.app/Contents/Developer
+
 jobs:
   build-and-test:
     name: Build and Test
@@ -14,6 +17,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
 
       - name: SPM Cache
         uses: actions/cache@v2
@@ -24,7 +32,7 @@ jobs:
             ${{ runner.os }}-spm-
 
       - name: Build and Test
-        run: fastlane ios pr
+        run: bundle exec fastlane ios pr
         env:
           FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
