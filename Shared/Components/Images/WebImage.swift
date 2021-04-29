@@ -19,15 +19,21 @@ struct WebImage: View {
             image.view?
                 .resizable()
                 .scaledToFill()
+                .clipped()
         }
-        .onAppear {
-            if let url = url {
-                withoutAnimation {
-                    image.load(url)
-                }
-            }
-        }
+        .onAppear(perform: load)
         .onDisappear(perform: image.reset)
+        .animation(.default)
+    }
+
+    private func load() {
+        guard let url = url else {
+            return
+        }
+
+        withoutAnimation {
+            image.load(url)
+        }
     }
 
     private func withoutAnimation(_ closure: () -> Void) {

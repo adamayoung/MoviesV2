@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "FetchImage",
+        "repositoryURL": "https://github.com/kean/FetchImage.git",
+        "state": {
+          "branch": null,
+          "revision": "cac844a0dea908c6e068fc8c6a0f949179c7f876",
+          "version": "0.4.0"
+        }
+      },
+      {
+        "package": "Nuke",
+        "repositoryURL": "https://github.com/kean/Nuke.git",
+        "state": {
+          "branch": null,
+          "revision": "e2eb1b7b82983c6f6a2df496e850406a78cdef05",
+          "version": "9.3.0"
+        }
+      },
+      {
+        "package": "TMDb",
+        "repositoryURL": "https://github.com/adamayoung/TMDb.git",
+        "state": {
+          "branch": null,
+          "revision": "6d0e467f9947c1c4c6c5ad42bd076b41531a52f6",
+          "version": "4.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
