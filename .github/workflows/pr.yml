@@ -17,13 +17,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # - name: Setup ruby
-      #   uses: ruby/setup-ruby@v1
-      #   with:
-      #     bundler-cache: true
-
-      - name: bundle install
-        run: bundle install
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
 
       - name: SPM Cache
         uses: actions/cache@v2
