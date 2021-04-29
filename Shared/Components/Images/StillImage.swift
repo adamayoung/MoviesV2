@@ -39,7 +39,7 @@ struct StillImage: View {
     private var content: some View {
         ZStack(alignment: .center) {
             placeholder
-            WebImage(url: imageMetadata?.originalURL, lowDataURL: imageMetadata?.lowDataURL)
+            WebImage(url: imageMetadata?.originalURL)
         }
         .aspectRatio(DisplaySize.aspectRatio, contentMode: .fit)
     }

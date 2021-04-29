@@ -39,7 +39,7 @@ struct PosterImage: View {
     private var content: some View {
         ZStack(alignment: .center) {
             placeholder
-            WebImage(url: imageMetadata?.url, lowDataURL: imageMetadata?.lowDataURL)
+            WebImage(url: imageMetadata?.url)
         }
         .aspectRatio(DisplaySize.aspectRatio, contentMode: .fit)
     }

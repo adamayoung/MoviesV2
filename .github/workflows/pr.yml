@@ -27,7 +27,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: DerivedData/SourcePackages
-          key: ${{ runner.os }}-spm-${{ hashFiles('Movies.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
           restore-keys: |
             ${{ runner.os }}-spm-
 
