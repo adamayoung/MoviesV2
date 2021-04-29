@@ -10,6 +10,7 @@ jobs:
   testflight:
     name: TestFlight
     runs-on: macos-latest
+    environment: TestFlight
     env:
       DEVELOPER_DIR: /Applications/Xcode_12_4.app/Contents/Developer
 

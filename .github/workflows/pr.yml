@@ -20,7 +20,7 @@ jobs:
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: false
+          bundler-cache: true
 
       - name: SPM Cache
         uses: actions/cache@v2
