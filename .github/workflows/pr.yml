@@ -6,9 +6,6 @@ on:
       - main
   workflow_dispatch:
 
-env:
-  DEVELOPER_DIR: /Applications/Xcode_12_4.app/Contents/Developer
-
 jobs:
   build-and-test:
     name: Build and Test
