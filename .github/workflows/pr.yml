@@ -18,11 +18,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-
       - name: SPM Cache
         uses: actions/cache@v2
         with:
@@ -32,7 +27,7 @@ jobs:
             ${{ runner.os }}-spm-
 
       - name: Build and Test
-        run: bundle exec fastlane ios pr
+        run: fastlane ios pr
         env:
           FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
