@@ -21,6 +21,11 @@ or alternatively using `brew install fastlane`
 fastlane ios certs
 ```
 Fetches the provisioning profiles so you can build locally and deploy to your device
+### ios lint
+```
+fastlane ios lint
+```
+Lint
 ### ios test
 ```
 fastlane ios test
