@@ -68,7 +68,7 @@ platform :ios do
 
   desc "Upload to TestFlight"
   lane :beta do
-    ensure_git_branch(branch: "main")
+    # ensure_git_branch(branch: "main")
     app_store_connect_api_key
 
     match(type: "appstore")
