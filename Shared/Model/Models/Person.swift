@@ -19,7 +19,7 @@ struct Person: Identifiable, Equatable {
     let gender: Gender?
     let placeOfBirth: String?
     let profileImage: ProfileImageMetadata?
-    let popularity: Float?
+    let popularity: Double?
     let imdbID: String?
     let homepageURL: URL?
 
@@ -35,7 +35,7 @@ struct Person: Identifiable, Equatable {
 
     init(id: Int, name: String, alsoKnownAs: [String]? = nil, knownForDepartment: String? = nil,
          biography: String? = nil, birthday: Date? = nil, deathday: Date? = nil, gender: Gender? = nil,
-         placeOfBirth: String? = nil, profileImage: ProfileImageMetadata? = nil, popularity: Float? = nil,
+         placeOfBirth: String? = nil, profileImage: ProfileImageMetadata? = nil, popularity: Double? = nil,
          imdbID: String? = nil, homepageURL: URL? = nil) {
         self.id = id
         self.name = name

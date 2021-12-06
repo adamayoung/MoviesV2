@@ -39,7 +39,7 @@ enum Show: Identifiable, Equatable {
         }
     }
 
-    var popularity: Float? {
+    var popularity: Double? {
         switch self {
         case .movie(let movie):
             return movie.popularity

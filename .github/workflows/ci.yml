@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_12.4.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_13.2.app
 
 jobs:
   build-and-test:
@@ -17,12 +17,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-      - name: SPM Cache
+      - name: Cache SPM
         uses: actions/cache@v2
         with:
-          path: DerivedData/SourcePackages
-          key: ${{ runner.os }}-spm-${{ hashFiles('Movies.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          path: .build
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
           restore-keys: |
             ${{ runner.os }}-spm-
 
@@ -33,18 +35,3 @@ jobs:
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
-  
-  danger: 
-    name: Run Danger
-    runs-on: macos-latest
-
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Install tools
-        run: brew install danger/tap/danger-swift
-
-      - name: Danger
-        run: danger-swift ci
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

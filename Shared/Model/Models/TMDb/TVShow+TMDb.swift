@@ -27,7 +27,7 @@ extension TVShow {
             return Genre.create(models: genres)
         }()
 
-        let voteAverage: Float? = {
+        let voteAverage: Double? = {
             guard let voteAverage = model.voteAverage else {
                 return nil
             }

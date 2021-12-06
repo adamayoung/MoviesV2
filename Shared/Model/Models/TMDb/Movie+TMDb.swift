@@ -27,7 +27,7 @@ extension Movie {
             return TimeInterval(runtime * 60)
         }()
 
-        let voteAverage: Float? = {
+        let voteAverage: Double? = {
             guard let voteAverage = model.voteAverage else {
                 return nil
             }

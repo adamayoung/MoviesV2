@@ -6,23 +6,26 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  DEVELOPER_DIR: /Applications/Xcode_13.2.app
+
 jobs:
   testflight:
     name: TestFlight
     runs-on: macos-latest
     environment: TestFlight
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_12.4.app/Contents/Developer
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-      - name: SPM Cache
+      - name: Cache SPM
         uses: actions/cache@v2
         with:
-          path: DerivedData/SourcePackages
-          key: ${{ runner.os }}-spm-${{ hashFiles('Movies.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          path: .build
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
           restore-keys: |
             ${{ runner.os }}-spm-
 

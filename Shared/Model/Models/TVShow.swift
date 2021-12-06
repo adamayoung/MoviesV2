@@ -16,14 +16,14 @@ struct TVShow: Identifiable, Equatable {
     let posterImage: PosterImageMetadata?
     let backdropImage: BackdropImageMetadata?
     let homepageURL: URL?
-    let popularity: Float?
+    let popularity: Double?
     let seasons: [TVShowSeason]?
     let genres: [Genre]?
-    let voteAverage: Float?
+    let voteAverage: Double?
 
     init(id: Int, name: String, overview: String? = nil, firstAirDate: Date? = nil,
          posterImage: PosterImageMetadata? = nil, backdropImage: BackdropImageMetadata? = nil, homepageURL: URL? = nil,
-         popularity: Float? = nil, seasons: [TVShowSeason]? = nil, genres: [Genre]? = nil, voteAverage: Float? = nil) {
+         popularity: Double? = nil, seasons: [TVShowSeason]? = nil, genres: [Genre]? = nil, voteAverage: Double? = nil) {
         self.id = id
         self.name = name
         self.overview = overview
