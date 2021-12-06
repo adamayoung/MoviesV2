@@ -19,12 +19,12 @@ struct TVShowEpisode: Identifiable, Equatable {
     let stillImage: StillImageMetadata?
     let crew: [CrewMember]?
     let guestStars: [CastMember]?
-    let voteAverage: Float?
+    let voteAverage: Double?
     let voteCount: Int?
 
     init(id: Int, name: String, episodeNumber: Int, seasonNumber: Int, overview: String? = nil, airDate: Date? = nil,
          productionCode: String? = nil, stillImage: StillImageMetadata? = nil, crew: [CrewMember]? = nil,
-         guestStars: [CastMember]? = nil, voteAverage: Float? = nil, voteCount: Int? = nil) {
+         guestStars: [CastMember]? = nil, voteAverage: Double? = nil, voteCount: Int? = nil) {
         self.id = id
         self.name = name
         self.episodeNumber = episodeNumber

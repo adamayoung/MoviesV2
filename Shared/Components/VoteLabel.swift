@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VoteLabel: View {
 
-    var voteAverage: Float
+    var voteAverage: Double
 
     private var voteColor: Color {
         if voteAverage < 4 {

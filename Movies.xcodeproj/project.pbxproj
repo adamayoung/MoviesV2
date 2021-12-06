@@ -1752,8 +1752,8 @@
 			);
 			mainGroup = 6FA5A93E24BF144500E828AA;
 			packageReferences = (
-				6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb" */,
-				6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage" */,
+				6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb.git" */,
+				6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage.git" */,
 			);
 			productRefGroup = 6FA5A94C24BF144600E828AA /* Products */;
 			projectDirPath = "";
@@ -3190,7 +3190,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage" */ = {
+		6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/FetchImage.git";
 			requirement = {
@@ -3198,12 +3198,12 @@
 				minimumVersion = 0.4.0;
 			};
 		};
-		6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb" */ = {
+		6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/adamayoung/TMDb.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.1.0;
+				minimumVersion = 6.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -3211,52 +3211,52 @@
 /* Begin XCSwiftPackageProductDependency section */
 		6F03ECCA24F5CF050069A2F2 /* FetchImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage" */;
+			package = 6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage.git" */;
 			productName = FetchImage;
 		};
 		6F03ECCC24F5CF850069A2F2 /* FetchImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage" */;
+			package = 6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage.git" */;
 			productName = FetchImage;
 		};
 		6F03ECCE24F5CF8C0069A2F2 /* FetchImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage" */;
+			package = 6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage.git" */;
 			productName = FetchImage;
 		};
 		6FA5A98824BF14EF00E828AA /* TMDb */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb" */;
+			package = 6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb.git" */;
 			productName = TMDb;
 		};
 		6FA5A98A24BF14F400E828AA /* TMDb */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb" */;
+			package = 6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb.git" */;
 			productName = TMDb;
 		};
 		6FA5A9F924BF318300E828AA /* TMDb */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb" */;
+			package = 6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb.git" */;
 			productName = TMDb;
 		};
 		6FA5AA1D24BF413700E828AA /* TMDb */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb" */;
+			package = 6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb.git" */;
 			productName = TMDb;
 		};
 		6FA5AA3724BF481100E828AA /* TMDb */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb" */;
+			package = 6FA5A98724BF14EF00E828AA /* XCRemoteSwiftPackageReference "TMDb.git" */;
 			productName = TMDb;
 		};
 		6FA9F57F2500048600E3AA73 /* FetchImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage" */;
+			package = 6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage.git" */;
 			productName = FetchImage;
 		};
 		6FA9F5832500055200E3AA73 /* FetchImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage" */;
+			package = 6F03ECC924F5CF050069A2F2 /* XCRemoteSwiftPackageReference "FetchImage.git" */;
 			productName = FetchImage;
 		};
 /* End XCSwiftPackageProductDependency section */

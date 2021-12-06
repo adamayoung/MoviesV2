@@ -3,7 +3,7 @@ derived_data_path("./DerivedData")
 code_coverage(true)
 
 for_platform :ios do
-  device("iPhone 12 Pro Max")
+  device("iPhone 13 Pro Max")
   scheme("Movies (iOS)")
 end
 

@@ -18,12 +18,12 @@ struct Movie: Identifiable, Equatable {
     let releaseDate: Date?
     let posterImage: PosterImageMetadata?
     let backdropImage: BackdropImageMetadata?
-    let popularity: Float?
-    let voteAverage: Float?
+    let popularity: Double?
+    let voteAverage: Double?
 
     init(id: Int, title: String, tagline: String? = nil, overview: String? = nil, runtime: TimeInterval? = nil,
          genres: [Genre]? = nil, releaseDate: Date? = nil, posterImage: PosterImageMetadata? = nil,
-         backdropImage: BackdropImageMetadata? = nil, popularity: Float? = nil, voteAverage: Float? = nil) {
+         backdropImage: BackdropImageMetadata? = nil, popularity: Double? = nil, voteAverage: Double? = nil) {
         self.id = id
         self.title = title
         self.tagline = tagline
