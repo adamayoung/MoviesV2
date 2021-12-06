@@ -11,7 +11,6 @@ struct FavouriteTVShowsView: View {
 
     @EnvironmentObject private var tvShowStore: TVShowStore
     @EnvironmentObject private var cloudKitAvailability: CloudKitAvailability
-    @State private var allowAnimations = false
 
     private var tvShows: [TVShow] {
         tvShowStore.favourites
@@ -28,12 +27,7 @@ struct FavouriteTVShowsView: View {
                     AddFavouriteOverlay(isAvailable: isFavouritesAvailable)
                 }
             })
-            .animation(self.allowAnimations ? .default : nil)
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                    self.allowAnimations = true
-                }
-            }
+            .animation(.default, value: tvShows)
             .navigationTitle("Favourite TV Shows")
     }
 

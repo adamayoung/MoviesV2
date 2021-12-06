@@ -23,7 +23,7 @@ struct WebImage: View {
         }
         .onAppear(perform: load)
         .onDisappear(perform: image.reset)
-        .animation(.default)
+        .animation(.default, value: image.view)
     }
 
     private func load() {

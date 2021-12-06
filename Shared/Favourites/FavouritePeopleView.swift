@@ -11,7 +11,6 @@ struct FavouritePeopleView: View {
 
     @EnvironmentObject private var personStore: PersonStore
     @EnvironmentObject private var cloudKitAvailability: CloudKitAvailability
-    @State private var allowAnimations = false
 
     private var people: [Person] {
         personStore.favourites
@@ -28,12 +27,7 @@ struct FavouritePeopleView: View {
                     AddFavouriteOverlay(isAvailable: isFavouritesAvailable)
                 }
             })
-            .animation(self.allowAnimations ? .default : nil)
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                    self.allowAnimations = true
-                }
-            }
+            .animation(.default, value: people)
             .navigationTitle("Favourite People")
     }
 
