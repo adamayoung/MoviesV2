@@ -29,7 +29,7 @@ struct TVShowsCarousel: View {
             .padding(.horizontal, 20)
             .padding(.top)
         }
-        .animation(.default)
+        .animation(.default, value: tvShows)
         .disabled(tvShows.isEmpty)
     }
 
