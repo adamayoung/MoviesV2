@@ -35,18 +35,3 @@ jobs:
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
-  
-  danger: 
-    name: Run Danger
-    runs-on: macos-latest
-
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Install tools
-        run: brew install danger/tap/danger-swift
-
-      - name: Danger
-        run: danger-swift ci
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
